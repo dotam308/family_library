@@ -23,7 +23,7 @@
         <link href="/assets/css/mmenu.positioning.css" rel="stylesheet" type="text/css" />
         
         <!-- Stylesheet -->
-        <link href="/assets/style.css" rel="stylesheet" type="text/css" />
+        <link href="/assets/css/style.css" rel="stylesheet" type="text/css" />
         
         <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -46,7 +46,7 @@
                                 <div class="navbar-header">
                                     <div class="navbar-brand">
                                         <h1>
-                                            <a href="/assets/index-2.html">
+                                            <a href="index-2.html">
                                                 <img src="/assets/images/libraria-logo-v1.png" alt="LIBRARIA" />
                                             </a>
                                         </h1>
@@ -76,7 +76,7 @@
                                                     <div class="dropdown-menu cart-dropdown">
                                                         <ul>
                                                             <li class="clearfix">
-                                                                <img src="images/header-cart-image-01.jpg" alt="cart item" />
+                                                                <img src="/assets/images/header-cart-image-01.jpg" alt="cart item" />
                                                                 <div class="item-info">
                                                                     <div class="name">
                                                                         <a href="#">The Great Gatsby</a>
@@ -87,7 +87,7 @@
                                                                 <a class="remove" href="#"><i class="fa fa-trash-o"></i></a>
                                                             </li>
                                                             <li class="clearfix">
-                                                                <img src="images/header-cart-image-02.jpg" alt="cart item" />
+                                                                <img src="/assets/images/header-cart-image-02.jpg" alt="cart item" />
                                                                 <div class="item-info">
                                                                     <div class="name">
                                                                         <a href="#">The Great Gatsby</a>
@@ -98,7 +98,7 @@
                                                                 <a class="remove" href="#"><i class="fa fa-trash-o"></i></a>
                                                             </li>
                                                             <li class="clearfix">
-                                                                <img src="images/header-cart-image-03.jpg" alt="cart item" />
+                                                                <img src="/assets/images/header-cart-image-03.jpg" alt="cart item" />
                                                                 <div class="item-info">
                                                                     <div class="name">
                                                                         <a href="#">The Great Gatsby</a>
@@ -262,7 +262,7 @@
                                         <div class="row">
                                             <div class="col-md-12">
                                                 <div class="error-box bg-dark margin-left text-center">
-                                                    <img src="images/error-img.png" alt="Error Image">
+                                                    <img src="/assets/images/error-img.png" alt="Error Image">
                                                 </div>
                                             </div>
                                         </div>
