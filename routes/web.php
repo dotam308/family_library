@@ -26,6 +26,25 @@ Route::get('contact', function() {
 Route::get('cart', function() {
     return view('cart');
 });
+Route::get('/checkout', function() {
+    //view(checkout)
+    return view('checkout');
+});
+Route::get('/signin', function() {
+    //view(signin)
+    return view('signin');
+});
+Route::get('/books_detail', function() {
+    //view(book details)
+    return view('books_detail');
+});
+
+Route::get('/books', function() {
+    //view(book)
+    return view('books');
+});
+
+
 Route::get('/books_media-grid-view-v2', function() {
     return view('books_media-grid-view-v2');
 });
