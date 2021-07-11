@@ -208,7 +208,7 @@
                                         <a href="#">Pages</a>
                                         <ul>
                                             <li><a href="cart.html">Cart</a></li>
-                                            <li><a href="checkout.html">Checkout</a></li>
+                                            <li><a href="checkout.blade.php">Checkout</a></li>
                                             <li><a href="signin.html">Signin/Register</a></li>
                                             <li><a href="404.html">404/Error</a></li>
                                         </ul>
