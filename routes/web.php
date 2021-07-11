@@ -43,4 +43,3 @@ Route::get('/books', function() {
     //view(book)
     return view('books');
 });
-
