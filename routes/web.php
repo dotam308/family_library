@@ -43,11 +43,3 @@ Route::get('/books', function() {
     //view(book)
     return view('books');
 });
-
-
-Route::get('/books_media-grid-view-v2', function() {
-    return view('books_media-grid-view-v2');
-});
-Route::get('/books_media-grid-view-v2', function() {
-    return view('books_media-grid-view-v2');
-})->name('books_media-grid-view-v2');
