@@ -17,3 +17,31 @@ Route::get('/', function () {
     // return view('welcome');
     return view('index');
 });
+Route::get('/404', function() {
+    //view(404)
+    return view('404');
+
+});
+Route::get('/checkout', function() {
+    //view(checkout)
+    return view('checkout');
+});
+Route::get('/cart', function(){
+    //view(cart)
+    return view('cart');
+});
+Route::get('/signin', function() {
+    //view(signin)
+    return view('signin');
+});
+Route::get('/books_detail', function() {
+    //view(book details)
+    return view('books_detail');
+});
+
+Route::get('/books', function() {
+    //view(book)
+    return view('books');
+});
+
+

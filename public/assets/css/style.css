@@ -10749,7 +10749,7 @@ a:focus {
 }
 .latest-blog.banner {
   background-attachment: fixed;
-  background-image: url(images/latest-blog-bg-home-v1.jpg);
+  background-image: url('/assets/images/latest-blog-bg-home-v1.jpg');
   background-position: center center;
   background-repeat: no-repeat;
   background-size: cover;
