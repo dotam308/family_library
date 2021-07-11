@@ -25,21 +25,21 @@ Route::get('contact', function() {
 })->name('contact');
 Route::get('cart', function() {
     return view('cart');
-});
+})->name('cart');
 Route::get('/checkout', function() {
     //view(checkout)
     return view('checkout');
-});
+})->name('checkout');
 Route::get('/signin', function() {
     //view(signin)
     return view('signin');
-});
+})->name('signin');
 Route::get('/books_detail', function() {
     //view(book details)
     return view('books_detail');
-});
+})->name('books_detail');
 
 Route::get('/books', function() {
     //view(book)
     return view('books');
-});
+})->name('books');

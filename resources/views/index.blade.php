@@ -133,7 +133,7 @@
                                             </ul>
                                         </li>
                                         <li class="dropdown">
-                                            <a data-toggle="dropdown" class="dropdown-toggle disabled" href="{{ route('books_media-grid-view-v2') }}">Books &amp; Media</a>
+                                            <a data-toggle="dropdown" class="dropdown-toggle disabled" href="{{ route('books_detail') }}">Books &amp; Media</a>
                                             <ul class="dropdown-menu">
                                                 <li><a href="books-media-list-view.html">Books &amp; Media List View</a></li>
                                                 <li><a href="books-media-gird-view-v1.html">Books &amp; Media Grid View V1</a></li>
