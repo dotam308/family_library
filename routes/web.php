@@ -32,3 +32,6 @@ Route::get('/books_media-grid-view-v2', function() {
 Route::get('/books_media-grid-view-v2', function() {
     return view('books_media-grid-view-v2');
 })->name('books_media-grid-view-v2');
+Route::get('/nothing', function() {
+    return "none";
+});
