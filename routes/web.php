@@ -16,19 +16,19 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     // return view('welcome');
     return view('index');
-});
+})->name('index');
 Route::get('/404', function() {
-    //view(404)
     return view('404');
-
+})->name('404');
+Route::get('contact', function() {
+    return view('contact');
+})->name('contact');
+Route::get('cart', function() {
+    return view('cart');
 });
 Route::get('/checkout', function() {
     //view(checkout)
     return view('checkout');
-});
-Route::get('/cart', function(){
-    //view(cart)
-    return view('cart');
 });
 Route::get('/signin', function() {
     //view(signin)
@@ -45,3 +45,9 @@ Route::get('/books', function() {
 });
 
 
+Route::get('/books_media-grid-view-v2', function() {
+    return view('books_media-grid-view-v2');
+});
+Route::get('/books_media-grid-view-v2', function() {
+    return view('books_media-grid-view-v2');
+})->name('books_media-grid-view-v2');

@@ -45,7 +45,7 @@
                                 <div class="navbar-header">
                                     <div class="navbar-brand">
                                         <h1>
-                                            <a href="index-2.html">
+                                            <a href="{{ route('index') }}">
                                                 <img src="/assets/images/libraria-logo-v1.png" alt="LIBRARIA" />
                                             </a>
                                         </h1>
@@ -125,7 +125,7 @@
                                 <div class="navbar-collapse hidden-sm hidden-xs">
                                     <ul class="nav navbar-nav">
                                         <li class="dropdown active">
-                                            <a data-toggle="dropdown" class="dropdown-toggle disabled" href="index-2.html">Home</a>
+                                            <a data-toggle="dropdown" class="dropdown-toggle disabled" href="{{ route('index') }}">Home</a>
                                             <ul class="dropdown-menu">
                                                 <li><a href="index-2.html">Home V1</a></li>
                                                 <li><a href="home-v2.html">Home V2</a></li>
@@ -133,7 +133,7 @@
                                             </ul>
                                         </li>
                                         <li class="dropdown">
-                                            <a data-toggle="dropdown" class="dropdown-toggle disabled" href="books-media-list-view.html">Books &amp; Media</a>
+                                            <a data-toggle="dropdown" class="dropdown-toggle disabled" href="{{ route('books_media-grid-view-v2') }}">Books &amp; Media</a>
                                             <ul class="dropdown-menu">
                                                 <li><a href="books-media-list-view.html">Books &amp; Media List View</a></li>
                                                 <li><a href="books-media-gird-view-v1.html">Books &amp; Media Grid View V1</a></li>
@@ -221,7 +221,7 @@
                                         </ul>
                                     </li>
                                     <li><a href="services.html">Services</a></li>
-                                    <li><a href="contact.html">Contact</a></li>
+                                    <li><a href="{{ route('contact') }}">Contact</a></li>
                                 </ul>
                             </div>
                         </div>
