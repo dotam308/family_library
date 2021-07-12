@@ -1,1 +1,0 @@
-<img src="{{ asset("/storage/flower.jpg") }}" alt="img"/>

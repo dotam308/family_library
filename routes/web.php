@@ -43,10 +43,3 @@ Route::get('/books', function() {
     //view(book)
     return view('books');
 })->name('books');
-
-Route::get('/symlink', function () {
-    Artisan::call('storage:link');
-});
-Route::get('abc', function() {
-    return view('test');
-});
