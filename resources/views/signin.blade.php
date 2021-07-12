@@ -66,7 +66,7 @@
                                         </div>
                                         <div class="col-sm-6">
                                             <div class="topbar-links">
-                                                <a href="signin.html"><i class="fa fa-lock"></i>Login / Register</a>
+                                                <a href="{{ route('signin') }}"><i class="fa fa-lock"></i>Login / Register</a>
                                                 <span>|</span>
                                                 <div class="header-cart dropdown">
                                                     <a data-toggle="dropdown" class="dropdown-toggle" href="#">
@@ -267,9 +267,10 @@
                                                             <span class="underline left"></span>
                                                         </div>
                                                         <form class="login" method="post">
+                                                            @csrf
                                                             <p class="form-row form-row-first input-required">
                                                                 <label>
-                                                                    <span class="first-letter">Barcode or Username</span>  
+                                                                    <span class="first-letter">Username</span>  
                                                                     <span class="second-letter">*</span>
                                                                 </label>
                                                                 <input type="text"  id="username" name="username" class="input-text">
@@ -308,9 +309,18 @@
                                                             <p>If no barcode has been assigned for your account, please contact the library.</p>
                                                         </div>
                                                         <form class="login" method="post">
+                                                            @csrf
+                                                            
                                                             <p class="form-row form-row-first input-required">
                                                                 <label>
-                                                                    <span class="first-letter">Barcode</span>  
+                                                                    <span class="first-letter">Name</span>  
+                                                                    <span class="second-letter">*</span>
+                                                                </label>
+                                                                <input type="text" id="name" name="name" class="input-text">
+                                                            </p>
+                                                            <p class="form-row input-required">
+                                                                <label>
+                                                                    <span class="first-letter">Username</span>  
                                                                     <span class="second-letter">*</span>
                                                                 </label>
                                                                 <input type="text" id="username1" name="username" class="input-text">

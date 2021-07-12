@@ -1,7 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\Auth\RegisteredUserController;
+use App\Http\Controllers\Auth\AuthenticatedSessionController;
+use App\Http\Controllers\HomeController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,10 +15,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    // return view('welcome');
-    return view('index');
-})->name('index');
+Route::get('/',[HomeController::class, 'index'])->name('index');
+
+Route::get('/signin', [RegisteredUserController::class, "create"])->name('signin');
+Route::post('/signin', [RegisteredUserController::class, "store"]);
+Route::get('/logout', [AuthenticatedSessionController::class, "destroy"])->name('logout');
+
 Route::get('/404', function() {
     return view('404');
 })->name('404');
@@ -30,10 +34,6 @@ Route::get('/checkout', function() {
     //view(checkout)
     return view('checkout');
 })->name('checkout');
-Route::get('/signin', function() {
-    //view(signin)
-    return view('signin');
-})->name('signin');
 Route::get('/books_detail', function() {
     //view(book details)
     return view('books_detail');
