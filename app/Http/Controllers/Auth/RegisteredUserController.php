@@ -20,7 +20,7 @@ class RegisteredUserController extends Controller
      */
     public function create()
     {
-        return view('auth.register');
+        return view('signin');
     }
 
     /**
@@ -33,22 +33,36 @@ class RegisteredUserController extends Controller
      */
     public function store(Request $request)
     {
+        if (isset($request->login)) {
+            $username = $request->username;
+            $password = $request->password;
+            
+            
+            if (Auth::attempt(['username' => $username, 'password' => $password])) {
+                session(['username'=>$username,
+                'password' => $password
+                ]);
+                $user = User::where('username', $username)->first();
+                $nameUser = $user->name;
+                session(['nameUser'=> $nameUser]);
+                return redirect()->route('index');
+            } else {
+                return redirect(route('signin'));
+            }
+        }
         $request->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
-            'password' => ['required', 'confirmed', Rules\Password::defaults()],
+            'username' => 'required|string|max:255',
+            'password' => 'required',
+            'name' => 'required',
         ]);
 
         $user = User::create([
-            'name' => $request->name,
-            'email' => $request->email,
+            'username' => $request->username,
             'password' => Hash::make($request->password),
+            'name' => $request->name,
         ]);
 
-        event(new Registered($user));
-
-        Auth::login($user);
-
-        return redirect(RouteServiceProvider::HOME);
+        session(['nameUser'=> $request->name]);
+        return redirect(route('index'));
     }
 }
