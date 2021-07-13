@@ -26,7 +26,17 @@
                     {{ $header }}
                 </div>
             </header>
+<?php
+    hbh
+    echo "hd";
+    if (...){
+        echo "jkdvjk";
+    }
+?>
+@if()
 
+<div>sdhbchksjdc</div>
+@endif
             <!-- Page Content -->
             <main>
                 {{ $slot }}

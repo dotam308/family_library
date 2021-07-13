@@ -16,7 +16,6 @@ use App\Http\Controllers\HomeController;
 */
 
 Route::get('/',[HomeController::class, 'index'])->name('index');
-
 Route::get('/signin', [RegisteredUserController::class, "create"])->name('signin');
 Route::post('/signin', [RegisteredUserController::class, "store"]);
 Route::get('/logout', [AuthenticatedSessionController::class, "destroy"])->name('logout');
