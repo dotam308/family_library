@@ -38,6 +38,7 @@ Route::get('/books_detail', function() {
     return view('books_detail');
 })->name('books_detail');
 
+
 Route::get('/books', function() {
     //view(book)
     return view('books');
