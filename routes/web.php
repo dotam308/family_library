@@ -20,24 +20,11 @@ Route::get('/signin', [RegisteredUserController::class, "create"])->name('signin
 Route::post('/signin', [RegisteredUserController::class, "store"]);
 Route::get('/logout', [AuthenticatedSessionController::class, "destroy"])->name('logout');
 
-Route::get('/404', function() {
-    return view('404');
-})->name('404');
-Route::get('contact', function() {
-    return view('contact');
-})->name('contact');
-Route::get('cart', function() {
-    return view('cart');
-})->name('cart');
-Route::get('/checkout', function() {
-    //view(checkout)
-    return view('checkout');
-})->name('checkout');
-Route::get('/books_detail', function() {
-    //view(book details)
-    return view('books_detail');
-})->name('books_detail');
-Route::get('/books', function() {
-    //view(book)
-    return view('books');
-})->name('books');
+
+Route::get('/books',[HomeController::class, 'viewBooks'])->name('books');
+Route::get('contact',[HomeController::class, 'viewContact'])->name('contact');
+Route::get('cart', [HomeController::class, 'viewCart'])->name('cart');
+Route::get('/checkout',[HomeController::class, 'viewCheckout'])->name('checkout');
+
+Route::get('/404', [HomeController::class, 'view404'])->name('404');
+Route::get('/books_detail', [HomeController:: class, 'viewBookDetailed'])->name('books_detail');
