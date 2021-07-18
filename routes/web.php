@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\HomeController;
+use Illuminate\Http\Request;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -28,3 +29,4 @@ Route::get('/checkout',[HomeController::class, 'viewCheckout'])->name('checkout'
 
 Route::get('/404', [HomeController::class, 'view404'])->name('404');
 Route::get('/books_detail', [HomeController:: class, 'viewBookDetailed'])->name('books_detail');
+

@@ -32,10 +32,10 @@ class RegisteredUserController extends Controller
      */
     public function store(Request $request)
     {
+        // dd($request->all());
         if (isset($request->login)) {
             $username = $request->username;
             $password = $request->password;
-            
             
             if (Auth::attempt(['username' => $username, 'password' => $password])) {
                 session(['username'=>$username,

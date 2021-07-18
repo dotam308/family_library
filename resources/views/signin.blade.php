@@ -86,7 +86,6 @@
                                                 </div>
                                                 <form class="login" method="post">
                                                     @csrf
-
                                                     <p class="form-row form-row-first input-required">
                                                         <label>
                                                             <span class="first-letter">Name</span>
