@@ -15,12 +15,14 @@ class CreateBorrowingsTable extends Migration
     {
         Schema::create('borrowings', function (Blueprint $table) {
             $table->id();
-            $table->string('borrowerCode')->nullable();
-            $table->string('ddcCode')->nullable();
+            $table->unsignedBigInteger('userId');
+            $table->foreign('userId')->references('id')->on('users')->onDelete('CASCADE');
+            $table->unsignedBigInteger('bookId');
+            $table->foreign('bookId')->references('id')->on('books')->onDelete('CASCADE');
             $table->unsignedInteger('quantity');
             $table->date('borrowDate');
             $table->date('returnDate');
-            $table->string('borrowed');
+            $table->string('returned');
             $table->timestamps();
         });
     }

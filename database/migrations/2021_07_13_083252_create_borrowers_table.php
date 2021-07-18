@@ -13,9 +13,10 @@ class CreateBorrowersTable extends Migration
      */
     public function up()
     {
-        Schema::create('borrowers', function (Blueprint $table) {
+        Schema::create('userInfo', function (Blueprint $table) {
             $table->id();
-            $table->string('borrowerCode')->index();
+            $table->unsignedBigInteger('userId');
+            $table->foreign('userId')->references('id')->on('users')->onDelete('CASCADE');
             $table->string('name');
             $table->string('address');
             $table->string('contactNumber');
@@ -30,6 +31,6 @@ class CreateBorrowersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('borrowers');
+        Schema::dropIfExists('userInfo');
     }
 }

@@ -13,7 +13,6 @@ class CreateBooksTable extends Migration
      */
     public function up()
     {
-        Schema::dropIfExists('borrowings');
         Schema::create('books', function (Blueprint $table) {
             $table->id();
             $table->string('ddcCode')->index();
@@ -24,8 +23,9 @@ class CreateBooksTable extends Migration
             $table->string('translator');
             $table->string('country');
             $table->string('review');
-            $table->string('copies');
-            $table->string('price');
+            $table->unsignedBigInteger('copies');
+            $table->decimal('price', 12, 2);
+            $table->string('image');
             $table->timestamps();
         });
     }

@@ -28,8 +28,10 @@
                                 </div>
                                 <div class="col-sm-6">
                                     <div class="topbar-links">
-                                        <a href="{{ route('signin') }}"><i class="fa fa-lock"></i>Login /
-                                            Register</a>
+                                        
+                                        <a href="#">Welcome {{ session('nameUser')  }}</a>
+                                        <a href="{{ route('signin') }}"><i class="fa fa-lock"></i>{{ empty(session('nameUser')) ? "Login /" : "" }} Register</a>
+                                        <a href="{{ route('logout') }}"><i class="fa fa-logout"></i>{{ empty(session('nameUser')) ? "" : "Logout" }}</a>
                                         <span>|</span>
                                         <div class="header-cart dropdown">
                                             <a data-toggle="dropdown" class="dropdown-toggle" href="#">
