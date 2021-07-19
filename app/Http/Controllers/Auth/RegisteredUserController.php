@@ -4,12 +4,14 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use App\Models\UserInfo;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
+use DB;
 
 class RegisteredUserController extends Controller
 {
@@ -36,13 +38,14 @@ class RegisteredUserController extends Controller
         if (isset($request->login)) {
             $username = $request->username;
             $password = $request->password;
-            
             if (Auth::attempt(['username' => $username, 'password' => $password])) {
-                session(['username'=>$username,
-                'password' => $password
+                session(['username'=>$username
                 ]);
                 $user = User::where('username', $username)->first();
-                $nameUser = $user->name;
+                session(['role'=>$user->role]);
+                $userInfo = UserInfo::where('userId', $user->id)->first();
+                $nameUser = 'admin';
+                if (!empty($userInfo)) $nameUser = $userInfo->name;
                 session(['nameUser'=> $nameUser]);
                 return redirect()->route('index');
             } else {
@@ -58,9 +61,16 @@ class RegisteredUserController extends Controller
         $user = User::create([
             'username' => $request->username,
             'password' => Hash::make($request->password),
-            'name' => $request->name,
+            'role' => 'guest'
         ]);
-
+        session(['role' => 'guess']);
+        $last = DB::table('users')->latest()->first();
+        $userId = $last->id;
+        // dd($userId);
+        UserInfo::create([
+            'userId' => $userId,
+            'name'=>$request->name
+        ]);
         session(['nameUser'=> $request->name]);
         return redirect(route('index'));
     }

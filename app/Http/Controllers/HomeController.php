@@ -10,10 +10,10 @@ class HomeController extends Controller
         $active = "index";
         return view('index', compact('active'));
     }
-    public function viewBooks() {
-        $active = "books";
-        return view('books', compact('active'));
-    }
+    // public function viewBooks() {
+    //     $active = "books";
+    //     return view('books', compact('active'));
+    // }
     public function viewContact() {
         $active = "contact";
         return view('contact', compact('active'));

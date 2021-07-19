@@ -18,8 +18,8 @@ class CreateBorrowersTable extends Migration
             $table->unsignedBigInteger('userId');
             $table->foreign('userId')->references('id')->on('users')->onDelete('CASCADE');
             $table->string('name');
-            $table->string('address');
-            $table->string('contactNumber');
+            $table->string('address')->nullable();
+            $table->string('contactNumber')->nullable();
             $table->timestamps();
         });
     }

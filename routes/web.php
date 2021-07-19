@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\BookController;
 use Illuminate\Http\Request;
 /*
 |--------------------------------------------------------------------------
@@ -22,7 +23,13 @@ Route::post('/signin', [RegisteredUserController::class, "store"]);
 Route::get('/logout', [AuthenticatedSessionController::class, "destroy"])->name('logout');
 
 
-Route::get('/books',[HomeController::class, 'viewBooks'])->name('books');
+Route::get('/books',[BookController::class, 'index'])->name('books');
+Route::get('/addBook', [BookController::class, 'addBookForm'])->name('addBook');
+Route::post('/addBook', [BookController::class, 'addBookPost']);
+Route::get('/editBook', [BookController::class, 'editBookForm'])->name('editBook');
+Route::post('/editBook', [BookController::class, 'editBookPost']);
+Route::get('/deleteBook', [BookController::class, 'deleteBook'])->name('deleteBook');
+
 Route::get('contact',[HomeController::class, 'viewContact'])->name('contact');
 Route::get('cart', [HomeController::class, 'viewCart'])->name('cart');
 Route::get('/checkout',[HomeController::class, 'viewCheckout'])->name('checkout');
