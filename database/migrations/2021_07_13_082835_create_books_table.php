@@ -17,15 +17,15 @@ class CreateBooksTable extends Migration
             $table->id();
             $table->string('ddcCode')->index();
             $table->string('name');
-            $table->string('author');
-            $table->string('genre');
-            $table->string('publisher');
-            $table->string('translator');
-            $table->string('country');
-            $table->string('review');
+            $table->string('author')->nullable();
+            $table->string('genre')->nullable();
+            $table->string('publisher')->nullable();
+            $table->string('translator')->nullable();
+            $table->string('country')->nullable();
+            $table->string('review')->nullable();
             $table->unsignedBigInteger('copies');
             $table->decimal('price', 12, 2);
-            $table->string('image');
+            $table->string('image')->nullable();
             $table->timestamps();
         });
     }
