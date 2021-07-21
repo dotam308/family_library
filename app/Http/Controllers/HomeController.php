@@ -34,4 +34,8 @@ class HomeController extends Controller
         $active = "pages";
         return view('books_detail', compact('active'));
     }
+    public function viewBookRented() {
+        $active = "pages";
+        return view('books_rented', compact('active'));
+    }
 }
