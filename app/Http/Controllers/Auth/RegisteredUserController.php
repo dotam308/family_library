@@ -43,6 +43,7 @@ class RegisteredUserController extends Controller
                 ]);
                 $user = User::where('username', $username)->first();
                 session(['role'=>$user->role]);
+                session(['userId'=>$user->id]);
                 $userInfo = UserInfo::where('userId', $user->id)->first();
                 $nameUser = 'admin';
                 if (!empty($userInfo)) $nameUser = $userInfo->name;
@@ -66,6 +67,7 @@ class RegisteredUserController extends Controller
         session(['role' => 'guess']);
         $last = DB::table('users')->latest()->first();
         $userId = $last->id;
+        session(['userId' => $userId]);
         // dd($userId);
         UserInfo::create([
             'userId' => $userId,

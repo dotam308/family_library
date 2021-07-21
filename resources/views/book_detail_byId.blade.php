@@ -86,7 +86,7 @@
                             <div class="col-xs-12 col-sm-7 col-md-6">
                                 <div class="post-center-content">
                                     <h2>{{ $book->name }}</h2>
-                                    <p><strong>Author:</strong> {{ $book->name }}</p>
+                                    <p><strong>Author:</strong> {{ $book->author }}</p>
                                     <p><strong>ISBN:</strong> {{ $book->ddcCode }}</p>
                                     <p><strong>Rating:</strong> </p>
                                     <p><strong>Translator:</strong> {{ $book->translator }}</p>
@@ -96,6 +96,9 @@
                                     <p><strong>Country:</strong> {{ $book->country }}</p>
                                     <p><strong>Genre :</strong> {{ $book->genre }}</p>
                                     <p><strong>Topics:</strong> Friendship, Bullies, Pranks, School</p>
+
+                                    <?php $id = $book->id; ?>
+                                    <a href="{{ route('borrowBook', compact('id')) }}" class="btn btn-primary">Borrow</a>
                                     <div class="actions">
                                         <ul>
                                             <li>

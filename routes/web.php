@@ -38,3 +38,6 @@ Route::get('/404', [HomeController::class, 'view404'])->name('404');
 Route::get('/books_detail', [HomeController:: class, 'viewBookDetailed'])->name('books_detail');
 
 Route::get('/book_detail_byId', [HomeController::class, 'viewBookDetailById'])->name('book_detail_byId');
+
+Route::get('/borrowBook', [HomeController::class, 'borrowBookForm'])->name('borrowBook');
+Route::post('/borrowBook', [HomeController::class, 'borrowBookPost']);
