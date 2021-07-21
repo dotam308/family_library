@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Book;
 
 class HomeController extends Controller
 {
@@ -33,5 +34,10 @@ class HomeController extends Controller
     public function viewBookDetailed() {
         $active = "pages";
         return view('books_detail', compact('active'));
+    }
+
+    public function viewBookDetailById(Request $request) {
+        $book = Book::where('id', $request->id)->first();
+        return view('book_detail_byId', compact('book'));
     }
 }
