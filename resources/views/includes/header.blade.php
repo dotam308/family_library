@@ -137,6 +137,11 @@
                                         <li><a href="{{ route('404') }}">404/Error</a></li>
                                     </ul>
                                 </li>
+                                @if(session('role')=='admin')
+                                <li class="dropdown  {{ isset($active) && $active == "contact" ? "active" : "" }}">
+                                    <a href="{{ route('users')}}">Users</a>
+                                </li>
+                                @endif
                                 {{-- <li class="dropdown">
                                         <a data-toggle="dropdown" class="dropdown-toggle disabled" href="blog.html">Blog</a>
                                         <ul class="dropdown-menu">
@@ -196,6 +201,11 @@
                                     <li><a href="{{ route('404') }}">404/Error</a></li>
                                 </ul>
                             </li>
+                            @if(session('role')=='admin')
+                            <li>
+                                <a href="users-list-view.html">Users</a>
+                            </li>
+                            @endif
                             <li>
                                 <a href="blog.html">Blog</a>
                                 <ul>
