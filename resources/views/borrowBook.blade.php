@@ -57,8 +57,8 @@
                                 <td><input type="text" name="quantity" class="form-control"></td>
                             </tr>
                             <tr>
-                                <th>Return date(y-m-d): </th>
-                                <td><input type="text" name="returnDate" class="form-control"></td>
+                                <th>Return date: </th>
+                                <td><input type="date" name="returnDate" class="form-control"></td>
                             </tr>
                         </table>
                         <button type="submit" class="btn btn-primary">Borrow</button>

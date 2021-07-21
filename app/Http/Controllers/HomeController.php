@@ -54,6 +54,18 @@ class HomeController extends Controller
             ]
 		);
         $book = Book::where('id', $request->id)->first();
+
+        //if not signIn
+        if (session('userId') == null) {
+            $bookId = $book->id;
+            return redirect(route('signin', compact('bookId')));
+        }
+	
+        //if quantity borrow > copies or returnDate <= current date
+        if (($request->quantity > $book->copies) || ($request->returnDate <= date('Y-m-d'))) {
+            return view('borrowBook', compact('book'));
+        }
+    
         //save to borrowing table
         Borrowing::create([
             'userId' => session('userId'),
