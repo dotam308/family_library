@@ -36,7 +36,6 @@ class HomeController extends Controller
         $active = "pages";
         return view('books_detail', compact('active'));
     }
-
     public function viewBookDetailById(Request $request) {
         $book = Book::where('id', $request->id)->first();
         return view('book_detail_byId', compact('book'));
@@ -65,5 +64,10 @@ class HomeController extends Controller
         ]);
 
         return redirect(route('books'));
+    }
+  
+    public function viewBookRented() {
+        $active = "pages";
+        return view('books_rented', compact('active'));
     }
 }
