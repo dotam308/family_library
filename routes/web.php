@@ -5,6 +5,7 @@ use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\BookController;
+use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
 /*
 |--------------------------------------------------------------------------
@@ -37,7 +38,15 @@ Route::get('/checkout',[HomeController::class, 'viewCheckout'])->name('checkout'
 Route::get('/404', [HomeController::class, 'view404'])->name('404');
 Route::get('/books_detail', [HomeController:: class, 'viewBookDetailed'])->name('books_detail');
 
+Route::get('/books_rented', [HomeController:: class, 'viewBookRented'])->name('books_rented');
 Route::get('/book_detail_byId', [HomeController::class, 'viewBookDetailById'])->name('book_detail_byId');
 
 Route::get('/borrowBook', [HomeController::class, 'borrowBookForm'])->name('borrowBook');
 Route::post('/borrowBook', [HomeController::class, 'borrowBookPost']);
+
+Route::get('/users',[UserController::class, 'index'])->name('users');
+Route::get('/createuser',[UserController::class,'userAddForm'])->name('createuser');
+Route::post('/createuser',[UserController::class,'addUser']);
+Route::get('/edituser',[UserController::class,'userEditForm'])->name('edituser');
+Route::post('/edituser',[UserController::class,'editUser']);
+Route::get('/deleteuser',[UserController::class,'deleteUser'])->name('deleteuser');
