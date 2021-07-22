@@ -30,6 +30,7 @@
     <!-- jQuery Latest Version 1.x -->
     @include("includes.jsLib")
 
+    @include('sweetalert::alert')
 </body>
 
 

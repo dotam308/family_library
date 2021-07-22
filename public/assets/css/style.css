@@ -19226,3 +19226,8 @@ a:focus {
 .bx-wrapper .bx-pager.bx-default-pager a.active {
   background: #ff7236;
 }
+
+/* error select of swal be css by other class select */
+.swal2-container .select {
+  display: none;
+}
