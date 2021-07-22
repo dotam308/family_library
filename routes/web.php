@@ -23,7 +23,7 @@ Route::post('/signin', [RegisteredUserController::class, "store"]);
 Route::get('/logout', [AuthenticatedSessionController::class, "destroy"])->name('logout');
 
 
-Route::get('/books',[BookController::class, 'index'])->name('books');
+Route::get('/books',[BookController::class, 'index'])->name('books')->middleware('auth');
 Route::get('/addBook', [BookController::class, 'addBookForm'])->name('addBook');
 Route::post('/addBook', [BookController::class, 'addBookPost']);
 Route::get('/editBook', [BookController::class, 'editBookForm'])->name('editBook');
