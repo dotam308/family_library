@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use App\Models\UserInfo;
+use App\Models\Book;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
@@ -48,6 +49,14 @@ class RegisteredUserController extends Controller
                 $nameUser = 'admin';
                 if (!empty($userInfo)) $nameUser = $userInfo->name;
                 session(['nameUser'=> $nameUser]);
+                
+                //case borrow book but dont signin, then signin
+                if (asset($request->bookId)) {
+                    $book = Book::where('id', $request->bookId)->first();
+                    if ($book != null) {
+                        return  view('book_detail_byId', compact('book')) ;
+                    }
+                }
                 return redirect()->route('index');
             } else {
                 return redirect(route('signin'));
@@ -74,6 +83,14 @@ class RegisteredUserController extends Controller
             'name'=>$request->name
         ]);
         session(['nameUser'=> $request->name]);
+                        
+        //case borrow book but dont signin, then sign up
+        if (asset($request->bookId)) {
+            $book = Book::where('id', $request->bookId)->first();
+            if ($book != null) {
+                return  view('book_detail_byId', compact('book')) ;
+            }
+        }
         return redirect(route('index'));
     }
 }
