@@ -128,6 +128,15 @@
                                             <li><a href="news-events-detail.html">News &amp; Events Detail</a></li>
                                         </ul>
                                     </li> --}}
+                                     @if (session('role') == 'admin')
+                                    <li class="dropdown {{ isset($active) && $active == "pages" ? "active" : "" }}" >
+                                        <a data-toggle="dropdown" class="dropdown-toggle disabled" href="#">Manage</a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="#">Manage User List</a></li>
+                                        <li><a href="{{ route('books_rented') }}">Manage Book Rented List</a></li>
+                                    </ul> 
+                                    </li>
+                                    @endif
                                 <li class="dropdown {{ isset($active) && $active == "pages" ? "active" : "" }}">
                                     <a data-toggle="dropdown" class="dropdown-toggle disabled" href="#">Pages</a>
                                     <ul class="dropdown-menu">
