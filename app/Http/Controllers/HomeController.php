@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Book;
+use App\Models\Borrowing;
 
 class HomeController extends Controller
 {
@@ -34,6 +36,36 @@ class HomeController extends Controller
         $active = "pages";
         return view('books_detail', compact('active'));
     }
+    public function viewBookDetailById(Request $request) {
+        $book = Book::where('id', $request->id)->first();
+        return view('book_detail_byId', compact('book'));
+    }
+
+    public function borrowBookForm(Request $request) {
+        $book = Book::where('id', $request->id)->first();
+        return view('borrowBook', compact('book'));
+    }
+
+    public function borrowBookPost(Request $request) {
+        $this->validate($request, [
+			'quantity'=>'required|numeric',
+            // 'returnDate'=>'',
+            ]
+		);
+        $book = Book::where('id', $request->id)->first();
+        //save to borrowing table
+        Borrowing::create([
+            'userId' => session('userId'),
+            'bookId'=> $book->id,
+            'quantity' => $request->quantity,
+            'borrowDate' => date('Y-m-d'),
+            'returnDate' => $request->returnDate,
+            'returned' => 'false'
+        ]);
+
+        return redirect(route('books'));
+    }
+  
     public function viewBookRented() {
         $active = "pages";
         return view('books_rented', compact('active'));

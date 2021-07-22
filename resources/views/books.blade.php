@@ -131,12 +131,12 @@
                                 <div class="book-list-icon blue-icon"></div>
                                 <figure>
                                     
-                                    <a href="books-media-detail-v2.html"><img
+                                    <a href="{{ route('book_detail_byId', compact('id')) }}"><img
                                             src="/storage/{{ $book->image }}"
                                             alt="Book"></a>
                                     <figcaption>
                                         <header>
-                                            <h4><a href="books-media-detail-v2.html">{{ $book->name }}</a></h4>
+                                            <h4><a href="{{ route('book_detail_byId', compact('id')) }}">{{ $book->name }}</a></h4>
                                             <p><strong>Author:</strong> {{ $book->author }}</p>
                                             <p><strong>DdcCode:</strong> {{ $book->ddcCode }}</p>
                                         </header>
