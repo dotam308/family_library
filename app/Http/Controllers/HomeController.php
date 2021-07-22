@@ -48,21 +48,23 @@ class HomeController extends Controller
     }
 
     public function borrowBookPost(Request $request) {
-        $this->validate($request, [
-			'quantity'=>'required|numeric',
-            // 'returnDate'=>'',
-            ]
-		);
+        // $this->validate($request, [
+		// 	'quantity'=>'required|numeric',
+        //     // 'returnDate'=>'',
+        //     ]
+		// );
         $book = Book::where('id', $request->id)->first();
 
         //if not signIn
         if (session('userId') == null) {
+            alert()->warning('WarningAlert','You must signIn before')->width('500px');
             $bookId = $book->id;
             return redirect(route('signin', compact('bookId')));
         }
 	
         //if quantity borrow > copies or returnDate <= current date
-        if (($request->quantity > $book->copies) || ($request->returnDate <= date('Y-m-d'))) {
+        if (($request->quantity == null) || ($request->quantity > $book->copies) || (($request->quantity <= 0) || ($request->returnDate <= date('Y-m-d')))) {
+            alert()->info('InfoAlert','Your input is not satisfied.')->width('500px');
             return view('borrowBook', compact('book'));
         }
     
@@ -76,6 +78,7 @@ class HomeController extends Controller
             'returned' => 'false'
         ]);
 
+        toast('Successfully','success');
         return redirect(route('books'));
     }
 }
