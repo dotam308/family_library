@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Book;
 use App\Models\Borrowing;
+use Illuminate\Support\Facades\DB;
+
 
 class HomeController extends Controller
 {
@@ -83,6 +85,37 @@ class HomeController extends Controller
   
     public function viewBookRented() {
         $active = "pages";
-        return view('books_rented', compact('active'));
+        $borrow = DB::table('borrowings')
+                  ->join('books','borrowings.bookId','=','books.id')
+                  ->join('users','borrowings.userId','=','users.id')
+                  ->select('borrowings.*', 'users.username', 'books.name')
+                  ->get();
+        return view('books_rented', compact('active','borrow'));
+    }
+    public function viewManageBookRented(Request $request) {
+        $active = "pages";
+        $borrow = DB::table('borrowings')->join('users','users.id','borrowings.userId')
+        ->join('books','books.id','borrowings.bookId')
+        ->where('borrowings.id','=',$request->id)
+        ->get(['borrowings.*','users.username as username','books.name as name'])
+        ->first();
+        return view('rents_byId', compact('borrow'));
+    }
+    public function manageBookRented(Request $request)
+    {
+        // code...
+        DB::table('borrowings')->where('id', $request->id)->update([
+        'quantity'=>$request->quantity,
+        'borrowDate'=>$request->borrowDate,
+        'returnDate'=>$request->returnDate,
+        'returned'=>$request->status,
+    ]
+        );
+        return redirect(route('books_rented'));
+    }
+    public function deleteBookRented(Request $request)
+    {
+        $b = DB::table('borrowings')->where('id','=',$request->id)->delete();
+        return redirect(route('books_rented'));
     }
 }
