@@ -82,6 +82,7 @@ class HomeController extends Controller
         $borrow = DB::table('borrowings')->join('users','users.id','borrowings.userId')
         ->join('books','books.id','borrowings.bookId')
         ->where('borrowings.id','=',$request->id)
+        ->get(['borrowings.*','users.username as username','books.name as name'])
         ->first();
         return view('rents_byId', compact('borrow'));
     }
