@@ -51,22 +51,31 @@ class RegisteredUserController extends Controller
                 session(['nameUser'=> $nameUser]);
                 
                 //case borrow book but dont signin, then signin
-                if (asset($request->bookId)) {
-                    $book = Book::where('id', $request->bookId)->first();
-                    if ($book != null) {
-                        return  view('book_detail_byId', compact('book')) ;
-                    }
-                }
+                // if (asset($request->bookId)) {
+                //     $book = Book::where('id', $request->bookId)->first();
+                //     if ($book != null) {
+                //         return  view('book_detail_byId', compact('book')) ;
+                //     }
+                // }
                 return redirect()->route('index');
             } else {
+                toast('Incorrect username or password','info');
                 return redirect(route('signin'));
             }
         }
+
+        //handle register request
         $request->validate([
             'username' => 'required|string|max:255',
             'password' => 'required',
             'name' => 'required',
         ]);
+        //check username already exists
+        $acc = User::where('username', $request->username)->first();
+        if (isset($acc)) {
+            toast('Username already exists','info');
+            return redirect(route('signin'));
+        }
 
         $user = User::create([
             'username' => $request->username,
@@ -85,12 +94,13 @@ class RegisteredUserController extends Controller
         session(['nameUser'=> $request->name]);
                         
         //case borrow book but dont signin, then sign up
-        if (asset($request->bookId)) {
-            $book = Book::where('id', $request->bookId)->first();
-            if ($book != null) {
-                return  view('book_detail_byId', compact('book')) ;
-            }
-        }
+        // if (asset($request->bookId)) {
+        //     $book = Book::where('id', $request->bookId)->first();
+        //     if ($book != null) {
+        //         return  view('book_detail_byId', compact('book')) ;
+        //     }
+        // }
+        toast('Register successfully','success');
         return redirect(route('index'));
     }
 }

@@ -78,6 +78,9 @@ class HomeController extends Controller
             'returnDate' => $request->returnDate,
             'returned' => 'false'
         ]);
+        //save new copies to book table
+        $book->copies = $book->copies - $request->quantity;
+        $book->save();
 
         toast('Successfully','success');
         return redirect(route('books'));
