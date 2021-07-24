@@ -25,7 +25,7 @@
             <div class="booksmedia-detail-main">
                 <div class="container">
                     <br>
-                    <h3>Thêm sách</h3>
+                    <h3>Add Book</h3>
                     <br>
                     <form method="POST"  enctype="multipart/form-data">
                         @csrf
@@ -72,10 +72,13 @@
                             </tr>
                             <tr>
                                 <th>Image</th>
-                                <td><input type="file" name="img" class="form-control"></td>
+                                <td>
+                                    <input type="file" name="img" class="form-control">
+                                </td>
                             </tr>
                         </table>
                         <button type="submit" class="btn btn-primary">Thêm</button>
+                        <a type="button" class="btn btn-back" href="{{ route('manageBooks') }}">Quay lại</a>
                     </form>
                 </div>
             </div>

@@ -43,15 +43,15 @@ class BookController extends Controller
                 $filename = substr($filename, 6);
                 $book->image = $filename;
                 $book->save();
-                return redirect(route('books'));
+                return redirect(route('manageBooks'));
 			} 
 		}
         
-        return view('addBook', compact('updateStatus'));
+        return view('manageBooks');
     }
     public function editBookForm(Request $request) {
         $bookId = $request->id;
-        $book = Book::find($bookId)->first();
+        $book = Book::where('id', $request->id)->get()->first();
         return view('editBook', compact('book'));
     }
     public function editBookPost(Request $request) {
@@ -92,15 +92,36 @@ class BookController extends Controller
                 $filename = substr($filename, 6);
                 $book->image = $filename;
                 $book->save();
-                return redirect(route('books'));
+                return redirect(route('manageBooks'));
 			} 
 		}
-        return redirect(route('books'));
+        return redirect(route('manageBooks'));
     }
 
-    public function deleteBook(Request $request) {
-        $book = Book::where('id', $request->id)->first();
+    // public function confirmDeleteBook(Request $request) {
+        
+    //     $check = alert()->warning('Deleting user -<br/>are you sure?')
+    //     ->showCancelButton($btnText = 'Cancel', $btnColor = '#dc3545')
+    //     ->showConfirmButton($btnText = '<a href="manageBooks?delete=yes&id='.$request->id.'">Yes</a>', $btnColor = '#38c177')
+    //     ->autoClose(false);
+    //     return back()->with('success','Post deleted successfully');
+    // }
+    public function deleteBook(Request $request, $id) {
+        // $book = Book::where('id', $request->id)->first();
+        $book = Book::where('id', $id)->first();
         $book->delete();
-        return redirect(route('books'));
+        // return response()->json(['status'=> 'Deleted successfully']);
+        // return route('manageBooks');
+        return redirect()->back()->with("flash_message_success", "Delete book");
+    }
+
+    //for Admin
+    public function showBookList(Request $request) {
+        // if ($request->delete == 'yes') {
+        //     $id = $request->id;
+        //     return redirect(route('deleteBook', compact('id')));
+        // }
+        $books = Book::get();
+        return view('manageBook', compact('books'));
     }
 }

@@ -79,6 +79,7 @@
                             </tr>
                         </table>
                         <button type="submit" class="btn btn-primary">Cập nhật</button>
+                        <a type="button" class="btn btn-back" href="{{ route('manageBooks') }}">Quay lại</a>
                     </form>
                 </div>
             </div>
