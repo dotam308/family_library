@@ -49,20 +49,31 @@
                             <tr>
                                 <p><strong>Quantity in stock:</strong> {{ $book->copies }}</p>
                             </tr>
+                            @if($book->copies == 0)
+                                <div style="font-size: 20px; color: #f00;">*This book is out of stock</div>
+                            @endif
                             <br><br>
                             
                             <tr>
                                 <th>Quantity borrow</th>
-                                <td><input type="text" name="quantity" class="form-control"></td>
+                                @if(isset($_POST['quantity']))
+                                <td><input type="text" name="quantity" class="form-control" value="{{ $_POST['quantity']; }}"></td>
+                                @else
+                                    <td><input type="text" name="quantity" class="form-control"></td>
+                                @endif
                             </tr>
                             <tr>
                                 <th>Return date: </th>
-                                <td><input type="date" name="returnDate" class="form-control"></td>
+                                @if (isset($_POST['returnDate']))
+                                    <td><input type="date" name="returnDate" class="form-control" value="{{ $_POST['returnDate'] }}"></td>
+                                @else
+                                    <td><input type="date" name="returnDate" class="form-control"></td>
+                                @endif
                             </tr>
                         </table>
                         <button type="submit" class="btn btn-primary">Borrow</button>
                         <?php $id = Request::get('id'); ?>
-                        <a type="button" class="btn btn-primary" href="{{ route('book_detail_byId', compact('id')) }}">Back</a>
+                        <a type="button" class="btn btn-primary" href="{{ route('book_detail_byId', compact('id')) }}" style="margin: 100px; color: #fff;">Cancel</a>
                     </form>
                 </div>
             </div>
