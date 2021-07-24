@@ -134,6 +134,7 @@
                                     <ul class="dropdown-menu">
                                         <li><a href="#">Manage User List</a></li>
                                         <li><a href="{{ route('books_rented') }}">Manage Book Rented List</a></li>
+                                        <li><a href="{{ route('manageBooks') }}">Manage Books</a></li>
                                     </ul> 
                                     </li>
                                     @endif

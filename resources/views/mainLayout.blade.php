@@ -1,9 +1,11 @@
 <!DOCTYPE html>
 <html lang="zxx">
+
 <head>
 
-   @include("includes.head")
+    @include("includes.head")
 
+    @yield('script')
 </head>
 
 <body>
@@ -31,6 +33,7 @@
     @include("includes.jsLib")
 
     @include('sweetalert::alert')
+    
 </body>
 
 
