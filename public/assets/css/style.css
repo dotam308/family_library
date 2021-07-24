@@ -59,7 +59,12 @@ Version: 1.0.0
  */
 /*! normalize.css v3.0.3 | MIT License | github.com/necolas/normalize.css */
 
-
+.btn-back {
+  background-color: grey;
+}
+a.btn-back:hover {
+  color:white ;
+}
 .small-image {
   max-width: 10%;
 }

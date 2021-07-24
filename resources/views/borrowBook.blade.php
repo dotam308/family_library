@@ -32,7 +32,6 @@
                         <table class="table table-hover">
                             
                             <div class="post-thumbnail">
-                                <div class="book-list-icon blue-icon"></div>
                                 <img src="/storage/{{ $book->image }}"
                                     alt="Book Image">
                                 <br><br>
@@ -62,6 +61,8 @@
                             </tr>
                         </table>
                         <button type="submit" class="btn btn-primary">Borrow</button>
+                        <?php $id = Request::get('id'); ?>
+                        <a type="button" class="btn btn-primary" href="{{ route('book_detail_byId', compact('id')) }}">Back</a>
                     </form>
                 </div>
             </div>

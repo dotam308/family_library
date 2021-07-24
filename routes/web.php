@@ -24,12 +24,15 @@ Route::post('/signin', [RegisteredUserController::class, "store"]);
 Route::get('/logout', [AuthenticatedSessionController::class, "destroy"])->name('logout');
 
 
-Route::get('/books',[BookController::class, 'index'])->name('books');
+Route::get('/books',[BookController::class, 'index'])->name('books')->middleware('auth');
 Route::get('/addBook', [BookController::class, 'addBookForm'])->name('addBook');
 Route::post('/addBook', [BookController::class, 'addBookPost']);
 Route::get('/editBook', [BookController::class, 'editBookForm'])->name('editBook');
 Route::post('/editBook', [BookController::class, 'editBookPost']);
-Route::get('/deleteBook', [BookController::class, 'deleteBook'])->name('deleteBook');
+Route::get('/confirmDeleteBook', [BookController::class, 'confirmDeleteBook'])->name('confirmDeleteBook');
+// Route::delete('/deleteBook', [BookController::class, 'deleteBook'])->name('deleteBook');
+Route::delete('/deleteBook/book/{id}', [BookController::class, 'deleteBook'])->name('deleteBook');
+Route::get('/deleteBook/book/{id}', [BookController::class, 'deleteBook'])->name('deleteBook');
 
 Route::get('contact',[HomeController::class, 'viewContact'])->name('contact');
 Route::get('cart', [HomeController::class, 'viewCart'])->name('cart');
@@ -54,3 +57,6 @@ Route::post('/createuser',[UserController::class,'addUser']);
 Route::get('/edituser',[UserController::class,'userEditForm'])->name('edituser');
 Route::post('/edituser',[UserController::class,'editUser']);
 Route::get('/deleteuser',[UserController::class,'deleteUser'])->name('deleteuser');
+
+
+Route::get('/manageBooks', [BookController::class, 'showBookList'])->name('manageBooks');

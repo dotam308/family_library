@@ -67,9 +67,6 @@
                         <div class="clear"></div>
                     </section>
                     <!-- End: Search Section -->
-                    @if (session('role') == 'admin')
-                        <a type="button" class="btn btn-primary" href="{{ route('addBook') }}">Thêm sách</a>
-                    @endif
                     <div class="filter-options margin-list">
                         <div class="row">
                             <div class="col-md-3 col-sm-3">
@@ -122,13 +119,6 @@
                             @forelse ($books as $book)
                             <?php $id = $book->id; ?>
                             <li>
-                                @if (session('role') == 'admin')
-                                    <a href="{{ route('editBook', compact('id')) }}"><i class="fa fa-edit"></i></a></i>
-                                @endif
-                                @if (session('role') == 'admin')
-                                    <a href="{{ route('deleteBook', compact('id')) }}"><i class="fa fa-trash"></i></a></i>
-                                @endif
-                                <div class="book-list-icon blue-icon"></div>
                                 <figure>
                                     
                                     <a href="{{ route('book_detail_byId', compact('id')) }}"><img
