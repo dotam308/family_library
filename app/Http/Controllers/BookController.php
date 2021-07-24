@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Book;
+use App\Models\Borrowing;
+
 
 class BookController extends Controller
 {
@@ -103,4 +105,5 @@ class BookController extends Controller
         $book->delete();
         return redirect(route('books'));
     }
+   
 }

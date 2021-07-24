@@ -13,4 +13,5 @@ class Book extends Model
         'translator', 'country', 'review', 'copies', 'price',
         'image'
     ];
+  
 }

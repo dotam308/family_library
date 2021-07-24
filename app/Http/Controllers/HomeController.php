@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Book;
 use App\Models\Borrowing;
+use Illuminate\Support\Facades\DB;
+
 
 class HomeController extends Controller
 {
@@ -68,6 +70,17 @@ class HomeController extends Controller
   
     public function viewBookRented() {
         $active = "pages";
-        return view('books_rented', compact('active'));
+        $borrow = DB::table('borrowings')
+                  ->join('books','borrowings.bookId','=','books.id')
+                  ->join('users','borrowings.userId','=','users.id')
+                  ->select('borrowings.*', 'users.username', 'books.name')
+                  ->get();
+        return view('books_rented', compact('active','borrow'));
+    }
+    public function viewBookRentedById(Request $request) {
+        $active = "pages";
+        $borrow = DB::table('borrowings')->where('bookId', $request->id)->get();
+
+        return view('books_rented_byId', compact('active','borrow'));
     }
 }
