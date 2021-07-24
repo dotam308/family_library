@@ -77,10 +77,29 @@ class HomeController extends Controller
                   ->get();
         return view('books_rented', compact('active','borrow'));
     }
-    public function viewBookRentedById(Request $request) {
+    public function viewManageBookRented(Request $request) {
         $active = "pages";
-        $borrow = DB::table('borrowings')->where('bookId', $request->id)->get();
-
-        return view('books_rented_byId', compact('active','borrow'));
+        $borrow = DB::table('borrowings')->join('users','users.id','borrowings.userId')
+        ->join('books','books.id','borrowings.bookId')
+        ->where('borrowings.id','=',$request->id)
+        ->first();
+        return view('rents_byId', compact('borrow'));
+    }
+    public function manageBookRented(Request $request)
+    {
+        // code...
+        DB::table('borrowings')->where('id', $request->id)->update([
+        'quantity'=>$request->quantity,
+        'borrowDate'=>$request->borrowDate,
+        'returnDate'=>$request->returnDate,
+        'returned'=>$request->status,
+    ]
+        );
+        return redirect(route('books_rented'));
+    }
+    public function deleteBookRented(Request $request)
+    {
+        $b = DB::table('borrowings')->where('id','=',$request->id)->delete();
+        return redirect(route('books_rented'));
     }
 }

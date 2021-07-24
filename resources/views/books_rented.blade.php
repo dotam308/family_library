@@ -19,6 +19,7 @@
 @endsection
 
 @section('content')
+<h3>Book Rent List</h3>
 <form>
         <table class="table table-hover">
             <thead>
@@ -29,25 +30,30 @@
                     <th>Ngày mượn</th>
                     <th>Ngày hẹn trả</th>
                     <th>Trạng thái</th>
+                    <th>Quản lý</th>
                 </tr>
             </thead>
             <tbody>
-                @foreach ($borrow as $b)
+                @forelse ($borrow as $b)
+                <?php
+                $id = $b->id;
+                ?>
                     <tr>
                         <td>{{ $b->name }}</td>
                         <td>{{$b->username}}</td>
                         <td>{{ $b->quantity }}</td>
                         <td>{{ $b->borrowDate }}</td>
                         <td>{{ $b->returnDate }}</td>
+                        <td>{{ $b->returned}}</td>
+                        </td>
                         <td>
-                             @if ($b->returned == 'false')
-                                 <p><strong>Chưa trả</strong><p>
-                             @else 
-                                 <p><strong>Đã trả</strong></p>
-                             @endif
+                            <a href="{{ route('delete_rented', compact('id')) }}"><i class="fa fa-trash"></i></a>
+                            <a href="{{ route('rents_byId', compact('id')) }}"><i class="fa fa-edit"></i></a>
                         </td>    
                     </tr>
-                @endforeach
+                @empty
+                <td>No data</td>
+                @endforelse
                 
             </tbody>
 
