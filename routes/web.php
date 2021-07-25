@@ -42,7 +42,7 @@ Route::get('/404', [HomeController::class, 'view404'])->name('404');
 Route::get('/books_detail', [HomeController::class, 'viewBookDetailed'])->name('books_detail');
 
 Route::get('/books_rented', [HomeController::class, 'viewBookRented'])->name('books_rented');
-Route::get('/delete_rented', [HomeController::class, 'deleteBookRented'])->name('delete_rented');
+Route::get('/delete_rented/{id}', [HomeController::class, 'deleteBookRented'])->name('delete_rented');
 Route::get('/rents_byId', [HomeController::class, 'viewManageBookRented'])->name('rents_byId');
 Route::post('/rents_byId', [HomeController::class, 'manageBookRented']);
 
