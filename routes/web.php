@@ -60,3 +60,6 @@ Route::get('/deleteuser',[UserController::class,'deleteUser'])->name('deleteuser
 
 
 Route::get('/manageBooks', [BookController::class, 'showBookList'])->name('manageBooks');
+
+Route::get('/borrowedBooks', [BookController::class, 'showBorrowedBookList'])->name('borrowedBooks');
+Route::get('/returnedBooks', [BookController::class, 'showReturnedBookList'])->name('returnedBooks');

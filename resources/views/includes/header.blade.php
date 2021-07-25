@@ -30,7 +30,7 @@
                                     <div class="topbar-links">
                                         
                                         <a href="#">Welcome {{ session('nameUser')  }}</a>
-                                        <a href="{{ route('signin') }}"><i class="fa fa-lock"></i>{{ empty(session('nameUser')) ? "Login /" : "" }} Register</a>
+                                        <a href="{{ route('signin') }}"><i class="fa fa-lock"></i>{{ empty(session('nameUser')) ? "Login / Register" : "" }}</a>
                                         <a href="{{ route('logout') }}"><i class="fa fa-logout"></i>{{ empty(session('nameUser')) ? "" : "Logout" }}</a>
                                         <span>|</span>
                                         <div class="header-cart dropdown">
@@ -158,6 +158,16 @@
                                 <li class="dropdown  {{ isset($active) && $active == "contact" ? "active" : "" }}">
                                     <a href="{{ route('contact')}}">Contact</a>
                                 </li>
+
+                                @if( (session('role') != null) )
+                                <li class="dropdown {{ isset($active) && $active == "pages" ? "active" : "" }}">
+                                    <a data-toggle="dropdown" class="dropdown-toggle disabled" href="#">Check</a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="{{ route('borrowedBooks') }}">Borrowed books list</a></li>
+                                        <li><a href="{{ route('returnedBooks') }}">Returned books list</a></li>
+                                    </ul>
+                                </li>
+                                @endif
                             </ul>
                         </div>
                     </div>

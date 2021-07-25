@@ -127,4 +127,22 @@ class BookController extends Controller
         return view('manageBook', compact('books'));
     }
    
+    public function showBorrowedBookList(Request $request) {
+        $id = session('userId');
+        $books = Borrowing::join('books', 'borrowings.bookId', '=', 'books.id')
+                            ->where('borrowings.userId', $id)
+                            ->where('borrowings.returned', "false")
+                            ->get(['books.ddcCode', 'books.name', 'books.author', 'books.genre', 'borrowings.quantity', 'borrowings.borrowDate', 'borrowings.returnDate', 'borrowings.returned', 'books.image', 'books.id']);
+        return view('borrowedBookList', compact('books'));
+    }
+
+    public function showReturnedBookList(Request $request) {
+        $id = session('userId');
+        $books = Borrowing::join('books', 'borrowings.bookId', '=', 'books.id')
+                            ->where('borrowings.userId', $id)
+                            ->where('borrowings.returned', "true")
+                            ->get(['books.ddcCode', 'books.name', 'books.author', 'books.genre', 'borrowings.quantity', 'borrowings.borrowDate', 'borrowings.returnDate', 'borrowings.returned', 'books.image', 'books.id']);
+        $returned = true;
+        return view('borrowedBookList', compact('books', 'returned'));
+    }
 }
