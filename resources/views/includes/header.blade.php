@@ -132,7 +132,7 @@
                                     <li class="dropdown {{ isset($active) && $active == "pages" ? "active" : "" }}" >
                                         <a data-toggle="dropdown" class="dropdown-toggle disabled" href="#">Manage</a>
                                     <ul class="dropdown-menu">
-                                        <li><a href="#">Manage User List</a></li>
+                                        <li><a href="{{route('users')}}">Manage User List</a></li>
                                         <li><a href="{{ route('books_rented') }}">Manage Book Rented List</a></li>
                                         <li><a href="{{ route('manageBooks') }}">Manage Books</a></li>
                                     </ul> 
@@ -147,11 +147,6 @@
                                         <li><a href="{{ route('404') }}">404/Error</a></li>
                                     </ul>
                                 </li>
-                                @if(session('role')=='admin')
-                                <li class="dropdown  {{ isset($active) && $active == "contact" ? "active" : "" }}">
-                                    <a href="{{ route('users')}}">Users</a>
-                                </li>
-                                @endif
                                 {{-- <li class="dropdown">
                                         <a data-toggle="dropdown" class="dropdown-toggle disabled" href="blog.html">Blog</a>
                                         <ul class="dropdown-menu">
@@ -202,6 +197,15 @@
                                     <li><a href="news-events-detail.html">News &amp; Events Detail</a></li>
                                 </ul>
                             </li>
+                            @if (session('role') == 'admin')
+                                <li>
+                                    <a href="#">Manage</a>
+                                <ul>
+                                    <li><a href="{{route('users')}}">Manage User List</a></li>
+                                    <li><a href="{{ route('books_rented') }}">Manage Book Rented List</a></li>
+                                </ul> 
+                                </li>
+                            @endif
                             <li>
                                 <a href="#">Pages</a>
                                 <ul>
