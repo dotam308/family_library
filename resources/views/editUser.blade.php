@@ -41,7 +41,7 @@
                                 <th>Role</th>
                                 <td><select name="role" class="form-control" value="{{$user->role}}">
                                         <option value="admin">Admin</option>
-                                        <option value="user">User</option>
+                                        <option value="guest">Guest</option>
                                 </td>
                             </tr>
                         </table>

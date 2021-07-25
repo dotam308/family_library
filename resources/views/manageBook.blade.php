@@ -121,8 +121,8 @@
             closeOnConfirm: false
             },
             function(){
+                swal("Deleted!", "Your imaginary file has been deleted.", "success");
                 window.location.href = "/deleteBook/"+ deleteFunction + "/" + id;
-            swal("Deleted!", "Your imaginary file has been deleted.", "success");
             });
         })
     })

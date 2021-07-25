@@ -37,23 +37,26 @@
                                                     <h2>Sign in</h2>
                                                     <span class="underline left"></span>
                                                 </div>
+                                                @php
+                                                    // dd($_REQUEST);
+                                                @endphp
                                                 <form class="login" method="post">
                                                     @csrf
                                                     <p class="form-row form-row-first input-required">
-                                                        <label>
+                                                        {{-- <label>
                                                             <span class="first-letter">Username</span>
                                                             <span class="second-letter">*</span>
-                                                        </label>
+                                                        </label> --}}
                                                         <input type="text" id="username" name="username"
-                                                            class="input-text">
+                                                            class="input-text" placeholder="Username *" value="{{ $_REQUEST['username'] ?? '' }}">
                                                     </p>
                                                     <p class="form-row form-row-last input-required">
-                                                        <label>
+                                                        {{-- <label>
                                                             <span class="first-letter">Pin</span>
                                                             <span class="second-letter">*</span>
-                                                        </label>
+                                                        </label> --}}
                                                         <input type="password" id="password" name="password"
-                                                            class="input-text">
+                                                            class="input-text" placeholder="Pin *">
                                                     </p>
                                                     <div class="clear"></div>
                                                     <div class="password-form-row">
@@ -87,27 +90,28 @@
                                                 <form class="login" method="post">
                                                     @csrf
                                                     <p class="form-row form-row-first input-required">
-                                                        <label>
+                                                        {{-- <label>
                                                             <span class="first-letter">Name</span>
                                                             <span class="second-letter">*</span>
-                                                        </label>
-                                                        <input type="text" id="name" name="name" class="input-text">
+                                                        </label> --}}
+                                                        <input type="text" id="name" name="name" class="input-text"
+                                                        placeholder="Name *">
                                                     </p>
                                                     <p class="form-row input-required">
-                                                        <label>
+                                                        {{-- <label>
                                                             <span class="first-letter">Username</span>
                                                             <span class="second-letter">*</span>
-                                                        </label>
+                                                        </label> --}}
                                                         <input type="text" id="username1" name="username"
-                                                            class="input-text">
+                                                            class="input-text" placeholder="Username *">
                                                     </p>
                                                     <p class="form-row input-required">
-                                                        <label>
+                                                        {{-- <label>
                                                             <span class="first-letter">Password</span>
                                                             <span class="second-letter">*</span>
-                                                        </label>
+                                                        </label> --}}
                                                         <input type="password" id="password1" name="password"
-                                                            class="input-text">
+                                                            class="input-text" placeholder="Password *">
                                                     </p>
                                                     <div class="clear"></div>
                                                     <input type="submit" value="Signup" name="signup"
