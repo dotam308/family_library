@@ -51,12 +51,12 @@ class RegisteredUserController extends Controller
                 session(['nameUser'=> $nameUser]);
                 
                 //case borrow book but dont signin, then signin
-                // if (asset($request->bookId)) {
-                //     $book = Book::where('id', $request->bookId)->first();
-                //     if ($book != null) {
-                //         return  view('book_detail_byId', compact('book')) ;
-                //     }
-                // }
+                if (asset($request->bookId)) {
+                    $book = Book::where('id', $request->bookId)->first();
+                    if ($book != null) {
+                        return  view('book_detail_byId', compact('book')) ;
+                    }
+                }
                 return redirect()->route('index');
             } else {
                 toast('Incorrect username or password','info');
@@ -94,12 +94,12 @@ class RegisteredUserController extends Controller
         session(['nameUser'=> $request->name]);
                         
         //case borrow book but dont signin, then sign up
-        // if (asset($request->bookId)) {
-        //     $book = Book::where('id', $request->bookId)->first();
-        //     if ($book != null) {
-        //         return  view('book_detail_byId', compact('book')) ;
-        //     }
-        // }
+        if (asset($request->bookId)) {
+            $book = Book::where('id', $request->bookId)->first();
+            if ($book != null) {
+                return  view('book_detail_byId', compact('book')) ;
+            }
+        }
         toast('Register successfully','success');
         return redirect(route('index'));
     }

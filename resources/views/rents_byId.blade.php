@@ -43,23 +43,23 @@
                                 <td><input type="text" name="username" class="form-control" value={{$borrow->username}} disabled></td>
                             </tr>
                             <tr>
-                                <th><strong>Số lượng mượn:</strong> {{$borrow->quantity}}</th>
-                                <td><input type="text" name="quantity" class="form-control"></td>
+                                <th><strong>Số lượng mượn:</strong></th>
+                                <td><input type="text" name="quantity" class="form-control" value="{{$borrow->quantity}}"></td>
                             </tr>
                             
                             <tr>
-                                <th><strong>Ngày mượn:</strong> {{ $borrow->borrowDate }}</th>
-                                <td><input type="text" name="borrowDate" class="form-control"></td>
+                                <th><strong>Ngày mượn:</strong></th>
+                                <td><input type="text" name="borrowDate" class="form-control" value="{{ $borrow->borrowDate }}"></td>
                             </tr>
                             
                             <tr>
-                                <th><strong>Ngày hẹn trả:</strong> {{ $borrow->returnDate }}</th>
-                                <td><input type="text" name="returnDate" class="form-control"></td>
+                                <th><strong>Ngày hẹn trả:</strong></th>
+                                <td><input type="text" name="returnDate" class="form-control" value="{{ $borrow->returnDate }}"></td>
                             </tr>
                             
                             <tr>
-                                <th><strong>Trạng thái:</strong> {{ $borrow->returned }}</th>
-                                <td><input type="text" name="status" class="form-control"></td>
+                                <th><strong>Trạng thái:</strong></th>
+                                <td><input type="text" name="status" class="form-control" value="{{ $borrow->returned }}"></td>
                             </tr>
                             
                             <tr>
