@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 use DB;
+use Cookie;
 
 class RegisteredUserController extends Controller
 {
@@ -39,6 +40,7 @@ class RegisteredUserController extends Controller
         if (isset($request->login)) {
             $username = $request->username;
             $password = $request->password;
+
             if (Auth::attempt(['username' => $username, 'password' => $password])) {
                 session(['username'=>$username
                 ]);
@@ -50,6 +52,7 @@ class RegisteredUserController extends Controller
                 if (!empty($userInfo)) $nameUser = $userInfo->name;
                 session(['nameUser'=> $nameUser]);
                 
+
                 //case borrow book but dont signin, then signin
                 if (asset($request->bookId)) {
                     $book = Book::where('id', $request->bookId)->first();

@@ -59,7 +59,7 @@
                                 @endforeach
                             </table>
                             @else
-                                </br><div>No users registered</div>
+                                <br><div>No users registered</div>
                             @endif
                         </ul>
                     </div>

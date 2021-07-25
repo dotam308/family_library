@@ -37,6 +37,9 @@
                                                     <h2>Sign in</h2>
                                                     <span class="underline left"></span>
                                                 </div>
+                                                @php
+                                                    // dd($_REQUEST);
+                                                @endphp
                                                 <form class="login" method="post">
                                                     @csrf
                                                     <p class="form-row form-row-first input-required">
@@ -45,7 +48,7 @@
                                                             <span class="second-letter">*</span>
                                                         </label> --}}
                                                         <input type="text" id="username" name="username"
-                                                            class="input-text" placeholder="Username *">
+                                                            class="input-text" placeholder="Username *" value="{{ $_REQUEST['username'] ?? '' }}">
                                                     </p>
                                                     <p class="form-row form-row-last input-required">
                                                         {{-- <label>
