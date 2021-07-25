@@ -116,9 +116,10 @@ class HomeController extends Controller
         );
         return redirect(route('books_rented'));
     }
-    public function deleteBookRented(Request $request)
-    {
-        $b = DB::table('borrowings')->where('id','=',$request->id)->delete();
-        return redirect(route('books_rented'));
+    public function deleteBookRented(Request $request, $id)
+    {   
+
+        $b = DB::table('borrowings')->where('id','=',$id)->delete();
+        return redirect()->back()->with("flash_message_success", "Delete success");
     }
 }
