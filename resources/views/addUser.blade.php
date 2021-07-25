@@ -42,7 +42,10 @@
                             </tr>
                             <tr>
                                 <th>Role</th>
-                                <td><input type="text" name="role" class="form-control"></td>
+                                <td><select name="role" class="form-control">
+                                        <option value="admin">Admin</option>
+                                        <option value="user">User</option>
+                                </td>
                             </tr>
                         </table>
                         <button type="submit" class="btn btn-primary">Add</button>
