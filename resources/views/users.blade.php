@@ -25,29 +25,42 @@
                     <!-- Start: Search Section -->
                     <!-- End: Search Section -->
                     <a type="button" class="btn btn-primary" href="{{route('createuser')}}">ADD ACCOUNT</a>
-                    <div class="booksmedia-fullwidth">
+                    <div class="users-list-view">
                         <ul>
-                            @forelse ($users as $user)
-                                @if(session('username')!=$user->username)
-                                    <?php $id=$user->id;?>
-                                        <li>
-                                            <a href="{{route('edituser',compact('id'))}}" title="Edit"><i class="fa fa-edit"></i></a></i>
-                                            <a href="{{route('deleteuser',compact('id'))}}" title="Delete"><i class="fa fa-trash"></i></a></i>
-                                            <div class="book-list-icon blue-icon"></div>
-                                            <figure>
-                                                <figcaption>
-                                                    <header>
-                                                        <p><strong>Username </strong> {{$user->username}}</p>
-                                                        <p><strong>Email: </strong> {{$user->email}}</p>
-                                                        <p><strong>Role: </strong>{{$user->role}}</p>
-                                                    </header>
-                                                </figcaption>
-                                            </figure>
-                                        </li>
+                            @if(count($users)==1)
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Username</th>
+                                        <th>Role</th>
+                                        <th>E-mail</th>
+                                        <th>Edit/Delete</th>
+                                    </tr>
+                                </thead>
+                                @foreach($users as $user)
+                                    @if(session('username')!=$user->username)
+                                        <tr>
+                                            <td>{{$user->id}}</td>
+                                            <td>{{$user->username}}</td>
+                                            <td>{{$user->role}}</td>
+                                            <td>{{$user->email}}</td>
+                                            <td>
+                                                <?php $id=$user->id;?>
+                                                <a href="{{route('edituser', compact('id'))}}">
+                                                    <i class="fa fa-edit" aria-hidden="true"></i>
+                                                </a>
+                                                <a href=" {{route('deleteuser',compact('id'))}}">
+                                                    <i class="fa fa-trash" aria-hidden="true"></i>
+                                                </a>
+                                            </td>
+                                        </tr>
                                     @endif
-                                @empty
-                            <div>No users</div>
-                            @endforelse
+                                @endforeach
+                            </table>
+                            @else
+                                </br><div>No users registered</div>
+                            @endif
                         </ul>
                     </div>
                     <!--navigation-->
