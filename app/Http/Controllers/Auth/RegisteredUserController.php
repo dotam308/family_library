@@ -67,7 +67,7 @@ class RegisteredUserController extends Controller
         //handle register request
         $request->validate([
             'username' => 'required|string|max:255',
-            'password' => 'required',
+            'password' => 'required|min:6',
             'name' => 'required',
         ]);
         //check username already exists
