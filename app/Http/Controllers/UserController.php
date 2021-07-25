@@ -46,7 +46,7 @@ class UserController extends Controller{
         ]);
         $user=User::where('id',$request->id)->first();
         $user->email=$request->email;
-        $user->password=$request->password;
+        $user->password=Hash::make($request->password);
         $user->save();
         return redirect(route('users'));
     }
