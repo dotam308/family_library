@@ -27,7 +27,7 @@
                     <a type="button" class="btn btn-primary" href="{{route('createuser')}}">ADD ACCOUNT</a>
                     <div class="users-list-view">
                         <ul>
-                            @if(count($users)==1)
+                            @if(count($users)>1)
                             <table class="table table-hover">
                                 <thead>
                                     <tr>
@@ -59,7 +59,7 @@
                                 @endforeach
                             </table>
                             @else
-                                </br><div>No users registered</div>
+                                <br><div>No users registered</div>
                             @endif
                         </ul>
                     </div>
