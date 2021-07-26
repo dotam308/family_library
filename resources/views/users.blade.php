@@ -9,7 +9,7 @@
         </div>
         <div class="breadcrumb">
             <ul>
-                <li><a href="index-2.html">Home</a></li>
+                <li><a href="{{route('index')}}">Home</a></li>
                 <li>Users</li>
             </ul>
         </div>
@@ -27,22 +27,27 @@
                     <a type="button" class="btn btn-primary" href="{{route('createuser')}}">ADD ACCOUNT</a>
                     <div class="users-list-view">
                         <ul>
-                            @if(count($users)>1)
+                            @if(count($users)>0)
                             <table class="table table-hover">
                                 <thead>
                                     <tr>
-                                        <th>ID</th>
+                                        <th>No.</th>
                                         <th>Username</th>
                                         <th>Role</th>
                                         <th>E-mail</th>
-                                        <th>Edit/Delete</th>
+                                        <th>Action</th>
                                     </tr>
                                 </thead>
+                                <?php $order=0;?>
                                 @foreach($users as $user)
-                                    @if(session('username')!=$user->username)
+                                <?php $order++;?>
                                         <tr>
-                                            <td>{{$user->id}}</td>
-                                            <td>{{$user->username}}</td>
+                                            <td>{{$order}}</td>
+                                                @if(session('username')==$user->username)
+                                                    <td>{{$user->username}} (Your Account)</td>
+                                                @else
+                                                    <td>{{$user->username}}</td>
+                                                @endif
                                             <td>{{$user->role}}</td>
                                             <td>{{$user->email}}</td>
                                             <td>
@@ -50,16 +55,15 @@
                                                 <a href="{{route('edituser', compact('id'))}}">
                                                     <i class="fa fa-edit" aria-hidden="true"></i>
                                                 </a>
-                                                <a href=" {{route('deleteuser',compact('id'))}}">
+                                                <a rel="{{$id}}" rel1="user" href="javascript:" id="deleteButton" class="deleteButton">
                                                     <i class="fa fa-trash" aria-hidden="true"></i>
                                                 </a>
                                             </td>
                                         </tr>
-                                    @endif
                                 @endforeach
                             </table>
                             @else
-                                <br><div>No users registered</div>
+                                </br><div>No users registered</div>
                             @endif
                         </ul>
                     </div>
@@ -77,148 +81,33 @@
                     </nav>
                     <!--end navigation-->
                 </div>
-                <!-- Start: Staff Picks -->
-                <section class="team staff-picks">
-                    <div class="container">
-                        <div class="center-content">
-                            <h2 class="section-title">Staff Picks</h2>
-                            <span class="underline center"></span>
-                            <p class="lead">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                        </div>
-                        <div class="team-list">
-                            <div class="team-member">
-                                <figure>
-                                    <img src="/assets/images/books-media/staff-pick/staff-picks-01.jpg"
-                                        alt="Staff Pick" />
-                                </figure>
-                                <div class="content-block">
-                                    <div class="member-info">
-                                        <div class="member-thumb">
-                                            <img src="/assets/images/books-media/staff-pick/gail.jpg" alt="Katherine">
-                                        </div>
-                                        <div class="member-content">
-                                            <span class="designation">Downtown & Business</span>
-                                            <h4>The Collector</h4>
-                                            <ul class="social">
-                                                <li>
-                                                    <a href="#" target="_blank">
-                                                        <i class="fa fa-linkedin"></i>
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="#" target="_blank">
-                                                        <i class="fa fa-facebook-f"></i>
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="#" target="_blank">
-                                                        <i class="fa fa-twitter"></i>
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="#" target="_blank">
-                                                        <i class="fa fa-skype"></i>
-                                                    </a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <p>The point of using Lorem Ipsum is that it has a more-or-less normal
-                                            distribution of letters, as opposed to using 'Content here...</p>
-                                        <a class="btn btn-primary" href="#">Read More</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="team-member">
-                                <figure>
-                                    <img src="/assets/images/books-media/staff-pick/staff-picks-02.jpg"
-                                        alt="Staff Pick" />
-                                </figure>
-                                <div class="content-block">
-                                    <div class="member-info">
-                                        <div class="member-thumb">
-                                            <img src="/assets/images/books-media/staff-pick/katherine.jpg"
-                                                alt="Katherine">
-                                        </div>
-                                        <div class="member-content">
-                                            <span class="designation">Katherine, West End</span>
-                                            <h4>Mongolia</h4>
-                                            <ul class="social">
-                                                <li>
-                                                    <a href="#" target="_blank">
-                                                        <i class="fa fa-linkedin"></i>
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="#" target="_blank">
-                                                        <i class="fa fa-facebook-f"></i>
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="#" target="_blank">
-                                                        <i class="fa fa-twitter"></i>
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="#" target="_blank">
-                                                        <i class="fa fa-skype"></i>
-                                                    </a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <p>The point of using Lorem Ipsum is that it has a more-or-less normal
-                                            distribution of letters, as opposed to using 'Content here...</p>
-                                        <a class="btn btn-primary" href="#">Read More</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="team-member">
-                                <figure>
-                                    <img src="/assets/images/books-media/staff-pick/staff-picks-03.jpg"
-                                        alt="Staff Pick" />
-                                </figure>
-                                <div class="content-block">
-                                    <div class="member-info">
-                                        <div class="member-thumb">
-                                            <img src="/assets/images/books-media/staff-pick/chris.jpg" alt="Katherine">
-                                        </div>
-                                        <div class="member-content">
-                                            <span class="designation">Chris, East Liberty</span>
-                                            <h4>The Revolution</h4>
-                                            <ul class="social">
-                                                <li>
-                                                    <a href="#" target="_blank">
-                                                        <i class="fa fa-linkedin"></i>
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="#" target="_blank">
-                                                        <i class="fa fa-facebook-f"></i>
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="#" target="_blank">
-                                                        <i class="fa fa-twitter"></i>
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="#" target="_blank">
-                                                        <i class="fa fa-skype"></i>
-                                                    </a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <p>The point of using Lorem Ipsum is that it has a more-or-less normal
-                                            distribution of letters, as opposed to using 'Content here...</p>
-                                        <a class="btn btn-primary" href="#">Read More</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-                <!-- End: Staff Picks -->
             </div>
         </main>
     </div>
 </div>
+@endsection
+@section('script')
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.19/dist/sweetalert2.all.min.js"></script>
+<script>
+    $(document).ready(function() {
+       $('a[id=deleteButton]').click(function(){
+           var id = $(this).attr('rel');
+           var deleteFunction = $(this).attr('rel1');
+           swal({
+            title: "Are you sure?",
+            text: "You will not be able to recover this account!",
+            type: "warning",
+            showCancelButton: true,
+            confirmButtonClass: "btn-danger",
+            confirmButtonText: "Yes, delete it!",
+            closeOnConfirm: false
+            },
+            function(){
+                swal("Deleted!", "The account has been deleted.", "success");
+                window.location.href = "/deleteuser/"+ deleteFunction + "/" + id;
+            });
+        })
+    })
+</script>
+
 @endsection
