@@ -23,12 +23,24 @@
         <main id="main" class="site-main">
             <div class="booksmedia-detail-main">
                 <div class="container">
-                    <br>
-                    <h3>UPDATE ACCOUNT</h3>
-                    <br>
+                    <div id="form-heading" class="form-heading">
+                        <br>
+                        <h3>UPDATE ACCOUNT</h3>
+                        <br>
+                    </div>
+                    @if(Session::has('uerror'))
+                        <p class="alert alert-danger">{{Session::get('uerror')}}</p>
+                    @endif
+                    @if(Session::has('merror'))
+                        <p class="alert alert-danger">{{Session::get('merror')}}</p>
+                    @endif
                     <form method="POST" enctype="multipart/form-data">
                         @csrf
                         <table class="table table-hover">
+                            <tr>
+                                <th>Username</th>
+                                <td><input type="text" name="username" class="form-control" value="{{$user->username}}"></td>
+                            </tr>
                             <tr>
                                 <th>E-mail</th>
                                 <td><input type="text" name="email" class="form-control" value="{{$user->email}}"></td>
@@ -41,11 +53,12 @@
                                 <th>Role</th>
                                 <td><select name="role" class="form-control" value="{{$user->role}}">
                                         <option value="admin">Admin</option>
-                                        <option value="guest">Guest</option>
+                                        <option value="user">User</option>
                                 </td>
                             </tr>
                         </table>
                         <button type="submit" class="btn btn-primary">Cập nhật</button>
+                        <a type="button" class="btn btn-back" href="{{route('users')}}">Quay lại</a>
                     </form>
                 </div>
             </div>

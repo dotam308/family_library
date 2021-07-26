@@ -56,7 +56,7 @@ Route::get('/createuser',[UserController::class,'userAddForm'])->name('createuse
 Route::post('/createuser',[UserController::class,'addUser']);
 Route::get('/edituser',[UserController::class,'userEditForm'])->name('edituser');
 Route::post('/edituser',[UserController::class,'editUser']);
-Route::get('/deleteuser',[UserController::class,'deleteUser'])->name('deleteuser');
+Route::get('/deleteuser/user/{id}',[UserController::class,'deleteUser'])->name('deleteuser');
 
 
 Route::get('/manageBooks', [BookController::class, 'showBookList'])->name('manageBooks');
