@@ -51,8 +51,6 @@ class RegisteredUserController extends Controller
                 $nameUser = 'admin';
                 if (!empty($userInfo)) $nameUser = $userInfo->name;
                 session(['nameUser'=> $nameUser]);
-                
-
                 //case borrow book but dont signin, then signin
                 if (asset($request->bookId)) {
                     $book = Book::where('id', $request->bookId)->first();
