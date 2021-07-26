@@ -55,9 +55,9 @@ class UserController extends Controller{
         $username=User::where('username',$request['username'])->first();
         $email=User::where('email',$request['email'])->first();
         $user=User::where('id',$request->id)->first();
-        if($user!=$username || $user!=$email){
-            if($user!=$username) $request->session()->flash('uerror','Username is already existed!');
-            if($user!=$email) $request->session()->flash('merror','Email is already existed!');
+        if(($username && $user!=$username) || ($email && $user!=$email)){
+            if($username && $user!=$username) $request->session()->flash('uerror','Username is already existed!');
+            if($email && $user!=$email) $request->session()->flash('merror','Email is already existed!');
             return view('editUser',compact('user'));
         }
         $user->username=$request->username;
