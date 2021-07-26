@@ -25,6 +25,12 @@
                     <br>
                     <h3>ADD ACCOUNT</h3>
                     <br>
+                    @if(Session::has('uerror'))
+                        <p class="alert alert-danger">{{Session::get('uerror')}}</p>
+                    @endif
+                    @if(Session::has('merror'))
+                        <p class="alert alert-danger">{{Session::get('merror')}}</p>
+                    @endif
                     <form method="POST" enctype="multipart/form-data">
                         @csrf
                         <table class="table table-hover">
@@ -44,11 +50,12 @@
                                 <th>Role</th>
                                 <td><select name="role" class="form-control">
                                         <option value="admin">Admin</option>
-                                        <option value="guest">Guest</option>
+                                        <option value="user">User</option>
                                 </td>
                             </tr>
                         </table>
                         <button type="submit" class="btn btn-primary">Add</button>
+                        <a type="button" class="btn btn-back" href="{{route('users')}}">Quay lại</a>
                     </form>
                 </div>
             </div>
