@@ -131,8 +131,8 @@ class BookController extends Controller
         $id = session('userId');
         $books = Borrowing::join('books', 'borrowings.bookId', '=', 'books.id')
                             ->where('borrowings.userId', $id)
-                            ->where('borrowings.returned', "false")
-                            ->get(['books.ddcCode', 'books.name', 'books.author', 'books.genre', 'borrowings.quantity', 'borrowings.borrowDate', 'borrowings.returnDate', 'borrowings.returned', 'books.image', 'books.id']);
+                            ->where('borrowings.returned', '!=',"returned")
+                            ->get(['books.ddcCode', 'books.name', 'books.author', 'books.genre', 'borrowings.quantity', 'borrowings.borrowDate', 'borrowings.returnDate', 'borrowings.returned', 'books.image', 'books.id', 'borrowings.id as borrowId']);
         return view('borrowedBookList', compact('books'));
     }
 
@@ -140,8 +140,8 @@ class BookController extends Controller
         $id = session('userId');
         $books = Borrowing::join('books', 'borrowings.bookId', '=', 'books.id')
                             ->where('borrowings.userId', $id)
-                            ->where('borrowings.returned', "true")
-                            ->get(['books.ddcCode', 'books.name', 'books.author', 'books.genre', 'borrowings.quantity', 'borrowings.borrowDate', 'borrowings.returnDate', 'borrowings.returned', 'books.image', 'books.id']);
+                            ->where('borrowings.returned', "returned")
+                            ->get(['books.ddcCode', 'books.name', 'books.author', 'books.genre', 'borrowings.quantity', 'borrowings.borrowDate', 'borrowings.returnDate', 'borrowings.returned', 'books.image', 'books.id', 'borrowings.updated_at as bookReturnedAt']);
         $returned = true;
         return view('borrowedBookList', compact('books', 'returned'));
     }

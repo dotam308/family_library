@@ -3,14 +3,14 @@
 <section class="page-banner services-banner">
     <div class="container">
         <div class="banner-header">
-            <h2>Books & Media Listing</h2>
+            <h2>Books</h2>
             <span class="underline center"></span>
             <p class="lead">Proin ac eros pellentesque dolor pharetra tempo.</p>
         </div>
         <div class="breadcrumb">
             <ul>
                 <li><a href="index-2.html">Home</a></li>
-                <li>Books & Media</li>
+                <li>Check</li>
             </ul>
         </div>
     </div>
@@ -23,7 +23,7 @@
             <div class="books-full-width">
                 <div class="container">
                     <form>
-                        <h3>Danh sách sách {{ empty($returned) ? 'đang mượn' : 'đã trả' }}</h3>
+                        <h3>{{ empty($returned) ? 'Borrowing' : 'Returned' }} books list</h3>
                         <br>
                         <br>
                         @if (count($books) == 0)
@@ -32,16 +32,24 @@
                         <table class="table table-hover">
                             <thead>
                                 <tr>
-                                    <th>Số thứ tự</th>
-                                    <th>Mã DDC</th>
-                                    <th>Tên sách</th>
-                                    <th>Tác giả</th>
-                                    <th>Thể loại</th>
-                                    <th>Số lượng mượn</th>
-                                    <th>Ngày mượn</th>
-                                    <th>Ngày hẹn trả</th>
-                                    <th>Đã trả</th>
-                                    <th>Ảnh</th>
+                                    <th>Order</th>
+                                    <th>DDC code</th>
+                                    <th>Title</th>
+                                    <th>Author</th>
+                                    <th>Genre</th>
+                                    <th>borrowed quantity</th>
+                                    <th>borrowed date</th>
+                                    <th>return date</th>
+                                    <th>Status</th>
+                                    @if (isset($returned))
+                                        <th>Book returned at</th>
+                                    @endif
+                            
+                                    <th>Image</th>
+
+                                    @if (!isset($returned))
+                                        <th>Action</th>
+                                    @endif
                                 </tr>
                             </thead>
                             <tbody>
@@ -64,9 +72,26 @@
                                         <td>{{ $book->borrowDate }}</td>
                                         <td>{{ $book->returnDate }}</td>
                                         <td>{{ $book->returned }}</td>
+                                        @if (isset($returned))
+                                            @php
+                                                $date=date_create($book->bookReturnedAt);
+                                                $date = date_format($date,"Y-m-d");
+                                            @endphp
+                                            <td>{{ $date }}</td>
+                                        @endif
+
                                         <td>
                                             <img src="/storage/{{ $book->image }}" alt="image"/>
                                         </td>
+
+                                        @if ($book->returned == 'waiting')
+                                        @php
+                                            $id = $book->borrowId;
+                                        @endphp
+                                        <td>
+                                            <button><a rel="{{ $id }}" href="javascript:" id="deleteButton" style="color: #fff;">Cancel</a></button>
+                                        </td>
+                                        @endif
                                     </tr>
                                 @endforeach
                             </tbody>
@@ -89,4 +114,30 @@
         </main>
     </div>
 </div>
+@endsection
+
+@section('script')
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.19/dist/sweetalert2.all.min.js"></script>
+<script>
+    $(document).ready(function() {
+       $('a[id=deleteButton]').click(function() {
+           var id = $(this).attr('rel');
+           
+           swal({
+            title: "Are you sure?",
+            text: "This order will be canceled",
+            type: "warning",
+            showCancelButton: true,
+            confirmButtonClass: "btn-danger",
+            confirmButtonText: "Yes!",
+            closeOnConfirm: false
+            },
+            function(){
+                window.location.href = "/cancelBorrow/" + id;
+            swal("Deleted!", "Your order has been canceled.", "success");
+            });
+        })
+    })
+</script>
+
 @endsection
