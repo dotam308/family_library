@@ -17,6 +17,7 @@
 </section>
 @endsection
 @section('content')
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" />
 <div id="content" class="site-content">
     <div id="primary" class="content-area">
         <main id="main" class="site-main">
@@ -31,17 +32,39 @@
                         </div>
                         <table class="table table-hover">
                             <thead>
+                                <?php
+                                $dc = "r";$bn = "r";$au = "r";$ge = "r";$pub = "r";$trans = "r";$coun = "r";$qua = "r";
+                                $pri = "r";$insc = "r";$desc = "r";
+                                ?>
                                 <tr>
                                     <th>Số thứ tự/Order</th>
-                                    <th>Mã DDC/DDC</th>
-                                    <th>Tên sách/Title</th>
-                                    <th>Tác giả/Author</th>
-                                    <th>Thể loại/Genre</th>
-                                    <th>Nhà sản xuất/Publisher</th>
-                                    <th>Người dịch/Translator</th>
-                                    <th>Quốc gia/Country</th>
-                                    <th>Số sách trong kho/Copies</th>
-                                    <th>Giá/Price</th>
+                                    <th>Mã DDC/DDC
+                                    <a href="{{route('manageBooks', compact('dc','desc'))}}"><i class="fas fa-angle-double-down"></i></a>
+                                        <a href="{{route('manageBooks', compact('dc','insc'))}}"><i class="fas fa-angle-double-up"></i></a></th>
+                                    <th>Tên sách/Title
+                                    <a href="{{route('manageBooks', compact('bn','desc'))}}"><i class="fas fa-angle-double-down"></i></a>
+                                        <a href="{{route('manageBooks', compact('bn','insc'))}}"><i class="fas fa-angle-double-up"></i></a></th>
+                                    <th>Tác giả/Author
+                                    <a href="{{route('manageBooks', compact('au','desc'))}}"><i class="fas fa-angle-double-down"></i></a>
+                                        <a href="{{route('manageBooks', compact('au','insc'))}}"><i class="fas fa-angle-double-up"></i></a></th>
+                                    <th>Thể loại/Genre
+                                    <a href="{{route('manageBooks', compact('ge','desc'))}}"><i class="fas fa-angle-double-down"></i></a>
+                                        <a href="{{route('manageBooks', compact('ge','insc'))}}"><i class="fas fa-angle-double-up"></i></a></th>
+                                    <th>Nhà sản xuất/Publisher
+                                    <a href="{{route('manageBooks', compact('pub','desc'))}}"><i class="fas fa-angle-double-down"></i></a>
+                                        <a href="{{route('manageBooks', compact('pub','insc'))}}"><i class="fas fa-angle-double-up"></i></a></th>
+                                    <th>Người dịch/Translator
+                                    <a href="{{route('manageBooks', compact('trans','desc'))}}"><i class="fas fa-angle-double-down"></i></a>
+                                        <a href="{{route('manageBooks', compact('trans','insc'))}}"><i class="fas fa-angle-double-up"></i></a></th>
+                                    <th>Quốc gia/Country
+                                    <a href="{{route('manageBooks', compact('coun','desc'))}}"><i class="fas fa-angle-double-down"></i></a>
+                                        <a href="{{route('manageBooks', compact('coun','insc'))}}"><i class="fas fa-angle-double-up"></i></a></th>
+                                    <th>Số sách trong kho/Copies
+                                    <a href="{{route('manageBooks', compact('qua','desc'))}}"><i class="fas fa-angle-double-down"></i></a>
+                                        <a href="{{route('manageBooks', compact('qua','insc'))}}"><i class="fas fa-angle-double-up"></i></a></th>
+                                    <th>Giá/Price
+                                    <a href="{{route('manageBooks', compact('pri','desc'))}}"><i class="fas fa-angle-double-down"></i></a>
+                                        <a href="{{route('manageBooks', compact('pri','insc'))}}"><i class="fas fa-angle-double-up"></i></a></th>
                                     <th>Ảnh/Image</th>
                                     <th>Action</th>
                                 </tr>

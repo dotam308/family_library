@@ -59,7 +59,8 @@
                             
                             <tr>
                                 <th><strong>Trạng thái:</strong></th>
-                                <td><input type="text" name="status" class="form-control" value="{{ $borrow->returned }}"></td>
+                                <td><input type="text" name="status" class="form-control" value=""
+                                id="inputStatus"></td>
                             </tr>
                             
                             <tr>
@@ -76,4 +77,15 @@
     </div>
 
 </div>
+@endsection
+@section('script')
+<script>
+    var inputS = document.getElementById('inputStatus');
+    if ($borrow->updated_at == "false") {
+        $inputS.value = "Chưa trả"
+    } else {
+        $inputS.value = "Đã trả"
+    }
+</script>
+
 @endsection

@@ -19,17 +19,39 @@
 @endsection
 
 @section('content')
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" />
 <h3>Book Rent List</h3>
 <form>
         <table class="table table-hover">
+            <?php $bookname = "bookname";
+                    $borrower = "borrower";
+                    $quantityx = "quantity";
+                    $brdate = "brdate";
+                    $redate = "redate";  
+                    $desc = "d"; 
+                    $insc = "i";?>
             <thead>
                 <tr>
-                    <th>Thứ tự</th>
-                    <th>Tên sách</th>
-                    <th>Người mượn</th>
-                    <th>Số lượng mượn</th>
-                    <th>Ngày mượn</th>
-                    <th>Ngày hẹn trả</th>
+                    <th>STT</th>
+                    <th>Tên sách
+                        <a href="{{route('books_rented', compact('bookname', 'desc'))}}"><i class="fas fa-angle-double-down"></i></a>
+                        <a href="{{route('books_rented', compact('bookname', 'insc'))}}"><i class="fas fa-angle-double-up"></i></a></th>
+                    <th>Người mượn
+                        <a href="{{route('books_rented', compact('borrower', 'desc'))}}"><i class="fas fa-angle-double-down"></i></a>
+                        <a href="{{route('books_rented', compact('borrower', 'insc'))}}"><i class="fas fa-angle-double-up"></i></a>
+                    </th>
+                    <th>Số lượng mượn
+                        <a href="{{route('books_rented', compact('quantityx', 'desc'))}}"><i class="fas fa-angle-double-down"></i></a>
+                        <a href="{{route('books_rented', compact('quantityx', 'insc'))}}"><i class="fas fa-angle-double-up"></i></a>
+                    </th>
+                    <th>Ngày mượn
+                        <a href="{{route('books_rented', compact('brdate', 'desc'))}}"><i class="fas fa-angle-double-down"></i></a>
+                        <a href="{{route('books_rented', compact('brdate', 'insc'))}}"><i class="fas fa-angle-double-up"></i></a>
+                    </th>
+                    <th>Ngày hẹn trả
+                        <a href="{{route('books_rented', compact('redate', 'desc'))}}"><i class="fas fa-angle-double-down"></i></a>
+                        <a href="{{route('books_rented', compact('redate', 'insc'))}}"><i class="fas fa-angle-double-up"></i></a>
+                    </th>
                     <th>Trạng thái</th>
                     <th>Action</th>
                 </tr>
@@ -44,11 +66,11 @@
                 ?>
                     <tr>
                         <td>{{$i}}</td>
-                        <td>{{ $b->name }}</td>
+                        <td>{{$b->name}}</td>
                         <td>{{$b->username}}</td>
-                        <td>{{ $b->quantity }}</td>
-                        <td>{{ $b->borrowDate }}</td>
-                        <td>{{ $b->returnDate }}</td>
+                        <td>{{$b->quantity}}</td>
+                        <td>{{$b->borrowDate }}</td>
+                        <td>{{$b->returnDate }}</td>
                         @if ($b->returned == "false")
                         <td>Chưa trả</td>
                         @else

@@ -5,11 +5,32 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Hash;
+use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller{
     //
-    public function index(){
-        $users=User::get();
+    public function index(Request $request){
+        if ($request->usern == "r" && $request->insc == "r") {
+            $users=DB::table('users')->orderBy('users.username', 'asc')->get();
+        }
+        else if ($request->usern == "r" && $request->desc == "r") {
+            $users=DB::table('users')->orderBy('users.username', 'desc')->get();
+        }
+        else if ($request->rol == "r" && $request->desc == "r") {
+            $users=DB::table('users')->orderBy('users.role', 'desc')->get();
+        }
+        else if ($request->rol == "r" && $request->insc == "r") {
+            $users=DB::table('users')->orderBy('users.username', 'asc')->get();
+        }
+        else if ($request->mail == "r" && $request->desc == "r") {
+            $users=DB::table('users')->orderBy('users.email', 'desc')->get();
+        }
+        else if ($request->mail == "r" && $request->insc == "r") {
+            $users=DB::table('users')->orderBy('users.email', 'asc')->get();
+        }
+        else {
+        $users=DB::table('users')->get();
+    }
         return view('users',compact('users'));
     }
 

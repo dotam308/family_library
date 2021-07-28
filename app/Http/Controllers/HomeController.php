@@ -86,13 +86,86 @@ class HomeController extends Controller
         return redirect(route('books'));
     }
   
-    public function viewBookRented() {
-        $active = "pages";
+    public function viewBookRented(Request $request) {
+        $active = "pages";  
+        if ($request->quantityx == 'quantity' && $request->desc == 'd'){
+            $borrow = DB::table('borrowings')
+                  ->join('books','borrowings.bookId','=','books.id')
+                  ->join('users','borrowings.userId','=','users.id')
+                  ->select('borrowings.*', 'users.username', 'books.name')->orderBy('borrowings.quantity', 'desc')
+                  ->get();
+        }
+        else if ($request->quantityx == 'quantity' && $request->insc == 'i') {
+            $borrow = DB::table('borrowings')
+                  ->join('books','borrowings.bookId','=','books.id')
+                  ->join('users','borrowings.userId','=','users.id')
+                  ->select('borrowings.*', 'users.username', 'books.name')->orderBy('borrowings.quantity', 'asc')
+                  ->get();
+        }
+        else if ($request->bookname == 'bookname' && $request->insc == 'i') {
+            $borrow = DB::table('borrowings')
+                  ->join('books','borrowings.bookId','=','books.id')
+                  ->join('users','borrowings.userId','=','users.id')
+                  ->select('borrowings.*', 'users.username', 'books.name')->orderBy('books.name', 'asc')
+                  ->get();
+        }
+        else if ($request->bookname == 'bookname' && $request->desc == 'd') {
+            $borrow = DB::table('borrowings')
+                  ->join('books','borrowings.bookId','=','books.id')
+                  ->join('users','borrowings.userId','=','users.id')
+                  ->select('borrowings.*', 'users.username', 'books.name')->orderBy('books.name', 'desc')
+                  ->get();
+        }
+        else if ($request->borrower == 'borrower' && $request->insc == 'i') {
+            $borrow = DB::table('borrowings')
+                  ->join('books','borrowings.bookId','=','books.id')
+                  ->join('users','borrowings.userId','=','users.id')
+                  ->select('borrowings.*', 'users.username', 'books.name')->orderBy('users.username', 'asc')
+                  ->get();
+        }
+        else if ($request->borrower == 'borrower' && $request->desc == 'd') {
+            $borrow = DB::table('borrowings')
+                  ->join('books','borrowings.bookId','=','books.id')
+                  ->join('users','borrowings.userId','=','users.id')
+                  ->select('borrowings.*', 'users.username', 'books.name')->orderBy('users.username', 'desc')
+                  ->get();
+        }
+        else if ($request->brdate == 'brdate' && $request->insc == 'i') {
+            $borrow = DB::table('borrowings')
+                  ->join('books','borrowings.bookId','=','books.id')
+                  ->join('users','borrowings.userId','=','users.id')
+                  ->select('borrowings.*', 'users.username', 'books.name')->orderBy('borrowings.borrowDate', 'asc')
+                  ->get();
+        }
+        else if ($request->drdate == 'brdate' && $request->desc == 'd') {
+            $borrow = DB::table('borrowings')
+                  ->join('books','borrowings.bookId','=','books.id')
+                  ->join('users','borrowings.userId','=','users.id')
+                  ->select('borrowings.*', 'users.username', 'books.name')->orderBy('borrowings.borrowDate', 'desc')
+                  ->get();
+        }
+        else if ($request->redate == 'redate' && $request->desc == 'd') {
+            $borrow = DB::table('borrowings')
+                  ->join('books','borrowings.bookId','=','books.id')
+                  ->join('users','borrowings.userId','=','users.id')
+                  ->select('borrowings.*', 'users.username', 'books.name')->orderBy('borrowings.returnDate', 'desc')
+                  ->get();
+        }
+        else if ($request->redate == 'redate' && $request->insc == 'i') {
+            $borrow = DB::table('borrowings')
+                  ->join('books','borrowings.bookId','=','books.id')
+                  ->join('users','borrowings.userId','=','users.id')
+                  ->select('borrowings.*', 'users.username', 'books.name')->orderBy('borrowings.returnDate', 'asc')
+                  ->get();
+        }
+        else {
         $borrow = DB::table('borrowings')
                   ->join('books','borrowings.bookId','=','books.id')
                   ->join('users','borrowings.userId','=','users.id')
                   ->select('borrowings.*', 'users.username', 'books.name')
                   ->get();
+              }
+        
         return view('books_rented', compact('active','borrow'));
     }
     public function viewManageBookRented(Request $request) {
@@ -114,6 +187,7 @@ class HomeController extends Controller
         'returned'=>$request->status,
     ]
         );
+        toast('Successfully','success');
         return redirect(route('books_rented'));
     }
     public function deleteBookRented(Request $request, $id)

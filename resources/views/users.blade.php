@@ -17,6 +17,7 @@
 </section>
 @endsection
 @section('content')
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" />
 <div id="content" class="site-content">
     <div id="primary" class="content-area">
         <main id="main" class="site-main">
@@ -27,14 +28,27 @@
                     <a type="button" class="btn btn-primary" href="{{route('createuser')}}">ADD ACCOUNT</a>
                     <div class="users-list-view">
                         <ul>
+                            <?php
+                            $usern = "r";
+                            $rol = "r";
+                            $mail = "r";
+                            $insc = "r";
+                            $desc = "r"; 
+                            ?>
                             @if(count($users)>0)
                             <table class="table table-hover">
                                 <thead>
                                     <tr>
                                         <th>No.</th>
-                                        <th>Username</th>
-                                        <th>Role</th>
-                                        <th>E-mail</th>
+                                        <th>Username
+                                        <a href="{{route('users', compact('usern','desc'))}}"><i class="fas fa-angle-double-down"></i></a>
+                                        <a href="{{route('users', compact('usern','insc'))}}"><i class="fas fa-angle-double-up"></i></a></th>
+                                        <th>Role
+                                        <a href="{{route('users', compact('rol','desc'))}}"><i class="fas fa-angle-double-down"></i></a>
+                                        <a href="{{route('users', compact('rol','insc'))}}"><i class="fas fa-angle-double-up"></i></a></th>
+                                        <th>E-mail
+                                        <a href="{{route('users', compact('mail','desc'))}}"><i class="fas fa-angle-double-down"></i></a>
+                                        <a href="{{route('users', compact('mail','insc'))}}"><i class="fas fa-angle-double-up"></i></a></th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>

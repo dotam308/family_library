@@ -17,6 +17,7 @@
 </section>
 @endsection
 @section('content')
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" />
 <div id="content" class="site-content">
     <div id="primary" class="content-area">
         <main id="main" class="site-main">
@@ -29,17 +30,36 @@
                         @if (count($books) == 0)
                             <p>There is no data</p>
                         @else
+                        <?php
+                        $dc = "r";$bn = "r";$au = "r";$ge = "r";$qua = "r";
+                                $bd = "r";$rd="r";$insc = "r";$desc = "r"; 
+                        ?>
                         <table class="table table-hover">
                             <thead>
                                 <tr>
                                     <th>Số thứ tự</th>
-                                    <th>Mã DDC</th>
-                                    <th>Tên sách</th>
-                                    <th>Tác giả</th>
-                                    <th>Thể loại</th>
-                                    <th>Số lượng mượn</th>
-                                    <th>Ngày mượn</th>
-                                    <th>Ngày hẹn trả</th>
+                                    <th>Mã DDC
+                                        <a href="{{route('borrowedBooks', compact('dc','desc'))}}"><i class="fas fa-angle-double-down"></i></a>
+                                        <a href="{{route('borrowedBooks', compact('dc','insc'))}}"><i class="fas fa-angle-double-up"></i></a>
+                                    </th>
+                                    <th>Tên sách
+                                    <a href="{{route('borrowedBooks', compact('bn','desc'))}}"><i class="fas fa-angle-double-down"></i></a>
+                                        <a href="{{route('borrowedBooks', compact('bn','insc'))}}"><i class="fas fa-angle-double-up"></i></a></th>
+                                    <th>Tác giả
+                                    <a href="{{route('borrowedBooks', compact('au','desc'))}}"><i class="fas fa-angle-double-down"></i></a>
+                                        <a href="{{route('borrowedBooks', compact('au','insc'))}}"><i class="fas fa-angle-double-up"></i></a></th>
+                                    <th>Thể loại
+                                    <a href="{{route('borrowedBooks', compact('ge','desc'))}}"><i class="fas fa-angle-double-down"></i></a>
+                                        <a href="{{route('borrowedBooks', compact('ge','insc'))}}"><i class="fas fa-angle-double-up"></i></a></th>
+                                    <th>Số lượng mượn
+                                    <a href="{{route('borrowedBooks', compact('qua','desc'))}}"><i class="fas fa-angle-double-down"></i></a>
+                                        <a href="{{route('borrowedBooks', compact('qua','insc'))}}"><i class="fas fa-angle-double-up"></i></a></th>
+                                    <th>Ngày mượn
+                                    <a href="{{route('borrowedBooks', compact('bd','desc'))}}"><i class="fas fa-angle-double-down"></i></a>
+                                        <a href="{{route('borrowedBooks', compact('bd','insc'))}}"><i class="fas fa-angle-double-up"></i></a></th>
+                                    <th>Ngày hẹn trả
+                                    <a href="{{route('borrowedBooks', compact('rd','desc'))}}"><i class="fas fa-angle-double-down"></i></a>
+                                        <a href="{{route('borrowedBooks', compact('rd','insc'))}}"><i class="fas fa-angle-double-up"></i></a></th>
                                     <th>Đã trả</th>
                                     <th>Ảnh</th>
                                 </tr>
