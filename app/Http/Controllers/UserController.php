@@ -62,7 +62,7 @@ class UserController extends Controller{
         }
         $user->username=$request->username;
         $user->email=$request->email;
-        $user->password=Hash::make($request->password);
+        $user->password=Hash::needsRehash($request->password)?Hash::make($request->password):$request->password;
         $user->role=$request->role;
         $user->save();
         return redirect(route('users'));

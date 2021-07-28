@@ -51,9 +51,16 @@
                             </tr>
                             <tr>
                                 <th>Role</th>
-                                <td><select name="role" class="form-control" value="{{$user->role}}">
-                                        <option value="admin">Admin</option>
-                                        <option value="user">User</option>
+                                <td>
+                                    <select name="role" class="form-control">
+                                        <?php if($user->role=="admin"){?>
+                                            <option value="admin">Admin</option>
+                                            <option value="user">User</option>
+                                        <?php }elseif($user->role=="user"){ ?>
+                                            <option value="user">User</option>
+                                            <option value="Admin">Admin</option>
+                                        <?php }?>
+                                    </select>
                                 </td>
                             </tr>
                         </table>
@@ -64,6 +71,5 @@
             </div>
         </main>
     </div>
-
 </div>
 @endsection
