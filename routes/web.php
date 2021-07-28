@@ -62,3 +62,10 @@ Route::get('/manageBooks', [BookController::class, 'showBookList'])->name('manag
 
 Route::get('/borrowedBooks', [BookController::class, 'showBorrowedBookList'])->name('borrowedBooks');
 Route::get('/returnedBooks', [BookController::class, 'showReturnedBookList'])->name('returnedBooks');
+Route::get('/cancelBorrow/{id}', [HomeController::class,'cancelBorrow']);
+
+Route::get('/waitingOrders', [HomeController::class, 'waitingOrders'])->name('waitingOrders');
+Route::get('/borrowingOrders', [HomeController::class, 'borrowingOrders'])->name('borrowingOrders');
+
+Route::get('/tookBook', [HomeController::class, 'tookBook'])->name('tookBook');
+Route::get('/returnBook', [HomeController::class, 'returnBook'])->name('returnBook');

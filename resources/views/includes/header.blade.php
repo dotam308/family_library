@@ -168,6 +168,16 @@
                                     </ul>
                                 </li>
                                 @endif
+                                
+                                @if(session('role') == 'admin')
+                                <li class="dropdown {{ isset($active) && $active == "pages" ? "active" : "" }}">
+                                    <a data-toggle="dropdown" class="dropdown-toggle disabled" href="#">orders</a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="{{ route('waitingOrders') }}">Waiting orders</a></li>
+                                        <li><a href="{{ route('borrowingOrders') }}">Borrowing books list</a></li>
+                                    </ul>
+                                </li>
+                                @endif
                             </ul>
                         </div>
                     </div>

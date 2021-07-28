@@ -76,7 +76,7 @@ class HomeController extends Controller
             'quantity' => $request->quantity,
             'borrowDate' => date('Y-m-d'),
             'returnDate' => $request->returnDate,
-            'returned' => 'false'
+            'returned' => 'waiting' //3 status is waiting, borrowing, returned.
         ]);
         //save new copies to book table
         $book->copies = $book->copies - $request->quantity;
@@ -195,5 +195,48 @@ class HomeController extends Controller
 
         $b = DB::table('borrowings')->where('id','=',$id)->delete();
         return redirect()->back()->with("flash_message_success", "Delete success");
+    }
+    
+    public function waitingOrders(Request $request) {
+        $orders = DB::table('borrowings')->join('books', 'books.id', 'borrowings.bookId')
+                            ->join('userinfo', 'borrowings.userId', 'userinfo.userId')
+                            ->where('borrowings.returned', "waiting")
+                            ->get(['books.ddcCode', 'books.name', 'books.author', 'books.genre', 'borrowings.quantity', 'borrowings.borrowDate', 'borrowings.returnDate', 'borrowings.returned', 'books.image', 'books.id as bookId', 'borrowings.id as borrowingId', 'userInfo.name as userName']);
+        $status = 'waiting';
+        return view('manageOrder', compact('orders', 'status'));
+    }
+
+    public function borrowingOrders(Request $request) {
+        $orders = DB::table('borrowings')->join('books', 'books.id', 'borrowings.bookId')
+                            ->join('userinfo', 'borrowings.userId', 'userinfo.userId')
+                            ->where('borrowings.returned', "borrowing")
+                            ->get(['books.ddcCode', 'books.name', 'books.author', 'books.genre', 'borrowings.quantity', 'borrowings.borrowDate', 'borrowings.returnDate', 'borrowings.returned', 'books.image', 'books.id as bookId', 'borrowings.id as borrowingId', 'userInfo.name as userName']);
+        return view('manageOrder', compact('orders'));
+    }
+
+    public function tookBook(Request $request) {
+        $borrow = Borrowing::where('id', $request->borrowId)->first();
+        $borrow->returned = "borrowing";
+        $borrow->save();
+        return redirect(route('waitingOrders'));
+    }
+
+    public function returnBook(Request $request) {
+        $book = Book::where('id', $request->bookId)->first();
+        $borrow = Borrowing::where('id', $request->borrowId)->first();
+        $borrow->returned = "returned";
+        $book->copies = $book->copies + $borrow->quantity;
+        $book->save();
+        $borrow->save();
+        return redirect(route('borrowingOrders'));
+    }
+
+    public function cancelBorrow(Request $request, $id) {
+        $borrow = Borrowing::where('id', $id)->first();
+        $book = Book::where('id', $borrow->bookId)->first();
+        $book->copies = $book->copies + $borrow->quantity;
+        $book->save();
+        $borrow->delete();
+        return redirect(route('borrowedBooks'));
     }
 }
