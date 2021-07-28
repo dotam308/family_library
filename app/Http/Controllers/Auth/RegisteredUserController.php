@@ -47,10 +47,10 @@ class RegisteredUserController extends Controller
                 $user = User::where('username', $username)->first();
                 session(['role'=>$user->role]);
                 session(['userId'=>$user->id]);
-                $userInfo = UserInfo::where('userId', $user->id)->first();
-                $nameUser = 'admin';
-                if (!empty($userInfo)) $nameUser = $userInfo->name;
-                session(['nameUser'=> $nameUser]);
+                // $userInfo = UserInfo::where('userId', $user->id)->first();
+                // $nameUser = 'admin';
+                // if (!empty($userInfo)) $nameUser = $userInfo->name;
+                session(['nameUser'=> $username]);
                 
 
                 //case borrow book but dont signin, then signin
@@ -94,7 +94,7 @@ class RegisteredUserController extends Controller
             'userId' => $userId,
             'name'=>$request->name
         ]);
-        session(['nameUser'=> $request->name]);
+        session(['nameUser'=> $request->username]);
                         
         //case borrow book but dont signin, then sign up
         if (asset($request->bookId)) {

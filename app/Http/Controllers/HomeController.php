@@ -199,18 +199,18 @@ class HomeController extends Controller
     
     public function waitingOrders(Request $request) {
         $orders = DB::table('borrowings')->join('books', 'books.id', 'borrowings.bookId')
-                            ->join('userinfo', 'borrowings.userId', 'userinfo.userId')
+                            ->join('users', 'borrowings.userId', 'users.id')
                             ->where('borrowings.returned', "waiting")
-                            ->get(['books.ddcCode', 'books.name', 'books.author', 'books.genre', 'borrowings.quantity', 'borrowings.borrowDate', 'borrowings.returnDate', 'borrowings.returned', 'books.image', 'books.id as bookId', 'borrowings.id as borrowingId', 'userInfo.name as userName']);
+                            ->get(['books.ddcCode', 'books.name', 'books.author', 'books.genre', 'borrowings.quantity', 'borrowings.borrowDate', 'borrowings.returnDate', 'borrowings.returned', 'books.image', 'books.id as bookId', 'borrowings.id as borrowingId', 'users.username as userName']);
         $status = 'waiting';
         return view('manageOrder', compact('orders', 'status'));
     }
 
     public function borrowingOrders(Request $request) {
         $orders = DB::table('borrowings')->join('books', 'books.id', 'borrowings.bookId')
-                            ->join('userinfo', 'borrowings.userId', 'userinfo.userId')
+                            ->join('users', 'borrowings.userId', 'users.id')
                             ->where('borrowings.returned', "borrowing")
-                            ->get(['books.ddcCode', 'books.name', 'books.author', 'books.genre', 'borrowings.quantity', 'borrowings.borrowDate', 'borrowings.returnDate', 'borrowings.returned', 'books.image', 'books.id as bookId', 'borrowings.id as borrowingId', 'userInfo.name as userName']);
+                            ->get(['books.ddcCode', 'books.name', 'books.author', 'books.genre', 'borrowings.quantity', 'borrowings.borrowDate', 'borrowings.returnDate', 'borrowings.returned', 'books.image', 'books.id as bookId', 'borrowings.id as borrowingId', 'users.username as userName']);
         return view('manageOrder', compact('orders'));
     }
 

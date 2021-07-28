@@ -36,7 +36,7 @@
                                     <th>DDC code</th>
                                     <th>Title</th>
                                     <th>Author</th>
-                                    <th>Name of user</th>
+                                    <th>Username</th>
                                     <th>borrowed quantity</th>
                                     <th>borrowed date</th>
                                     <th>return date</th>

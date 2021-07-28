@@ -71,11 +71,7 @@
                         <td>{{$b->quantity}}</td>
                         <td>{{$b->borrowDate }}</td>
                         <td>{{$b->returnDate }}</td>
-                        @if ($b->returned == "false")
-                        <td>Chưa trả</td>
-                        @else
-                        <td>Đã trả</td>
-                        @endif
+                        <td>{{$b->returned}}</td>
                        
                         <td>
                             <a rel="{{ $id }}" href="javascript:" id="deleteButton"><i class="fa fa-trash"></i></a>
