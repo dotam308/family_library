@@ -96,7 +96,7 @@
                                         <td>
                                             <?php $id = $book->id; ?>
                                             <a href="{{ route('editBook', compact('id')) }}" id="editButton" >
-                                                <i class="fa fa-pencil" aria-hidden="true" style="color: blue"></i>
+                                                <i class="fa fa-pen" aria-hidden="true" style="color: blue"></i>
                                             </a>
                                             <a rel="{{ $id }}" rel1= "book" href="javascript:" id="deleteButton" class="deleteButton">
                                                 <i class="fa fa-trash" aria-hidden="true" style="color: red"></i>

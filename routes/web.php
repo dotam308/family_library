@@ -46,6 +46,7 @@ Route::get('/delete_rented/{id}', [HomeController::class, 'deleteBookRented'])->
 Route::get('/rents_byId', [HomeController::class, 'viewManageBookRented'])->name('rents_byId');
 Route::post('/rents_byId', [HomeController::class, 'manageBookRented']);
 Route::get('/book_detail_byId', [HomeController::class, 'viewBookDetailById'])->name('book_detail_byId');
+Route::post('/book_detail_byId', [HomeController::class, 'viewBookDetailByIdPost']);
 
 Route::get('/borrowBook', [HomeController::class, 'borrowBookForm'])->name('borrowBook');
 Route::post('/borrowBook', [HomeController::class, 'borrowBookPost']);

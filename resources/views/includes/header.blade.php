@@ -129,7 +129,7 @@
                                         </ul>
                                     </li> --}}
                                      @if (session('role') == 'admin')
-                                    <li class="dropdown {{ isset($active) && $active == "pages" ? "active" : "" }}" >
+                                    <li class="dropdown {{ isset($active) && $active == "manage" ? "active" : "" }}" >
                                         <a data-toggle="dropdown" class="dropdown-toggle disabled" href="#">Manage</a>
                                     <ul class="dropdown-menu">
                                         <li><a href="{{route('users')}}">Manage User List</a></li>
@@ -138,7 +138,7 @@
                                     </ul> 
                                     </li>
                                     @endif
-                                <li class="dropdown {{ isset($active) && $active == "pages" ? "active" : "" }}">
+                                <li class="dropdown {{ (isset($active) && $active == "pages") ? "active" : "" }}">
                                     <a data-toggle="dropdown" class="dropdown-toggle disabled" href="#">Pages</a>
                                     <ul class="dropdown-menu">
                                         <li><a href="{{ route('cart') }}">Cart</a></li>
@@ -160,8 +160,8 @@
                                 </li>
 
                                 @if( (session('role') != null) )
-                                <li class="dropdown {{ isset($active) && $active == "pages" ? "active" : "" }}">
-                                    <a data-toggle="dropdown" class="dropdown-toggle disabled" href="#">Check</a>
+                                <li class="dropdown {{ isset($active) && $active == "check" ? "active" : "" }}">
+                                    <a data-toggle="dropdown" class="dropdown-toggle disabled" >Check</a>
                                     <ul class="dropdown-menu">
                                         <li><a href="{{ route('borrowedBooks') }}">Borrowed books list</a></li>
                                         <li><a href="{{ route('returnedBooks') }}">Returned books list</a></li>
@@ -170,7 +170,7 @@
                                 @endif
                                 
                                 @if(session('role') == 'admin')
-                                <li class="dropdown {{ isset($active) && $active == "pages" ? "active" : "" }}">
+                                <li class="dropdown {{ isset($active) && $active == "order" ? "active" : "" }}">
                                     <a data-toggle="dropdown" class="dropdown-toggle disabled" href="#">orders</a>
                                     <ul class="dropdown-menu">
                                         <li><a href="{{ route('waitingOrders') }}">Waiting orders</a></li>

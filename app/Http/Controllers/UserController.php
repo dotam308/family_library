@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\DB;
 class UserController extends Controller{
     //
     public function index(Request $request){
+        $active = "manage";
         if ($request->usern == "r" && $request->insc == "r") {
             $users=DB::table('users')->orderBy('users.username', 'asc')->get();
         }
@@ -31,7 +32,7 @@ class UserController extends Controller{
         else {
         $users=DB::table('users')->get();
     }
-        return view('users',compact('users'));
+        return view('users',compact('users', 'active'));
     }
 
     public function userAddForm(){
@@ -63,27 +64,42 @@ class UserController extends Controller{
 
     public function userEditForm(Request $request){
         $user=User::where('id',$request->id)->first();
+        // dd($user);
         return view('editUser',compact('user'));
     }
 
     public function editUser(Request $request){
         $this->validate($request, [
             'username'=>'required',
-            'email'=>'required',
             'password'=>'required',
             'role'=>'required'
         ]);
-        $username=User::where('username',$request['username'])->first();
-        $email=User::where('email',$request['email'])->first();
-        $user=User::where('id',$request->id)->first();
-        if(($username && $user!=$username) || ($email && $user!=$email)){
-            if($username && $user!=$username) $request->session()->flash('uerror','Username is already existed!');
-            if($email && $user!=$email) $request->session()->flash('merror','Email is already existed!');
+        $user = User::where('id',$request->id)->first();
+        $username=User::where('username',$request['username'])->get();
+        $checkDuplicate = false;
+
+        if (!empty($request->email))
+            $email=User::where('email',$request->email)->get();
+        if (count($username) >= 1) {
+            $request->session()->flash('uerror','Username is already existed!');
+            $checkDuplicate = true;
+        }
+        if (isset($email) && count($email) >= 1) {
+            $request->session()->flash('merror','Email is already existed!');
+            $checkDuplicate = true;
+        }
+        // if ($user->username == $username->username)
+        if($checkDuplicate){
             return view('editUser',compact('user'));
         }
         $user->username=$request->username;
         $user->email=$request->email;
-        $user->password=Hash::make($request->password);
+
+        if ($request->password == $user->password) {
+            //van dang luu ma Hash, khong thay doi mat khau -> khong cap nhat moi
+        } else {
+            $user->password=Hash::make($request->password);
+        }
         $user->role=$request->role;
         $user->save();
         return redirect(route('users'));

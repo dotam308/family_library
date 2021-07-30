@@ -31,6 +31,7 @@ return array(
     'App\\Http\\Middleware\\VerifyCsrfToken' => $baseDir . '/app/Http/Middleware/VerifyCsrfToken.php',
     'App\\Http\\Requests\\Auth\\LoginRequest' => $baseDir . '/app/Http/Requests/Auth/LoginRequest.php',
     'App\\Models\\Book' => $baseDir . '/app/Models/Book.php',
+    'App\\Models\\BookReview' => $baseDir . '/app/Models/BookReview.php',
     'App\\Models\\Borrower' => $baseDir . '/app/Models/Borrower.php',
     'App\\Models\\User' => $baseDir . '/app/Models/User.php',
     'App\\Models\\UserInfo' => $baseDir . '/app/Models/UserInfo.php',

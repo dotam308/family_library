@@ -13,10 +13,12 @@ class BookController extends Controller
     //
     public function index() {
         $books = Book::get();
-        return view('books', compact('books'));
+        $active = "books";
+        return view('books', compact('books', 'active'));
     }
     public function addBookForm() {
-        return view('addBook');
+        $active = "books";
+        return view('addBook', 'active');
     }
     public function addBookPost(Request $request) {
         $this->validate($request, [
@@ -53,9 +55,10 @@ class BookController extends Controller
         return view('manageBooks');
     }
     public function editBookForm(Request $request) {
+        $active = "manage";
         $bookId = $request->id;
         $book = Book::where('id', $request->id)->get()->first();
-        return view('editBook', compact('book'));
+        return view('editBook', compact('book', 'active'));
     }
     public function editBookPost(Request $request) {
         $this->validate($request, [
@@ -124,6 +127,7 @@ class BookController extends Controller
         //     $id = $request->id;
         //     return redirect(route('deleteBook', compact('id')));
         // }
+        $active = "manage";
         if ($request->dc == "r" && $request->insc == "r") {
             $books = DB::table('books')->orderBy('books.ddcCode','asc')->get();
         }
@@ -181,10 +185,11 @@ class BookController extends Controller
         else {
         $books = DB::table('books')->get();
         }
-        return view('manageBook', compact('books'));
+        return view('manageBook', compact('books', 'active'));
     }
    
     public function showBorrowedBookList(Request $request) {
+        $active = "check";
         $id = session('userId');
         if ($request->dc == "r" && $request->insc == "r") {
             $books = DB::table('borrowings')->join('books', 'borrowings.bookId', '=', 'books.id')
@@ -291,10 +296,11 @@ class BookController extends Controller
                             ->where('borrowings.returned', '!=',"returned")
                             ->get(['books.ddcCode', 'books.name', 'books.author', 'books.genre', 'borrowings.quantity', 'borrowings.borrowDate', 'borrowings.returnDate', 'borrowings.returned', 'books.image', 'books.id', 'borrowings.id as borrowId']);
         }
-        return view('borrowedBookList', compact('books'));
+        return view('borrowedBookList', compact('books', 'active'));
     }
 
     public function showReturnedBookList(Request $request) {
+        $active = "check";
         $id = session('userId');
         if ($request->dc == "r" && $request->insc == "r") {
             $books = DB::table('borrowings')->join('books', 'borrowings.bookId', '=', 'books.id')
@@ -401,6 +407,6 @@ class BookController extends Controller
                             ->get(['books.ddcCode', 'books.name', 'books.author', 'books.genre', 'borrowings.quantity', 'borrowings.borrowDate', 'borrowings.returnDate', 'borrowings.returned', 'books.image', 'books.id', 'borrowings.updated_at as bookReturnedAt']);
         }
         $returned = true;
-        return view('borrowedBookList', compact('books', 'returned'));
+        return view('borrowedBookList', compact('books', 'returned', 'active'));
     }
 }
