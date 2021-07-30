@@ -55,6 +55,7 @@
                                     <select name="role" class="form-control select">
                                         <option value="admin" <?= ($user->role == 'admin') ? "selected" : "" ?>>Admin</option>
                                         <option value="guest" <?= ($user->role == 'guest') ? "selected" : "" ?>>Guest</option>
+
                                     </select>
                                 </td>
                             </tr>
@@ -66,6 +67,5 @@
             </div>
         </main>
     </div>
-
 </div>
 @endsection

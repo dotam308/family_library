@@ -5,14 +5,37 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Book;
 use App\Models\Borrowing;
+use App\Models\User;
 use Illuminate\Support\Facades\DB;
 use App\Models\BookReview;
 
 class HomeController extends Controller
 {
     public function index(Request $request) {
-        $active = "index ";
-        return view('index', compact('active'));
+        $active = "index";
+        $book = DB::table('books')->get();
+        $borrow = DB::table('borrowings')->get();
+        $user = DB::table('users')->get();
+        $a = DB::table('borrowings')->where('borrowings.returned','=','false')->get(['borrowings.quantity as quantity']);
+        $quantityBook = 0;
+        $borrowBook = 0;
+        $booktype = 0;
+        $rentlist=0;
+        $userquantity=0;
+        foreach ($book as $key) {
+            $booktype++;
+            $quantityBook += $key->copies;
+        }
+        foreach ($borrow as $key) {
+            $rentlist++;
+        }
+        foreach ($a as $key) {
+            $borrowBook+=$key->quantity;
+        }
+        foreach ($user as $key) {
+            $userquantity++;
+        }
+        return view('index', compact('active','quantityBook','borrowBook','rentlist','booktype','userquantity'));
     }
     // public function viewBooks() {
     //     $active = "books";
@@ -62,10 +85,10 @@ class HomeController extends Controller
 
     public function borrowBookPost(Request $request) {
         // $this->validate($request, [
-		// 	'quantity'=>'required|numeric',
+        //  'quantity'=>'required|numeric',
         //     // 'returnDate'=>'',
         //     ]
-		// );
+        // );
         $book = Book::where('id', $request->id)->first();
 
         //if not signIn
@@ -74,7 +97,7 @@ class HomeController extends Controller
             $bookId = $book->id;
             return redirect(route('signin', compact('bookId')));
         }
-	
+    
         //if quantity borrow > copies or returnDate <= current date
         if (($request->quantity == null) || ($request->quantity > $book->copies) || (($request->quantity <= 0) || ($request->returnDate <= date('Y-m-d')))) {
             alert()->info('InfoAlert','Your input is not satisfied.')->width('500px');
@@ -192,20 +215,26 @@ class HomeController extends Controller
     public function manageBookRented(Request $request)
     {
         // code...
-        DB::table('borrowings')->where('id', $request->id)->update([
-        'quantity'=>$request->quantity,
-        'borrowDate'=>$request->borrowDate,
-        'returnDate'=>$request->returnDate,
-        'returned'=>$request->status,
-    ]
-        );
+        $borrow = Borrowing::where('id', $request->id)->first();
+        $book = Book::where('id', $borrow->bookId)->first();
+        $old = $borrow->quantity;
+        $borrow->quantity = $request->quantity;
+        $borrow->borrowDate = $request->borrowDate;
+        $borrow->returnDate = $request->returnDate;
+        $borrow->returned = $request->returned;
+        $borrow->save();
+        $book->copies = $book->copies + $old - $borrow->quantity;
+        $book->save();
         toast('Successfully','success');
         return redirect(route('books_rented'));
     }
     public function deleteBookRented(Request $request, $id)
     {   
-
-        $b = DB::table('borrowings')->where('id','=',$id)->delete();
+        $borrow = Borrowing::where('id', $id)->first();
+        $book = Book::where('id', $borrow->bookId)->first();
+        $book->copies = $book->copies + $borrow->quantity;
+        $book->save();
+        $br = DB::table('borrowings')->where('id','=',$id)->delete();
         return redirect()->back()->with("flash_message_success", "Delete success");
     }
     

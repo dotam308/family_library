@@ -59,7 +59,7 @@
                             
                             <tr>
                                 <th><strong>Trạng thái:</strong></th>
-                                <td><input type="text" name="status" class="form-control" value=""
+                                <td><input type="text" name="returned" class="form-control" value="{{$borrow->returned}}"
                                 id="inputStatus"></td>
                             </tr>
                             

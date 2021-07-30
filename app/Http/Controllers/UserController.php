@@ -95,11 +95,12 @@ class UserController extends Controller{
         $user->username=$request->username;
         $user->email=$request->email;
 
-        if ($request->password == $user->password) {
-            //van dang luu ma Hash, khong thay doi mat khau -> khong cap nhat moi
-        } else {
-            $user->password=Hash::make($request->password);
-        }
+//         if ($request->password == $user->password) {
+//             //van dang luu ma Hash, khong thay doi mat khau -> khong cap nhat moi
+//         } else {
+//             $user->password=Hash::make($request->password);
+//         }
+        $user->password=Hash::needsRehash($request->password)?Hash::make($request->password):$request->password;
         $user->role=$request->role;
         $user->save();
         return redirect(route('users'));
