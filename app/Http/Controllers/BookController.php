@@ -18,7 +18,7 @@ class BookController extends Controller
     }
     public function addBookForm() {
         $active = "books";
-        return view('addBook', 'active');
+        return view('addBook', compact('active'));
     }
     public function addBookPost(Request $request) {
         $this->validate($request, [
