@@ -7,7 +7,6 @@ use App\Models\Book;
 use App\Models\Borrowing;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
-use App\Models\BookReview;
 
 class HomeController extends Controller
 {
@@ -63,18 +62,12 @@ class HomeController extends Controller
     }
     public function viewBookDetailById(Request $request) {
         $active = "manage";
-        $reviews= BookReview::get();
         $book = Book::where('id', $request->id)->first();
-        return view('book_detail_byId', compact('book', 'active', 'reviews'));
+        return view('book_detail_byId', compact('book', 'active'));
     }
     public function viewBookDetailByIdPost(Request $request) {
         $active = "manage";
         $id = $request->id;
-        BookReview::create([
-            'bookId'=>$id,
-            'review'=>$request->editor1,
-            'reviewer'=>session('username')
-        ]);
         return redirect()->route('book_detail_byId', compact('id'));
     }
 

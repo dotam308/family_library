@@ -202,26 +202,9 @@
                                 </div>
                                 <div id="sectionB" class="tab-pane fade in">
                                     <h5>Lorem Ipsum Dolor</h5>
-                                    <ul>
-                                    @forelse ($reviews as $review)
-                                        <li>
-                                            <div>{{ $review->reviewer }} <small>{{ $review->updated_at }}</small></div>
-                                            <div>
-                                                {{ strip_tags($review->review) }}
-                                            </div>
-                                        </li>
-                                    @empty
-                                        <p>No reviews yet</p>
-                                    @endforelse
-                                     </ul>
-                                    <form method="POST" onsubmit="return false">
-                                        @csrf
-                                        <textarea name="editor1"></textarea>
-                                        <script>
-                                                CKEDITOR.replace( 'editor1' );
-                                        </script>
-                                        <button type="submit">Submit</button>
-                                    </form>
+                                    
+                                    <div class="fb-comments" data-href="http://127.0.0.1:8000/book_detail_byId?id=1#sectionB" data-width="" data-numposts=""></div>
+                                   
                                 </div>
                                 <div id="sectionC" class="tab-pane fade in">
                                     <h5>Lorem Ipsum Dolor</h5>
