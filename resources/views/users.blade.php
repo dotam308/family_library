@@ -25,8 +25,14 @@
                 <div class="container">
                     <!-- Start: Search Section -->
                     <!-- End: Search Section -->
-                    <a type="button" class="btn btn-primary" href="{{route('createuser')}}">ADD ACCOUNT</a>
                     <div class="users-list-view">
+                        <h3>Danh sách user</h3>
+
+                        <div class="row">
+                            <div class="col text-right">
+                                <a type="button" class="btn btn-primary" href="{{route('createuser')}}">ADD ACCOUNT</a>
+                            </div>
+                        </div>
                         <ul>
                             <?php
                             $usern = "r";
@@ -41,43 +47,51 @@
                                     <tr>
                                         <th>No.</th>
                                         <th>Username
-                                        <a href="{{route('users', compact('usern','desc'))}}"><i class="fas fa-angle-double-down"></i></a>
-                                        <a href="{{route('users', compact('usern','insc'))}}"><i class="fas fa-angle-double-up"></i></a></th>
+                                            <a href="{{route('users', compact('usern','desc'))}}"><i
+                                                    class="fas fa-angle-double-down"></i></a>
+                                            <a href="{{route('users', compact('usern','insc'))}}"><i
+                                                    class="fas fa-angle-double-up"></i></a></th>
                                         <th>Role
-                                        <a href="{{route('users', compact('rol','desc'))}}"><i class="fas fa-angle-double-down"></i></a>
-                                        <a href="{{route('users', compact('rol','insc'))}}"><i class="fas fa-angle-double-up"></i></a></th>
+                                            <a href="{{route('users', compact('rol','desc'))}}"><i
+                                                    class="fas fa-angle-double-down"></i></a>
+                                            <a href="{{route('users', compact('rol','insc'))}}"><i
+                                                    class="fas fa-angle-double-up"></i></a></th>
                                         <th>E-mail
-                                        <a href="{{route('users', compact('mail','desc'))}}"><i class="fas fa-angle-double-down"></i></a>
-                                        <a href="{{route('users', compact('mail','insc'))}}"><i class="fas fa-angle-double-up"></i></a></th>
+                                            <a href="{{route('users', compact('mail','desc'))}}"><i
+                                                    class="fas fa-angle-double-down"></i></a>
+                                            <a href="{{route('users', compact('mail','insc'))}}"><i
+                                                    class="fas fa-angle-double-up"></i></a></th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
                                 <?php $order=0;?>
                                 @foreach($users as $user)
                                 <?php $order++;?>
-                                        <tr>
-                                            <td>{{$order}}</td>
-                                                @if(session('username')==$user->username)
-                                                    <td>{{$user->username}} (Your Account)</td>
-                                                @else
-                                                    <td>{{$user->username}}</td>
-                                                @endif
-                                            <td>{{$user->role}}</td>
-                                            <td>{{$user->email}}</td>
-                                            <td>
-                                                <?php $id=$user->id;?>
-                                                <a href="{{route('edituser', compact('id'))}}">
-                                                    <i class="fa fa-edit" aria-hidden="true"></i>
-                                                </a>
-                                                <a rel="{{$id}}" rel1="user" href="javascript:" id="deleteButton" class="deleteButton">
-                                                    <i class="fa fa-trash" aria-hidden="true"></i>
-                                                </a>
-                                            </td>
-                                        </tr>
+                                <tr>
+                                    <td>{{$order}}</td>
+                                    @if(session('username')==$user->username)
+                                    <td>{{$user->username}} (Your Account)</td>
+                                    @else
+                                    <td>{{$user->username}}</td>
+                                    @endif
+                                    <td>{{$user->role}}</td>
+                                    <td>{{$user->email}}</td>
+                                    <td>
+                                        <?php $id=$user->id;?>
+                                        <a href="{{route('edituser', compact('id'))}}">
+                                            <i class="fa fa-pen" aria-hidden="true" style="color: blue"></i>
+                                        </a>
+                                        <a rel="{{$id}}" rel1="user" href="javascript:" id="deleteButton"
+                                            class="deleteButton">
+                                            <i class="fa fa-trash" aria-hidden="true" style="color: red"></i>
+                                        </a>
+                                    </td>
+                                </tr>
                                 @endforeach
                             </table>
                             @else
-                                </br><div>No users registered</div>
+                            </br>
+                            <div>No users registered</div>
                             @endif
                         </ul>
                     </div>
@@ -101,7 +115,8 @@
 </div>
 @endsection
 @section('script')
-<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.19/dist/sweetalert2.all.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.19/dist/sweetalert2.all.min.js">
+</script>
 <script>
     $(document).ready(function() {
        $('a[id=deleteButton]').click(function(){

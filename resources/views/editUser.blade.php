@@ -45,21 +45,17 @@
                                 <th>E-mail</th>
                                 <td><input type="text" name="email" class="form-control" value="{{$user->email}}"></td>
                             </tr>
-                            <tr>
+                            <tr> 
                                 <th>Password</th>
                                 <td><input type="password" name="password" class="form-control" value="{{$user->password}}" ></td>
                             </tr>
                             <tr>
                                 <th>Role</th>
                                 <td>
-                                    <select name="role" class="form-control">
-                                        <?php if($user->role=="admin"){?>
-                                            <option value="admin">Admin</option>
-                                            <option value="user">User</option>
-                                        <?php }elseif($user->role=="user"){ ?>
-                                            <option value="user">User</option>
-                                            <option value="Admin">Admin</option>
-                                        <?php }?>
+                                    <select name="role" class="form-control select">
+                                        <option value="admin" <?= ($user->role == 'admin') ? "selected" : "" ?>>Admin</option>
+                                        <option value="guest" <?= ($user->role == 'guest') ? "selected" : "" ?>>Guest</option>
+
                                     </select>
                                 </td>
                             </tr>

@@ -7,7 +7,7 @@ use App\Models\Book;
 use App\Models\Borrowing;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
-
+use App\Models\BookReview;
 
 class HomeController extends Controller
 {
@@ -58,12 +58,24 @@ class HomeController extends Controller
         return view('404', compact('active'));
     }
     public function viewBookDetailed() {
-        $active = "pages";
+        $active = "manage";
         return view('books_detail', compact('active'));
     }
     public function viewBookDetailById(Request $request) {
+        $active = "manage";
+        $reviews= BookReview::get();
         $book = Book::where('id', $request->id)->first();
-        return view('book_detail_byId', compact('book'));
+        return view('book_detail_byId', compact('book', 'active', 'reviews'));
+    }
+    public function viewBookDetailByIdPost(Request $request) {
+        $active = "manage";
+        $id = $request->id;
+        BookReview::create([
+            'bookId'=>$id,
+            'review'=>$request->editor1,
+            'reviewer'=>session('username')
+        ]);
+        return redirect()->route('book_detail_byId', compact('id'));
     }
 
     public function borrowBookForm(Request $request) {
@@ -110,7 +122,7 @@ class HomeController extends Controller
     }
   
     public function viewBookRented(Request $request) {
-        $active = "pages";  
+        $active = "manage";  
         if ($request->quantityx == 'quantity' && $request->desc == 'd'){
             $borrow = DB::table('borrowings')
                   ->join('books','borrowings.bookId','=','books.id')
@@ -227,20 +239,22 @@ class HomeController extends Controller
     }
     
     public function waitingOrders(Request $request) {
+        $active = 'order';
         $orders = DB::table('borrowings')->join('books', 'books.id', 'borrowings.bookId')
                             ->join('users', 'borrowings.userId', 'users.id')
                             ->where('borrowings.returned', "waiting")
                             ->get(['books.ddcCode', 'books.name', 'books.author', 'books.genre', 'borrowings.quantity', 'borrowings.borrowDate', 'borrowings.returnDate', 'borrowings.returned', 'books.image', 'books.id as bookId', 'borrowings.id as borrowingId', 'users.username as userName']);
         $status = 'waiting';
-        return view('manageOrder', compact('orders', 'status'));
+        return view('manageOrder', compact('orders', 'status', 'active'));
     }
 
     public function borrowingOrders(Request $request) {
+        $active = 'order';
         $orders = DB::table('borrowings')->join('books', 'books.id', 'borrowings.bookId')
                             ->join('users', 'borrowings.userId', 'users.id')
                             ->where('borrowings.returned', "borrowing")
                             ->get(['books.ddcCode', 'books.name', 'books.author', 'books.genre', 'borrowings.quantity', 'borrowings.borrowDate', 'borrowings.returnDate', 'borrowings.returned', 'books.image', 'books.id as bookId', 'borrowings.id as borrowingId', 'users.username as userName']);
-        return view('manageOrder', compact('orders'));
+        return view('manageOrder', compact('orders', 'active'));
     }
 
     public function tookBook(Request $request) {

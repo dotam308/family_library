@@ -201,11 +201,27 @@
                                     </table>
                                 </div>
                                 <div id="sectionB" class="tab-pane fade in">
-                                    @php
-                                        $review = $book->review
-                                    @endphp
                                     <h5>Lorem Ipsum Dolor</h5>
-                                    <p>{{ $review }}</p>
+                                    <ul>
+                                    @forelse ($reviews as $review)
+                                        <li>
+                                            <div>{{ $review->reviewer }} <small>{{ $review->updated_at }}</small></div>
+                                            <div>
+                                                {{ strip_tags($review->review) }}
+                                            </div>
+                                        </li>
+                                    @empty
+                                        <p>No reviews yet</p>
+                                    @endforelse
+                                     </ul>
+                                    <form method="POST" onsubmit="return false">
+                                        @csrf
+                                        <textarea name="editor1"></textarea>
+                                        <script>
+                                                CKEDITOR.replace( 'editor1' );
+                                        </script>
+                                        <button type="submit">Submit</button>
+                                    </form>
                                 </div>
                                 <div id="sectionC" class="tab-pane fade in">
                                     <h5>Lorem Ipsum Dolor</h5>
