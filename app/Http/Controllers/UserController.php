@@ -11,26 +11,27 @@ class UserController extends Controller{
     //
     public function index(Request $request){
         $active = "manage";
+        $limit = 10;
         if ($request->usern == "r" && $request->insc == "r") {
-            $users=DB::table('users')->orderBy('users.username', 'asc')->get();
+            $users=DB::table('users')->orderBy('users.username', 'asc')->paginate($limit);
         }
         else if ($request->usern == "r" && $request->desc == "r") {
-            $users=DB::table('users')->orderBy('users.username', 'desc')->get();
+            $users=DB::table('users')->orderBy('users.username', 'desc')->paginate($limit);
         }
         else if ($request->rol == "r" && $request->desc == "r") {
-            $users=DB::table('users')->orderBy('users.role', 'desc')->get();
+            $users=DB::table('users')->orderBy('users.role', 'desc')->paginate($limit);
         }
         else if ($request->rol == "r" && $request->insc == "r") {
-            $users=DB::table('users')->orderBy('users.username', 'asc')->get();
+            $users=DB::table('users')->orderBy('users.role', 'asc')->paginate($limit);
         }
         else if ($request->mail == "r" && $request->desc == "r") {
-            $users=DB::table('users')->orderBy('users.email', 'desc')->get();
+            $users=DB::table('users')->orderBy('users.email', 'desc')->paginate($limit);
         }
         else if ($request->mail == "r" && $request->insc == "r") {
-            $users=DB::table('users')->orderBy('users.email', 'asc')->get();
+            $users=DB::table('users')->orderBy('users.email', 'asc')->paginate($limit);
         }
         else {
-        $users=DB::table('users')->get();
+        $users=DB::table('users')->paginate($limit);
     }
         return view('users',compact('users', 'active'));
     }

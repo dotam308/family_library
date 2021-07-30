@@ -179,17 +179,9 @@
                             @endforelse
                         </ul>
                     </div>
-                    <nav class="navigation pagination text-center">
-                        <h2 class="screen-reader-text">Posts navigation</h2>
-                        <div class="nav-links">
-                            <a class="prev page-numbers" href="#."><i class="fa fa-long-arrow-left"></i> Previous</a>
-                            <a class="page-numbers" href="#.">1</a>
-                            <span class="page-numbers current">2</span>
-                            <a class="page-numbers" href="#.">3</a>
-                            <a class="page-numbers" href="#.">4</a>
-                            <a class="next page-numbers" href="#.">Next <i class="fa fa-long-arrow-right"></i></a>
-                        </div>
-                    </nav>
+                    <!--navigation-->
+                    @include('includes.navigation', ['data'=>$books])
+                    <!--end navigation-->
                 </div>
                 <!-- Start: Staff Picks -->
                 <section class="team staff-picks">
