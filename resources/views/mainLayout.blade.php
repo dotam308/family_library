@@ -9,6 +9,9 @@
 </head>
 
 <body>
+    
+    <div id="fb-root"></div>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v11.0&appId=157330463046823&autoLogAppEvents=1" nonce="Rb8VVvpU"></script>
     <!-- Start: Header Section -->
     @include('includes.header')
     <!-- End: Header Section -->
