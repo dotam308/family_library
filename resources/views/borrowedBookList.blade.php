@@ -37,31 +37,60 @@
                         <table class="table table-hover">
                             <thead>
                                 <tr>
-
-                                    <th>Order</th>
-                                    <th>DDC code
-                                        <a href="{{route('borrowedBooks', compact('dc','desc'))}}"><i class="fas fa-angle-double-down"></i></a>
-                                        <a href="{{route('borrowedBooks', compact('dc','insc'))}}"><i class="fas fa-angle-double-up"></i></a>
-                                    </th>
-                                    <th>Title
-                                    <a href="{{route('borrowedBooks', compact('bn','desc'))}}"><i class="fas fa-angle-double-down"></i></a>
-                                        <a href="{{route('borrowedBooks', compact('bn','insc'))}}"><i class="fas fa-angle-double-up"></i></a></th>
-                                    <th>Author
-                                    <a href="{{route('borrowedBooks', compact('au','desc'))}}"><i class="fas fa-angle-double-down"></i></a>
-                                        <a href="{{route('borrowedBooks', compact('au','insc'))}}"><i class="fas fa-angle-double-up"></i></a></th>
-                                    <th>Genre
-                                    <a href="{{route('borrowedBooks', compact('ge','desc'))}}"><i class="fas fa-angle-double-down"></i></a>
-                                        <a href="{{route('borrowedBooks', compact('ge','insc'))}}"><i class="fas fa-angle-double-up"></i></a></th>
-                                    <th>borrowed quantity
-                                    <a href="{{route('borrowedBooks', compact('qua','desc'))}}"><i class="fas fa-angle-double-down"></i></a>
-                                        <a href="{{route('borrowedBooks', compact('qua','insc'))}}"><i class="fas fa-angle-double-up"></i></a></th>
-                                    <th>borrowed date
-                                    <a href="{{route('borrowedBooks', compact('bd','desc'))}}"><i class="fas fa-angle-double-down"></i></a>
-                                        <a href="{{route('borrowedBooks', compact('bd','insc'))}}"><i class="fas fa-angle-double-up"></i></a></th>
-                                    <th>return date
-                                    <a href="{{route('borrowedBooks', compact('rd','desc'))}}"><i class="fas fa-angle-double-down"></i></a>
-                                        <a href="{{route('borrowedBooks', compact('rd','insc'))}}"><i class="fas fa-angle-double-up"></i></a></th>
-                                    <th>Status</th>
+                                    {{-- borrow --}}
+                                    @if(!isset($returned))
+                                        <th>Order</th>
+                                        <th>DDC code
+                                            <a href="{{route('borrowedBooks', compact('dc','desc'))}}"><i class="fas fa-angle-double-down"></i></a>
+                                            <a href="{{route('borrowedBooks', compact('dc','insc'))}}"><i class="fas fa-angle-double-up"></i></a>
+                                        </th>
+                                        <th>Title
+                                        <a href="{{route('borrowedBooks', compact('bn','desc'))}}"><i class="fas fa-angle-double-down"></i></a>
+                                            <a href="{{route('borrowedBooks', compact('bn','insc'))}}"><i class="fas fa-angle-double-up"></i></a></th>
+                                        <th>Author
+                                        <a href="{{route('borrowedBooks', compact('au','desc'))}}"><i class="fas fa-angle-double-down"></i></a>
+                                            <a href="{{route('borrowedBooks', compact('au','insc'))}}"><i class="fas fa-angle-double-up"></i></a></th>
+                                        <th>Genre
+                                        <a href="{{route('borrowedBooks', compact('ge','desc'))}}"><i class="fas fa-angle-double-down"></i></a>
+                                            <a href="{{route('borrowedBooks', compact('ge','insc'))}}"><i class="fas fa-angle-double-up"></i></a></th>
+                                        <th>borrowed quantity
+                                        <a href="{{route('borrowedBooks', compact('qua','desc'))}}"><i class="fas fa-angle-double-down"></i></a>
+                                            <a href="{{route('borrowedBooks', compact('qua','insc'))}}"><i class="fas fa-angle-double-up"></i></a></th>
+                                        <th>borrowed date
+                                        <a href="{{route('borrowedBooks', compact('bd','desc'))}}"><i class="fas fa-angle-double-down"></i></a>
+                                            <a href="{{route('borrowedBooks', compact('bd','insc'))}}"><i class="fas fa-angle-double-up"></i></a></th>
+                                        <th>return date
+                                        <a href="{{route('borrowedBooks', compact('rd','desc'))}}"><i class="fas fa-angle-double-down"></i></a>
+                                            <a href="{{route('borrowedBooks', compact('rd','insc'))}}"><i class="fas fa-angle-double-up"></i></a></th>
+                                        <th>Status</th>
+                                    @else
+                                        {{-- returned book --}}
+                                        <th>Order</th>
+                                        <th>DDC code
+                                            <a href="{{route('returnedBooks', compact('dc','desc'))}}"><i class="fas fa-angle-double-down"></i></a>
+                                            <a href="{{route('returnedBooks', compact('dc','insc'))}}"><i class="fas fa-angle-double-up"></i></a>
+                                        </th>
+                                        <th>Title
+                                        <a href="{{route('returnedBooks', compact('bn','desc'))}}"><i class="fas fa-angle-double-down"></i></a>
+                                            <a href="{{route('returnedBooks', compact('bn','insc'))}}"><i class="fas fa-angle-double-up"></i></a></th>
+                                        <th>Author
+                                        <a href="{{route('returnedBooks', compact('au','desc'))}}"><i class="fas fa-angle-double-down"></i></a>
+                                            <a href="{{route('returnedBooks', compact('au','insc'))}}"><i class="fas fa-angle-double-up"></i></a></th>
+                                        <th>Genre
+                                        <a href="{{route('returnedBooks', compact('ge','desc'))}}"><i class="fas fa-angle-double-down"></i></a>
+                                            <a href="{{route('returnedBooks', compact('ge','insc'))}}"><i class="fas fa-angle-double-up"></i></a></th>
+                                        <th>borrowed quantity
+                                        <a href="{{route('returnedBooks', compact('qua','desc'))}}"><i class="fas fa-angle-double-down"></i></a>
+                                            <a href="{{route('returnedBooks', compact('qua','insc'))}}"><i class="fas fa-angle-double-up"></i></a></th>
+                                        <th>borrowed date
+                                        <a href="{{route('returnedBooks', compact('bd','desc'))}}"><i class="fas fa-angle-double-down"></i></a>
+                                            <a href="{{route('returnedBooks', compact('bd','insc'))}}"><i class="fas fa-angle-double-up"></i></a></th>
+                                        <th>return date
+                                        <a href="{{route('returnedBooks', compact('rd','desc'))}}"><i class="fas fa-angle-double-down"></i></a>
+                                            <a href="{{route('returnedBooks', compact('rd','insc'))}}"><i class="fas fa-angle-double-up"></i></a></th>
+                                        <th>Status</th>
+                                    @endif
+                                    
                                     @if (isset($returned))
                                         <th>Book returned at</th>
                                     @endif
@@ -119,17 +148,9 @@
                         @endif
                     </form>
                 </div>
-                <nav class="navigation pagination text-center">
-                    <h2 class="screen-reader-text">Posts navigation</h2>
-                    <div class="nav-links">
-                        <a class="prev page-numbers" href="#."><i class="fa fa-long-arrow-left"></i> Previous</a>
-                        <a class="page-numbers" href="#.">1</a>
-                        <span class="page-numbers current">2</span>
-                        <a class="page-numbers" href="#.">3</a>
-                        <a class="page-numbers" href="#.">4</a>
-                        <a class="next page-numbers" href="#.">Next <i class="fa fa-long-arrow-right"></i></a>
-                    </div>
-                </nav>
+                <!--navigation-->
+                @include('includes.navigation', ['data'=>$books])
+                <!--end navigation-->
             </div>
         </main>
     </div>

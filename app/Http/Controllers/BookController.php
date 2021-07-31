@@ -12,7 +12,7 @@ class BookController extends Controller
 {
     //
     public function index() {
-        $books = Book::get();
+        $books = Book::paginate(10);
         $active = "books";
         return view('books', compact('books', 'active'));
     }
@@ -128,283 +128,286 @@ class BookController extends Controller
         //     return redirect(route('deleteBook', compact('id')));
         // }
         $active = "manage";
+        $limit = 10;
         if ($request->dc == "r" && $request->insc == "r") {
-            $books = DB::table('books')->orderBy('books.ddcCode','asc')->get();
+            $books = DB::table('books')->orderBy('books.ddcCode','asc')->paginate($limit);
         }
         else if ($request->dc == "r" && $request->desc == "r") {
-            $books = DB::table('books')->orderBy('books.ddcCode','desc')->get();
+            $books = DB::table('books')->orderBy('books.ddcCode','desc')->paginate($limit);
         }
         else if ($request->bn == "r" && $request->insc == "r") {
-            $books = DB::table('books')->orderBy('books.name','asc')->get();
+            $books = DB::table('books')->orderBy('books.name','asc')->paginate($limit);
         }
         else if ($request->bn == "r" && $request->desc == "r") {
-            $books = DB::table('books')->orderBy('books.name','desc')->get();
+            $books = DB::table('books')->orderBy('books.name','desc')->paginate($limit);
         }
         else if ($request->au == "r" && $request->insc == "r") {
-            $books = DB::table('books')->orderBy('books.author','asc')->get();
+            $books = DB::table('books')->orderBy('books.author','asc')->paginate($limit);
         }
         else if ($request->au == "r" && $request->desc == "r") {
-            $books = DB::table('books')->orderBy('books.author','desc')->get();
+            $books = DB::table('books')->orderBy('books.author','desc')->paginate($limit);
         }
         else if ($request->ge == "r" && $request->insc == "r") {
-            $books = DB::table('books')->orderBy('books.genre','asc')->get();
+            $books = DB::table('books')->orderBy('books.genre','asc')->paginate($limit);
         }
         else if ($request->ge == "r" && $request->desc == "r") {
-            $books = DB::table('books')->orderBy('books.genre','desc')->get();
+            $books = DB::table('books')->orderBy('books.genre','desc')->paginate($limit);
         }
         else if ($request->pub == "r" && $request->insc == "r") {
-            $books = DB::table('books')->orderBy('books.publisher','asc')->get();
+            $books = DB::table('books')->orderBy('books.publisher','asc')->paginate($limit);
         }
         else if ($request->pub == "r" && $request->desc == "r") {
-            $books = DB::table('books')->orderBy('books.publisher','desc')->get();
+            $books = DB::table('books')->orderBy('books.publisher','desc')->paginate($limit);
         }
         else if ($request->trans == "r" && $request->insc == "r") {
-            $books = DB::table('books')->orderBy('books.translator','asc')->get();
+            $books = DB::table('books')->orderBy('books.translator','asc')->paginate($limit);
         }
         else if ($request->trans == "r" && $request->desc == "r") {
-            $books = DB::table('books')->orderBy('books.translator','desc')->get();
+            $books = DB::table('books')->orderBy('books.translator','desc')->paginate($limit);
         }
         else if ($request->coun == "r" && $request->insc == "r") {
-            $books = DB::table('books')->orderBy('books.country','asc')->get();
+            $books = DB::table('books')->orderBy('books.country','asc')->paginate($limit);
         }
         else if ($request->coun == "r" && $request->desc == "r") {
-            $books = DB::table('books')->orderBy('books.country','desc')->get();
+            $books = DB::table('books')->orderBy('books.country','desc')->paginate($limit);
         }
         else if ($request->qua == "r" && $request->insc == "r") {
-            $books = DB::table('books')->orderBy('books.copies','asc')->get();
+            $books = DB::table('books')->orderBy('books.copies','asc')->paginate($limit);
         }
         else if ($request->qua == "r" && $request->desc == "r") {
-            $books = DB::table('books')->orderBy('books.copies','desc')->get();
+            $books = DB::table('books')->orderBy('books.copies','desc')->paginate($limit);
         }
         else if ($request->pri == "r" && $request->insc == "r") {
-            $books = DB::table('books')->orderBy('books.price','asc')->get();
+            $books = DB::table('books')->orderBy('books.price','asc')->paginate($limit);
         }
         else if ($request->pri == "r" && $request->desc == "r") {
-            $books = DB::table('books')->orderBy('books.price','desc')->get();
+            $books = DB::table('books')->orderBy('books.price','desc')->paginate($limit);
         }
         else {
-        $books = DB::table('books')->get();
+        $books = DB::table('books')->paginate($limit);
         }
         return view('manageBook', compact('books', 'active'));
     }
    
     public function showBorrowedBookList(Request $request) {
         $active = "check";
+        $limit = 5;
         $id = session('userId');
         if ($request->dc == "r" && $request->insc == "r") {
             $books = DB::table('borrowings')->join('books', 'borrowings.bookId', '=', 'books.id')
                             ->where('borrowings.userId', $id)
                             ->where('borrowings.returned', '!=',"returned")
                             ->orderBy('books.ddcCode','asc')
-                            ->get(['books.ddcCode', 'books.name', 'books.author', 'books.genre', 'borrowings.quantity', 'borrowings.borrowDate', 'borrowings.returnDate', 'borrowings.returned', 'books.image', 'books.id', 'borrowings.id as borrowId']);
+                            ->paginate($limit, ['books.ddcCode', 'books.name', 'books.author', 'books.genre', 'borrowings.quantity', 'borrowings.borrowDate', 'borrowings.returnDate', 'borrowings.returned', 'books.image', 'books.id', 'borrowings.id as borrowId']);
         }
         else if ($request->dc == "r" && $request->desc == "r") {
             $books = DB::table('borrowings')->join('books', 'borrowings.bookId', '=', 'books.id')
                             ->where('borrowings.userId', $id)
                             ->where('borrowings.returned', '!=',"returned")
                             ->orderBy('books.ddcCode','desc')
-                            ->get(['books.ddcCode', 'books.name', 'books.author', 'books.genre', 'borrowings.quantity', 'borrowings.borrowDate', 'borrowings.returnDate', 'borrowings.returned', 'books.image', 'books.id', 'borrowings.id as borrowId']);
+                            ->paginate($limit, ['books.ddcCode', 'books.name', 'books.author', 'books.genre', 'borrowings.quantity', 'borrowings.borrowDate', 'borrowings.returnDate', 'borrowings.returned', 'books.image', 'books.id', 'borrowings.id as borrowId']);
         }
         else if ($request->bn == "r" && $request->insc == "r") {
             $books = DB::table('borrowings')->join('books', 'borrowings.bookId', '=', 'books.id')
                             ->where('borrowings.userId', $id)
                             ->where('borrowings.returned', '!=',"returned")
                             ->orderBy('books.name','asc')
-                            ->get(['books.ddcCode', 'books.name', 'books.author', 'books.genre', 'borrowings.quantity', 'borrowings.borrowDate', 'borrowings.returnDate', 'borrowings.returned', 'books.image', 'books.id', 'borrowings.id as borrowId']);
+                            ->paginate($limit, ['books.ddcCode', 'books.name', 'books.author', 'books.genre', 'borrowings.quantity', 'borrowings.borrowDate', 'borrowings.returnDate', 'borrowings.returned', 'books.image', 'books.id', 'borrowings.id as borrowId']);
         }
         else if ($request->bn == "r" && $request->desc == "r") {
             $books = DB::table('borrowings')->join('books', 'borrowings.bookId', '=', 'books.id')
                             ->where('borrowings.userId', $id)
                             ->where('borrowings.returned', '!=',"returned")
                             ->orderBy('books.name','desc')
-                            ->get(['books.ddcCode', 'books.name', 'books.author', 'books.genre', 'borrowings.quantity', 'borrowings.borrowDate', 'borrowings.returnDate', 'borrowings.returned', 'books.image', 'books.id', 'borrowings.id as borrowId']);
+                            ->paginate($limit, ['books.ddcCode', 'books.name', 'books.author', 'books.genre', 'borrowings.quantity', 'borrowings.borrowDate', 'borrowings.returnDate', 'borrowings.returned', 'books.image', 'books.id', 'borrowings.id as borrowId']);
         }
         else if ($request->au == "r" && $request->insc == "r") {
             $books = DB::table('borrowings')->join('books', 'borrowings.bookId', '=', 'books.id')
                             ->where('borrowings.userId', $id)
                             ->where('borrowings.returned', '!=',"returned")
                             ->orderBy('books.author','asc')
-                            ->get(['books.ddcCode', 'books.name', 'books.author', 'books.genre', 'borrowings.quantity', 'borrowings.borrowDate', 'borrowings.returnDate', 'borrowings.returned', 'books.image', 'books.id', 'borrowings.id as borrowId']);
+                            ->paginate($limit, ['books.ddcCode', 'books.name', 'books.author', 'books.genre', 'borrowings.quantity', 'borrowings.borrowDate', 'borrowings.returnDate', 'borrowings.returned', 'books.image', 'books.id', 'borrowings.id as borrowId']);
         }
         else if ($request->au == "r" && $request->desc == "r") {
             $books = DB::table('borrowings')->join('books', 'borrowings.bookId', '=', 'books.id')
                             ->where('borrowings.userId', $id)
                             ->where('borrowings.returned', '!=',"returned")
                             ->orderBy('books.author','desc')
-                            ->get(['books.ddcCode', 'books.name', 'books.author', 'books.genre', 'borrowings.quantity', 'borrowings.borrowDate', 'borrowings.returnDate', 'borrowings.returned', 'books.image', 'books.id', 'borrowings.id as borrowId']);
+                            ->paginate($limit, ['books.ddcCode', 'books.name', 'books.author', 'books.genre', 'borrowings.quantity', 'borrowings.borrowDate', 'borrowings.returnDate', 'borrowings.returned', 'books.image', 'books.id', 'borrowings.id as borrowId']);
         }
         else if ($request->ge == "r" && $request->insc == "r") {
             $books = DB::table('borrowings')->join('books', 'borrowings.bookId', '=', 'books.id')
                             ->where('borrowings.userId', $id)
                             ->where('borrowings.returned', '!=',"returned")
                             ->orderBy('books.genre','asc')
-                            ->get(['books.ddcCode', 'books.name', 'books.author', 'books.genre', 'borrowings.quantity', 'borrowings.borrowDate', 'borrowings.returnDate', 'borrowings.returned', 'books.image', 'books.id', 'borrowings.id as borrowId']);
+                            ->paginate($limit, ['books.ddcCode', 'books.name', 'books.author', 'books.genre', 'borrowings.quantity', 'borrowings.borrowDate', 'borrowings.returnDate', 'borrowings.returned', 'books.image', 'books.id', 'borrowings.id as borrowId']);
         }
         else if ($request->ge == "r" && $request->desc == "r") {
             $books = DB::table('borrowings')->join('books', 'borrowings.bookId', '=', 'books.id')
                             ->where('borrowings.userId', $id)
                             ->where('borrowings.returned', '!=',"returned")
                             ->orderBy('books.genre','desc')
-                            ->get(['books.ddcCode', 'books.name', 'books.author', 'books.genre', 'borrowings.quantity', 'borrowings.borrowDate', 'borrowings.returnDate', 'borrowings.returned', 'books.image', 'books.id', 'borrowings.id as borrowId']);
+                            ->paginate($limit, ['books.ddcCode', 'books.name', 'books.author', 'books.genre', 'borrowings.quantity', 'borrowings.borrowDate', 'borrowings.returnDate', 'borrowings.returned', 'books.image', 'books.id', 'borrowings.id as borrowId']);
         }
         else if ($request->qua == "r" && $request->insc == "r") {
             $books = DB::table('borrowings')->join('books', 'borrowings.bookId', '=', 'books.id')
                             ->where('borrowings.userId', $id)
                             ->where('borrowings.returned', '!=',"returned")
                             ->orderBy('borrowings.quantity','asc')
-                            ->get(['books.ddcCode', 'books.name', 'books.author', 'books.genre', 'borrowings.quantity', 'borrowings.borrowDate', 'borrowings.returnDate', 'borrowings.returned', 'books.image', 'books.id', 'borrowings.id as borrowId']);
+                            ->paginate($limit, ['books.ddcCode', 'books.name', 'books.author', 'books.genre', 'borrowings.quantity', 'borrowings.borrowDate', 'borrowings.returnDate', 'borrowings.returned', 'books.image', 'books.id', 'borrowings.id as borrowId']);
         }
         else if ($request->qua == "r" && $request->desc == "r") {
             $books = DB::table('borrowings')->join('books', 'borrowings.bookId', '=', 'books.id')
                             ->where('borrowings.userId', $id)
                             ->where('borrowings.returned', '!=',"returned")
                             ->orderBy('borrowings.quantity','desc')
-                            ->get(['books.ddcCode', 'books.name', 'books.author', 'books.genre', 'borrowings.quantity', 'borrowings.borrowDate', 'borrowings.returnDate', 'borrowings.returned', 'books.image', 'books.id', 'borrowings.id as borrowId']);
+                            ->paginate($limit, ['books.ddcCode', 'books.name', 'books.author', 'books.genre', 'borrowings.quantity', 'borrowings.borrowDate', 'borrowings.returnDate', 'borrowings.returned', 'books.image', 'books.id', 'borrowings.id as borrowId']);
         }
         else if ($request->bd == "r" && $request->insc == "r") {
             $books = DB::table('borrowings')->join('books', 'borrowings.bookId', '=', 'books.id')
                             ->where('borrowings.userId', $id)
                             ->where('borrowings.returned', '!=',"returned")
                             ->orderBy('borrowings.borrowDate','asc')
-                            ->get(['books.ddcCode', 'books.name', 'books.author', 'books.genre', 'borrowings.quantity', 'borrowings.borrowDate', 'borrowings.returnDate', 'borrowings.returned', 'books.image', 'books.id', 'borrowings.id as borrowId']);
+                            ->paginate($limit, ['books.ddcCode', 'books.name', 'books.author', 'books.genre', 'borrowings.quantity', 'borrowings.borrowDate', 'borrowings.returnDate', 'borrowings.returned', 'books.image', 'books.id', 'borrowings.id as borrowId']);
         }
         else if ($request->bd == "r" && $request->desc == "r") {
             $books = DB::table('borrowings')->join('books', 'borrowings.bookId', '=', 'books.id')
                             ->where('borrowings.userId', $id)
                             ->where('borrowings.returned', '!=',"returned")
                             ->orderBy('borrowings.borrowDate','desc')
-                            ->get(['books.ddcCode', 'books.name', 'books.author', 'books.genre', 'borrowings.quantity', 'borrowings.borrowDate', 'borrowings.returnDate', 'borrowings.returned', 'books.image', 'books.id', 'borrowings.id as borrowId']);
+                            ->paginate($limit, ['books.ddcCode', 'books.name', 'books.author', 'books.genre', 'borrowings.quantity', 'borrowings.borrowDate', 'borrowings.returnDate', 'borrowings.returned', 'books.image', 'books.id', 'borrowings.id as borrowId']);
         }
         else if ($request->rd == "r" && $request->insc == "r") {
             $books = DB::table('borrowings')->join('books', 'borrowings.bookId', '=', 'books.id')
                             ->where('borrowings.userId', $id)
                             ->where('borrowings.returned', '!=',"returned")
                             ->orderBy('borrowings.returnDate','asc')
-                            ->get(['books.ddcCode', 'books.name', 'books.author', 'books.genre', 'borrowings.quantity', 'borrowings.borrowDate', 'borrowings.returnDate', 'borrowings.returned', 'books.image', 'books.id', 'borrowings.id as borrowId']);
+                            ->paginate($limit, ['books.ddcCode', 'books.name', 'books.author', 'books.genre', 'borrowings.quantity', 'borrowings.borrowDate', 'borrowings.returnDate', 'borrowings.returned', 'books.image', 'books.id', 'borrowings.id as borrowId']);
         }
         else if ($request->rd == "r" && $request->desc == "r") {
             $books = DB::table('borrowings')->join('books', 'borrowings.bookId', '=', 'books.id')
                             ->where('borrowings.userId', $id)
                             ->where('borrowings.returned', '!=',"returned")
                             ->orderBy('borrowings.returnDate','desc')
-                            ->get(['books.ddcCode', 'books.name', 'books.author', 'books.genre', 'borrowings.quantity', 'borrowings.borrowDate', 'borrowings.returnDate', 'borrowings.returned', 'books.image', 'books.id', 'borrowings.id as borrowId']);
+                            ->paginate($limit, ['books.ddcCode', 'books.name', 'books.author', 'books.genre', 'borrowings.quantity', 'borrowings.borrowDate', 'borrowings.returnDate', 'borrowings.returned', 'books.image', 'books.id', 'borrowings.id as borrowId']);
         }  
         else {
         $books = DB::table('borrowings')->join('books', 'borrowings.bookId', '=', 'books.id')
                             ->where('borrowings.userId', $id)
 
                             ->where('borrowings.returned', '!=',"returned")
-                            ->get(['books.ddcCode', 'books.name', 'books.author', 'books.genre', 'borrowings.quantity', 'borrowings.borrowDate', 'borrowings.returnDate', 'borrowings.returned', 'books.image', 'books.id', 'borrowings.id as borrowId']);
+                            ->paginate($limit, ['books.ddcCode', 'books.name', 'books.author', 'books.genre', 'borrowings.quantity', 'borrowings.borrowDate', 'borrowings.returnDate', 'borrowings.returned', 'books.image', 'books.id', 'borrowings.id as borrowId']);
         }
         return view('borrowedBookList', compact('books', 'active'));
     }
 
     public function showReturnedBookList(Request $request) {
         $active = "check";
+        $limit = 5;
         $id = session('userId');
         if ($request->dc == "r" && $request->insc == "r") {
             $books = DB::table('borrowings')->join('books', 'borrowings.bookId', '=', 'books.id')
                             ->where('borrowings.userId', $id)
                             ->where('borrowings.returned',"returned")
                             ->orderBy('books.ddcCode','asc')
-                            ->get(['books.ddcCode', 'books.name', 'books.author', 'books.genre', 'borrowings.quantity', 'borrowings.borrowDate', 'borrowings.returnDate', 'borrowings.returned', 'books.image', 'books.id', 'borrowings.updated_at as bookReturnedAt']);
+                            ->paginate($limit, ['books.ddcCode', 'books.name', 'books.author', 'books.genre', 'borrowings.quantity', 'borrowings.borrowDate', 'borrowings.returnDate', 'borrowings.returned', 'books.image', 'books.id', 'borrowings.updated_at as bookReturnedAt']);
         }
         else if ($request->dc == "r" && $request->desc == "r") {
             $books = DB::table('borrowings')->join('books', 'borrowings.bookId', '=', 'books.id')
                             ->where('borrowings.userId', $id)
                             ->where('borrowings.returned',"returned")
                             ->orderBy('books.ddcCode','desc')
-                            ->get(['books.ddcCode', 'books.name', 'books.author', 'books.genre', 'borrowings.quantity', 'borrowings.borrowDate', 'borrowings.returnDate', 'borrowings.returned', 'books.image', 'books.id', 'borrowings.updated_at as bookReturnedAt']);
+                            ->paginate($limit, ['books.ddcCode', 'books.name', 'books.author', 'books.genre', 'borrowings.quantity', 'borrowings.borrowDate', 'borrowings.returnDate', 'borrowings.returned', 'books.image', 'books.id', 'borrowings.updated_at as bookReturnedAt']);
         }
         else if ($request->bn == "r" && $request->insc == "r") {
             $books = DB::table('borrowings')->join('books', 'borrowings.bookId', '=', 'books.id')
                             ->where('borrowings.userId', $id)
                             ->where('borrowings.returned', "returned")
                             ->orderBy('books.name','asc')
-                            ->get(['books.ddcCode', 'books.name', 'books.author', 'books.genre', 'borrowings.quantity', 'borrowings.borrowDate', 'borrowings.returnDate', 'borrowings.returned', 'books.image', 'books.id', 'borrowings.updated_at as bookReturnedAt']);
+                            ->paginate($limit, ['books.ddcCode', 'books.name', 'books.author', 'books.genre', 'borrowings.quantity', 'borrowings.borrowDate', 'borrowings.returnDate', 'borrowings.returned', 'books.image', 'books.id', 'borrowings.updated_at as bookReturnedAt']);
         }
         else if ($request->bn == "r" && $request->desc == "r") {
             $books = DB::table('borrowings')->join('books', 'borrowings.bookId', '=', 'books.id')
                             ->where('borrowings.userId', $id)
                             ->where('borrowings.returned', "returned")
                             ->orderBy('books.name','desc')
-                            ->get(['books.ddcCode', 'books.name', 'books.author', 'books.genre', 'borrowings.quantity', 'borrowings.borrowDate', 'borrowings.returnDate', 'borrowings.returned', 'books.image', 'books.id', 'borrowings.updated_at as bookReturnedAt']);
+                            ->paginate($limit, ['books.ddcCode', 'books.name', 'books.author', 'books.genre', 'borrowings.quantity', 'borrowings.borrowDate', 'borrowings.returnDate', 'borrowings.returned', 'books.image', 'books.id', 'borrowings.updated_at as bookReturnedAt']);
         }
         else if ($request->au == "r" && $request->insc == "r") {
             $books = DB::table('borrowings')->join('books', 'borrowings.bookId', '=', 'books.id')
                             ->where('borrowings.userId', $id)
                             ->where('borrowings.returned', "returned")
                             ->orderBy('books.author','asc')
-                            ->get(['books.ddcCode', 'books.name', 'books.author', 'books.genre', 'borrowings.quantity', 'borrowings.borrowDate', 'borrowings.returnDate', 'borrowings.returned', 'books.image', 'books.id', 'borrowings.updated_at as bookReturnedAt']);
+                            ->paginate($limit, ['books.ddcCode', 'books.name', 'books.author', 'books.genre', 'borrowings.quantity', 'borrowings.borrowDate', 'borrowings.returnDate', 'borrowings.returned', 'books.image', 'books.id', 'borrowings.updated_at as bookReturnedAt']);
         }
         else if ($request->au == "r" && $request->desc == "r") {
             $books = DB::table('borrowings')->join('books', 'borrowings.bookId', '=', 'books.id')
                             ->where('borrowings.userId', $id)
                             ->where('borrowings.returned',"returned")
                             ->orderBy('books.author','desc')
-                            ->get(['books.ddcCode', 'books.name', 'books.author', 'books.genre', 'borrowings.quantity', 'borrowings.borrowDate', 'borrowings.returnDate', 'borrowings.returned', 'books.image', 'books.id', 'borrowings.updated_at as bookReturnedAt']);
+                            ->paginate($limit, ['books.ddcCode', 'books.name', 'books.author', 'books.genre', 'borrowings.quantity', 'borrowings.borrowDate', 'borrowings.returnDate', 'borrowings.returned', 'books.image', 'books.id', 'borrowings.updated_at as bookReturnedAt']);
         }
         else if ($request->ge == "r" && $request->insc == "r") {
             $books = DB::table('borrowings')->join('books', 'borrowings.bookId', '=', 'books.id')
                             ->where('borrowings.userId', $id)
                             ->where('borrowings.returned', "returned")
                             ->orderBy('books.genre','asc')
-                            ->get(['books.ddcCode', 'books.name', 'books.author', 'books.genre', 'borrowings.quantity', 'borrowings.borrowDate', 'borrowings.returnDate', 'borrowings.returned', 'books.image', 'books.id', 'borrowings.updated_at as bookReturnedAt']);
+                            ->paginate($limit, ['books.ddcCode', 'books.name', 'books.author', 'books.genre', 'borrowings.quantity', 'borrowings.borrowDate', 'borrowings.returnDate', 'borrowings.returned', 'books.image', 'books.id', 'borrowings.updated_at as bookReturnedAt']);
         }
         else if ($request->ge == "r" && $request->desc == "r") {
             $books = DB::table('borrowings')->join('books', 'borrowings.bookId', '=', 'books.id')
                             ->where('borrowings.userId', $id)
                             ->where('borrowings.returned', "returned")
                             ->orderBy('books.genre','desc')
-                            ->get(['books.ddcCode', 'books.name', 'books.author', 'books.genre', 'borrowings.quantity', 'borrowings.borrowDate', 'borrowings.returnDate', 'borrowings.returned', 'books.image', 'books.id', 'borrowings.updated_at as bookReturnedAt']);
+                            ->paginate($limit, ['books.ddcCode', 'books.name', 'books.author', 'books.genre', 'borrowings.quantity', 'borrowings.borrowDate', 'borrowings.returnDate', 'borrowings.returned', 'books.image', 'books.id', 'borrowings.updated_at as bookReturnedAt']);
         }
         else if ($request->qua == "r" && $request->insc == "r") {
             $books = DB::table('borrowings')->join('books', 'borrowings.bookId', '=', 'books.id')
                             ->where('borrowings.userId', $id)
                             ->where('borrowings.returned', "returned")
                             ->orderBy('borrowings.quantity','asc')
-                            ->get(['books.ddcCode', 'books.name', 'books.author', 'books.genre', 'borrowings.quantity', 'borrowings.borrowDate', 'borrowings.returnDate', 'borrowings.returned', 'books.image', 'books.id', 'borrowings.updated_at as bookReturnedAt']);
+                            ->paginate($limit, ['books.ddcCode', 'books.name', 'books.author', 'books.genre', 'borrowings.quantity', 'borrowings.borrowDate', 'borrowings.returnDate', 'borrowings.returned', 'books.image', 'books.id', 'borrowings.updated_at as bookReturnedAt']);
         }
         else if ($request->qua == "r" && $request->desc == "r") {
             $books = DB::table('borrowings')->join('books', 'borrowings.bookId', '=', 'books.id')
                             ->where('borrowings.userId', $id)
                             ->where('borrowings.returned', "returned")
                             ->orderBy('borrowings.quantity','desc')
-                            ->get(['books.ddcCode', 'books.name', 'books.author', 'books.genre', 'borrowings.quantity', 'borrowings.borrowDate', 'borrowings.returnDate', 'borrowings.returned', 'books.image', 'books.id', 'borrowings.updated_at as bookReturnedAt']);
+                            ->paginate($limit, ['books.ddcCode', 'books.name', 'books.author', 'books.genre', 'borrowings.quantity', 'borrowings.borrowDate', 'borrowings.returnDate', 'borrowings.returned', 'books.image', 'books.id', 'borrowings.updated_at as bookReturnedAt']);
         }
         else if ($request->bd == "r" && $request->insc == "r") {
             $books = DB::table('borrowings')->join('books', 'borrowings.bookId', '=', 'books.id')
                             ->where('borrowings.userId', $id)
                             ->where('borrowings.returned', "returned")
                             ->orderBy('borrowings.borrowDate','asc')
-                            ->get(['books.ddcCode', 'books.name', 'books.author', 'books.genre', 'borrowings.quantity', 'borrowings.borrowDate', 'borrowings.returnDate', 'borrowings.returned', 'books.image', 'books.id', 'borrowings.updated_at as bookReturnedAt']);
+                            ->paginate($limit, ['books.ddcCode', 'books.name', 'books.author', 'books.genre', 'borrowings.quantity', 'borrowings.borrowDate', 'borrowings.returnDate', 'borrowings.returned', 'books.image', 'books.id', 'borrowings.updated_at as bookReturnedAt']);
         }
         else if ($request->bd == "r" && $request->desc == "r") {
             $books = DB::table('borrowings')->join('books', 'borrowings.bookId', '=', 'books.id')
                             ->where('borrowings.userId', $id)
                             ->where('borrowings.returned', "returned")
                             ->orderBy('borrowings.borrowDate','desc')
-                            ->get(['books.ddcCode', 'books.name', 'books.author', 'books.genre', 'borrowings.quantity', 'borrowings.borrowDate', 'borrowings.returnDate', 'borrowings.returned', 'books.image', 'books.id', 'borrowings.updated_at as bookReturnedAt']);
+                            ->paginate($limit, ['books.ddcCode', 'books.name', 'books.author', 'books.genre', 'borrowings.quantity', 'borrowings.borrowDate', 'borrowings.returnDate', 'borrowings.returned', 'books.image', 'books.id', 'borrowings.updated_at as bookReturnedAt']);
         }
         else if ($request->rd == "r" && $request->insc == "r") {
             $books = DB::table('borrowings')->join('books', 'borrowings.bookId', '=', 'books.id')
                             ->where('borrowings.userId', $id)
                             ->where('borrowings.returned', "returned")
                             ->orderBy('borrowings.returnDate','asc')
-                            ->get(['books.ddcCode', 'books.name', 'books.author', 'books.genre', 'borrowings.quantity', 'borrowings.borrowDate', 'borrowings.returnDate', 'borrowings.returned', 'books.image', 'books.id', 'borrowings.updated_at as bookReturnedAt']);
+                            ->paginate($limit, ['books.ddcCode', 'books.name', 'books.author', 'books.genre', 'borrowings.quantity', 'borrowings.borrowDate', 'borrowings.returnDate', 'borrowings.returned', 'books.image', 'books.id', 'borrowings.updated_at as bookReturnedAt']);
         }
         else if ($request->rd == "r" && $request->desc == "r") {
             $books = DB::table('borrowings')->join('books', 'borrowings.bookId', '=', 'books.id')
                             ->where('borrowings.userId', $id)
                             ->where('borrowings.returned', "returned")
                             ->orderBy('borrowings.returnDate','desc')
-                            ->get(['books.ddcCode', 'books.name', 'books.author', 'books.genre', 'borrowings.quantity', 'borrowings.borrowDate', 'borrowings.returnDate', 'borrowings.returned', 'books.image', 'books.id', 'borrowings.updated_at as bookReturnedAt']);
+                            ->paginate($limit, ['books.ddcCode', 'books.name', 'books.author', 'books.genre', 'borrowings.quantity', 'borrowings.borrowDate', 'borrowings.returnDate', 'borrowings.returned', 'books.image', 'books.id', 'borrowings.updated_at as bookReturnedAt']);
         }  
         else {
         $books = DB::table('borrowings')->join('books', 'borrowings.bookId', '=', 'books.id')
                             ->where('borrowings.userId', $id)
                             ->where('borrowings.returned', "returned")
-                            ->get(['books.ddcCode', 'books.name', 'books.author', 'books.genre', 'borrowings.quantity', 'borrowings.borrowDate', 'borrowings.returnDate', 'borrowings.returned', 'books.image', 'books.id', 'borrowings.updated_at as bookReturnedAt']);
+                            ->paginate($limit, ['books.ddcCode', 'books.name', 'books.author', 'books.genre', 'borrowings.quantity', 'borrowings.borrowDate', 'borrowings.returnDate', 'borrowings.returned', 'books.image', 'books.id', 'borrowings.updated_at as bookReturnedAt']);
         }
         $returned = true;
         return view('borrowedBookList', compact('books', 'returned', 'active'));
