@@ -47,7 +47,7 @@
                             </tr>
                             <tr>
                                 <th>Password</th>
-                                <td><input type="password" name="password" class="form-control" value="{{$user->password}}" ></td>
+                                <td><input type="password" name="password" class="form-control" value="{{$user->password}}"></td>
                             </tr>
                             <tr>
                                 <th>Role</th>
@@ -56,9 +56,9 @@
                                         <?php if($user->role=="admin"){?>
                                             <option value="admin">Admin</option>
                                             <option value="user">User</option>
-                                        <?php }elseif($user->role=="user"){ ?>
+                                        <?php }if($user->role=="user"){ ?>
                                             <option value="user">User</option>
-                                            <option value="Admin">Admin</option>
+                                            <option value="admin">Admin</option>
                                         <?php }?>
                                     </select>
                                 </td>
