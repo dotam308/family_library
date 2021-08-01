@@ -120,6 +120,8 @@
                             <?php $id = $book->id; ?>
                             <li>
                                 <figure>
+
+                                    {{--  input  --}}
                                     <input type="hidden" id="base-url" value="{{ url('/') }}">
                                     <input type="hidden" name="_token" id="csrf" value="{{Session::token()}}">
                                     <input type="hidden" id="userId{{ $id }}" name="userId"
