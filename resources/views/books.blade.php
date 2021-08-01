@@ -35,6 +35,7 @@
                                 </div>
                                 <div class="col-md-3 col-sm-6">
                                     <div class="form-group">
+                                        
                                         <select name="catalog" id="catalog" class="form-control">
                                             <option>Search the Catalog</option>
                                             <option>Catalog 01</option>
@@ -43,6 +44,7 @@
                                             <option>Catalog 04</option>
                                             <option>Catalog 05</option>
                                         </select>
+
                                     </div>
                                 </div>
                                 <div class="col-md-3 col-sm-6">
