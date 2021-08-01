@@ -7,6 +7,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\WishListController;
 use Illuminate\Http\Request;
 /*
 |--------------------------------------------------------------------------
@@ -46,8 +47,8 @@ Route::get('/books_rented', [HomeController::class, 'viewBookRented'])->name('bo
 Route::get('/delete_rented/{id}', [HomeController::class, 'deleteBookRented'])->name('delete_rented');
 Route::get('/rents_byId', [HomeController::class, 'viewManageBookRented'])->name('rents_byId');
 Route::post('/rents_byId', [HomeController::class, 'manageBookRented']);
-
 Route::get('/book_detail_byId', [HomeController::class, 'viewBookDetailById'])->name('book_detail_byId');
+Route::post('/book_detail_byId', [HomeController::class, 'viewBookDetailByIdPost']);
 
 Route::get('/borrowBook', [HomeController::class, 'borrowBookForm'])->name('borrowBook');
 Route::post('/borrowBook', [HomeController::class, 'borrowBookPost']);
@@ -68,3 +69,16 @@ Route::get('/manageBooks', [BookController::class, 'showBookList'])->name('manag
 
 Route::get('/borrowedBooks', [BookController::class, 'showBorrowedBookList'])->name('borrowedBooks');
 Route::get('/returnedBooks', [BookController::class, 'showReturnedBookList'])->name('returnedBooks');
+Route::get('/cancelBorrow/{id}', [HomeController::class,'cancelBorrow']);
+
+Route::get('/waitingOrders', [HomeController::class, 'waitingOrders'])->name('waitingOrders');
+Route::get('/borrowingOrders', [HomeController::class, 'borrowingOrders'])->name('borrowingOrders');
+
+Route::get('/tookBook', [HomeController::class, 'tookBook'])->name('tookBook');
+Route::get('/returnBook', [HomeController::class, 'returnBook'])->name('returnBook');
+
+Route::post('/saveFavorite', [WishListController::class, 'saveFavorite'])->name('saveFavorite');
+
+Route::get('/favoriteBooks', [WishListController::class, 'showFavoriteBooks'])->name('favoriteBooks');
+Route::get('/deleteFavoriteBook/{id}',[WishListController::class, 'deleteFavoriteBook'])->name('deleteFavoriteBook');
+Route::get('/deleteFavoriteBookList/{id}',[WishListController::class, 'deleteFavoriteBookList'])->name('deleteFavoriteBookList');

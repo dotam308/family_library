@@ -34,8 +34,7 @@
                             <div class="col-xs-12 col-sm-5 col-md-3">
                                 <div class="post-thumbnail">
                                     <div class="book-list-icon blue-icon"></div>
-                                    <img src="/storage/{{ $book->image }}"
-                                        alt="Book Image">
+                                    <img src="/storage/{{ $book->image }}" alt="Book Image">
                                 </div>
                             </div>
                             <div class="col-xs-12 col-sm-7 col-md-6">
@@ -51,9 +50,20 @@
                                     <p><strong>Country:</strong> {{ $book->country }}</p>
                                     <p><strong>Genre :</strong> {{ $book->genre }}</p>
                                     <p><strong>Topics:</strong> Friendship, Bullies, Pranks, School</p>
-
+                                    
                                     <?php $id = $book->id; ?>
-                                    <a href="{{ route('borrowBook', compact('id')) }}" class="btn btn-primary">Borrow</a>
+                                    {{--  input  --}}
+                                    <input type="hidden" id="base-url" value="{{ url('/') }}">
+                                    <input type="hidden" name="_token" id="csrf" value="{{Session::token()}}">
+                                    <input type="hidden" id="userId{{ $id }}" name="userId"
+                                        value="{{ session('userId') }}">
+                                    <input type="hidden" id="bookId{{ $id }}" name="bookId" value="{{ $id }}">
+
+
+
+                                    {{-- end input --}}
+                                    <a href="{{ route('borrowBook', compact('id')) }}"
+                                        class="btn btn-primary">Borrow</a>
                                     <div class="actions">
                                         <ul>
                                             <li>
@@ -63,9 +73,12 @@
                                                 </a>
                                             </li>
                                             <li>
-                                                <a href="#" target="_blank" data-toggle="blog-tags" data-placement="top"
-                                                    title="" data-original-title="Like">
-                                                    <i class="fa fa-heart"></i>
+                                                <?php $id = $book->id;  ?>
+                                                <a data-toggle="blog-tags" data-placement="top" title="Like"
+                                                    class="button_wishlist" id="{{ $id }}"
+                                                    onclick="saveFavorite({{ $id }});">
+                                                    <i class="fa fa-heart <?=  (!empty($book->favorite)) ? "liked" : ""?>"
+                                                        id="heart{{ $id }}"></i>
                                                 </a>
                                             </li>
                                             <li>
@@ -201,11 +214,12 @@
                                     </table>
                                 </div>
                                 <div id="sectionB" class="tab-pane fade in">
-                                    @php
-                                        $review = $book->review
-                                    @endphp
                                     <h5>Lorem Ipsum Dolor</h5>
-                                    <p>{{ $review }}</p>
+
+                                    <div class="fb-comments"
+                                        data-href="http://127.0.0.1:8000/book_detail_byId?id=1#sectionB" data-width=""
+                                        data-numposts=""></div>
+
                                 </div>
                                 <div id="sectionC" class="tab-pane fade in">
                                     <h5>Lorem Ipsum Dolor</h5>

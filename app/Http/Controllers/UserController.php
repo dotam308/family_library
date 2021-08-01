@@ -5,12 +5,35 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Hash;
+use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller{
     //
-    public function index(){
-        $users=User::get();
-        return view('users',compact('users'));
+    public function index(Request $request){
+        $active = "manage";
+        $limit = 10;
+        if ($request->usern == "r" && $request->insc == "r") {
+            $users=DB::table('users')->orderBy('users.username', 'asc')->paginate($limit);
+        }
+        else if ($request->usern == "r" && $request->desc == "r") {
+            $users=DB::table('users')->orderBy('users.username', 'desc')->paginate($limit);
+        }
+        else if ($request->rol == "r" && $request->desc == "r") {
+            $users=DB::table('users')->orderBy('users.role', 'desc')->paginate($limit);
+        }
+        else if ($request->rol == "r" && $request->insc == "r") {
+            $users=DB::table('users')->orderBy('users.role', 'asc')->paginate($limit);
+        }
+        else if ($request->mail == "r" && $request->desc == "r") {
+            $users=DB::table('users')->orderBy('users.email', 'desc')->paginate($limit);
+        }
+        else if ($request->mail == "r" && $request->insc == "r") {
+            $users=DB::table('users')->orderBy('users.email', 'asc')->paginate($limit);
+        }
+        else {
+        $users=DB::table('users')->paginate($limit);
+    }
+        return view('users',compact('users', 'active'));
     }
 
     public function userAddForm(){
@@ -42,26 +65,42 @@ class UserController extends Controller{
 
     public function userEditForm(Request $request){
         $user=User::where('id',$request->id)->first();
+        // dd($user);
         return view('editUser',compact('user'));
     }
 
     public function editUser(Request $request){
         $this->validate($request, [
             'username'=>'required',
-            'email'=>'required',
             'password'=>'required',
             'role'=>'required'
         ]);
-        $username=User::where('username',$request['username'])->first();
-        $email=User::where('email',$request['email'])->first();
-        $user=User::where('id',$request->id)->first();
-        if(($username && $user!=$username) || ($email && $user!=$email)){
-            if($username && $user!=$username) $request->session()->flash('uerror','Username is already existed!');
-            if($email && $user!=$email) $request->session()->flash('merror','Email is already existed!');
+        $user = User::where('id',$request->id)->first();
+        $username=User::where('username',$request['username'])->get();
+        $checkDuplicate = false;
+
+        if (!empty($request->email))
+            $email=User::where('email',$request->email)->get();
+        if (count($username) >= 1) {
+            $request->session()->flash('uerror','Username is already existed!');
+            $checkDuplicate = true;
+        }
+        if (isset($email) && count($email) >= 1) {
+            $request->session()->flash('merror','Email is already existed!');
+            $checkDuplicate = true;
+        }
+        // if ($user->username == $username->username)
+        if($checkDuplicate){
             return view('editUser',compact('user'));
         }
         $user->username=$request->username;
         $user->email=$request->email;
+
+//         if ($request->password == $user->password) {
+//             //van dang luu ma Hash, khong thay doi mat khau -> khong cap nhat moi
+//         } else {
+//             $user->password=Hash::make($request->password);
+//         }
         $user->password=Hash::needsRehash($request->password)?Hash::make($request->password):$request->password;
         $user->role=$request->role;
         $user->save();

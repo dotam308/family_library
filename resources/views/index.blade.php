@@ -143,7 +143,23 @@
                                 <div class="fact-icon">
                                     <i class="ebook"></i>
                                 </div>
-                                <span>eBooks<strong class="fact-counter">45780</strong></span>
+                                <span>Book Quantity<strong class="fact-counter">Total {{$quantityBook}} </strong></span>
+                            </div>
+                        </li>
+                        <li class="bg-light-green">
+                            <div class="fact-item">
+                                <div class="fact-icon">
+                                    <i class="ebook"></i>
+                                </div>
+                                <span>Book Borrowed<strong class="fact-counter">{{$borrowBook}}</strong></span>
+                            </div>
+                        </li>
+                        <li class="bg-light-green">
+                            <div class="fact-item">
+                                <div class="fact-icon">
+                                    <i class="ebook"></i>
+                                </div>
+                                <span>Rent List<strong class="fact-counter">{{$rentlist}}</strong></span>
                             </div>
                         </li>
                         <li class="bg-green">
@@ -151,7 +167,7 @@
                                 <div class="fact-icon">
                                     <i class="eaudio"></i>
                                 </div>
-                                <span>eAudio<strong class="fact-counter">32450</strong></span>
+                                <span>Book<strong class="fact-counter">{{$booktype}} different books</strong></span>
                             </div>
                         </li>
                         <li class="bg-red">
@@ -159,7 +175,7 @@
                                 <div class="fact-icon">
                                     <i class="magazine"></i>
                                 </div>
-                                <span>Magazine<strong class="fact-counter">14450</strong></span>
+                                <span>User<strong class="fact-counter">{{$userquantity}}</strong></span>
                             </div>
                         </li>
                         <li class="bg-blue">

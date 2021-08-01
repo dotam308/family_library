@@ -34,6 +34,7 @@ return array(
     'App\\Models\\Borrower' => $baseDir . '/app/Models/Borrower.php',
     'App\\Models\\User' => $baseDir . '/app/Models/User.php',
     'App\\Models\\UserInfo' => $baseDir . '/app/Models/UserInfo.php',
+    'App\\Models\\WishList' => $baseDir . '/app/Models/WishList.php',
     'App\\Providers\\AppServiceProvider' => $baseDir . '/app/Providers/AppServiceProvider.php',
     'App\\Providers\\AuthServiceProvider' => $baseDir . '/app/Providers/AuthServiceProvider.php',
     'App\\Providers\\BroadcastServiceProvider' => $baseDir . '/app/Providers/BroadcastServiceProvider.php',

@@ -8,7 +8,7 @@
             <span class="underline center"></span>
             <p class="lead">Manage Books Rented Page.</p>
         </div>
-        <div class="breadcrumb">    
+        <div class="breadcrumb">
             <ul>
                 <li><a href="index-2.html">Home</a></li>
                 <li>Books Rented</li>
@@ -19,58 +19,125 @@
 @endsection
 
 @section('content')
-<h3>Book Rent List</h3>
-<form>
-        <table class="table table-hover">
-            <thead>
-                <tr>
-                    <th>Thứ tự</th>
-                    <th>Tên sách</th>
-                    <th>Người mượn</th>
-                    <th>Số lượng mượn</th>
-                    <th>Ngày mượn</th>
-                    <th>Ngày hẹn trả</th>
-                    <th>Trạng thái</th>
-                    <th>Action</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php $i=0; ?>
-                @forelse ($borrow as $b)
-                <?php
-                $id = $b->id;
-                
-                $i++;
-                ?>
-                    <tr>
-                        <td>{{$i}}</td>
-                        <td>{{ $b->name }}</td>
-                        <td>{{$b->username}}</td>
-                        <td>{{ $b->quantity }}</td>
-                        <td>{{ $b->borrowDate }}</td>
-                        <td>{{ $b->returnDate }}</td>
-                        @if ($b->returned == "false")
-                        <td>Chưa trả</td>
-                        @else
-                        <td>Đã trả</td>
-                        @endif
-                       
-                        <td>
-                            <a rel="{{ $id }}" href="javascript:" id="deleteButton"><i class="fa fa-trash"></i></a>
-                            <a href="{{ route('rents_byId', compact('id')) }}"><i class="fa fa-edit"></i></a>
-                        </td>    
-                    </tr>
-                @empty
-                <td>No data</td>
-                @endforelse
-                
-            </tbody>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" />
+<div id="content" class="site-content">
+    <div id="primary" class="content-area">
+        <main id="main" class="site-main">
+            <div class="books-full-width">
+                <div class="container">
+                    <!-- Start: Search Section -->
+                    <!-- End: Search Section -->
+                    <div class="users-list-view">
+                        <h3>Book Rent List</h3>
 
-        </table>
-    </form>
+                        <ul>
+                            <?php
+                            $usern = "r";
+                            $rol = "r";
+                            $mail = "r";
+                            $insc = "r";
+                            $desc = "r"; 
+                            ?>
+                            @if(count($borrow)>0)
+                            <form>
+                                <table class="table table-hover">
+                                    <?php $bookname = "bookname";
+                                $borrower = "borrower";
+                                $quantityx = "quantity";
+                                $brdate = "brdate";
+                                $redate = "redate";  
+                                $desc = "d"; 
+                                $insc = "i";?>
+                                    <thead>
+                                        <tr>
+                                            <th>STT</th>
+                                            <th>Tên sách
+                                                <a href="{{route('books_rented', compact('bookname', 'desc'))}}"><i
+                                                        class="fas fa-angle-double-down"></i></a>
+                                                <a href="{{route('books_rented', compact('bookname', 'insc'))}}"><i
+                                                        class="fas fa-angle-double-up"></i></a></th>
+                                            <th>Người mượn
+                                                <a href="{{route('books_rented', compact('borrower', 'desc'))}}"><i
+                                                        class="fas fa-angle-double-down"></i></a>
+                                                <a href="{{route('books_rented', compact('borrower', 'insc'))}}"><i
+                                                        class="fas fa-angle-double-up"></i></a>
+                                            </th>
+                                            <th>Số lượng mượn
+                                                <a href="{{route('books_rented', compact('quantityx', 'desc'))}}"><i
+                                                        class="fas fa-angle-double-down"></i></a>
+                                                <a href="{{route('books_rented', compact('quantityx', 'insc'))}}"><i
+                                                        class="fas fa-angle-double-up"></i></a>
+                                            </th>
+                                            <th>Ngày mượn
+                                                <a href="{{route('books_rented', compact('brdate', 'desc'))}}"><i
+                                                        class="fas fa-angle-double-down"></i></a>
+                                                <a href="{{route('books_rented', compact('brdate', 'insc'))}}"><i
+                                                        class="fas fa-angle-double-up"></i></a>
+                                            </th>
+                                            <th>Ngày hẹn trả
+                                                <a href="{{route('books_rented', compact('redate', 'desc'))}}"><i
+                                                        class="fas fa-angle-double-down"></i></a>
+                                                <a href="{{route('books_rented', compact('redate', 'insc'))}}"><i
+                                                        class="fas fa-angle-double-up"></i></a>
+                                            </th>
+                                            <th>Trạng thái</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php $i=0; ?>
+                                        @forelse ($borrow as $b)
+                                        <?php
+                                        $id = $b->id;
+                                        
+                                        $i++;
+                                        ?>
+                                        <tr>
+                                            <td>{{$i}}</td>
+                                            <td>{{$b->name}}</td>
+                                            <td>{{$b->username}}</td>
+                                            <td>{{$b->quantity}}</td>
+                                            <td>{{$b->borrowDate }}</td>
+                                            <td>{{$b->returnDate }}</td>
+                                            <td>{{$b->returned}}</td>
+
+                                            <td>
+                                                <a href="{{ route('rents_byId', compact('id')) }}">
+                                                    <i class="fa fa-pen" aria-hidden="true" style="color: blue"></i>
+                                                </a>
+                                                <a rel="{{ $id }}" href="javascript:" id="deleteButton">
+                                                    <i class="fa fa-trash" aria-hidden="true" style="color: red"></i>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                        @empty
+                                        <td>No data</td>
+                                        @endforelse
+
+                                    </tbody>
+
+                                </table>
+                            </form>
+                            @else
+                            <br>
+                            <div>No users registered</div>
+                            @endif
+                        </ul>
+                    </div>
+                    
+                    <!--navigation-->
+                    @include('includes.navigation', ['data'=>$borrow])
+                    <!--end navigation-->
+                </div>
+                
+            </div>
+        </main>
+    </div>
+</div>
 @endsection
 @section('script')
-<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.19/dist/sweetalert2.all.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.19/dist/sweetalert2.all.min.js">
+</script>
 <script>
     $(document).ready(function() {
        $('a[id=deleteButton]').click(function() {

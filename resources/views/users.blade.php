@@ -17,6 +17,7 @@
 </section>
 @endsection
 @section('content')
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" />
 <div id="content" class="site-content">
     <div id="primary" class="content-area">
         <main id="main" class="site-main">
@@ -66,18 +67,43 @@
                     <div class="clear"></div>
                     </section>
                     <!-- End: Search Section -->
-                    <a type="button" class="btn btn-primary" href="{{route('createuser')}}">ADD ACCOUNT</a>
                     <div class="users-list-view">
+                        <h3>Danh sách user</h3>
+
+                        <div class="row">
+                            <div class="col text-right">
+                                <a type="button" class="btn btn-primary" href="{{route('createuser')}}">ADD ACCOUNT</a>
+                            </div>
+                        </div>
                         <ul>
+                            <?php
+                            $usern = "r";
+                            $rol = "r";
+                            $mail = "r";
+                            $insc = "r";
+                            $desc = "r"; 
+                            ?>
                             @if(count($users)>0)
                             <table class="table table-hover">
                                 <thead>
                                     <tr>
                                         <th>No.</th>
                                         <th>ID</th>
-                                        <th>Username</th>
-                                        <th>Role</th>
-                                        <th>E-mail</th>
+                                        <th>Username
+                                            <a href="{{route('users', compact('usern','desc'))}}"><i
+                                                    class="fas fa-angle-double-down"></i></a>
+                                            <a href="{{route('users', compact('usern','insc'))}}"><i
+                                                    class="fas fa-angle-double-up"></i></a></th>
+                                        <th>Role
+                                            <a href="{{route('users', compact('rol','desc'))}}"><i
+                                                    class="fas fa-angle-double-down"></i></a>
+                                            <a href="{{route('users', compact('rol','insc'))}}"><i
+                                                    class="fas fa-angle-double-up"></i></a></th>
+                                        <th>E-mail
+                                            <a href="{{route('users', compact('mail','desc'))}}"><i
+                                                    class="fas fa-angle-double-down"></i></a>
+                                            <a href="{{route('users', compact('mail','insc'))}}"><i
+                                                    class="fas fa-angle-double-up"></i></a></th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
@@ -107,22 +133,13 @@
                                 @endforeach
                             </table>
                             @else
-                                </br><div>No users registered</div>
+                            <br>
+                            <div>No users registered</div>
                             @endif
                         </ul>
                     </div>
                     <!--navigation-->
-                    <nav class="navigation pagination text-center">
-                        <h2 class="screen-reader-text">Posts navigation</h2>
-                        <div class="nav-links">
-                            <a class="prev page-numbers" href="#."><i class="fa fa-long-arrow-left"></i> Previous</a>
-                            <a class="page-numbers" href="#.">1</a>
-                            <span class="page-numbers current">2</span>
-                            <a class="page-numbers" href="#.">3</a>
-                            <a class="page-numbers" href="#.">4</a>
-                            <a class="next page-numbers" href="#.">Next <i class="fa fa-long-arrow-right"></i></a>
-                        </div>
-                    </nav>
+                    @include('includes.navigation', ['data'=>$users])
                     <!--end navigation-->
                 </div>
             </div>
@@ -131,7 +148,8 @@
 </div>
 @endsection
 @section('script')
-<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.19/dist/sweetalert2.all.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.19/dist/sweetalert2.all.min.js">
+</script>
 <script>
     $(document).ready(function() {
        $('a[id=deleteButton]').click(function(){
