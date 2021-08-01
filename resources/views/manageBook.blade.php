@@ -39,32 +39,32 @@
                                 <tr>
                                     <th>Số thứ tự/Order</th>
                                     <th>Mã DDC/DDC
-                                    <a href="{{route('manageBooks', compact('dc','desc'))}}"><i class="fas fa-angle-double-down"></i></a>
-                                        <a href="{{route('manageBooks', compact('dc','insc'))}}"><i class="fas fa-angle-double-up"></i></a></th>
+                                    <a href="{{route('manageBooks', compact('dc','desc'))}}" id="dc_desc"><i class="fas fa-angle-double-down"></i></a>
+                                        <a href="{{route('manageBooks', compact('dc','insc'))}}" id="dc_insc"><i class="fas fa-angle-double-up"></i></a></th>
                                     <th>Tên sách/Title
-                                    <a href="{{route('manageBooks', compact('bn','desc'))}}"><i class="fas fa-angle-double-down"></i></a>
-                                        <a href="{{route('manageBooks', compact('bn','insc'))}}"><i class="fas fa-angle-double-up"></i></a></th>
+                                    <a href="{{route('manageBooks', compact('bn','desc'))}}" id="bn_desc"><i class="fas fa-angle-double-down"></i></a>
+                                        <a href="{{route('manageBooks', compact('bn','insc'))}}" id="bn_insc"><i class="fas fa-angle-double-up"></i></a></th>
                                     <th>Tác giả/Author
-                                    <a href="{{route('manageBooks', compact('au','desc'))}}"><i class="fas fa-angle-double-down"></i></a>
-                                        <a href="{{route('manageBooks', compact('au','insc'))}}"><i class="fas fa-angle-double-up"></i></a></th>
+                                    <a href="{{route('manageBooks', compact('au','desc'))}}" id="au_desc"><i class="fas fa-angle-double-down"></i></a>
+                                        <a href="{{route('manageBooks', compact('au','insc'))}}" id="au_insc"><i class="fas fa-angle-double-up"></i></a></th>
                                     <th>Thể loại/Genre
-                                    <a href="{{route('manageBooks', compact('ge','desc'))}}"><i class="fas fa-angle-double-down"></i></a>
-                                        <a href="{{route('manageBooks', compact('ge','insc'))}}"><i class="fas fa-angle-double-up"></i></a></th>
+                                    <a href="{{route('manageBooks', compact('ge','desc'))}}" id="ge_desc"><i class="fas fa-angle-double-down"></i></a>
+                                        <a href="{{route('manageBooks', compact('ge','insc'))}}" id="ge_insc"><i class="fas fa-angle-double-up"></i></a></th>
                                     <th>Nhà sản xuất/Publisher
-                                    <a href="{{route('manageBooks', compact('pub','desc'))}}"><i class="fas fa-angle-double-down"></i></a>
-                                        <a href="{{route('manageBooks', compact('pub','insc'))}}"><i class="fas fa-angle-double-up"></i></a></th>
+                                    <a href="{{route('manageBooks', compact('pub','desc'))}}" id="pub_desc"><i class="fas fa-angle-double-down"></i></a>
+                                        <a href="{{route('manageBooks', compact('pub','insc'))}}" id="pub_insc"><i class="fas fa-angle-double-up"></i></a></th>
                                     <th>Người dịch/Translator
-                                    <a href="{{route('manageBooks', compact('trans','desc'))}}"><i class="fas fa-angle-double-down"></i></a>
-                                        <a href="{{route('manageBooks', compact('trans','insc'))}}"><i class="fas fa-angle-double-up"></i></a></th>
+                                    <a href="{{route('manageBooks', compact('trans','desc'))}}" id="trans_desc"><i class="fas fa-angle-double-down"></i></a>
+                                        <a href="{{route('manageBooks', compact('trans','insc'))}}" id="trans_insc"><i class="fas fa-angle-double-up"></i></a></th>
                                     <th>Quốc gia/Country
-                                    <a href="{{route('manageBooks', compact('coun','desc'))}}"><i class="fas fa-angle-double-down"></i></a>
-                                        <a href="{{route('manageBooks', compact('coun','insc'))}}"><i class="fas fa-angle-double-up"></i></a></th>
+                                    <a href="{{route('manageBooks', compact('coun','desc'))}}" id="coun_desc"><i class="fas fa-angle-double-down"></i></a>
+                                        <a href="{{route('manageBooks', compact('coun','insc'))}}" id="coun_insc"><i class="fas fa-angle-double-up"></i></a></th>
                                     <th>Số sách trong kho/Copies
-                                    <a href="{{route('manageBooks', compact('qua','desc'))}}"><i class="fas fa-angle-double-down"></i></a>
-                                        <a href="{{route('manageBooks', compact('qua','insc'))}}"><i class="fas fa-angle-double-up"></i></a></th>
-                                    <th>Giá/Price
-                                    <a href="{{route('manageBooks', compact('pri','desc'))}}"><i class="fas fa-angle-double-down"></i></a>
-                                        <a href="{{route('manageBooks', compact('pri','insc'))}}"><i class="fas fa-angle-double-up"></i></a></th>
+                                    <a href="{{route('manageBooks', compact('qua','desc'))}}" id="qua_desc"><i class="fas fa-angle-double-down"></i></a>
+                                        <a href="{{route('manageBooks', compact('qua','insc'))}}" id="qua_insc"><i class="fas fa-angle-double-up"></i></a></th>
+                                    <th>Giá/Price.
+                                    <a href="{{route('manageBooks', compact('pri','desc'))}}" id="pri_desc"><i class="fas fa-angle-double-down"></i></a>
+                                        <a href="{{route('manageBooks', compact('pri','insc'))}}" id="pri_insc"><i class="fas fa-angle-double-up"></i></a></th>
                                     <th>Ảnh/Image</th>
                                     <th>Action</th>
                                 </tr>
@@ -123,6 +123,61 @@
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.19/dist/sweetalert2.all.min.js"></script>
 <script>
     $(document).ready(function() {
+        $url = window.location.href;
+        if ($url == "http://127.0.0.1:8000/manageBooks?dc=r&desc=r") {
+            document.getElementById("dc_desc").style.display = 'none';
+        }
+        if ($url == "http://127.0.0.1:8000/manageBooks?dc=r&insc=r") {
+            document.getElementById("dc_insc").style.display = 'none';
+        }
+        if ($url == "http://127.0.0.1:8000/manageBooks?bn=r&desc=r") {
+            document.getElementById("bn_desc").style.display = 'none';
+        }
+        if ($url == "http://127.0.0.1:8000/manageBooks?bn=r&insc=r") {
+            document.getElementById("bn_insc").style.display = 'none';
+        }
+        if ($url == "http://127.0.0.1:8000/manageBooks?au=r&desc=r") {
+            document.getElementById("au_desc").style.display = 'none';
+        }
+        if ($url == "http://127.0.0.1:8000/manageBooks?au=r&insc=r") {
+            document.getElementById("au_insc").style.display = 'none';
+        }
+        if ($url == "http://127.0.0.1:8000/manageBooks?ge=r&desc=r") {
+            document.getElementById("ge_desc").style.display = 'none';
+        }
+        if ($url == "http://127.0.0.1:8000/manageBooks?ge=r&insc=r") {
+            document.getElementById("ge_insc").style.display = 'none';
+        }
+        if ($url == "http://127.0.0.1:8000/manageBooks?pub=r&desc=r") {
+            document.getElementById("pub_desc").style.display = 'none';
+        }
+        if ($url == "http://127.0.0.1:8000/manageBooks?pub=r&insc=r") {
+            document.getElementById("pub_insc").style.display = 'none';
+        }
+        if ($url == "http://127.0.0.1:8000/manageBooks?trans=r&desc=r") {
+            document.getElementById("trans_desc").style.display = 'none';
+        }
+        if ($url == "http://127.0.0.1:8000/manageBooks?trans=r&insc=r") {
+            document.getElementById("trans_insc").style.display = 'none';
+        }
+        if ($url == "http://127.0.0.1:8000/manageBooks?coun=r&desc=r") {
+            document.getElementById("coun_desc").style.display = 'none';
+        }
+        if ($url == "http://127.0.0.1:8000/manageBooks?coun=r&insc=r") {
+            document.getElementById("coun_insc").style.display = 'none';
+        }
+        if ($url == "http://127.0.0.1:8000/manageBooks?qua=r&desc=r") {
+            document.getElementById("qua_desc").style.display = 'none';
+        }
+        if ($url == "http://127.0.0.1:8000/manageBooks?qua=r&insc=r") {
+            document.getElementById("qua_insc").style.display = 'none';
+        }
+        if ($url == "http://127.0.0.1:8000/manageBooks?pri=r&desc=r") {
+            document.getElementById("pri_desc").style.display = 'none';
+        }
+        if ($url == "http://127.0.0.1:8000/manageBooks?pri=r&insc=r") {
+            document.getElementById("pri_insc").style.display = 'none';
+        }
        $('a[id=deleteButton]').click(function() {
            var id = $(this).attr('rel');
            var deleteFunction = $(this).attr('rel1');

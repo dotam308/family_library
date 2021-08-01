@@ -32,67 +32,44 @@
                         @else
                         <?php
                         $dc = "r";$bn = "r";$au = "r";$ge = "r";$qua = "r";
-                                $bd = "r";$rd="r";$insc = "r";$desc = "r"; 
+                                $bd = "r";$rd="r";$insc = "r";$desc = "r";$bra = "r"; 
+                        if (empty($returned)) {
+                            $routeName = $routeName;
+                        } else {
+                            $routeName = 'returnedBooks';
+                        }
                         ?>
                         <table class="table table-hover">
                             <thead>
                                 <tr>
-                                    {{-- borrow --}}
-                                    @if(!isset($returned))
                                         <th>Order</th>
                                         <th>DDC code
-                                            <a href="{{route('borrowedBooks', compact('dc','desc'))}}"><i class="fas fa-angle-double-down"></i></a>
-                                            <a href="{{route('borrowedBooks', compact('dc','insc'))}}"><i class="fas fa-angle-double-up"></i></a>
+                                            <a href="{{route($routeName, compact('dc','desc'))}}" id="dc_desc"><i class="fas fa-angle-double-down"></i></a>
+                                            <a href="{{route($routeName, compact('dc','insc'))}}" id="dc_insc"><i class="fas fa-angle-double-up"></i></a>
                                         </th>
                                         <th>Title
-                                        <a href="{{route('borrowedBooks', compact('bn','desc'))}}"><i class="fas fa-angle-double-down"></i></a>
-                                            <a href="{{route('borrowedBooks', compact('bn','insc'))}}"><i class="fas fa-angle-double-up"></i></a></th>
+                                        <a href="{{route($routeName, compact('bn','desc'))}}" id="bn_desc"><i class="fas fa-angle-double-down"></i></a>
+                                            <a href="{{route($routeName, compact('bn','insc'))}}" id="bn_insc"><i class="fas fa-angle-double-up"></i></a></th>
                                         <th>Author
-                                        <a href="{{route('borrowedBooks', compact('au','desc'))}}"><i class="fas fa-angle-double-down"></i></a>
-                                            <a href="{{route('borrowedBooks', compact('au','insc'))}}"><i class="fas fa-angle-double-up"></i></a></th>
+                                        <a href="{{route($routeName, compact('au','desc'))}}" id="au_desc"><i class="fas fa-angle-double-down"></i></a>
+                                            <a href="{{route($routeName, compact('au','insc'))}}" id="au_insc"><i class="fas fa-angle-double-up"></i></a></th>
                                         <th>Genre
-                                        <a href="{{route('borrowedBooks', compact('ge','desc'))}}"><i class="fas fa-angle-double-down"></i></a>
-                                            <a href="{{route('borrowedBooks', compact('ge','insc'))}}"><i class="fas fa-angle-double-up"></i></a></th>
+                                        <a href="{{route($routeName, compact('ge','desc'))}}" id="ge_desc"><i class="fas fa-angle-double-down"></i></a>
+                                            <a href="{{route($routeName, compact('ge','insc'))}}" id="ge_insc"><i class="fas fa-angle-double-up"></i></a></th>
                                         <th>borrowed quantity
-                                        <a href="{{route('borrowedBooks', compact('qua','desc'))}}"><i class="fas fa-angle-double-down"></i></a>
-                                            <a href="{{route('borrowedBooks', compact('qua','insc'))}}"><i class="fas fa-angle-double-up"></i></a></th>
+                                        <a href="{{route($routeName, compact('qua','desc'))}}" id="qua_desc"><i class="fas fa-angle-double-down"></i></a>
+                                            <a href="{{route($routeName, compact('qua','insc'))}}" id="qua_insc"><i class="fas fa-angle-double-up"></i></a></th>
                                         <th>borrowed date
-                                        <a href="{{route('borrowedBooks', compact('bd','desc'))}}"><i class="fas fa-angle-double-down"></i></a>
-                                            <a href="{{route('borrowedBooks', compact('bd','insc'))}}"><i class="fas fa-angle-double-up"></i></a></th>
+                                        <a href="{{route($routeName, compact('bd','desc'))}}" id="bd_desc"><i class="fas fa-angle-double-down"></i></a>
+                                            <a href="{{route($routeName, compact('bd','insc'))}}" id="bd_insc"><i class="fas fa-angle-double-up"></i></a></th>
                                         <th>return date
-                                        <a href="{{route('borrowedBooks', compact('rd','desc'))}}"><i class="fas fa-angle-double-down"></i></a>
-                                            <a href="{{route('borrowedBooks', compact('rd','insc'))}}"><i class="fas fa-angle-double-up"></i></a></th>
+                                        <a href="{{route($routeName, compact('rd','desc'))}}" id="rd_desc"><i class="fas fa-angle-double-down"></i></a>
+                                            <a href="{{route($routeName, compact('rd','insc'))}}" id="rd_insc"><i class="fas fa-angle-double-up"></i></a></th>
                                         <th>Status</th>
-                                    @else
-                                        {{-- returned book --}}
-                                        <th>Order</th>
-                                        <th>DDC code
-                                            <a href="{{route('returnedBooks', compact('dc','desc'))}}"><i class="fas fa-angle-double-down"></i></a>
-                                            <a href="{{route('returnedBooks', compact('dc','insc'))}}"><i class="fas fa-angle-double-up"></i></a>
-                                        </th>
-                                        <th>Title
-                                        <a href="{{route('returnedBooks', compact('bn','desc'))}}"><i class="fas fa-angle-double-down"></i></a>
-                                            <a href="{{route('returnedBooks', compact('bn','insc'))}}"><i class="fas fa-angle-double-up"></i></a></th>
-                                        <th>Author
-                                        <a href="{{route('returnedBooks', compact('au','desc'))}}"><i class="fas fa-angle-double-down"></i></a>
-                                            <a href="{{route('returnedBooks', compact('au','insc'))}}"><i class="fas fa-angle-double-up"></i></a></th>
-                                        <th>Genre
-                                        <a href="{{route('returnedBooks', compact('ge','desc'))}}"><i class="fas fa-angle-double-down"></i></a>
-                                            <a href="{{route('returnedBooks', compact('ge','insc'))}}"><i class="fas fa-angle-double-up"></i></a></th>
-                                        <th>borrowed quantity
-                                        <a href="{{route('returnedBooks', compact('qua','desc'))}}"><i class="fas fa-angle-double-down"></i></a>
-                                            <a href="{{route('returnedBooks', compact('qua','insc'))}}"><i class="fas fa-angle-double-up"></i></a></th>
-                                        <th>borrowed date
-                                        <a href="{{route('returnedBooks', compact('bd','desc'))}}"><i class="fas fa-angle-double-down"></i></a>
-                                            <a href="{{route('returnedBooks', compact('bd','insc'))}}"><i class="fas fa-angle-double-up"></i></a></th>
-                                        <th>return date
-                                        <a href="{{route('returnedBooks', compact('rd','desc'))}}"><i class="fas fa-angle-double-down"></i></a>
-                                            <a href="{{route('returnedBooks', compact('rd','insc'))}}"><i class="fas fa-angle-double-up"></i></a></th>
-                                        <th>Status</th>
-                                    @endif
-                                    
                                     @if (isset($returned))
-                                        <th>Book returned at</th>
+                                        <th>Book returned at
+                                        <a href="{{route($routeName, compact('bra','desc'))}}" id="bra_desc"><i class="fas fa-angle-double-down"></i></a>
+                                            <a href="{{route($routeName, compact('bra','insc'))}}" id="bra_insc"><i class="fas fa-angle-double-up"></i></a></th>
                                     @endif
                                     <th>Image</th>
                                     @if (!isset($returned))
@@ -162,6 +139,97 @@
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.19/dist/sweetalert2.all.min.js"></script>
 <script>
     $(document).ready(function() {
+        $url = window.location.href;
+        if ($url == "http://127.0.0.1:8000/borrowedBooks?dc=r&desc=r") {
+            document.getElementById("dc_desc").style.display = 'none';
+        }
+        if ($url == "http://127.0.0.1:8000/borrowedBooks?dc=r&insc=r") {
+            document.getElementById("dc_insc").style.display = 'none';
+        }
+        if ($url == "http://127.0.0.1:8000/borrowedBooks?bn=r&desc=r") {
+            document.getElementById("bn_desc").style.display = 'none';
+        }
+        if ($url == "http://127.0.0.1:8000/borrowedBooks?bn=r&insc=r") {
+            document.getElementById("bn_insc").style.display = 'none';
+        }
+        if ($url == "http://127.0.0.1:8000/borrowedBooks?au=r&desc=r") {
+            document.getElementById("au_desc").style.display = 'none';
+        }
+        if ($url == "http://127.0.0.1:8000/borrowedBooks?au=r&insc=r") {
+            document.getElementById("au_insc").style.display = 'none';
+        }
+        if ($url == "http://127.0.0.1:8000/borrowedBooks?ge=r&desc=r") {
+            document.getElementById("ge_desc").style.display = 'none';
+        }
+        if ($url == "http://127.0.0.1:8000/borrowedBooks?ge=r&insc=r") {
+            document.getElementById("ge_insc").style.display = 'none';
+        }
+        if ($url == "http://127.0.0.1:8000/borrowedBooks?qua=r&desc=r") {
+            document.getElementById("qua_desc").style.display = 'none';
+        }
+        if ($url == "http://127.0.0.1:8000/borrowedBooks?qua=r&insc=r") {
+            document.getElementById("qua_insc").style.display = 'none';
+        }
+        if ($url == "http://127.0.0.1:8000/borrowedBooks?bd=r&desc=r") {
+            document.getElementById("bd_desc").style.display = 'none';
+        }
+        if ($url == "http://127.0.0.1:8000/borrowedBooks?bd=r&insc=r") {
+            document.getElementById("bd_insc").style.display = 'none';
+        }
+        if ($url == "http://127.0.0.1:8000/borrowedBooks?rd=r&desc=r") {
+            document.getElementById("rd_desc").style.display = 'none';
+        }
+        if ($url == "http://127.0.0.1:8000/borrowedBooks?rd=r&insc=r") {
+            document.getElementById("rd_insc").style.display = 'none';
+        }
+        if ($url == "http://127.0.0.1:8000/returnedBooks?dc=r&desc=r") {
+            document.getElementById("dc_desc").style.display = 'none';
+        }
+        if ($url == "http://127.0.0.1:8000/returnedBooks?dc=r&insc=r") {
+            document.getElementById("dc_insc").style.display = 'none';
+        }
+        if ($url == "http://127.0.0.1:8000/returnedBooks?bn=r&desc=r") {
+            document.getElementById("bn_desc").style.display = 'none';
+        }
+        if ($url == "http://127.0.0.1:8000/returnedBooks?bn=r&insc=r") {
+            document.getElementById("bn_insc").style.display = 'none';
+        }
+        if ($url == "http://127.0.0.1:8000/returnedBooks?au=r&desc=r") {
+            document.getElementById("au_desc").style.display = 'none';
+        }
+        if ($url == "http://127.0.0.1:8000/returnedBooks?au=r&insc=r") {
+            document.getElementById("au_insc").style.display = 'none';
+        }
+        if ($url == "http://127.0.0.1:8000/returnedBooks?ge=r&desc=r") {
+            document.getElementById("ge_desc").style.display = 'none';
+        }
+        if ($url == "http://127.0.0.1:8000/returnedBooks?ge=r&insc=r") {
+            document.getElementById("ge_insc").style.display = 'none';
+        }
+        if ($url == "http://127.0.0.1:8000/returnedBooks?qua=r&desc=r") {
+            document.getElementById("qua_desc").style.display = 'none';
+        }
+        if ($url == "http://127.0.0.1:8000/returnedBooks?qua=r&insc=r") {
+            document.getElementById("qua_insc").style.display = 'none';
+        }
+        if ($url == "http://127.0.0.1:8000/returnedBooks?bd=r&desc=r") {
+            document.getElementById("bd_desc").style.display = 'none';
+        }
+        if ($url == "http://127.0.0.1:8000/returnedBooks?bd=r&insc=r") {
+            document.getElementById("bd_insc").style.display = 'none';
+        }
+        if ($url == "http://127.0.0.1:8000/returnedBooks?rd=r&desc=r") {
+            document.getElementById("rd_desc").style.display = 'none';
+        }
+        if ($url == "http://127.0.0.1:8000/returnedBooks?rd=r&insc=r") {
+            document.getElementById("rd_insc").style.display = 'none';
+        }
+        if ($url == "http://127.0.0.1:8000/returnedBooks?bra=r&desc=r") {
+            document.getElementById("bra_desc").style.display = 'none';
+        }
+        if ($url == "http://127.0.0.1:8000/returnedBooks?bra=r&insc=r") {
+            document.getElementById("bra_insc").style.display = 'none';
+        }
        $('a[id=deleteButton]').click(function() {
            var id = $(this).attr('rel');
            
@@ -181,5 +249,4 @@
         })
     })
 </script>
-
 @endsection
