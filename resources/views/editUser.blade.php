@@ -47,7 +47,7 @@
                             </tr>
                             <tr> 
                                 <th>Password</th>
-                                <td><input type="password" name="password" class="form-control" value="{{$user->password}}" ></td>
+                                <td><input type="password" name="password" class="form-control" value="{{$user->password}}"></td>
                             </tr>
                             <tr>
                                 <th>Role</th>
@@ -55,8 +55,7 @@
                                     <select name="role" class="form-control select">
                                         <option value="admin" <?= ($user->role == 'admin') ? "selected" : "" ?>>Admin</option>
                                         <option value="guest" <?= ($user->role == 'guest') ? "selected" : "" ?>>Guest</option>
-
-                                    </select>
+                                   </select>
                                 </td>
                             </tr>
                         </table>

@@ -24,6 +24,48 @@
             <div class="books-full-width">
                 <div class="container">
                     <!-- Start: Search Section -->
+                    <section class="search-filters">
+                        <div class="filter-box">
+                            <form action="{{route('usersearch')}}" method="get">
+                                <div class="col-md-4 col-sm-6">
+                                    <div class="form-group">
+                                        <input class="form-control" placeholder="Search by Keyword" id="keywords"
+                                            name="keywords" type="text">
+                                    </div>
+                                </div>
+                                <div class="col-md-3 col-sm-6">
+                                    <div class="form-group">
+                                        <select name="catalog" id="catalog" class="form-control">
+                                            <option>Search the Catalog</option>
+                                            <option>Catalog 01</option>
+                                            <option>Catalog 02</option>
+                                            <option>Catalog 03</option>
+                                            <option>Catalog 04</option>
+                                            <option>Catalog 05</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-3 col-sm-6">
+                                    <div class="form-group">
+                                        <select name="category" id="category" class="form-control">
+                                            <option>All Categories</option>
+                                            <option>Category 01</option>
+                                            <option>Category 02</option>
+                                            <option>Category 03</option>
+                                            <option>Category 04</option>
+                                            <option>Category 05</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-2 col-sm-6">
+                                    <div class="form-group">
+                                        <input class="form-control" type="submit" value="Search">
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    <div class="clear"></div>
+                    </section>
                     <!-- End: Search Section -->
                     <div class="users-list-view">
                         <h3>Danh sách user</h3>
@@ -46,6 +88,7 @@
                                 <thead>
                                     <tr>
                                         <th>No.</th>
+                                        <th>ID</th>
                                         <th>Username
                                             <a href="{{route('users', compact('usern','desc'))}}"><i
                                                     class="fas fa-angle-double-down"></i></a>
@@ -67,26 +110,26 @@
                                 <?php $order=0;?>
                                 @foreach($users as $user)
                                 <?php $order++;?>
-                                <tr>
-                                    <td>{{$order}}</td>
-                                    @if(session('username')==$user->username)
-                                    <td>{{$user->username}} (Your Account)</td>
-                                    @else
-                                    <td>{{$user->username}}</td>
-                                    @endif
-                                    <td>{{$user->role}}</td>
-                                    <td>{{$user->email}}</td>
-                                    <td>
-                                        <?php $id=$user->id;?>
-                                        <a href="{{route('edituser', compact('id'))}}">
-                                            <i class="fa fa-pen" aria-hidden="true" style="color: blue"></i>
-                                        </a>
-                                        <a rel="{{$id}}" rel1="user" href="javascript:" id="deleteButton"
-                                            class="deleteButton">
-                                            <i class="fa fa-trash" aria-hidden="true" style="color: red"></i>
-                                        </a>
-                                    </td>
-                                </tr>
+                                        <tr>
+                                            <td>{{$order}}</td>
+                                            <td>{{$user->id}}</td>
+                                                @if(session('username')==$user->username)
+                                                    <td>{{$user->username}} (Your Account)</td>
+                                                @else
+                                                    <td>{{$user->username}}</td>
+                                                @endif
+                                            <td>{{$user->role}}</td>
+                                            <td>{{$user->email}}</td>
+                                            <td>
+                                                <?php $id=$user->id;?>
+                                                <a href="{{route('edituser', compact('id'))}}">
+                                                    <i class="fa fa-pencil" aria-hidden="true" style="color:blue"></i>
+                                                </a>
+                                                <a rel="{{$id}}" rel1="user" href="javascript:" id="deleteButton" class="deleteButton">
+                                                    <i class="fa fa-trash" aria-hidden="true" style="color:red"></i>
+                                                </a>
+                                            </td>
+                                        </tr>
                                 @endforeach
                             </table>
                             @else
@@ -123,7 +166,7 @@
             },
             function(){
                 swal("Deleted!", "The account has been deleted.", "success");
-                window.location.href = "/deleteuser/"+ deleteFunction + "/" + id;
+                window.location.href = "/deleteUser/"+ deleteFunction + "/" + id;
             });
         })
     })

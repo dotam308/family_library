@@ -23,8 +23,51 @@
         <main id="main" class="site-main">
             <div class="books-full-width">
                 <div class="container">
+                    <section class="search-filters">
+                        <div class="filter-box">
+                            <form action="{{route('bookmanagesearch')}}" method="get">
+                                <div class="col-md-4 col-sm-6">
+                                    <div class="form-group">
+                                        <input class="form-control" placeholder="Search by Keyword" id="keywords"
+                                            name="keywords" type="text">
+                                    </div>
+                                </div>
+                                <div class="col-md-3 col-sm-6">
+                                    <div class="form-group">
+                                        <select name="catalog" id="catalog" class="form-control">
+                                            <option>Search the Catalog</option>
+                                            <option>Catalog 01</option>
+                                            <option>Catalog 02</option>
+                                            <option>Catalog 03</option>
+                                            <option>Catalog 04</option>
+                                            <option>Catalog 05</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-3 col-sm-6">
+                                    <div class="form-group">
+                                        <select name="category" id="category" class="form-control">
+                                            <option>All Categories</option>
+                                            <option>Category 01</option>
+                                            <option>Category 02</option>
+                                            <option>Category 03</option>
+                                            <option>Category 04</option>
+                                            <option>Category 05</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-2 col-sm-6">
+                                    <div class="form-group">
+                                        <input class="form-control" type="submit" value="Search">
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    <div class="clear"></div>
+                    </section>
                     <form>
                         <h3>Danh sách các loại sách</h3>
+                        
                         <div class="row">
                             <div class="col text-right">
                                 <a type="button" class="btn btn-primary" href="{{ route('addBook') }}">Thêm sách</a>

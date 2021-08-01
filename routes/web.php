@@ -5,6 +5,7 @@ use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\BookController;
+use App\Http\Controllers\SearchController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\WishListController;
 use Illuminate\Http\Request;
@@ -53,11 +54,15 @@ Route::get('/borrowBook', [HomeController::class, 'borrowBookForm'])->name('borr
 Route::post('/borrowBook', [HomeController::class, 'borrowBookPost']);
 
 Route::get('/users',[UserController::class, 'index'])->name('users');
-Route::get('/createuser',[UserController::class,'userAddForm'])->name('createuser');
-Route::post('/createuser',[UserController::class,'addUser']);
-Route::get('/edituser',[UserController::class,'userEditForm'])->name('edituser');
-Route::post('/edituser',[UserController::class,'editUser']);
-Route::get('/deleteuser/user/{id}',[UserController::class,'deleteUser'])->name('deleteuser');
+Route::get('/createUser',[UserController::class,'userAddForm'])->name('createuser');
+Route::post('/createUser',[UserController::class,'addUser']);
+Route::get('/editUser',[UserController::class,'userEditForm'])->name('edituser');
+Route::post('/editUser',[UserController::class,'editUser']);
+Route::get('/deleteUser/user/{id}',[UserController::class,'deleteUser'])->name('deleteuser');
+
+Route::get('/bookSearch', [SearchController::class, 'bookSearch'])->name('booksearch');
+Route::get('/bookManageSearch', [SearchController::class, 'bookManageSearch'])->name('bookmanagesearch');
+Route::get('/userSearch', [SearchController::class, 'userSearch'])->name('usersearch');
 
 
 Route::get('/manageBooks', [BookController::class, 'showBookList'])->name('manageBooks');
