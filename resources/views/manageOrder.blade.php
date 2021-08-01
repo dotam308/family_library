@@ -71,7 +71,13 @@
                             </thead>
                             <tbody>
                                 @php
-                                    $i = 0;
+                                    $c = $orders->currentPage();
+                                    if (isset($_GET['desc'])) {
+                                        $i = -($orders->total()+1);
+                                        $i += 10*($c-1);
+                                    } else {
+                                        $i = 10*($c-1);
+                                    }
                                 @endphp
                                 @foreach ($orders as $order)
                                 
@@ -82,7 +88,7 @@
                                             $borrowId = $order->borrowingId;
                                         @endphp
                                     <tr>
-                                        <td>{{ $i }}</td>
+                                        <td>{{ abs($i) }}</td>
                                         <td>{{ $order->ddcCode }}</td>
                                         <td><a href="{{ route('book_detail_byId', compact('id')) }}">{{ $order->name }}</a></td>
                                         <td>{{ $order->author }}</td>

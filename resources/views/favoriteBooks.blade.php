@@ -67,7 +67,13 @@
                             </thead>
                             <tbody>
                                 @php
-                                $i = 0;
+                                    $c = $books->currentPage();
+                                    if (isset($_GET['desc'])) {
+                                        $i = -($books->total()+1);
+                                        $i += 10*($c-1);
+                                    } else {
+                                        $i = 10*($c-1);
+                                    }
                                 @endphp
                                 @foreach ($books as $book)
 
@@ -76,7 +82,7 @@
                                 $id = $book->id;
                                 @endphp
                                 <tr>
-                                    <td>{{ $i }}</td>
+                                    <td>{{ abs($i) }}</td>
                                     <td>{{ $book->ddcCode }}</td>
                                     <td><a href="{{ route('book_detail_byId', compact('id')) }}">{{ $book->name }}</a>
                                     </td>

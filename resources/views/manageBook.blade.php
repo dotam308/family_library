@@ -115,7 +115,13 @@
                             </thead>
                             <tbody>
                                 @php
-                                    $i = 0;
+                                    $c = $books->currentPage();
+                                    if (isset($_GET['desc'])) {
+                                        $i = -($books->total()+1);
+                                        $i += 10*($c-1);
+                                    } else {
+                                        $i = 10*($c-1);
+                                    }
                                 @endphp
                                 @foreach ($books as $book)
                                 
@@ -124,7 +130,7 @@
                                         @endphp
                                     <tr>
                                         <input type="hidden" class="deleteIdButton" value="{{ $book->id }}"/>
-                                        <td>{{ $i }}</td>
+                                        <td>{{ abs($i) }}</td>
                                         <td>{{ $book->ddcCode }}</td>
                                         <td>{{ $book->name }}</td>
                                         <td>{{ $book->author }}</td>

@@ -86,7 +86,15 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <?php $i=0; ?>
+                                        @php
+                                            $c = $borrow->currentPage();
+                                            if (isset($_GET['desc'])) {
+                                                $i = -($borrow->total()+1);
+                                                $i += 10*($c-1);
+                                            } else {
+                                                $i = 10*($c-1);
+                                            }
+                                        @endphp
                                         @forelse ($borrow as $b)
                                         <?php
                                         $id = $b->id;
@@ -94,7 +102,7 @@
                                         $i++;
                                         ?>
                                         <tr>
-                                            <td>{{$i}}</td>
+                                            <td>{{abs($i)}}</td>
                                             <td>{{$b->name}}</td>
                                             <td>{{$b->username}}</td>
                                             <td>{{$b->quantity}}</td>
