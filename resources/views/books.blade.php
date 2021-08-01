@@ -120,13 +120,23 @@
                             <?php $id = $book->id; ?>
                             <li>
                                 <figure>
-                                    
+                                    <input type="hidden" id="base-url" value="{{ url('/') }}">
+                                    <input type="hidden" name="_token" id="csrf" value="{{Session::token()}}">
+                                    <input type="hidden" id="userId{{ $id }}" name="userId"
+                                        value="{{ session('userId') }}">
+                                    <input type="hidden" id="bookId{{ $id }}" name="bookId" value="{{ $id }}">
+
+
+
+                                    {{-- end input --}}
                                     <a href="{{ route('book_detail_byId', compact('id')) }}"><img
-                                            src="/storage/{{ $book->image }}"
+                                            src="/storage/{{ $book->image }}" 
                                             alt="Book"></a>
                                     <figcaption>
                                         <header>
-                                            <h4><a href="{{ route('book_detail_byId', compact('id')) }}">{{ $book->name }}</a></h4>
+                                            <h4><a
+                                                    href="{{ route('book_detail_byId', compact('id')) }}">{{ $book->name }}</a>
+                                            </h4>
                                             <p><strong>Author:</strong> {{ $book->author }}</p>
                                             <p><strong>DdcCode:</strong> {{ $book->ddcCode }}</p>
                                         </header>
@@ -140,9 +150,15 @@
                                                     </a>
                                                 </li>
                                                 <li>
-                                                    <a href="#" target="_blank" data-toggle="blog-tags"
-                                                        data-placement="top" title="Like">
-                                                        <i class="fa fa-heart"></i>
+                                                    {{-- <a  data-toggle="blog-tags"
+                                                        data-placement="top" title="Like" class="button_wishlist" id="{{ $id }}"
+                                                    onclick="add_wistlist(this.id);">
+                                                    <i class="fa fa-heart"></i>
+                                                    </a> --}}
+                                                    <a data-toggle="blog-tags" data-placement="top" title="Like"
+                                                        class="button_wishlist" id="{{ $id }}"
+                                                        onclick="saveFavorite(this.id);">
+                                                        <i class="fa fa-heart {{ (!empty($book->favorite)) ? 'liked' : '' }}" id="heart{{ $id }}"></i>
                                                     </a>
                                                 </li>
                                                 <li>
@@ -172,6 +188,7 @@
                                             </ul>
                                         </div>
                                     </figcaption>
+
                                 </figure>
                             </li>
                             @empty

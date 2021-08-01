@@ -34,60 +34,13 @@
                                         <a href="{{ route('logout') }}"><i class="fa fa-logout"></i>{{ empty(session('nameUser')) ? "" : "Logout" }}</a>
                                         <span>|</span>
                                         <div class="header-cart dropdown">
-                                            <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                                            <a data-toggle="dropdown" class="dropdown-toggle" href="#favorite"> 
+                                                
                                                 <i class="fa fa-shopping-cart"></i>
-                                                <small>0</small>
+                                                <small id="numOfFavoriteBooks">0</small>
                                             </a>
-                                            <div class="dropdown-menu cart-dropdown">
-                                                <ul>
-                                                    <li class="clearfix">
-                                                        <img src="/assets/images/header-cart-image-01.jpg"
-                                                            alt="cart item" />
-                                                        <div class="item-info">
-                                                            <div class="name">
-                                                                <a href="#">The Great Gatsby</a>
-                                                            </div>
-                                                            <div class="author"><strong>Author:</strong> F. Scott
-                                                                Fitzgerald</div>
-                                                            <div class="price">1 X $10.00</div>
-                                                        </div>
-                                                        <a class="remove" href="#"><i class="fa fa-trash-o"></i></a>
-                                                    </li>
-                                                    <li class="clearfix">
-                                                        <img src="/assets/images/header-cart-image-02.jpg"
-                                                            alt="cart item" />
-                                                        <div class="item-info">
-                                                            <div class="name">
-                                                                <a href="#">The Great Gatsby</a>
-                                                            </div>
-                                                            <div class="author"><strong>Author:</strong> F. Scott
-                                                                Fitzgerald</div>
-                                                            <div class="price">1 X $10.00</div>
-                                                        </div>
-                                                        <a class="remove" href="#"><i class="fa fa-trash-o"></i></a>
-                                                    </li>
-                                                    <li class="clearfix">
-                                                        <img src="/assets/images/header-cart-image-03.jpg"
-                                                            alt="cart item" />
-                                                        <div class="item-info">
-                                                            <div class="name">
-                                                                <a href="#">The Great Gatsby</a>
-                                                            </div>
-                                                            <div class="author"><strong>Author:</strong> F. Scott
-                                                                Fitzgerald</div>
-                                                            <div class="price">1 X $10.00</div>
-                                                        </div>
-                                                        <a class="remove" href="#"><i class="fa fa-trash-o"></i></a>
-                                                    </li>
-                                                </ul>
-                                                <div class="cart-total">
-                                                    <div class="title">SubTotal</div>
-                                                    <div class="price">$30.00</div>
-                                                </div>
-                                                <div class="cart-buttons">
-                                                    <a href="cart.html" class="btn btn-dark-gray">View Cart</a>
-                                                    <a href="checkout.html" class="btn btn-primary">Checkout</a>
-                                                </div>
+                                            <div id="favorite" class="dropdown-menu cart-dropdown">
+                                                
                                             </div>
                                         </div>
                                     </div>
@@ -163,6 +116,7 @@
                                 <li class="dropdown {{ isset($active) && $active == "check" ? "active" : "" }}">
                                     <a data-toggle="dropdown" class="dropdown-toggle disabled" >Check</a>
                                     <ul class="dropdown-menu">
+                                        <li><a href="{{ route('favoriteBooks') }}">My favorite book list</a></li>
                                         <li><a href="{{ route('borrowedBooks') }}">Borrowed books list</a></li>
                                         <li><a href="{{ route('returnedBooks') }}">Returned books list</a></li>
                                     </ul>
