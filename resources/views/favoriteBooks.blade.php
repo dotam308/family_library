@@ -39,6 +39,7 @@
                                 <tr>
                                     <th>Order</th>
                                     <th>DDC code
+                                        <input type="hidden" name="base-url" id="base-url" value="{{url('/')}}">
                                         <a href="{{route('favoriteBooks', compact('dc','desc'))}}" id="dc_desc"><i
                                                 class="fas fa-angle-double-down"></i></a>
                                         <a href="{{route('favoriteBooks', compact('dc','insc'))}}" id="dc_insc"><i
@@ -114,28 +115,29 @@
 <script>
     $(document).ready(function() {
          $url = window.location.href;
-        if ($url == "http://127.0.0.1:8000/favoriteBooks?dc=r&desc=r") {
+         $a=document.getElementById("base-url").value;
+        if ($url === $a + "/favoriteBooks?dc=r&desc=r") {
             document.getElementById("dc_desc").style.display = 'none';
         }
-        if ($url == "http://127.0.0.1:8000/favoriteBooks?dc=r&insc=r") {
+        if ($url === $a + "/favoriteBooks?dc=r&insc=r") {
             document.getElementById("dc_insc").style.display = 'none';
         }
-        if ($url == "http://127.0.0.1:8000/favoriteBooks?bn=r&desc=r") {
+        if ($url === $a + "/favoriteBooks?bn=r&desc=r") {
             document.getElementById("bn_desc").style.display = 'none';
         }
-        if ($url == "http://127.0.0.1:8000/favoriteBooks?bn=r&insc=r") {
+        if ($url === $a + "/favoriteBooks?bn=r&insc=r") {
             document.getElementById("bn_insc").style.display = 'none';
         }
-        if ($url == "http://127.0.0.1:8000/favoriteBooks?au=r&desc=r") {
+        if ($url === $a + "/favoriteBooks?au=r&desc=r") {
             document.getElementById("au_desc").style.display = 'none';
         }
-        if ($url == "http://127.0.0.1:8000/favoriteBooks?au=r&insc=r") {
+        if ($url === $a + "/favoriteBooks?au=r&insc=r") {
             document.getElementById("au_insc").style.display = 'none';
         }
-        if ($url == "http://127.0.0.1:8000/favoriteBooks?ge=r&desc=r") {
+        if ($url === $a + "/favoriteBooks?ge=r&desc=r") {
             document.getElementById("ge_desc").style.display = 'none';
         }
-        if ($url == "http://127.0.0.1:8000/favoriteBooks?ge=r&insc=r") {
+        if ($url === $a + "/favoriteBooks?ge=r&insc=r") {
             document.getElementById("ge_insc").style.display = 'none';
         }
        $('a[id=deleteButton]').click(function() {

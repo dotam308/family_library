@@ -44,6 +44,7 @@
                                 <tr>
                                     <th>Order</th>
                                     <th>DDC code
+                                        <input type="hidden" name="base-url" id="base-url" value="{{url('/')}}">
                                     <a href="{{route($routeName, compact('dc','desc'))}}" id="dc_desc"><i class="fas fa-angle-double-down"></i></a>
                                             <a href="{{route($routeName, compact('dc','insc'))}}" id="dc_insc"><i class="fas fa-angle-double-up"></i></a></th>
                                     <th>Title
@@ -116,89 +117,90 @@
 <script>
     $(document).ready(function() {
         $url = window.location.href;
-        if ($url == "http://127.0.0.1:8000/waitingOrders?dc=r&desc=r") {
+        $a=document.getElementById("base-url").value;
+        if ($url === $a + "/waitingOrders?dc=r&desc=r") {
             document.getElementById("dc_desc").style.display = 'none';
         }
-        if ($url == "http://127.0.0.1:8000/waitingOrders?dc=r&insc=r") {
+        if ($url === $a + "/waitingOrders?dc=r&insc=r") {
             document.getElementById("dc_insc").style.display = 'none';
         }
-        if ($url == "http://127.0.0.1:8000/waitingOrders?bn=r&desc=r") {
+        if ($url === $a + "/waitingOrders?bn=r&desc=r") {
             document.getElementById("bn_desc").style.display = 'none';
         }
-        if ($url == "http://127.0.0.1:8000/waitingOrders?bn=r&insc=r") {
+        if ($url === $a + "/waitingOrders?bn=r&insc=r") {
             document.getElementById("bn_insc").style.display = 'none';
         }
-        if ($url == "http://127.0.0.1:8000/waitingOrders?au=r&desc=r") {
+        if ($url === $a + "/waitingOrders?au=r&desc=r") {
             document.getElementById("au_desc").style.display = 'none';
         }
-        if ($url == "http://127.0.0.1:8000/waitingOrders?au=r&insc=r") {
+        if ($url === $a + "/waitingOrders?au=r&insc=r") {
             document.getElementById("au_insc").style.display = 'none';
         }
-        if ($url == "http://127.0.0.1:8000/waitingOrders?un=r&desc=r") {
+        if ($url === $a + "/waitingOrders?un=r&desc=r") {
             document.getElementById("un_desc").style.display = 'none';
         }
-        if ($url == "http://127.0.0.1:8000/waitingOrders?un=r&insc=r") {
+        if ($url === $a + "/waitingOrders?un=r&insc=r") {
             document.getElementById("un_insc").style.display = 'none';
         }
-        if ($url == "http://127.0.0.1:8000/waitingOrders?qua=r&desc=r") {
+        if ($url === $a + "/waitingOrders?qua=r&desc=r") {
             document.getElementById("qua_desc").style.display = 'none';
         }
-        if ($url == "http://127.0.0.1:8000/waitingOrders?qua=r&insc=r") {
+        if ($url === $a + "/waitingOrders?qua=r&insc=r") {
             document.getElementById("qua_insc").style.display = 'none';
         }
-        if ($url == "http://127.0.0.1:8000/waitingOrders?bd=r&desc=r") {
+        if ($url === $a + "/waitingOrders?bd=r&desc=r") {
             document.getElementById("bd_desc").style.display = 'none';
         }
-        if ($url == "http://127.0.0.1:8000/waitingOrders?bd=r&insc=r") {
+        if ($url === $a + "/waitingOrders?bd=r&insc=r") {
             document.getElementById("bd_insc").style.display = 'none';
         }
-        if ($url == "http://127.0.0.1:8000/waitingOrders?rd=r&desc=r") {
+        if ($url === $a + "/waitingOrders?rd=r&desc=r") {
             document.getElementById("rd_desc").style.display = 'none';
         }
-        if ($url == "http://127.0.0.1:8000/waitingOrders?rd=r&insc=r") {
+        if ($url === $a + "/waitingOrders?rd=r&insc=r") {
             document.getElementById("rd_insc").style.display = 'none';
         }
          $url = window.location.href;
-        if ($url == "http://127.0.0.1:8000/borrowingOrders?dc=r&desc=r") {
+        if ($url === $a + "/borrowingOrders?dc=r&desc=r") {
             document.getElementById("dc_desc").style.display = 'none';
         }
-        if ($url == "http://127.0.0.1:8000/borrowingOrders?dc=r&insc=r") {
+        if ($url === $a + "/borrowingOrders?dc=r&insc=r") {
             document.getElementById("dc_insc").style.display = 'none';
         }
-        if ($url == "http://127.0.0.1:8000/borrowingOrders?bn=r&desc=r") {
+        if ($url === $a + "/borrowingOrders?bn=r&desc=r") {
             document.getElementById("bn_desc").style.display = 'none';
         }
-        if ($url == "http://127.0.0.1:8000/borrowingOrders?bn=r&insc=r") {
+        if ($url === $a + "/borrowingOrders?bn=r&insc=r") {
             document.getElementById("bn_insc").style.display = 'none';
         }
-        if ($url == "http://127.0.0.1:8000/borrowingOrders?au=r&desc=r") {
+        if ($url === $a + "/borrowingOrders?au=r&desc=r") {
             document.getElementById("au_desc").style.display = 'none';
         }
-        if ($url == "http://127.0.0.1:8000/borrowingOrders?au=r&insc=r") {
+        if ($url === $a + "/borrowingOrders?au=r&insc=r") {
             document.getElementById("au_insc").style.display = 'none';
         }
-        if ($url == "http://127.0.0.1:8000/borrowingOrders?un=r&desc=r") {
+        if ($url === $a + "/borrowingOrders?un=r&desc=r") {
             document.getElementById("un_desc").style.display = 'none';
         }
-        if ($url == "http://127.0.0.1:8000/borrowingOrders?un=r&insc=r") {
+        if ($url === $a + "/borrowingOrders?un=r&insc=r") {
             document.getElementById("un_insc").style.display = 'none';
         }
-        if ($url == "http://127.0.0.1:8000/borrowingOrders?qua=r&desc=r") {
+        if ($url === $a + "/borrowingOrders?qua=r&desc=r") {
             document.getElementById("qua_desc").style.display = 'none';
         }
-        if ($url == "http://127.0.0.1:8000/borrowingOrders?qua=r&insc=r") {
+        if ($url === $a + "/borrowingOrders?qua=r&insc=r") {
             document.getElementById("qua_insc").style.display = 'none';
         }
-        if ($url == "http://127.0.0.1:8000/borrowingOrders?bd=r&desc=r") {
+        if ($url === $a + "/borrowingOrders?bd=r&desc=r") {
             document.getElementById("bd_desc").style.display = 'none';
         }
-        if ($url == "http://127.0.0.1:8000/borrowingOrders?bd=r&insc=r") {
+        if ($url === $a + "/borrowingOrders?bd=r&insc=r") {
             document.getElementById("bd_insc").style.display = 'none';
         }
-        if ($url == "http://127.0.0.1:8000/borrowingOrders?rd=r&desc=r") {
+        if ($url === $a + "/borrowingOrders?rd=r&desc=r") {
             document.getElementById("rd_desc").style.display = 'none';
         }
-        if ($url == "http://127.0.0.1:8000/borrowingOrders?rd=r&insc=r") {
+        if ($url === $a + "/borrowingOrders?rd=r&insc=r") {
             document.getElementById("rd_insc").style.display = 'none';
         }
     })

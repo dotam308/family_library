@@ -11,10 +11,28 @@ use Illuminate\Support\Facades\DB;
 class BookController extends Controller
 {
     //
-    public function index() {
+    public function index(Request $request) {
+        if ($request->bn == "r") {
+            $books = Book::orderBy('books.name','asc')->paginate(10, ["*", 
+        DB::raw("(SELECT userId FROM wish_lists WHERE bookId = books.id AND userId = ".session('userId').") favorite")]);
+        } else if ($request->au == "r") {
+            $books = Book::orderBy('books.author','asc')->paginate(10, ["*", 
+        DB::raw("(SELECT userId FROM wish_lists WHERE bookId = books.id AND userId = ".session('userId').") favorite")]);
+        } else if ($request->pri == "r") {
+            $books = Book::orderBy('books.price','asc')->paginate(10, ["*", 
+        DB::raw("(SELECT userId FROM wish_lists WHERE bookId = books.id AND userId = ".session('userId').") favorite")]);
+        } else if ($request->gen == "r") {
+            $books = Book::orderBy('books.genre','asc')->paginate(10, ["*", 
+        DB::raw("(SELECT userId FROM wish_lists WHERE bookId = books.id AND userId = ".session('userId').") favorite")]);
+        } else if ($request->coun == "r") {
+            $books = Book::orderBy('books.country','asc')->paginate(10, ["*", 
+        DB::raw("(SELECT userId FROM wish_lists WHERE bookId = books.id AND userId = ".session('userId').") favorite")]);
+        }
+        else {
         $books = Book::paginate(10, ["*", 
         DB::raw("(SELECT userId FROM wish_lists WHERE bookId = books.id AND userId = ".session('userId').") favorite")]);
         // dd($books);
+    }
         $active = "books";
         return view('books', compact('books', 'active'));
     }

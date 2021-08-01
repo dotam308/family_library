@@ -17,6 +17,9 @@
 </section>
 @endsection
 @section('content')
+<?php
+$bn="r";$au="r";$pri="r";$gen="r";$coun="r";
+?>
 <div id="content" class="site-content">
     <div id="primary" class="content-area">
         <main id="main" class="site-main">
@@ -71,42 +74,19 @@
                     <!-- End: Search Section -->
                     <div class="filter-options margin-list">
                         <div class="row">
-                            <div class="col-md-3 col-sm-3">
-                                <select name="orderby">
-                                    <option selected="selected">Sort by Title</option>
-                                    <option>Sort by popularity</option>
-                                    <option>Sort by rating</option>
-                                    <option>Sort by newness</option>
-                                    <option>Sort by price</option>
-                                </select>
-                            </div>
-                            <div class="col-md-3 col-sm-3">
-                                <select name="orderby">
-                                    <option selected="selected">Sort by Author</option>
-                                    <option>Sort by popularity</option>
-                                    <option>Sort by rating</option>
-                                    <option>Sort by newness</option>
-                                    <option>Sort by price</option>
-                                </select>
-                            </div>
-                            <div class="col-md-2 col-sm-3">
-                                <select name="orderby">
-                                    <option selected="selected">Language</option>
-                                    <option>Sort by popularity</option>
-                                    <option>Sort by rating</option>
-                                    <option>Sort by newness</option>
-                                    <option>Sort by price</option>
-                                </select>
-                            </div>
-                            <div class="col-md-2 col-sm-3">
-                                <select name="orderby">
-                                    <option selected="selected">Publishing Date</option>
-                                    <option>Sort by popularity</option>
-                                    <option>Sort by rating</option>
-                                    <option>Sort by newness</option>
-                                    <option>Sort by price</option>
-                                </select>
-                            </div>
+                            <div class="dropdown">
+  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+    Sort by
+  </button>
+  <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+    <li><a class="dropdown-item" href="{{ route('books',compact('bn')) }}">Title</a></li>
+    <li><a class="dropdown-item" href="{{ route('books',compact('pri')) }}">Price</a></li>
+    <li><a class="dropdown-item" href="{{ route('books',compact('au')) }}">Author</a></li>
+    <li><a class="dropdown-item" href="{{ route('books',compact('gen')) }}">Genre</a></li>
+    <li><a class="dropdown-item" href="{{ route('books',compact('coun')) }}">Country</a></li>
+  </ul>
+</div>
+                            
                             <div class="col-md-2 col-sm-12 pull-right">
                                 <div class="filter-toggle">
                                     <a href="books-media-gird-view-v2.html" class="active"><i
