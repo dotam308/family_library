@@ -35,5 +35,11 @@ class WishListController extends Controller
         
         return response()->json(['deleted'=> true], 200);
     }
+    public function deleteFavoriteBookList(Request $request, $id) {
+        
+        $book = WishList::where('bookId', $id)->where('userId', session('userId'));
+        $book->delete();
+        return redirect()->back()->with("flash_message_success", "Delete book");
+    }
     
 }

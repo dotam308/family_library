@@ -76,3 +76,4 @@ Route::post('/saveFavorite', [WishListController::class, 'saveFavorite'])->name(
 
 Route::get('/favoriteBooks', [WishListController::class, 'showFavoriteBooks'])->name('favoriteBooks');
 Route::get('/deleteFavoriteBook/{id}',[WishListController::class, 'deleteFavoriteBook'])->name('deleteFavoriteBook');
+Route::get('/deleteFavoriteBookList/{id}',[WishListController::class, 'deleteFavoriteBookList'])->name('deleteFavoriteBookList');

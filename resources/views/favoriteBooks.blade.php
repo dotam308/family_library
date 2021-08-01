@@ -126,7 +126,7 @@
             closeOnConfirm: false
             },
             function(){
-                window.location.href = "/deleteFavoriteBook/" + id;
+                window.location.href = "/deleteFavoriteBookList/" + id;
               swal("Deleted!", "Your book has been deleted.", "success");
             });
         })
