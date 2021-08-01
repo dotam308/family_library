@@ -12,7 +12,9 @@ class BookController extends Controller
 {
     //
     public function index() {
-        $books = Book::paginate(10);
+        $books = Book::paginate(10, ["*", 
+        DB::raw("(SELECT userId FROM wish_lists WHERE bookId = books.id AND userId = ".session('userId').") favorite")]);
+        // dd($books);
         $active = "books";
         return view('books', compact('books', 'active'));
     }
@@ -104,14 +106,6 @@ class BookController extends Controller
         return redirect(route('manageBooks'));
     }
 
-    // public function confirmDeleteBook(Request $request) {
-        
-    //     $check = alert()->warning('Deleting user -<br/>are you sure?')
-    //     ->showCancelButton($btnText = 'Cancel', $btnColor = '#dc3545')
-    //     ->showConfirmButton($btnText = '<a href="manageBooks?delete=yes&id='.$request->id.'">Yes</a>', $btnColor = '#38c177')
-    //     ->autoClose(false);
-    //     return back()->with('success','Post deleted successfully');
-    // }
     public function deleteBook(Request $request, $id) {
         // $book = Book::where('id', $request->id)->first();
         $book = Book::where('id', $id)->first();
@@ -412,4 +406,6 @@ class BookController extends Controller
         $returned = true;
         return view('borrowedBookList', compact('books', 'returned', 'active'));
     }
+
+    
 }

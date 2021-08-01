@@ -6,6 +6,7 @@ use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\WishListController;
 use Illuminate\Http\Request;
 /*
 |--------------------------------------------------------------------------
@@ -70,3 +71,8 @@ Route::get('/borrowingOrders', [HomeController::class, 'borrowingOrders'])->name
 
 Route::get('/tookBook', [HomeController::class, 'tookBook'])->name('tookBook');
 Route::get('/returnBook', [HomeController::class, 'returnBook'])->name('returnBook');
+
+Route::post('/saveFavorite', [WishListController::class, 'saveFavorite'])->name('saveFavorite');
+
+Route::get('/favoriteBooks', [WishListController::class, 'showFavoriteBooks'])->name('favoriteBooks');
+Route::get('/deleteFavoriteBook/{id}',[WishListController::class, 'deleteFavoriteBook'])->name('deleteFavoriteBook');
