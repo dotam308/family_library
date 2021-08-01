@@ -39,25 +39,25 @@
                                 <tr>
                                     <th>Order</th>
                                     <th>DDC code
-                                        <a href="{{route('borrowedBooks', compact('dc','desc'))}}"><i
+                                        <a href="{{route('favoriteBooks', compact('dc','desc'))}}"><i
                                                 class="fas fa-angle-double-down"></i></a>
-                                        <a href="{{route('borrowedBooks', compact('dc','insc'))}}"><i
+                                        <a href="{{route('favoriteBooks', compact('dc','insc'))}}"><i
                                                 class="fas fa-angle-double-up"></i></a>
                                     </th>
                                     <th>Title
-                                        <a href="{{route('borrowedBooks', compact('bn','desc'))}}"><i
+                                        <a href="{{route('favoriteBooks', compact('bn','desc'))}}"><i
                                                 class="fas fa-angle-double-down"></i></a>
-                                        <a href="{{route('borrowedBooks', compact('bn','insc'))}}"><i
+                                        <a href="{{route('favoriteBooks', compact('bn','insc'))}}"><i
                                                 class="fas fa-angle-double-up"></i></a></th>
                                     <th>Author
-                                        <a href="{{route('borrowedBooks', compact('au','desc'))}}"><i
+                                        <a href="{{route('favoriteBooks', compact('au','desc'))}}"><i
                                                 class="fas fa-angle-double-down"></i></a>
-                                        <a href="{{route('borrowedBooks', compact('au','insc'))}}"><i
+                                        <a href="{{route('favoriteBooks', compact('au','insc'))}}"><i
                                                 class="fas fa-angle-double-up"></i></a></th>
                                     <th>Genre
-                                        <a href="{{route('borrowedBooks', compact('ge','desc'))}}"><i
+                                        <a href="{{route('favoriteBooks', compact('ge','desc'))}}"><i
                                                 class="fas fa-angle-double-down"></i></a>
-                                        <a href="{{route('borrowedBooks', compact('ge','insc'))}}"><i
+                                        <a href="{{route('favoriteBooks', compact('ge','insc'))}}"><i
                                                 class="fas fa-angle-double-up"></i></a></th>
                                    <th>Image</th>
                                    <th>Action</th>
