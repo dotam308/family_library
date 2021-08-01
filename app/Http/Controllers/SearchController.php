@@ -25,7 +25,7 @@ class SearchController extends Controller{
                       ->orWhere('copies', 'like', "%{$value}%")
                       ->orWhere('price', 'like', "%{$value}%");
             }
-        })->get();
+        })->paginate(10);
         return view('books',compact('books'));
     }
 
@@ -45,7 +45,7 @@ class SearchController extends Controller{
                       ->orWhere('copies', 'like', "%{$value}%")
                       ->orWhere('price', 'like', "%{$value}%");
             }
-        })->get();
+        })->paginate(10);
         return view('manageBook',compact('books'));
     }
 
@@ -59,7 +59,7 @@ class SearchController extends Controller{
                       ->orWhere('email', 'like', "%{$value}%")
                       ->orWhere('role', 'like', "%{$value}%");
             }
-        })->get();
+        })->paginate(10);
         return view('users',compact('users'));
     }
 }

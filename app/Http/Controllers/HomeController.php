@@ -62,9 +62,14 @@ class HomeController extends Controller
     }
     public function viewBookDetailById(Request $request) {
         $active = "manage";
-        $book = Book::select("books.*",
-        DB::raw("(SELECT userId FROM wish_lists WHERE bookId = books.id AND userId = ".session('userId').") favorite"))
-        ->where('id', $request->id)->first();
+        if (!empty(session('userId'))) {
+            $book = Book::select("books.*",
+            DB::raw("(SELECT userId FROM wish_lists WHERE bookId = books.id AND userId = ".session('userId').") favorite"))
+            ->where('id', $request->id)->first();
+        } else {
+            $book = Book::select("books.*")->where('id', $request->id)->first();
+        }
+
         return view('book_detail_byId', compact('book', 'active'));
     }
     public function viewBookDetailByIdPost(Request $request) {

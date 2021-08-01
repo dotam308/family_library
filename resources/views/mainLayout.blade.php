@@ -133,7 +133,7 @@
               });
           }
           else{
-              alert('Please fill all the field !');
+              alert('Please login first !');
           }
             }
           

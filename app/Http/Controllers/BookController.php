@@ -12,8 +12,12 @@ class BookController extends Controller
 {
     //
     public function index() {
-        $books = Book::paginate(10, ["*", 
-        DB::raw("(SELECT userId FROM wish_lists WHERE bookId = books.id AND userId = ".session('userId').") favorite")]);
+        if (!empty(session('userId'))) {
+            $books = Book::paginate(10, ["*", 
+            DB::raw("(SELECT userId FROM wish_lists WHERE bookId = books.id AND userId = ".session('userId').") favorite")]);
+        } else {
+            $books = Book::paginate(10, ["*"]);
+        }
         // dd($books);
         $active = "books";
         return view('books', compact('books', 'active'));
