@@ -54,7 +54,7 @@
                                         <th>Role
                                             <a href="{{route('users', compact('rol','desc'))}}" id = "rol_desc"><i
                                                     class="fas fa-angle-double-down"></i></a>
-                                            <a href="{{route('users', compact('rol','insc'))}}" id = "rol_ins"><i
+                                            <a href="{{route('users', compact('rol','insc'))}}" id = "rol_insc"><i
                                                     class="fas fa-angle-double-up"></i></a></th>
                                         <th>E-mail
                                             <a href="{{route('users', compact('mail','desc'))}}" id = "mail_desc"><i

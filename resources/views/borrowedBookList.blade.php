@@ -34,7 +34,7 @@
                         $dc = "r";$bn = "r";$au = "r";$ge = "r";$qua = "r";
                                 $bd = "r";$rd="r";$insc = "r";$desc = "r";$bra = "r"; 
                         if (empty($returned)) {
-                            $routeName = $routeName;
+                            $routeName = 'borrowedBooks';
                         } else {
                             $routeName = 'returnedBooks';
                         }
