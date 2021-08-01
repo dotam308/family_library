@@ -68,6 +68,7 @@
                     </section>
                     <!-- End: Search Section -->
                     <div class="users-list-view">
+
                         <h3>Danh sách user</h3>
 
                         <div class="row">
@@ -90,6 +91,7 @@
                                         <th>No.</th>
                                         <th>ID</th>
                                         <th>Username
+                                            <input type="hidden" name="base-url" id="base-url" value="{{url('/')}}">
                                             <a href="{{route('users', compact('usern','desc'))}}" id = "usern_desc"><i
                                                     class="fas fa-angle-double-down"></i></a>
                                             <a href="{{route('users', compact('usern','insc'))}}" id = "usern_insc"><i
@@ -153,22 +155,23 @@
 <script>
     $(document).ready(function() {
         $url = window.location.href;
-        if ($url == "http://127.0.0.1:8000/users?usern=r&desc=r") {
+        $a=document.getElementById("base-url").value;
+        if ($url ===  $a + "/users?usern=r&desc=r") {
             document.getElementById("usern_desc").style.display = 'none';
         } 
-        if ($url == "http://127.0.0.1:8000/users?usern=r&insc=r") {
+        if ($url === $a + "/users?usern=r&insc=r") {
             document.getElementById("usern_insc").style.display = 'none';
         }
-        if ($url == "http://127.0.0.1:8000/users?rol=r&desc=r") {
+        if ($url === $a +"/users?rol=r&desc=r") {
             document.getElementById("rol_desc").style.display = 'none';
         } 
-        if ($url == "http://127.0.0.1:8000/users?rol=r&insc=r") {
+        if ($url === $a +"/users?rol=r&insc=r") {
             document.getElementById("rol_insc").style.display = 'none';
         }
-        if ($url == "http://127.0.0.1:8000/users?mail=r&desc=r") {
+        if ($url === $a +"/users?mail=r&desc=r") {
             document.getElementById("mail_desc").style.display = 'none';
         } 
-        if ($url == "http://127.0.0.1:8000/users?mail=r&insc=r") {
+        if ($url === $a +"/users?mail=r&insc=r") {
             document.getElementById("mail_insc").style.display = 'none';
         } 
        $('a[id=deleteButton]').click(function(){

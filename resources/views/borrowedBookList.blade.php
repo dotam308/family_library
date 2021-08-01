@@ -44,6 +44,7 @@
                                 <tr>
                                         <th>Order</th>
                                         <th>DDC code
+                                            <input type="hidden" name="base-url" id="base-url" value="{{url('/')}}">
                                             <a href="{{route($routeName, compact('dc','desc'))}}" id="dc_desc"><i class="fas fa-angle-double-down"></i></a>
                                             <a href="{{route($routeName, compact('dc','insc'))}}" id="dc_insc"><i class="fas fa-angle-double-up"></i></a>
                                         </th>
@@ -140,94 +141,95 @@
 <script>
     $(document).ready(function() {
         $url = window.location.href;
-        if ($url == "http://127.0.0.1:8000/borrowedBooks?dc=r&desc=r") {
+        $a=document.getElementById("base-url").value;
+        if ($url === $a + "/borrowedBooks?dc=r&desc=r") {
             document.getElementById("dc_desc").style.display = 'none';
         }
-        if ($url == "http://127.0.0.1:8000/borrowedBooks?dc=r&insc=r") {
+        if ($url === $a + "/borrowedBooks?dc=r&insc=r") {
             document.getElementById("dc_insc").style.display = 'none';
         }
-        if ($url == "http://127.0.0.1:8000/borrowedBooks?bn=r&desc=r") {
+        if ($url === $a + "/borrowedBooks?bn=r&desc=r") {
             document.getElementById("bn_desc").style.display = 'none';
         }
-        if ($url == "http://127.0.0.1:8000/borrowedBooks?bn=r&insc=r") {
+        if ($url === $a + "/borrowedBooks?bn=r&insc=r") {
             document.getElementById("bn_insc").style.display = 'none';
         }
-        if ($url == "http://127.0.0.1:8000/borrowedBooks?au=r&desc=r") {
+        if ($url === $a + "/borrowedBooks?au=r&desc=r") {
             document.getElementById("au_desc").style.display = 'none';
         }
-        if ($url == "http://127.0.0.1:8000/borrowedBooks?au=r&insc=r") {
+        if ($url === $a + "/borrowedBooks?au=r&insc=r") {
             document.getElementById("au_insc").style.display = 'none';
         }
-        if ($url == "http://127.0.0.1:8000/borrowedBooks?ge=r&desc=r") {
+        if ($url === $a + "/borrowedBooks?ge=r&desc=r") {
             document.getElementById("ge_desc").style.display = 'none';
         }
-        if ($url == "http://127.0.0.1:8000/borrowedBooks?ge=r&insc=r") {
+        if ($url === $a + "/borrowedBooks?ge=r&insc=r") {
             document.getElementById("ge_insc").style.display = 'none';
         }
-        if ($url == "http://127.0.0.1:8000/borrowedBooks?qua=r&desc=r") {
+        if ($url === $a + "/borrowedBooks?qua=r&desc=r") {
             document.getElementById("qua_desc").style.display = 'none';
         }
-        if ($url == "http://127.0.0.1:8000/borrowedBooks?qua=r&insc=r") {
+        if ($url === $a + "/borrowedBooks?qua=r&insc=r") {
             document.getElementById("qua_insc").style.display = 'none';
         }
-        if ($url == "http://127.0.0.1:8000/borrowedBooks?bd=r&desc=r") {
+        if ($url === $a + "/borrowedBooks?bd=r&desc=r") {
             document.getElementById("bd_desc").style.display = 'none';
         }
-        if ($url == "http://127.0.0.1:8000/borrowedBooks?bd=r&insc=r") {
+        if ($url === $a + "/borrowedBooks?bd=r&insc=r") {
             document.getElementById("bd_insc").style.display = 'none';
         }
-        if ($url == "http://127.0.0.1:8000/borrowedBooks?rd=r&desc=r") {
+        if ($url === $a + "/borrowedBooks?rd=r&desc=r") {
             document.getElementById("rd_desc").style.display = 'none';
         }
-        if ($url == "http://127.0.0.1:8000/borrowedBooks?rd=r&insc=r") {
+        if ($url === $a + "/borrowedBooks?rd=r&insc=r") {
             document.getElementById("rd_insc").style.display = 'none';
         }
-        if ($url == "http://127.0.0.1:8000/returnedBooks?dc=r&desc=r") {
+        if ($url === $a + "/returnedBooks?dc=r&desc=r") {
             document.getElementById("dc_desc").style.display = 'none';
         }
-        if ($url == "http://127.0.0.1:8000/returnedBooks?dc=r&insc=r") {
+        if ($url === $a + "/returnedBooks?dc=r&insc=r") {
             document.getElementById("dc_insc").style.display = 'none';
         }
-        if ($url == "http://127.0.0.1:8000/returnedBooks?bn=r&desc=r") {
+        if ($url === $a + "/returnedBooks?bn=r&desc=r") {
             document.getElementById("bn_desc").style.display = 'none';
         }
-        if ($url == "http://127.0.0.1:8000/returnedBooks?bn=r&insc=r") {
+        if ($url === $a + "/returnedBooks?bn=r&insc=r") {
             document.getElementById("bn_insc").style.display = 'none';
         }
-        if ($url == "http://127.0.0.1:8000/returnedBooks?au=r&desc=r") {
+        if ($url === $a + "/returnedBooks?au=r&desc=r") {
             document.getElementById("au_desc").style.display = 'none';
         }
-        if ($url == "http://127.0.0.1:8000/returnedBooks?au=r&insc=r") {
+        if ($url === $a + "/returnedBooks?au=r&insc=r") {
             document.getElementById("au_insc").style.display = 'none';
         }
-        if ($url == "http://127.0.0.1:8000/returnedBooks?ge=r&desc=r") {
+        if ($url === $a + "/returnedBooks?ge=r&desc=r") {
             document.getElementById("ge_desc").style.display = 'none';
         }
-        if ($url == "http://127.0.0.1:8000/returnedBooks?ge=r&insc=r") {
+        if ($url === $a + "/returnedBooks?ge=r&insc=r") {
             document.getElementById("ge_insc").style.display = 'none';
         }
-        if ($url == "http://127.0.0.1:8000/returnedBooks?qua=r&desc=r") {
+        if ($url === $a + "/returnedBooks?qua=r&desc=r") {
             document.getElementById("qua_desc").style.display = 'none';
         }
-        if ($url == "http://127.0.0.1:8000/returnedBooks?qua=r&insc=r") {
+        if ($url === $a + "/returnedBooks?qua=r&insc=r") {
             document.getElementById("qua_insc").style.display = 'none';
         }
-        if ($url == "http://127.0.0.1:8000/returnedBooks?bd=r&desc=r") {
+        if ($url === $a + "/returnedBooks?bd=r&desc=r") {
             document.getElementById("bd_desc").style.display = 'none';
         }
-        if ($url == "http://127.0.0.1:8000/returnedBooks?bd=r&insc=r") {
+        if ($url === $a + "/returnedBooks?bd=r&insc=r") {
             document.getElementById("bd_insc").style.display = 'none';
         }
-        if ($url == "http://127.0.0.1:8000/returnedBooks?rd=r&desc=r") {
+        if ($url === $a + "/returnedBooks?rd=r&desc=r") {
             document.getElementById("rd_desc").style.display = 'none';
         }
-        if ($url == "http://127.0.0.1:8000/returnedBooks?rd=r&insc=r") {
+        if ($url === $a + "/returnedBooks?rd=r&insc=r") {
             document.getElementById("rd_insc").style.display = 'none';
         }
-        if ($url == "http://127.0.0.1:8000/returnedBooks?bra=r&desc=r") {
+        if ($url === $a + "/returnedBooks?bra=r&desc=r") {
             document.getElementById("bra_desc").style.display = 'none';
         }
-        if ($url == "http://127.0.0.1:8000/returnedBooks?bra=r&insc=r") {
+        if ($url === $a + "/returnedBooks?bra=r&insc=r") {
             document.getElementById("bra_insc").style.display = 'none';
         }
        $('a[id=deleteButton]').click(function() {

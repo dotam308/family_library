@@ -52,6 +52,7 @@
                                         <tr>
                                             <th>STT</th>
                                             <th>Tên sách
+                                                <input type="hidden" name="base-url" id="base-url" value="{{url('/')}}">
                                                 <a href="{{route('books_rented', compact('bookname', 'desc'))}}" id = "bookname_desc"><i
                                                         class="fas fa-angle-double-down"></i></a>
                                                 <a href="{{route('books_rented', compact('bookname', 'insc'))}}" id = "bookname_insc"><i
@@ -141,34 +142,35 @@
 <script>
     $(document).ready(function() {
        $url = window.location.href;
-       if ($url == "http://127.0.0.1:8000/books_rented?bookname=bookname&desc=d") {
+       $a=document.getElementById("base-url").value;
+       if ($url === $a + "/books_rented?bookname=bookname&desc=d") {
         document.getElementById("bookname_desc").style.display = 'none';
        }
-       if ($url == "http://127.0.0.1:8000/books_rented?bookname=bookname&insc=i") {
+       if ($url === $a + "/books_rented?bookname=bookname&insc=i") {
         document.getElementById("bookname_insc").style.display = 'none';
        }
-       if ($url == "http://127.0.0.1:8000/books_rented?borrower=borrower&desc=d") {
+       if ($url === $a + "/books_rented?borrower=borrower&desc=d") {
         document.getElementById("borrower_desc").style.display = 'none';
        }
-       if ($url == "http://127.0.0.1:8000/books_rented?borrower=borrower&insc=i") {
+       if ($url === $a + "/books_rented?borrower=borrower&insc=i") {
         document.getElementById("borrower_insc").style.display = 'none';
        }
-       if ($url == "http://127.0.0.1:8000/books_rented?quantityx=quantity&desc=d") {
+       if ($url === $a + "/books_rented?quantityx=quantity&desc=d") {
         document.getElementById("quantityx_desc").style.display = 'none';
        }
-       if ($url == "http://127.0.0.1:8000/books_rented?quantityx=quantity&insc=i") {
+       if ($url === $a + "/books_rented?quantityx=quantity&insc=i") {
         document.getElementById("quantityx_insc").style.display = 'none';
        }
-       if ($url == "http://127.0.0.1:8000/books_rented?brdate=brdate&desc=d") {
+       if ($url === $a + "/books_rented?brdate=brdate&desc=d") {
         document.getElementById("brdate_desc").style.display = 'none';
        }
-       if ($url == "http://127.0.0.1:8000/books_rented?brdate=brdate&insc=i") {
+       if ($url === $a + "/books_rented?brdate=brdate&insc=i") {
         document.getElementById("brdate_insc").style.display = 'none';
        }
-       if ($url == "http://127.0.0.1:8000/books_rented?redate=redate&desc=d") {
+       if ($url === $a + "/books_rented?redate=redate&desc=d") {
         document.getElementById("redate_desc").style.display = 'none';
        }
-       if ($url == "http://127.0.0.1:8000/books_rented?redate=redate&insc=i") {
+       if ($url === $a + "/books_rented?redate=redate&insc=i") {
         document.getElementById("redate_insc").style.display = 'none';
        }
        $('a[id=deleteButton]').click(function() {
