@@ -82,6 +82,7 @@
                                 <tr>
                                     <th>Số thứ tự/Order</th>
                                     <th>Mã DDC/DDC
+                                        <input type="hidden" name="base-url" id="base-url" value="{{url('/')}}">
                                     <a href="{{route('manageBooks', compact('dc','desc'))}}" id="dc_desc"><i class="fas fa-angle-double-down"></i></a>
                                         <a href="{{route('manageBooks', compact('dc','insc'))}}" id="dc_insc"><i class="fas fa-angle-double-up"></i></a></th>
                                     <th>Tên sách/Title
@@ -167,58 +168,59 @@
 <script>
     $(document).ready(function() {
         $url = window.location.href;
-        if ($url == "http://127.0.0.1:8000/manageBooks?dc=r&desc=r") {
+        $a=document.getElementById("base-url").value;
+        if ($url === $a + "/manageBooks?dc=r&desc=r") {
             document.getElementById("dc_desc").style.display = 'none';
         }
-        if ($url == "http://127.0.0.1:8000/manageBooks?dc=r&insc=r") {
+        if ($url === $a + "/manageBooks?dc=r&insc=r") {
             document.getElementById("dc_insc").style.display = 'none';
         }
-        if ($url == "http://127.0.0.1:8000/manageBooks?bn=r&desc=r") {
+        if ($url === $a + "/manageBooks?bn=r&desc=r") {
             document.getElementById("bn_desc").style.display = 'none';
         }
-        if ($url == "http://127.0.0.1:8000/manageBooks?bn=r&insc=r") {
+        if ($url === $a + "/manageBooks?bn=r&insc=r") {
             document.getElementById("bn_insc").style.display = 'none';
         }
-        if ($url == "http://127.0.0.1:8000/manageBooks?au=r&desc=r") {
+        if ($url === $a + "/manageBooks?au=r&desc=r") {
             document.getElementById("au_desc").style.display = 'none';
         }
-        if ($url == "http://127.0.0.1:8000/manageBooks?au=r&insc=r") {
+        if ($url === $a + "/manageBooks?au=r&insc=r") {
             document.getElementById("au_insc").style.display = 'none';
         }
-        if ($url == "http://127.0.0.1:8000/manageBooks?ge=r&desc=r") {
+        if ($url === $a + "/manageBooks?ge=r&desc=r") {
             document.getElementById("ge_desc").style.display = 'none';
         }
-        if ($url == "http://127.0.0.1:8000/manageBooks?ge=r&insc=r") {
+        if ($url === $a + "/manageBooks?ge=r&insc=r") {
             document.getElementById("ge_insc").style.display = 'none';
         }
-        if ($url == "http://127.0.0.1:8000/manageBooks?pub=r&desc=r") {
+        if ($url === $a + "/manageBooks?pub=r&desc=r") {
             document.getElementById("pub_desc").style.display = 'none';
         }
-        if ($url == "http://127.0.0.1:8000/manageBooks?pub=r&insc=r") {
+        if ($url === $a + "/manageBooks?pub=r&insc=r") {
             document.getElementById("pub_insc").style.display = 'none';
         }
-        if ($url == "http://127.0.0.1:8000/manageBooks?trans=r&desc=r") {
+        if ($url === $a + "/manageBooks?trans=r&desc=r") {
             document.getElementById("trans_desc").style.display = 'none';
         }
-        if ($url == "http://127.0.0.1:8000/manageBooks?trans=r&insc=r") {
+        if ($url === $a + "/manageBooks?trans=r&insc=r") {
             document.getElementById("trans_insc").style.display = 'none';
         }
-        if ($url == "http://127.0.0.1:8000/manageBooks?coun=r&desc=r") {
+        if ($url === $a + "/manageBooks?coun=r&desc=r") {
             document.getElementById("coun_desc").style.display = 'none';
         }
-        if ($url == "http://127.0.0.1:8000/manageBooks?coun=r&insc=r") {
+        if ($url === $a + "/manageBooks?coun=r&insc=r") {
             document.getElementById("coun_insc").style.display = 'none';
         }
-        if ($url == "http://127.0.0.1:8000/manageBooks?qua=r&desc=r") {
+        if ($url === $a + "/manageBooks?qua=r&desc=r") {
             document.getElementById("qua_desc").style.display = 'none';
         }
-        if ($url == "http://127.0.0.1:8000/manageBooks?qua=r&insc=r") {
+        if ($url === $a + "/manageBooks?qua=r&insc=r") {
             document.getElementById("qua_insc").style.display = 'none';
         }
-        if ($url == "http://127.0.0.1:8000/manageBooks?pri=r&desc=r") {
+        if ($url === $a + "/manageBooks?pri=r&desc=r") {
             document.getElementById("pri_desc").style.display = 'none';
         }
-        if ($url == "http://127.0.0.1:8000/manageBooks?pri=r&insc=r") {
+        if ($url === $a + "/manageBooks?pri=r&insc=r") {
             document.getElementById("pri_insc").style.display = 'none';
         }
        $('a[id=deleteButton]').click(function() {
