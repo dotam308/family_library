@@ -173,7 +173,7 @@ class HomeController extends Controller
                   ->select('borrowings.*', 'users.username', 'books.name')->orderBy('borrowings.borrowDate', 'asc')
                   ->paginate($limit);
         }
-        else if ($request->drdate == 'brdate' && $request->desc == 'd') {
+        else if ($request->brdate == 'brdate' && $request->desc == 'd') {
             $borrow = DB::table('borrowings')
                   ->join('books','borrowings.bookId','=','books.id')
                   ->join('users','borrowings.userId','=','users.id')

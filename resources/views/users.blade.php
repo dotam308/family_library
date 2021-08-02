@@ -109,11 +109,19 @@
                                         <th>Action</th>
                                     </tr>
                                 </thead>
-                                <?php $order=0;?>
+                                @php
+                                    $c = $users->currentPage();
+                                    if (isset($_GET['desc'])) {
+                                        $order = -($users->total()+1);
+                                        $order += 10*($c-1);
+                                    } else {
+                                        $order = 10*($c-1);
+                                    }
+                                @endphp
                                 @foreach($users as $user)
                                 <?php $order++;?>
                                         <tr>
-                                            <td>{{$order}}</td>
+                                            <td>{{abs($order)}}</td>
                                             <td>{{$user->id}}</td>
                                                 @if(session('username')==$user->username)
                                                     <td>{{$user->username}} (Your Account)</td>

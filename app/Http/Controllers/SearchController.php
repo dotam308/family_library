@@ -25,7 +25,7 @@ class SearchController extends Controller{
                       ->orWhere('copies', 'like', "%{$value}%")
                       ->orWhere('price', 'like', "%{$value}%");
             }
-        })->paginate(10);
+        })->paginate(6);
         return view('books',compact('books'));
     }
 
