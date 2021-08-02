@@ -57,7 +57,7 @@ Route::get('/users',[UserController::class, 'index'])->name('users');
 Route::get('/createUser',[UserController::class,'userAddForm'])->name('createuser');
 Route::post('/createUser',[UserController::class,'addUser']);
 Route::get('/editUser',[UserController::class,'userEditForm'])->name('edituser');
-Route::post('/editUser',[UserController::class,'editUser']);
+Route::post('/editUser',[UsferController::class,'editUser']);
 Route::get('/deleteUser/user/{id}',[UserController::class,'deleteUser'])->name('deleteuser');
 
 Route::get('/bookSearch', [SearchController::class, 'bookSearch'])->name('booksearch');
