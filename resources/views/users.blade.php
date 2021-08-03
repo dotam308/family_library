@@ -44,6 +44,7 @@
                     </section>
                     <!-- End: Search Section -->
                     <div class="users-list-view">
+
                         <h3>Danh sách user</h3>
                         <div class="row">
                             <div class="col text-right">
@@ -64,29 +65,43 @@
                                     <tr>
                                         <th>Order</th>
                                         <th>Username
-                                            <a href="{{route('users', compact('usern','desc'))}}"><i
+                                            <input type="hidden" name="base-url" id="base-url" value="{{url('/')}}">
+                                            <a href="{{route('users', compact('usern','desc'))}}" id = "usern_desc"><i
                                                     class="fas fa-angle-double-down"></i></a>
-                                            <a href="{{route('users', compact('usern','insc'))}}"><i
+                                            <a href="{{route('users', compact('usern','insc'))}}" id = "usern_insc"><i
                                                     class="fas fa-angle-double-up"></i></a></th>
                                         <th>Role
-                                            <a href="{{route('users', compact('rol','desc'))}}"><i
+                                            <a href="{{route('users', compact('rol','desc'))}}" id = "rol_desc"><i
                                                     class="fas fa-angle-double-down"></i></a>
-                                            <a href="{{route('users', compact('rol','insc'))}}"><i
+                                            <a href="{{route('users', compact('rol','insc'))}}" id = "rol_insc"><i
                                                     class="fas fa-angle-double-up"></i></a></th>
                                         <th>E-mail
-                                            <a href="{{route('users', compact('mail','desc'))}}"><i
+                                            <a href="{{route('users', compact('mail','desc'))}}" id = "mail_desc"><i
                                                     class="fas fa-angle-double-down"></i></a>
-                                            <a href="{{route('users', compact('mail','insc'))}}"><i
+                                            <a href="{{route('users', compact('mail','insc'))}}" id = "mail_insc"><i
                                                     class="fas fa-angle-double-up"></i></a></th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
-                                <?php $order=0;?>
+                                @php
+                                    $c = $users->currentPage();
+                                    if (isset($_GET['desc'])) {
+                                        $order = -($users->total()+1);
+                                        $order += 10*($c-1);
+                                    } else {
+                                        $order = 10*($c-1);
+                                    }
+                                @endphp
                                 @foreach($users as $user)
                                 <?php $order++;?>
                                         <tr>
-                                            <td>{{$order}}</td>
-                                            <td>{{$user->username}}<?php if(session('username')==$user->username){?> (Your Account)<?php }?></td>
+                                            <td>{{abs($order)}}</td>
+                                            <td>{{$user->id}}</td>
+                                                @if(session('username')==$user->username)
+                                                    <td>{{$user->username}} (Your Account)</td>
+                                                @else
+                                                    <td>{{$user->username}}</td>
+                                                @endif
                                             <td>{{$user->role}}</td>
                                             <td>{{$user->email}}</td>
                                             <td>
@@ -121,6 +136,26 @@
 </script>
 <script>
     $(document).ready(function() {
+        $url = window.location.href;
+        $a=document.getElementById("base-url").value;
+        if ($url ===  $a + "/users?usern=r&desc=r") {
+            document.getElementById("usern_desc").style.display = 'none';
+        } 
+        if ($url === $a + "/users?usern=r&insc=r") {
+            document.getElementById("usern_insc").style.display = 'none';
+        }
+        if ($url === $a +"/users?rol=r&desc=r") {
+            document.getElementById("rol_desc").style.display = 'none';
+        } 
+        if ($url === $a +"/users?rol=r&insc=r") {
+            document.getElementById("rol_insc").style.display = 'none';
+        }
+        if ($url === $a +"/users?mail=r&desc=r") {
+            document.getElementById("mail_desc").style.display = 'none';
+        } 
+        if ($url === $a +"/users?mail=r&insc=r") {
+            document.getElementById("mail_insc").style.display = 'none';
+        } 
        $('a[id=deleteButton]').click(function(){
            var id = $(this).attr('rel');
            var deleteFunction = $(this).attr('rel1');

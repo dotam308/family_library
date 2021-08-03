@@ -39,25 +39,26 @@
                                 <tr>
                                     <th>Order</th>
                                     <th>DDC code
-                                        <a href="{{route('favoriteBooks', compact('dc','desc'))}}"><i
+                                        <input type="hidden" name="base-url" id="base-url" value="{{url('/')}}">
+                                        <a href="{{route('favoriteBooks', compact('dc','desc'))}}" id="dc_desc"><i
                                                 class="fas fa-angle-double-down"></i></a>
-                                        <a href="{{route('favoriteBooks', compact('dc','insc'))}}"><i
+                                        <a href="{{route('favoriteBooks', compact('dc','insc'))}}" id="dc_insc"><i
                                                 class="fas fa-angle-double-up"></i></a>
                                     </th>
                                     <th>Title
-                                        <a href="{{route('favoriteBooks', compact('bn','desc'))}}"><i
+                                        <a href="{{route('favoriteBooks', compact('bn','desc'))}}" id="bn_desc"><i
                                                 class="fas fa-angle-double-down"></i></a>
-                                        <a href="{{route('favoriteBooks', compact('bn','insc'))}}"><i
+                                        <a href="{{route('favoriteBooks', compact('bn','insc'))}}" id="bn_insc"><i
                                                 class="fas fa-angle-double-up"></i></a></th>
                                     <th>Author
-                                        <a href="{{route('favoriteBooks', compact('au','desc'))}}"><i
+                                        <a href="{{route('favoriteBooks', compact('au','desc'))}}" id="au_desc"><i
                                                 class="fas fa-angle-double-down"></i></a>
-                                        <a href="{{route('favoriteBooks', compact('au','insc'))}}"><i
+                                        <a href="{{route('favoriteBooks', compact('au','insc'))}}" id="au_insc"><i
                                                 class="fas fa-angle-double-up"></i></a></th>
                                     <th>Genre
-                                        <a href="{{route('favoriteBooks', compact('ge','desc'))}}"><i
+                                        <a href="{{route('favoriteBooks', compact('ge','desc'))}}" id="ge_desc"><i
                                                 class="fas fa-angle-double-down"></i></a>
-                                        <a href="{{route('favoriteBooks', compact('ge','insc'))}}"><i
+                                        <a href="{{route('favoriteBooks', compact('ge','insc'))}}" id="ge_insc"><i
                                                 class="fas fa-angle-double-up"></i></a></th>
                                    <th>Image</th>
                                    <th>Action</th>
@@ -66,7 +67,13 @@
                             </thead>
                             <tbody>
                                 @php
-                                $i = 0;
+                                    $c = $books->currentPage();
+                                    if (isset($_GET['desc'])) {
+                                        $i = -($books->total()+1);
+                                        $i += 10*($c-1);
+                                    } else {
+                                        $i = 10*($c-1);
+                                    }
                                 @endphp
                                 @foreach ($books as $book)
 
@@ -75,7 +82,7 @@
                                 $id = $book->id;
                                 @endphp
                                 <tr>
-                                    <td>{{ $i }}</td>
+                                    <td>{{ abs($i) }}</td>
                                     <td>{{ $book->ddcCode }}</td>
                                     <td><a href="{{ route('book_detail_byId', compact('id')) }}">{{ $book->name }}</a>
                                     </td>
@@ -113,6 +120,32 @@
 </script>
 <script>
     $(document).ready(function() {
+         $url = window.location.href;
+         $a=document.getElementById("base-url").value;
+        if ($url === $a + "/favoriteBooks?dc=r&desc=r") {
+            document.getElementById("dc_desc").style.display = 'none';
+        }
+        if ($url === $a + "/favoriteBooks?dc=r&insc=r") {
+            document.getElementById("dc_insc").style.display = 'none';
+        }
+        if ($url === $a + "/favoriteBooks?bn=r&desc=r") {
+            document.getElementById("bn_desc").style.display = 'none';
+        }
+        if ($url === $a + "/favoriteBooks?bn=r&insc=r") {
+            document.getElementById("bn_insc").style.display = 'none';
+        }
+        if ($url === $a + "/favoriteBooks?au=r&desc=r") {
+            document.getElementById("au_desc").style.display = 'none';
+        }
+        if ($url === $a + "/favoriteBooks?au=r&insc=r") {
+            document.getElementById("au_insc").style.display = 'none';
+        }
+        if ($url === $a + "/favoriteBooks?ge=r&desc=r") {
+            document.getElementById("ge_desc").style.display = 'none';
+        }
+        if ($url === $a + "/favoriteBooks?ge=r&insc=r") {
+            document.getElementById("ge_insc").style.display = 'none';
+        }
        $('a[id=deleteButton]').click(function() {
            var id = $(this).attr('rel');
            

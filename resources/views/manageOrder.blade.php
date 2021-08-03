@@ -17,6 +17,7 @@
 </section>
 @endsection
 @section('content')
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" />
 <div id="content" class="site-content">
     <div id="primary" class="content-area">
         <main id="main" class="site-main">
@@ -29,24 +30,54 @@
                         @if (count($orders) == 0)
                             <p>There is no data</p>
                         @else
+                        <?php
+                        $dc = "r";$bn = "r";$au = "r";$un = "r";$qua = "r";
+                                $bd = "r";$rd="r";$insc = "r";$desc = "r"; 
+                        if (empty($status)) {
+                            $routeName = 'borrowingOrders';
+                        } else{
+                            $routeName = 'waitingOrders';    
+                        }
+                        ?>
                         <table class="table table-hover">
                             <thead>
                                 <tr>
                                     <th>Order</th>
-                                    <th>DDC code</th>
-                                    <th>Title</th>
-                                    <th>Author</th>
-                                    <th>Username</th>
-                                    <th>borrowed quantity</th>
-                                    <th>borrowed date</th>
-                                    <th>return date</th>
+                                    <th>DDC code
+                                        <input type="hidden" name="base-url" id="base-url" value="{{url('/')}}">
+                                    <a href="{{route($routeName, compact('dc','desc'))}}" id="dc_desc"><i class="fas fa-angle-double-down"></i></a>
+                                            <a href="{{route($routeName, compact('dc','insc'))}}" id="dc_insc"><i class="fas fa-angle-double-up"></i></a></th>
+                                    <th>Title
+                                    <a href="{{route($routeName, compact('bn','desc'))}}" id="bn_desc"><i class="fas fa-angle-double-down"></i></a>
+                                            <a href="{{route($routeName, compact('bn','insc'))}}" id="bn_insc"><i class="fas fa-angle-double-up"></i></a></th>
+                                    <th>Author
+                                    <a href="{{route($routeName, compact('au','desc'))}}" id="au_desc"><i class="fas fa-angle-double-down"></i></a>
+                                            <a href="{{route($routeName, compact('au','insc'))}}" id="au_insc"><i class="fas fa-angle-double-up"></i></a></th>
+                                    <th>Username
+                                    <a href="{{route($routeName, compact('un','desc'))}}" id="un_desc"><i class="fas fa-angle-double-down"></i></a>
+                                            <a href="{{route($routeName, compact('un','insc'))}}" id="un_insc"><i class="fas fa-angle-double-up"></i></a></th>
+                                    <th>borrowed quantity
+                                    <a href="{{route($routeName, compact('qua','desc'))}}" id="qua_desc"><i class="fas fa-angle-double-down"></i></a>
+                                            <a href="{{route($routeName, compact('qua','insc'))}}" id="qua_insc"><i class="fas fa-angle-double-up"></i></a></th>
+                                    <th>borrowed date
+                                    <a href="{{route($routeName, compact('bd','desc'))}}" id="bd_desc"><i class="fas fa-angle-double-down"></i></a>
+                                            <a href="{{route($routeName, compact('bd','insc'))}}" id="bd_insc"><i class="fas fa-angle-double-up"></i></a></th>
+                                    <th>return date
+                                    <a href="{{route($routeName, compact('rd','desc'))}}" id="rd_desc"><i class="fas fa-angle-double-down"></i></a>
+                                            <a href="{{route($routeName, compact('rd','insc'))}}" id="rd_insc"><i class="fas fa-angle-double-up"></i></a></th>
                                     <th>Status</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @php
-                                    $i = 0;
+                                    $c = $orders->currentPage();
+                                    if (isset($_GET['desc'])) {
+                                        $i = -($orders->total()+1);
+                                        $i += 10*($c-1);
+                                    } else {
+                                        $i = 10*($c-1);
+                                    }
                                 @endphp
                                 @foreach ($orders as $order)
                                 
@@ -57,7 +88,7 @@
                                             $borrowId = $order->borrowingId;
                                         @endphp
                                     <tr>
-                                        <td>{{ $i }}</td>
+                                        <td>{{ abs($i) }}</td>
                                         <td>{{ $order->ddcCode }}</td>
                                         <td><a href="{{ route('book_detail_byId', compact('id')) }}">{{ $order->name }}</a></td>
                                         <td>{{ $order->author }}</td>
@@ -87,4 +118,98 @@
         </main>
     </div>
 </div>
+@endsection
+@section('script')
+<script>
+    $(document).ready(function() {
+        $url = window.location.href;
+        $a=document.getElementById("base-url").value;
+        if ($url === $a + "/waitingOrders?dc=r&desc=r") {
+            document.getElementById("dc_desc").style.display = 'none';
+        }
+        if ($url === $a + "/waitingOrders?dc=r&insc=r") {
+            document.getElementById("dc_insc").style.display = 'none';
+        }
+        if ($url === $a + "/waitingOrders?bn=r&desc=r") {
+            document.getElementById("bn_desc").style.display = 'none';
+        }
+        if ($url === $a + "/waitingOrders?bn=r&insc=r") {
+            document.getElementById("bn_insc").style.display = 'none';
+        }
+        if ($url === $a + "/waitingOrders?au=r&desc=r") {
+            document.getElementById("au_desc").style.display = 'none';
+        }
+        if ($url === $a + "/waitingOrders?au=r&insc=r") {
+            document.getElementById("au_insc").style.display = 'none';
+        }
+        if ($url === $a + "/waitingOrders?un=r&desc=r") {
+            document.getElementById("un_desc").style.display = 'none';
+        }
+        if ($url === $a + "/waitingOrders?un=r&insc=r") {
+            document.getElementById("un_insc").style.display = 'none';
+        }
+        if ($url === $a + "/waitingOrders?qua=r&desc=r") {
+            document.getElementById("qua_desc").style.display = 'none';
+        }
+        if ($url === $a + "/waitingOrders?qua=r&insc=r") {
+            document.getElementById("qua_insc").style.display = 'none';
+        }
+        if ($url === $a + "/waitingOrders?bd=r&desc=r") {
+            document.getElementById("bd_desc").style.display = 'none';
+        }
+        if ($url === $a + "/waitingOrders?bd=r&insc=r") {
+            document.getElementById("bd_insc").style.display = 'none';
+        }
+        if ($url === $a + "/waitingOrders?rd=r&desc=r") {
+            document.getElementById("rd_desc").style.display = 'none';
+        }
+        if ($url === $a + "/waitingOrders?rd=r&insc=r") {
+            document.getElementById("rd_insc").style.display = 'none';
+        }
+         $url = window.location.href;
+        if ($url === $a + "/borrowingOrders?dc=r&desc=r") {
+            document.getElementById("dc_desc").style.display = 'none';
+        }
+        if ($url === $a + "/borrowingOrders?dc=r&insc=r") {
+            document.getElementById("dc_insc").style.display = 'none';
+        }
+        if ($url === $a + "/borrowingOrders?bn=r&desc=r") {
+            document.getElementById("bn_desc").style.display = 'none';
+        }
+        if ($url === $a + "/borrowingOrders?bn=r&insc=r") {
+            document.getElementById("bn_insc").style.display = 'none';
+        }
+        if ($url === $a + "/borrowingOrders?au=r&desc=r") {
+            document.getElementById("au_desc").style.display = 'none';
+        }
+        if ($url === $a + "/borrowingOrders?au=r&insc=r") {
+            document.getElementById("au_insc").style.display = 'none';
+        }
+        if ($url === $a + "/borrowingOrders?un=r&desc=r") {
+            document.getElementById("un_desc").style.display = 'none';
+        }
+        if ($url === $a + "/borrowingOrders?un=r&insc=r") {
+            document.getElementById("un_insc").style.display = 'none';
+        }
+        if ($url === $a + "/borrowingOrders?qua=r&desc=r") {
+            document.getElementById("qua_desc").style.display = 'none';
+        }
+        if ($url === $a + "/borrowingOrders?qua=r&insc=r") {
+            document.getElementById("qua_insc").style.display = 'none';
+        }
+        if ($url === $a + "/borrowingOrders?bd=r&desc=r") {
+            document.getElementById("bd_desc").style.display = 'none';
+        }
+        if ($url === $a + "/borrowingOrders?bd=r&insc=r") {
+            document.getElementById("bd_insc").style.display = 'none';
+        }
+        if ($url === $a + "/borrowingOrders?rd=r&desc=r") {
+            document.getElementById("rd_desc").style.display = 'none';
+        }
+        if ($url === $a + "/borrowingOrders?rd=r&insc=r") {
+            document.getElementById("rd_insc").style.display = 'none';
+        }
+    })
+</script>
+
 @endsection

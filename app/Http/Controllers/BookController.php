@@ -10,11 +10,29 @@ use Illuminate\Support\Facades\DB;
 
 class BookController extends Controller
 {
-    //
-    public function index() {
-        $books = Book::paginate(10, ["*", 
-        DB::raw("(SELECT userId FROM wish_lists WHERE bookId = books.id AND userId = ".session('userId').") favorite")]);
-        // dd($books);
+    public function index(Request $request) {
+        if ($request->bn == "r") {
+            $books = Book::orderBy('books.name','asc');
+        } else if ($request->au == "r") {
+            $books = Book::orderBy('books.author','asc');
+        } else if ($request->pri == "r") {
+            $books = Book::orderBy('books.price','asc');
+        } else if ($request->gen == "r") {
+            $books = Book::orderBy('books.genre','asc');
+        } else if ($request->coun == "r") {
+            $books = Book::orderBy('books.country','asc') ;
+        }
+        else {
+        $books = Book::orderBy('books.id', 'asc');
+        }
+        
+        
+        if (!empty(session('userId'))){
+            $books = $books->paginate(10, ["*", 
+            DB::raw("(SELECT userId FROM wish_lists WHERE bookId = books.id AND userId = ".session('userId').") favorite")]);
+        } else {
+            $books = $books->paginate(10);
+        }
         $active = "books";
         return view('books', compact('books', 'active'));
     }

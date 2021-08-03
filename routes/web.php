@@ -54,6 +54,7 @@ Route::get('/borrowBook', [HomeController::class, 'borrowBookForm'])->name('borr
 Route::post('/borrowBook', [HomeController::class, 'borrowBookPost']);
 
 Route::get('/users',[UserController::class, 'index'])->name('users');
+
 Route::get('/create_user',[UserController::class,'userAddForm'])->name('createUser');
 Route::post('/create_user',[UserController::class,'addUser']);
 Route::get('/edit_user',[UserController::class,'userEditForm'])->name('editUser');
@@ -65,6 +66,10 @@ Route::get('/delete_user/user/{id}',[UserController::class,'deleteUser'])->name(
 Route::get('/search_books', [SearchController::class, 'bookSearch'])->name('bookSearch');
 Route::get('/search_books_admin', [SearchController::class, 'bookManagementSearch'])->name('bookManagementSearch');
 Route::get('/search_users', [SearchController::class, 'userSearch'])->name('userSearch');
+
+// Route::get('/bookSearch', [SearchController::class, 'bookSearch'])->name('booksearch');
+// Route::get('/bookManageSearch', [SearchController::class, 'bookManageSearch'])->name('bookmanagesearch');
+// Route::get('/userSearch', [SearchController::class, 'userSearch'])->name('usersearch');
 
 
 Route::get('/manageBooks', [BookController::class, 'showBookList'])->name('manageBooks');
