@@ -76,7 +76,7 @@
                                 </div>
                             </form>
                         </div>
-                    <div class="clear"></div>
+                        <div class="clear"></div>
                     </section>
                     <form>
                         <h3>Danh sách các loại sách</h3>

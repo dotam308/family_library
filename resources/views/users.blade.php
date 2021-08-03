@@ -46,7 +46,6 @@
                     <div class="users-list-view">
 
                         <h3>Danh sách user</h3>
-
                         <div class="row">
                             <div class="col text-right">
                                 <a type="button" class="btn btn-primary" href="{{route('createUser')}}">ADD ACCOUNT</a>
@@ -65,7 +64,6 @@
                                 <thead>
                                     <tr>
                                         <th>Order</th>
-                                        
                                         <th>Username
                                             <input type="hidden" name="base-url" id="base-url" value="{{url('/')}}">
                                             <a href="{{route('users', compact('usern','desc'))}}" id = "usern_desc"><i

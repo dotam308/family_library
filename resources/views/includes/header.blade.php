@@ -28,7 +28,6 @@
                                 </div>
                                 <div class="col-sm-6">
                                     <div class="topbar-links">
-                                        
                                         <a data-toggle="dropdown" class="dropdown-toggle disabled" href="#">Welcome {{session('username')}}</a>
                                         <a href="{{ route('signin') }}"><i class="fa fa-lock"></i>{{ empty(session('username')) ? "Login / Register" : "" }}</a>
                                         <a href="{{ route('logout') }}"><i class="fa fa-logout"></i>{{ empty(session('username')) ? "" : "Logout" }}</a>
