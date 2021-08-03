@@ -17,8 +17,12 @@
 </section>
 @endsection
 @section('content')
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" />
 <?php
-$bn="r";$au="r";$pri="r";$gen="r";$coun="r";
+$bn="r";$au="r";$pri="r";$gen="r";$coun="r";$page = "r";$desc="r";$insc="r";
+if (isset($_GET['page'])) {
+    $page = $_GET['page']; 
+}
 ?>
 <div id="content" class="site-content">
     <div id="primary" class="content-area">
@@ -91,11 +95,11 @@ $bn="r";$au="r";$pri="r";$gen="r";$coun="r";
     Sort by
   </button>
   <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-    <li><a class="dropdown-item" href="{{ route('books',compact('bn')) }}">Title</a></li>
-    <li><a class="dropdown-item" href="{{ route('books',compact('pri')) }}">Price</a></li>
-    <li><a class="dropdown-item" href="{{ route('books',compact('au')) }}">Author</a></li>
-    <li><a class="dropdown-item" href="{{ route('books',compact('gen')) }}">Genre</a></li>
-    <li><a class="dropdown-item" href="{{ route('books',compact('coun')) }}">Country</a></li>
+    <li><a class="dropdown-item" href="{{ route('books',compact('bn','page')) }}">Title</a></li>
+    <li><a class="dropdown-item" href="{{ route('books',compact('pri','page')) }}">Price</a></li>
+    <li><a class="dropdown-item" href="{{ route('books',compact('au', 'page')) }}">Author</a></li>
+    <li><a class="dropdown-item" href="{{ route('books',compact('gen', 'page')) }}">Genre</a></li>
+    <li><a class="dropdown-item" href="{{ route('books',compact('coun', 'page')) }}">Country</a></li>
   </ul>
 </div>
                             
