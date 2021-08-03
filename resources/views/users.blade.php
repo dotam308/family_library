@@ -63,8 +63,9 @@
                             @if(count($users)>0)
                             <table class="table table-hover">
                                 <thead>
-                                    <tr><th>STT</th>
-                                        <th>ID</th>
+                                    <tr>
+                                        <th>Order</th>
+                                        
                                         <th>Username
                                             <input type="hidden" name="base-url" id="base-url" value="{{url('/')}}">
                                             <a href="{{route('users', compact('usern','desc'))}}" id = "usern_desc"><i

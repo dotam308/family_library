@@ -27,8 +27,8 @@ class SearchController extends Controller{
                       ->orWhere('publisher', 'like', "%{$value}%")
                       ->orWhere('translator', 'like', "%{$value}%")
                       ->orWhere('country', 'like', "%{$value}%");
+                }
             }
-        }
         })->where(function($query)use($copies){
             switch($copies){
                 case "1":
@@ -69,7 +69,7 @@ class SearchController extends Controller{
         $price=$request->input('price');
         $books=Book::where(function ($query) use ($searchValues,$catalog){
             foreach($searchValues as $value) {
-                 if($catalog){
+                if($catalog){
                     $query->where($catalog, 'like', "%{$value}%");
                 }else{
                 $query->where('ddcCode', 'like', "%{$value}%")

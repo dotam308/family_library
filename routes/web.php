@@ -71,6 +71,7 @@ Route::get('/search_users', [SearchController::class, 'userSearch'])->name('user
 // Route::get('/bookManageSearch', [SearchController::class, 'bookManageSearch'])->name('bookmanagesearch');
 // Route::get('/userSearch', [SearchController::class, 'userSearch'])->name('usersearch');
 
+
 Route::get('/manageBooks', [BookController::class, 'showBookList'])->name('manageBooks');
 
 Route::get('/borrowedBooks', [BookController::class, 'showBorrowedBookList'])->name('borrowedBooks');

@@ -44,7 +44,7 @@ if (isset($_GET['page'])) {
                                     <div class="form-group">
                                         
                                         <select name="catalog" id="catalog" class="form-control">
-                                             <option value="" disabled selected hidden>Search the Catalog</option>
+                                            <option value="" disabled selected hidden>Search the Catalog</option>
                                             <option value="ddcCode">DDC</option>
                                             <option value="name">Title</option>
                                             <option value="author">Author</option>
