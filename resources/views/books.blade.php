@@ -17,8 +17,12 @@
 </section>
 @endsection
 @section('content')
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" />
 <?php
-$bn="r";$au="r";$pri="r";$gen="r";$coun="r";
+$bn="r";$au="r";$pri="r";$gen="r";$coun="r";$page = "r";$desc="r";$insc="r";
+if (isset($_GET['page'])) {
+    $page = $_GET['page']; 
+}
 ?>
 <div id="content" class="site-content">
     <div id="primary" class="content-area">
@@ -29,7 +33,7 @@ $bn="r";$au="r";$pri="r";$gen="r";$coun="r";
                     <section class="search-filters">
                         <div class="filter-box">
                             <h3>What are you looking for at the library?</h3>
-                            <form action="{{route('booksearch')}}" method="get">
+                            <form action="{{route('bookSearch')}}" method="get">
                                 <div class="col-md-4 col-sm-6">
                                     <div class="form-group">
                                         <input class="form-control" placeholder="Search by Keyword" id="keywords"
@@ -40,25 +44,37 @@ $bn="r";$au="r";$pri="r";$gen="r";$coun="r";
                                     <div class="form-group">
                                         
                                         <select name="catalog" id="catalog" class="form-control">
-                                            <option>Search the Catalog</option>
-                                            <option>Catalog 01</option>
-                                            <option>Catalog 02</option>
-                                            <option>Catalog 03</option>
-                                            <option>Catalog 04</option>
-                                            <option>Catalog 05</option>
+                                             <option value="" disabled selected hidden>Search the Catalog</option>
+                                            <option value="ddcCode">DDC</option>
+                                            <option value="name">Title</option>
+                                            <option value="author">Author</option>
+                                            <option value="publisher">Publisher</option>
+                                            <option value="translator">Translator</option>
+                                            <option value="country">Country</option>
+                                            <option value="genre">Category</option>
                                         </select>
 
                                     </div>
                                 </div>
                                 <div class="col-md-3 col-sm-6">
                                     <div class="form-group">
-                                        <select name="category" id="category" class="form-control">
-                                            <option>All Categories</option>
-                                            <option>Category 01</option>
-                                            <option>Category 02</option>
-                                            <option>Category 03</option>
-                                            <option>Category 04</option>
-                                            <option>Category 05</option>
+                                        <select name="copies" id="copies" class="form-control">
+                                            <option value="" disabled selected hidden>Copies</option>
+                                            <option value="1"><50</option>
+                                            <option value="2">50-100</option>
+                                            <option value="3">100-150</option>
+                                            <option value="4">≥150</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-3 col-sm-6">
+                                    <div class="form-group">
+                                        <select name="price" id="price" class="form-control">
+                                            <option value="" disabled selected hidden>Price</option>
+                                            <option value="1"><500</option>
+                                            <option value="2">500-1000</option>
+                                            <option value="3">1000-1500</option>
+                                            <option value="4">≥1500</option>
                                         </select>
                                     </div>
                                 </div>
@@ -79,11 +95,11 @@ $bn="r";$au="r";$pri="r";$gen="r";$coun="r";
     Sort by
   </button>
   <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-    <li><a class="dropdown-item" href="{{ route('books',compact('bn')) }}">Title</a></li>
-    <li><a class="dropdown-item" href="{{ route('books',compact('pri')) }}">Price</a></li>
-    <li><a class="dropdown-item" href="{{ route('books',compact('au')) }}">Author</a></li>
-    <li><a class="dropdown-item" href="{{ route('books',compact('gen')) }}">Genre</a></li>
-    <li><a class="dropdown-item" href="{{ route('books',compact('coun')) }}">Country</a></li>
+    <li><a class="dropdown-item" href="{{ route('books',compact('bn','page')) }}">Title</a></li>
+    <li><a class="dropdown-item" href="{{ route('books',compact('pri','page')) }}">Price</a></li>
+    <li><a class="dropdown-item" href="{{ route('books',compact('au', 'page')) }}">Author</a></li>
+    <li><a class="dropdown-item" href="{{ route('books',compact('gen', 'page')) }}">Genre</a></li>
+    <li><a class="dropdown-item" href="{{ route('books',compact('coun', 'page')) }}">Country</a></li>
   </ul>
 </div>
                             

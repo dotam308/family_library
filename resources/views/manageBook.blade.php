@@ -25,7 +25,8 @@
                 <div class="container">
                     <section class="search-filters">
                         <div class="filter-box">
-                            <form action="{{route('bookmanagesearch')}}" method="get">
+                            <h3>What are you looking for at the library?</h3>
+                            <form action="{{route('bookManagementSearch')}}" method="get">
                                 <div class="col-md-4 col-sm-6">
                                     <div class="form-group">
                                         <input class="form-control" placeholder="Search by Keyword" id="keywords"
@@ -35,24 +36,36 @@
                                 <div class="col-md-3 col-sm-6">
                                     <div class="form-group">
                                         <select name="catalog" id="catalog" class="form-control">
-                                            <option>Search the Catalog</option>
-                                            <option>Catalog 01</option>
-                                            <option>Catalog 02</option>
-                                            <option>Catalog 03</option>
-                                            <option>Catalog 04</option>
-                                            <option>Catalog 05</option>
+                                            <option value="" disabled selected>Search the Catalog</option>
+                                            <option value="ddcCode">DDC</option>
+                                            <option value="name">Title</option>
+                                            <option value="author">Author</option>
+                                            <option value="publisher">Publisher</option>
+                                            <option value="translator">Translator</option>
+                                            <option value="country">Country</option>
+                                            <option value="genre">Category</option>
                                         </select>
                                     </div>
                                 </div>
                                 <div class="col-md-3 col-sm-6">
                                     <div class="form-group">
-                                        <select name="category" id="category" class="form-control">
-                                            <option>All Categories</option>
-                                            <option>Category 01</option>
-                                            <option>Category 02</option>
-                                            <option>Category 03</option>
-                                            <option>Category 04</option>
-                                            <option>Category 05</option>
+                                        <select name="copies" id="copies" class="form-control">
+                                            <option value="" disabled selected>Copies</option>
+                                            <option value="1"><50</option>
+                                            <option value="2">50-100</option>
+                                            <option value="3">100-150</option>
+                                            <option value="4">≥150</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-3 col-sm-6">
+                                    <div class="form-group">
+                                        <select name="price" id="price" class="form-control">
+                                            <option value="" disabled selected>Price</option>
+                                            <option value="1"><500</option>
+                                            <option value="2">500-1000</option>
+                                            <option value="3">1000-1500</option>
+                                            <option value="4">≥1500</option>
                                         </select>
                                     </div>
                                 </div>
@@ -77,38 +90,42 @@
                             <thead>
                                 <?php
                                 $dc = "r";$bn = "r";$au = "r";$ge = "r";$pub = "r";$trans = "r";$coun = "r";$qua = "r";
-                                $pri = "r";$insc = "r";$desc = "r";
+                                $pri = "r";$insc = "r";$desc = "r";$page="r";
+                                if (isset($_GET['page'])) {
+                                    $page = $_GET['page'];
+                                }
                                 ?>
+
                                 <tr>
                                     <th>Số thứ tự/Order</th>
                                     <th>Mã DDC/DDC
                                         <input type="hidden" name="base-url" id="base-url" value="{{url('/')}}">
-                                    <a href="{{route('manageBooks', compact('dc','desc'))}}" id="dc_desc"><i class="fas fa-angle-double-down"></i></a>
-                                        <a href="{{route('manageBooks', compact('dc','insc'))}}" id="dc_insc"><i class="fas fa-angle-double-up"></i></a></th>
+                                    <a href="{{route('manageBooks', compact('dc','desc','page'))}}" id="dc_desc"><i class="fas fa-angle-double-down <?php if(isset($_GET['dc']) && isset($_GET['desc'])) echo "activeDir";?>"></i></a>
+                                        <a href="{{route('manageBooks', compact('dc','insc','page'))}}" id="dc_insc"><i class="fas fa-angle-double-up <?php if(isset($_GET['dc']) && isset($_GET['insc'])) echo "activeDir";?>"></i></a></th>
                                     <th>Tên sách/Title
-                                    <a href="{{route('manageBooks', compact('bn','desc'))}}" id="bn_desc"><i class="fas fa-angle-double-down"></i></a>
-                                        <a href="{{route('manageBooks', compact('bn','insc'))}}" id="bn_insc"><i class="fas fa-angle-double-up"></i></a></th>
+                                    <a href="{{route('manageBooks', compact('bn','desc','page'))}}" id="bn_desc"><i class="fas fa-angle-double-down <?php if(isset($_GET['bn']) && isset($_GET['desc'])) echo "activeDir";?>"></i></a>
+                                        <a href="{{route('manageBooks', compact('bn','insc','page'))}}" id="bn_insc"><i class="fas fa-angle-double-up <?php if(isset($_GET['bn']) && isset($_GET['insc'])) echo "activeDir";?>"></i></a></th>
                                     <th>Tác giả/Author
-                                    <a href="{{route('manageBooks', compact('au','desc'))}}" id="au_desc"><i class="fas fa-angle-double-down"></i></a>
-                                        <a href="{{route('manageBooks', compact('au','insc'))}}" id="au_insc"><i class="fas fa-angle-double-up"></i></a></th>
+                                    <a href="{{route('manageBooks', compact('au','desc','page'))}}" id="au_desc"><i class="fas fa-angle-double-down <?php if(isset($_GET['au']) && isset($_GET['desc'])) echo "activeDir";?>"></i></a>
+                                        <a href="{{route('manageBooks', compact('au','insc','page'))}}" id="au_insc"><i class="fas fa-angle-double-up <?php if(isset($_GET['au']) && isset($_GET['insc'])) echo "activeDir";?>"></i></a></th>
                                     <th>Thể loại/Genre
-                                    <a href="{{route('manageBooks', compact('ge','desc'))}}" id="ge_desc"><i class="fas fa-angle-double-down"></i></a>
-                                        <a href="{{route('manageBooks', compact('ge','insc'))}}" id="ge_insc"><i class="fas fa-angle-double-up"></i></a></th>
+                                    <a href="{{route('manageBooks', compact('ge','desc','page'))}}" id="ge_desc"><i class="fas fa-angle-double-down <?php if(isset($_GET['ge']) && isset($_GET['desc'])) echo "activeDir";?>"></i></a>
+                                        <a href="{{route('manageBooks', compact('ge','insc','page'))}}" id="ge_insc"><i class="fas fa-angle-double-up <?php if(isset($_GET['ge']) && isset($_GET['insc'])) echo "activeDir";?>"></i></a></th>
                                     <th>Nhà sản xuất/Publisher
-                                    <a href="{{route('manageBooks', compact('pub','desc'))}}" id="pub_desc"><i class="fas fa-angle-double-down"></i></a>
-                                        <a href="{{route('manageBooks', compact('pub','insc'))}}" id="pub_insc"><i class="fas fa-angle-double-up"></i></a></th>
+                                    <a href="{{route('manageBooks', compact('pub','desc','page'))}}" id="pub_desc"><i class="fas fa-angle-double-down <?php if(isset($_GET['pub']) && isset($_GET['desc'])) echo "activeDir";?>"></i></a>
+                                        <a href="{{route('manageBooks', compact('pub','insc','page'))}}" id="pub_insc"><i class="fas fa-angle-double-up <?php if(isset($_GET['pub']) && isset($_GET['insc'])) echo "activeDir";?>"></i></a></th>
                                     <th>Người dịch/Translator
-                                    <a href="{{route('manageBooks', compact('trans','desc'))}}" id="trans_desc"><i class="fas fa-angle-double-down"></i></a>
-                                        <a href="{{route('manageBooks', compact('trans','insc'))}}" id="trans_insc"><i class="fas fa-angle-double-up"></i></a></th>
+                                    <a href="{{route('manageBooks', compact('trans','desc','page'))}}" id="trans_desc"><i class="fas fa-angle-double-down <?php if(isset($_GET['trans']) && isset($_GET['desc'])) echo "activeDir";?>"></i></a>
+                                        <a href="{{route('manageBooks', compact('trans','insc','page'))}}" id="trans_insc"><i class="fas fa-angle-double-up <?php if(isset($_GET['trans']) && isset($_GET['insc'])) echo "activeDir";?>"></i></a></th>
                                     <th>Quốc gia/Country
-                                    <a href="{{route('manageBooks', compact('coun','desc'))}}" id="coun_desc"><i class="fas fa-angle-double-down"></i></a>
-                                        <a href="{{route('manageBooks', compact('coun','insc'))}}" id="coun_insc"><i class="fas fa-angle-double-up"></i></a></th>
+                                    <a href="{{route('manageBooks', compact('coun','desc','page'))}}" id="coun_desc"><i class="fas fa-angle-double-down <?php if(isset($_GET['coun']) && isset($_GET['desc'])) echo "activeDir";?>"></i></a>
+                                        <a href="{{route('manageBooks', compact('coun','insc','page'))}}" id="coun_insc"><i class="fas fa-angle-double-up <?php if(isset($_GET['coun']) && isset($_GET['insc'])) echo "activeDir";?>"></i></a></th>
                                     <th>Số sách trong kho/Copies
-                                    <a href="{{route('manageBooks', compact('qua','desc'))}}" id="qua_desc"><i class="fas fa-angle-double-down"></i></a>
-                                        <a href="{{route('manageBooks', compact('qua','insc'))}}" id="qua_insc"><i class="fas fa-angle-double-up"></i></a></th>
+                                    <a href="{{route('manageBooks', compact('qua','desc','page'))}}" id="qua_desc"><i class="fas fa-angle-double-down <?php if(isset($_GET['qua']) && isset($_GET['desc'])) echo "activeDir";?>"></i></a>
+                                        <a href="{{route('manageBooks', compact('qua','insc','page'))}}" id="qua_insc"><i class="fas fa-angle-double-up <?php if(isset($_GET['qua']) && isset($_GET['insc'])) echo "activeDir";?>"></i></a></th>
                                     <th>Giá/Price.
-                                    <a href="{{route('manageBooks', compact('pri','desc'))}}" id="pri_desc"><i class="fas fa-angle-double-down"></i></a>
-                                        <a href="{{route('manageBooks', compact('pri','insc'))}}" id="pri_insc"><i class="fas fa-angle-double-up"></i></a></th>
+                                    <a href="{{route('manageBooks', compact('pri','desc','page'))}}" id="pri_desc"><i class="fas fa-angle-double-down <?php if(isset($_GET['pri']) && isset($_GET['desc'])) echo "activeDir";?>"></i></a>
+                                        <a href="{{route('manageBooks', compact('pri','insc','page'))}}" id="pri_insc"><i class="fas fa-angle-double-up <?php if(isset($_GET['pri']) && isset($_GET['insc'])) echo "activeDir";?>"></i></a></th>
                                     <th>Ảnh/Image</th>
                                     <th>Action</th>
                                 </tr>
@@ -173,62 +190,6 @@
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.19/dist/sweetalert2.all.min.js"></script>
 <script>
     $(document).ready(function() {
-        $url = window.location.href;
-        $a=document.getElementById("base-url").value;
-        if ($url === $a + "/manageBooks?dc=r&desc=r") {
-            document.getElementById("dc_desc").style.display = 'none';
-        }
-        if ($url === $a + "/manageBooks?dc=r&insc=r") {
-            document.getElementById("dc_insc").style.display = 'none';
-        }
-        if ($url === $a + "/manageBooks?bn=r&desc=r") {
-            document.getElementById("bn_desc").style.display = 'none';
-        }
-        if ($url === $a + "/manageBooks?bn=r&insc=r") {
-            document.getElementById("bn_insc").style.display = 'none';
-        }
-        if ($url === $a + "/manageBooks?au=r&desc=r") {
-            document.getElementById("au_desc").style.display = 'none';
-        }
-        if ($url === $a + "/manageBooks?au=r&insc=r") {
-            document.getElementById("au_insc").style.display = 'none';
-        }
-        if ($url === $a + "/manageBooks?ge=r&desc=r") {
-            document.getElementById("ge_desc").style.display = 'none';
-        }
-        if ($url === $a + "/manageBooks?ge=r&insc=r") {
-            document.getElementById("ge_insc").style.display = 'none';
-        }
-        if ($url === $a + "/manageBooks?pub=r&desc=r") {
-            document.getElementById("pub_desc").style.display = 'none';
-        }
-        if ($url === $a + "/manageBooks?pub=r&insc=r") {
-            document.getElementById("pub_insc").style.display = 'none';
-        }
-        if ($url === $a + "/manageBooks?trans=r&desc=r") {
-            document.getElementById("trans_desc").style.display = 'none';
-        }
-        if ($url === $a + "/manageBooks?trans=r&insc=r") {
-            document.getElementById("trans_insc").style.display = 'none';
-        }
-        if ($url === $a + "/manageBooks?coun=r&desc=r") {
-            document.getElementById("coun_desc").style.display = 'none';
-        }
-        if ($url === $a + "/manageBooks?coun=r&insc=r") {
-            document.getElementById("coun_insc").style.display = 'none';
-        }
-        if ($url === $a + "/manageBooks?qua=r&desc=r") {
-            document.getElementById("qua_desc").style.display = 'none';
-        }
-        if ($url === $a + "/manageBooks?qua=r&insc=r") {
-            document.getElementById("qua_insc").style.display = 'none';
-        }
-        if ($url === $a + "/manageBooks?pri=r&desc=r") {
-            document.getElementById("pri_desc").style.display = 'none';
-        }
-        if ($url === $a + "/manageBooks?pri=r&insc=r") {
-            document.getElementById("pri_insc").style.display = 'none';
-        }
        $('a[id=deleteButton]').click(function() {
            var id = $(this).attr('rel');
            var deleteFunction = $(this).attr('rel1');

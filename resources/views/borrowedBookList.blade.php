@@ -31,8 +31,11 @@
                             <p>There is no data</p>
                         @else
                         <?php
-                        $dc = "r";$bn = "r";$au = "r";$ge = "r";$qua = "r";
-                                $bd = "r";$rd="r";$insc = "r";$desc = "r";$bra = "r"; 
+                        $dc = "r";$bn = "r";$au = "r";$ge = "r";$qua = "r";$page="r";
+                                $bd = "r";$rd="r";$insc = "r";$desc = "r";$bra = "r";
+                                if (isset($_GET['page'])) {
+                                     $page = $_GET['page'];
+                                 }
                         if (empty($returned)) {
                             $routeName = 'borrowedBooks';
                         } else {
@@ -45,32 +48,32 @@
                                         <th>Order</th>
                                         <th>DDC code
                                             <input type="hidden" name="base-url" id="base-url" value="{{url('/')}}">
-                                            <a href="{{route($routeName, compact('dc','desc'))}}" id="dc_desc"><i class="fas fa-angle-double-down"></i></a>
-                                            <a href="{{route($routeName, compact('dc','insc'))}}" id="dc_insc"><i class="fas fa-angle-double-up"></i></a>
+                                            <a href="{{route($routeName, compact('dc','desc', 'page'))}}" id="dc_desc"><i class="fas fa-angle-double-down <?php if(isset($_GET['dc']) && isset($_GET['desc'])) echo "activeDir";?>"></i></a>
+                                            <a href="{{route($routeName, compact('dc','insc', 'page'))}}" id="dc_insc"><i class="fas fa-angle-double-up <?php if(isset($_GET['dc']) && isset($_GET['insc'])) echo "activeDir";?>"></i></a>
                                         </th>
                                         <th>Title
-                                        <a href="{{route($routeName, compact('bn','desc'))}}" id="bn_desc"><i class="fas fa-angle-double-down"></i></a>
-                                            <a href="{{route($routeName, compact('bn','insc'))}}" id="bn_insc"><i class="fas fa-angle-double-up"></i></a></th>
+                                        <a href="{{route($routeName, compact('bn','desc', 'page'))}}" id="bn_desc"><i class="fas fa-angle-double-down <?php if(isset($_GET['bn']) && isset($_GET['desc'])) echo "activeDir";?>"></i></a>
+                                            <a href="{{route($routeName, compact('bn','insc', 'page'))}}" id="bn_insc"><i class="fas fa-angle-double-up <?php if(isset($_GET['bn']) && isset($_GET['insc'])) echo "activeDir";?>"></i></a></th>
                                         <th>Author
-                                        <a href="{{route($routeName, compact('au','desc'))}}" id="au_desc"><i class="fas fa-angle-double-down"></i></a>
-                                            <a href="{{route($routeName, compact('au','insc'))}}" id="au_insc"><i class="fas fa-angle-double-up"></i></a></th>
+                                        <a href="{{route($routeName, compact('au','desc','page'))}}" id="au_desc"><i class="fas fa-angle-double-down <?php if(isset($_GET['au']) && isset($_GET['desc'])) echo "activeDir";?>"></i></a>
+                                            <a href="{{route($routeName, compact('au','insc','page'))}}" id="au_insc"><i class="fas fa-angle-double-up <?php if(isset($_GET['au']) && isset($_GET['insc'])) echo "activeDir";?>"></i></a></th>
                                         <th>Genre
-                                        <a href="{{route($routeName, compact('ge','desc'))}}" id="ge_desc"><i class="fas fa-angle-double-down"></i></a>
-                                            <a href="{{route($routeName, compact('ge','insc'))}}" id="ge_insc"><i class="fas fa-angle-double-up"></i></a></th>
+                                        <a href="{{route($routeName, compact('ge','desc','page'))}}" id="ge_desc"><i class="fas fa-angle-double-down <?php if(isset($_GET['ge']) && isset($_GET['desc'])) echo "activeDir";?>"></i></a>
+                                            <a href="{{route($routeName, compact('ge','insc','page'))}}" id="ge_insc"><i class="fas fa-angle-double-up <?php if(isset($_GET['ge']) && isset($_GET['insc'])) echo "activeDir";?>"></i></a></th>
                                         <th>borrowed quantity
-                                        <a href="{{route($routeName, compact('qua','desc'))}}" id="qua_desc"><i class="fas fa-angle-double-down"></i></a>
-                                            <a href="{{route($routeName, compact('qua','insc'))}}" id="qua_insc"><i class="fas fa-angle-double-up"></i></a></th>
+                                        <a href="{{route($routeName, compact('qua','desc','page'))}}" id="qua_desc"><i class="fas fa-angle-double-down <?php if(isset($_GET['qua']) && isset($_GET['desc'])) echo "activeDir";?>"></i></a>
+                                            <a href="{{route($routeName, compact('qua','insc','page'))}}" id="qua_insc"><i class="fas fa-angle-double-up <?php if(isset($_GET['qua']) && isset($_GET['insc'])) echo "activeDir";?>"></i></a></th>
                                         <th>borrowed date
-                                        <a href="{{route($routeName, compact('bd','desc'))}}" id="bd_desc"><i class="fas fa-angle-double-down"></i></a>
-                                            <a href="{{route($routeName, compact('bd','insc'))}}" id="bd_insc"><i class="fas fa-angle-double-up"></i></a></th>
+                                        <a href="{{route($routeName, compact('bd','desc','page'))}}" id="bd_desc"><i class="fas fa-angle-double-down <?php if(isset($_GET['bd']) && isset($_GET['desc'])) echo "activeDir";?>"></i></a>
+                                            <a href="{{route($routeName, compact('bd','insc','page'))}}" id="bd_insc"><i class="fas fa-angle-double-up <?php if(isset($_GET['bd']) && isset($_GET['insc'])) echo "activeDir";?>"></i></a></th>
                                         <th>return date
-                                        <a href="{{route($routeName, compact('rd','desc'))}}" id="rd_desc"><i class="fas fa-angle-double-down"></i></a>
-                                            <a href="{{route($routeName, compact('rd','insc'))}}" id="rd_insc"><i class="fas fa-angle-double-up"></i></a></th>
+                                        <a href="{{route($routeName, compact('rd','desc','page'))}}" id="rd_desc"><i class="fas fa-angle-double-down <?php if(isset($_GET['rd']) && isset($_GET['desc'])) echo "activeDir";?>"></i></a>
+                                            <a href="{{route($routeName, compact('rd','insc','page'))}}" id="rd_insc"><i class="fas fa-angle-double-up <?php if(isset($_GET['rd']) && isset($_GET['insc'])) echo "activeDir";?>"></i></a></th>
                                         <th>Status</th>
                                     @if (isset($returned))
                                         <th>Book returned at
-                                        <a href="{{route($routeName, compact('bra','desc'))}}" id="bra_desc"><i class="fas fa-angle-double-down"></i></a>
-                                            <a href="{{route($routeName, compact('bra','insc'))}}" id="bra_insc"><i class="fas fa-angle-double-up"></i></a></th>
+                                        <a href="{{route($routeName, compact('bra','desc','page'))}}" id="bra_desc"><i class="fas fa-angle-double-down <?php if(isset($_GET['bra']) && isset($_GET['desc'])) echo "activeDir";?>"></i></a>
+                                            <a href="{{route($routeName, compact('bra','insc','page'))}}" id="bra_insc"><i class="fas fa-angle-double-up <?php if(isset($_GET['bra']) && isset($_GET['insc'])) echo "activeDir";?>"></i></a></th>
                                     @endif
                                     <th>Image</th>
                                     @if (!isset($returned))
@@ -146,98 +149,7 @@
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.19/dist/sweetalert2.all.min.js"></script>
 <script>
     $(document).ready(function() {
-        $url = window.location.href;
-        $a=document.getElementById("base-url").value;
-        if ($url === $a + "/borrowedBooks?dc=r&desc=r") {
-            document.getElementById("dc_desc").style.display = 'none';
-        }
-        if ($url === $a + "/borrowedBooks?dc=r&insc=r") {
-            document.getElementById("dc_insc").style.display = 'none';
-        }
-        if ($url === $a + "/borrowedBooks?bn=r&desc=r") {
-            document.getElementById("bn_desc").style.display = 'none';
-        }
-        if ($url === $a + "/borrowedBooks?bn=r&insc=r") {
-            document.getElementById("bn_insc").style.display = 'none';
-        }
-        if ($url === $a + "/borrowedBooks?au=r&desc=r") {
-            document.getElementById("au_desc").style.display = 'none';
-        }
-        if ($url === $a + "/borrowedBooks?au=r&insc=r") {
-            document.getElementById("au_insc").style.display = 'none';
-        }
-        if ($url === $a + "/borrowedBooks?ge=r&desc=r") {
-            document.getElementById("ge_desc").style.display = 'none';
-        }
-        if ($url === $a + "/borrowedBooks?ge=r&insc=r") {
-            document.getElementById("ge_insc").style.display = 'none';
-        }
-        if ($url === $a + "/borrowedBooks?qua=r&desc=r") {
-            document.getElementById("qua_desc").style.display = 'none';
-        }
-        if ($url === $a + "/borrowedBooks?qua=r&insc=r") {
-            document.getElementById("qua_insc").style.display = 'none';
-        }
-        if ($url === $a + "/borrowedBooks?bd=r&desc=r") {
-            document.getElementById("bd_desc").style.display = 'none';
-        }
-        if ($url === $a + "/borrowedBooks?bd=r&insc=r") {
-            document.getElementById("bd_insc").style.display = 'none';
-        }
-        if ($url === $a + "/borrowedBooks?rd=r&desc=r") {
-            document.getElementById("rd_desc").style.display = 'none';
-        }
-        if ($url === $a + "/borrowedBooks?rd=r&insc=r") {
-            document.getElementById("rd_insc").style.display = 'none';
-        }
-        if ($url === $a + "/returnedBooks?dc=r&desc=r") {
-            document.getElementById("dc_desc").style.display = 'none';
-        }
-        if ($url === $a + "/returnedBooks?dc=r&insc=r") {
-            document.getElementById("dc_insc").style.display = 'none';
-        }
-        if ($url === $a + "/returnedBooks?bn=r&desc=r") {
-            document.getElementById("bn_desc").style.display = 'none';
-        }
-        if ($url === $a + "/returnedBooks?bn=r&insc=r") {
-            document.getElementById("bn_insc").style.display = 'none';
-        }
-        if ($url === $a + "/returnedBooks?au=r&desc=r") {
-            document.getElementById("au_desc").style.display = 'none';
-        }
-        if ($url === $a + "/returnedBooks?au=r&insc=r") {
-            document.getElementById("au_insc").style.display = 'none';
-        }
-        if ($url === $a + "/returnedBooks?ge=r&desc=r") {
-            document.getElementById("ge_desc").style.display = 'none';
-        }
-        if ($url === $a + "/returnedBooks?ge=r&insc=r") {
-            document.getElementById("ge_insc").style.display = 'none';
-        }
-        if ($url === $a + "/returnedBooks?qua=r&desc=r") {
-            document.getElementById("qua_desc").style.display = 'none';
-        }
-        if ($url === $a + "/returnedBooks?qua=r&insc=r") {
-            document.getElementById("qua_insc").style.display = 'none';
-        }
-        if ($url === $a + "/returnedBooks?bd=r&desc=r") {
-            document.getElementById("bd_desc").style.display = 'none';
-        }
-        if ($url === $a + "/returnedBooks?bd=r&insc=r") {
-            document.getElementById("bd_insc").style.display = 'none';
-        }
-        if ($url === $a + "/returnedBooks?rd=r&desc=r") {
-            document.getElementById("rd_desc").style.display = 'none';
-        }
-        if ($url === $a + "/returnedBooks?rd=r&insc=r") {
-            document.getElementById("rd_insc").style.display = 'none';
-        }
-        if ($url === $a + "/returnedBooks?bra=r&desc=r") {
-            document.getElementById("bra_desc").style.display = 'none';
-        }
-        if ($url === $a + "/returnedBooks?bra=r&insc=r") {
-            document.getElementById("bra_insc").style.display = 'none';
-        }
+        
        $('a[id=deleteButton]').click(function() {
            var id = $(this).attr('rel');
            

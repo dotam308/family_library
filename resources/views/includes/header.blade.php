@@ -29,18 +29,16 @@
                                 <div class="col-sm-6">
                                     <div class="topbar-links">
                                         
-                                        <a href="#">Welcome {{ session('nameUser')  }}</a>
-                                        <a href="{{ route('signin') }}"><i class="fa fa-lock"></i>{{ empty(session('nameUser')) ? "Login / Register" : "" }}</a>
-                                        <a href="{{ route('logout') }}"><i class="fa fa-logout"></i>{{ empty(session('nameUser')) ? "" : "Logout" }}</a>
+                                        < <a data-toggle="dropdown" class="dropdown-toggle disabled" href="#">Welcome {{session('username')}}</a>
+                                        <a href="{{ route('signin') }}"><i class="fa fa-lock"></i>{{ empty(session('username')) ? "Login / Register" : "" }}</a>
+                                        <a href="{{ route('logout') }}"><i class="fa fa-logout"></i>{{ empty(session('username')) ? "" : "Logout" }}</a>
                                         <span>|</span>
                                         <div class="header-cart dropdown">
-                                            <a data-toggle="dropdown" class="dropdown-toggle" href="#favorite"> 
-                                                
+                                             <a data-toggle="dropdown" class="dropdown-toggle" href="#favorite">
                                                 <i class="fa fa-shopping-cart"></i>
                                                 <small id="numOfFavoriteBooks">0</small>
                                             </a>
                                             <div id="favorite" class="dropdown-menu cart-dropdown">
-                                                
                                             </div>
                                         </div>
                                     </div>

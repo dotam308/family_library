@@ -26,38 +26,14 @@
                     <!-- Start: Search Section -->
                     <section class="search-filters">
                         <div class="filter-box">
-                            <form action="{{route('usersearch')}}" method="get">
+                            <form action="{{route('userSearch')}}" method="get">
                                 <div class="col-md-4 col-sm-6">
                                     <div class="form-group">
                                         <input class="form-control" placeholder="Search by Keyword" id="keywords"
-                                            name="keywords" type="text">
+                                            name="keywords" type="text" style="width:895px">
                                     </div>
                                 </div>
-                                <div class="col-md-3 col-sm-6">
-                                    <div class="form-group">
-                                        <select name="catalog" id="catalog" class="form-control">
-                                            <option>Search the Catalog</option>
-                                            <option>Catalog 01</option>
-                                            <option>Catalog 02</option>
-                                            <option>Catalog 03</option>
-                                            <option>Catalog 04</option>
-                                            <option>Catalog 05</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-md-3 col-sm-6">
-                                    <div class="form-group">
-                                        <select name="category" id="category" class="form-control">
-                                            <option>All Categories</option>
-                                            <option>Category 01</option>
-                                            <option>Category 02</option>
-                                            <option>Category 03</option>
-                                            <option>Category 04</option>
-                                            <option>Category 05</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-md-2 col-sm-6">
+                                <div class="col-md-2 col-sm-6" style="left:555px">
                                     <div class="form-group">
                                         <input class="form-control" type="submit" value="Search">
                                     </div>
@@ -73,7 +49,7 @@
 
                         <div class="row">
                             <div class="col text-right">
-                                <a type="button" class="btn btn-primary" href="{{route('createuser')}}">ADD ACCOUNT</a>
+                                <a type="button" class="btn btn-primary" href="{{route('createUser')}}">ADD ACCOUNT</a>
                             </div>
                         </div>
                         <ul>
@@ -87,25 +63,24 @@
                             @if(count($users)>0)
                             <table class="table table-hover">
                                 <thead>
-                                    <tr>
-                                        <th>No.</th>
+                                    <tr><th>STT</th>
                                         <th>ID</th>
                                         <th>Username
                                             <input type="hidden" name="base-url" id="base-url" value="{{url('/')}}">
                                             <a href="{{route('users', compact('usern','desc'))}}" id = "usern_desc"><i
-                                                    class="fas fa-angle-double-down"></i></a>
+                                                    class="fas fa-angle-double-down <?php if(isset($_GET['usern']) && isset($_GET['desc'])) echo "activeDir";?>"></i></a>
                                             <a href="{{route('users', compact('usern','insc'))}}" id = "usern_insc"><i
-                                                    class="fas fa-angle-double-up"></i></a></th>
+                                                    class="fas fa-angle-double-up <?php if(isset($_GET['usern']) && isset($_GET['insc'])) echo "activeDir";?>"></i></a></th>
                                         <th>Role
                                             <a href="{{route('users', compact('rol','desc'))}}" id = "rol_desc"><i
-                                                    class="fas fa-angle-double-down"></i></a>
+                                                    class="fas fa-angle-double-down <?php if(isset($_GET['rol']) && isset($_GET['desc'])) echo "activeDir";?>"></i></a>
                                             <a href="{{route('users', compact('rol','insc'))}}" id = "rol_insc"><i
-                                                    class="fas fa-angle-double-up"></i></a></th>
+                                                    class="fas fa-angle-double-up <?php if(isset($_GET['rol']) && isset($_GET['insc'])) echo "activeDir";?>"></i></a></th>
                                         <th>E-mail
                                             <a href="{{route('users', compact('mail','desc'))}}" id = "mail_desc"><i
-                                                    class="fas fa-angle-double-down"></i></a>
+                                                    class="fas fa-angle-double-down <?php if(isset($_GET['mail']) && isset($_GET['desc'])) echo "activeDir";?>"></i></a>
                                             <a href="{{route('users', compact('mail','insc'))}}" id = "mail_insc"><i
-                                                    class="fas fa-angle-double-up"></i></a></th>
+                                                    class="fas fa-angle-double-up <?php if(isset($_GET['mail']) && isset($_GET['insc'])) echo "activeDir";?>"></i></a></th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
@@ -132,8 +107,8 @@
                                             <td>{{$user->email}}</td>
                                             <td>
                                                 <?php $id=$user->id;?>
-                                                <a href="{{route('edituser', compact('id'))}}">
-                                                    <i class="fa fa-pencil" aria-hidden="true" style="color:blue"></i>
+                                                <a href="{{route('editUser', compact('id'))}}">
+                                                    <i class="fa fa-pen" aria-hidden="true" style="color:blue"></i>
                                                 </a>
                                                 <a rel="{{$id}}" rel1="user" href="javascript:" id="deleteButton" class="deleteButton">
                                                     <i class="fa fa-trash" aria-hidden="true" style="color:red"></i>
@@ -162,26 +137,6 @@
 </script>
 <script>
     $(document).ready(function() {
-        $url = window.location.href;
-        $a=document.getElementById("base-url").value;
-        if ($url ===  $a + "/users?usern=r&desc=r") {
-            document.getElementById("usern_desc").style.display = 'none';
-        } 
-        if ($url === $a + "/users?usern=r&insc=r") {
-            document.getElementById("usern_insc").style.display = 'none';
-        }
-        if ($url === $a +"/users?rol=r&desc=r") {
-            document.getElementById("rol_desc").style.display = 'none';
-        } 
-        if ($url === $a +"/users?rol=r&insc=r") {
-            document.getElementById("rol_insc").style.display = 'none';
-        }
-        if ($url === $a +"/users?mail=r&desc=r") {
-            document.getElementById("mail_desc").style.display = 'none';
-        } 
-        if ($url === $a +"/users?mail=r&insc=r") {
-            document.getElementById("mail_insc").style.display = 'none';
-        } 
        $('a[id=deleteButton]').click(function(){
            var id = $(this).attr('rel');
            var deleteFunction = $(this).attr('rel1');
@@ -196,7 +151,7 @@
             },
             function(){
                 swal("Deleted!", "The account has been deleted.", "success");
-                window.location.href = "/deleteUser/"+ deleteFunction + "/" + id;
+                window.location.href = "/delete_user/"+ deleteFunction + "/" + id;
             });
         })
     })
