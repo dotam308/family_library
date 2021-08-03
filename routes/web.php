@@ -54,15 +54,17 @@ Route::get('/borrowBook', [HomeController::class, 'borrowBookForm'])->name('borr
 Route::post('/borrowBook', [HomeController::class, 'borrowBookPost']);
 
 Route::get('/users',[UserController::class, 'index'])->name('users');
-Route::get('/createUser',[UserController::class,'userAddForm'])->name('createuser');
-Route::post('/createUser',[UserController::class,'addUser']);
-Route::get('/editUser',[UserController::class,'userEditForm'])->name('edituser');
-Route::post('/editUser',[UserController::class,'editUser']);
-Route::get('/deleteUser/user/{id}',[UserController::class,'deleteUser'])->name('deleteuser');
+Route::get('/create_user',[UserController::class,'userAddForm'])->name('createUser');
+Route::post('/create_user',[UserController::class,'addUser']);
+Route::get('/edit_user',[UserController::class,'userEditForm'])->name('editUser');
+Route::post('/edit_user',[UserController::class,'editUser']);
+Route::get('/delete_user/user/{id}',[UserController::class,'deleteUser'])->name('deleteUser');
 
-Route::get('/bookSearch', [SearchController::class, 'bookSearch'])->name('booksearch');
-Route::get('/bookManageSearch', [SearchController::class, 'bookManageSearch'])->name('bookmanagesearch');
-Route::get('/userSearch', [SearchController::class, 'userSearch'])->name('usersearch');
+//Route::get('/profile',[UserController::class,'userInfo'])->name('profile');
+
+Route::get('/search_books', [SearchController::class, 'bookSearch'])->name('bookSearch');
+Route::get('/search_books_admin', [SearchController::class, 'bookManagementSearch'])->name('bookManagementSearch');
+Route::get('/search_users', [SearchController::class, 'userSearch'])->name('userSearch');
 
 
 Route::get('/manageBooks', [BookController::class, 'showBookList'])->name('manageBooks');
