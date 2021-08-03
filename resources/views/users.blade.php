@@ -26,38 +26,14 @@
                     <!-- Start: Search Section -->
                     <section class="search-filters">
                         <div class="filter-box">
-                            <form action="{{route('usersearch')}}" method="get">
+                            <form action="{{route('userSearch')}}" method="get">
                                 <div class="col-md-4 col-sm-6">
                                     <div class="form-group">
                                         <input class="form-control" placeholder="Search by Keyword" id="keywords"
-                                            name="keywords" type="text">
+                                            name="keywords" type="text" style="width:895px">
                                     </div>
                                 </div>
-                                <div class="col-md-3 col-sm-6">
-                                    <div class="form-group">
-                                        <select name="catalog" id="catalog" class="form-control">
-                                            <option>Search the Catalog</option>
-                                            <option>Catalog 01</option>
-                                            <option>Catalog 02</option>
-                                            <option>Catalog 03</option>
-                                            <option>Catalog 04</option>
-                                            <option>Catalog 05</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-md-3 col-sm-6">
-                                    <div class="form-group">
-                                        <select name="category" id="category" class="form-control">
-                                            <option>All Categories</option>
-                                            <option>Category 01</option>
-                                            <option>Category 02</option>
-                                            <option>Category 03</option>
-                                            <option>Category 04</option>
-                                            <option>Category 05</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-md-2 col-sm-6">
+                                <div class="col-md-2 col-sm-6" style="left:555px">
                                     <div class="form-group">
                                         <input class="form-control" type="submit" value="Search">
                                     </div>
@@ -70,10 +46,9 @@
                     <div class="users-list-view">
 
                         <h3>Danh sách user</h3>
-
                         <div class="row">
                             <div class="col text-right">
-                                <a type="button" class="btn btn-primary" href="{{route('createuser')}}">ADD ACCOUNT</a>
+                                <a type="button" class="btn btn-primary" href="{{route('createUser')}}">ADD ACCOUNT</a>
                             </div>
                         </div>
                         <ul>
@@ -88,8 +63,7 @@
                             <table class="table table-hover">
                                 <thead>
                                     <tr>
-                                        <th>No.</th>
-                                        <th>ID</th>
+                                        <th>Order</th>
                                         <th>Username
                                             <input type="hidden" name="base-url" id="base-url" value="{{url('/')}}">
                                             <a href="{{route('users', compact('usern','desc'))}}" id = "usern_desc"><i
@@ -132,8 +106,8 @@
                                             <td>{{$user->email}}</td>
                                             <td>
                                                 <?php $id=$user->id;?>
-                                                <a href="{{route('edituser', compact('id'))}}">
-                                                    <i class="fa fa-pencil" aria-hidden="true" style="color:blue"></i>
+                                                <a href="{{route('editUser', compact('id'))}}">
+                                                    <i class="fa fa-pen" aria-hidden="true" style="color:blue"></i>
                                                 </a>
                                                 <a rel="{{$id}}" rel1="user" href="javascript:" id="deleteButton" class="deleteButton">
                                                     <i class="fa fa-trash" aria-hidden="true" style="color:red"></i>
@@ -196,7 +170,7 @@
             },
             function(){
                 swal("Deleted!", "The account has been deleted.", "success");
-                window.location.href = "/deleteUser/"+ deleteFunction + "/" + id;
+                window.location.href = "/delete_user/"+ deleteFunction + "/" + id;
             });
         })
     })
