@@ -105,9 +105,6 @@
                                         </ul>
                                     </li> --}}
                                 {{-- <li><a href="services.html">Services</a></li> --}}
-                                <li class="dropdown  {{ isset($active) && $active == "contact" ? "active" : "" }}">
-                                    <a href="{{ route('contact')}}">Contact</a>
-                                </li>
 
                                 @if( (session('role') != null) )
                                 <li class="dropdown {{ isset($active) && $active == "check" ? "active" : "" }}">
@@ -129,6 +126,10 @@
                                     </ul>
                                 </li>
                                 @endif
+
+                                <li class="dropdown  {{ isset($active) && $active == "contact" ? "active" : "" }}">
+                                    <a href="{{ route('contact')}}">Contact</a>
+                                </li>
                             </ul>
                         </div>
                     </div>

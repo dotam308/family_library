@@ -65,11 +65,22 @@
         $sort .= '&bd=' . $_GET['bd'];
     } elseif (isset($_GET['rd'])) {
         $sort .= '&rd=' . $_GET['rd'];
+    } elseif (isset($_GET['bra'])) {
+        $sort .= '&bra=' . $_GET['bra'];
     }
 
     $search = "";
     if (isset($_GET['keywords'])) {
-        $search = "&keywords=".$_GET['keywords'];
+        $search .= "&keywords=".$_GET['keywords'];
+    }
+    if (isset($_GET['catalog'])) {
+        $search .= "&catalog=".$_GET['catalog'];
+    }
+    if (isset($_GET['copies'])) {
+        $search .= "&copies=".$_GET['copies'];
+    }
+    if (isset($_GET['price'])) {
+        $search .= "&price=".$_GET['price'];
     }
 @endphp
 

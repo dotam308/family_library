@@ -96,7 +96,7 @@
                                 <?php $order++;?>
                                         <tr>
                                             <td>{{abs($order)}}</td>
-                                            <td>{{$user->id}}</td>
+                                            {{-- <td>{{$user->id}}</td> --}}
                                                 @if(session('username')==$user->username)
                                                     <td>{{$user->username}} (Your Account)</td>
                                                 @else

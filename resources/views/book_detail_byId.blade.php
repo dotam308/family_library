@@ -33,7 +33,7 @@
                         <div class="detailed-box">
                             <div class="col-xs-12 col-sm-5 col-md-3">
                                 <div class="post-thumbnail">
-                                    <div class="book-list-icon blue-icon"></div>
+                                    {{-- <div class="book-list-icon blue-icon"></div> --}}
                                     <img src="/storage/{{ $book->image }}" alt="Book Image">
                                 </div>
                             </div>
@@ -45,11 +45,11 @@
                                     <p><strong>Rating:</strong> </p>
                                     <p><strong>Translator:</strong> {{ $book->translator }}</p>
                                     <p><strong>Publisher:</strong> {{ $book->publisher }}</p>
-                                    <p><strong>Length:</strong> 518 pages.</p>
+                                    {{-- <p><strong>Length:</strong> 518 pages.</p> --}}
                                     <p><strong>Copies:</strong> {{ $book->copies }}</p>
                                     <p><strong>Country:</strong> {{ $book->country }}</p>
                                     <p><strong>Genre :</strong> {{ $book->genre }}</p>
-                                    <p><strong>Topics:</strong> Friendship, Bullies, Pranks, School</p>
+                                    {{-- <p><strong>Topics:</strong> Friendship, Bullies, Pranks, School</p> --}}
                                     
                                     <?php $id = $book->id; ?>
                                     {{--  input  --}}
@@ -127,12 +127,7 @@
                             <div class="clearfix"></div>
                         </div>
                         <div class="clearfix"></div>
-                        <p><strong>Summary:</strong> There are many variations of passages of Lorem Ipsum available, but
-                            the majority have suffered alteration in some form, by injected humour, or randomised words
-                            which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum,
-                            you need to be sure there isn't anything embarrassing hidden in the middle of text. All the
-                            Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making
-                            this the first true generator on the Internet. </p>
+                        <p><strong>Summary:</strong> {{ $book->review }} </p>
 
                         <div class="table-tabs" id="responsiveTabs">
                             <ul class="nav nav-tabs">

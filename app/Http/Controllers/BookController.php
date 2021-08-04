@@ -28,10 +28,10 @@ class BookController extends Controller
         
         
         if (!empty(session('userId'))){
-            $books = $books->paginate(10, ["*", 
+            $books = $books->paginate(9, ["*", 
             DB::raw("(SELECT userId FROM wish_lists WHERE bookId = books.id AND userId = ".session('userId').") favorite")]);
         } else {
-            $books = $books->paginate(10);
+            $books = $books->paginate(9);
         }
         $active = "books";
         return view('books', compact('books', 'active'));

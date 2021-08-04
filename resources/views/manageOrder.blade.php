@@ -102,9 +102,9 @@
                                         <td>{{ $order->returned }}</td>
                                         <td>
                                             @if ($order->returned == 'waiting')
-                                                <a type="button" class="btn btn-primary" href="{{ route('tookBook', compact('borrowId', 'bookId')) }}">da lay sach</a>
+                                                <a type="button" class="btn btn-primary" href="{{ route('tookBook', compact('borrowId', 'bookId')) }}">Accept</a>
                                             @else
-                                                <a type="button" class="btn btn-primary" href="{{ route('returnBook', compact('borrowId', 'bookId')) }}">da tra sach</a>
+                                                <a type="button" class="btn btn-primary" href="{{ route('returnBook', compact('borrowId', 'bookId')) }}">Returned</a>
                                             @endif
                                         </td>
                                     </tr>

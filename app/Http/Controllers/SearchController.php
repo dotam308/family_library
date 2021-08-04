@@ -57,7 +57,7 @@ class SearchController extends Controller{
                 case "4":
                     $query->where('price','>=',1500);
             }
-        })->paginate(10);
+        })->paginate(9);
         return view('books',compact('books'));
     }
 
