@@ -23,12 +23,44 @@
         <main id="main" class="site-main">
             <div class="books-full-width">
                 <div class="container">
+                    <section class="search-filters">
+                        <div class="filter-box"><br/>
+                        <form action="{{route('bookSearch')}}" method="get">
+                            <div class="col-md-4 col-sm-6" style="width:615px">
+                                <div class="form-group">
+                                    <input class="form-control" placeholder="Từ khoá" id="keywords"
+                                        name="keywords" type="text">
+                                </div>
+                            </div>
+                            <div class="col-md-3 col-sm-6">
+                                <div class="form-group">
+                                    <select name="catalog" id="catalog" class="form-control">
+                                        <option value="" disabled selected hidden>Tìm kiếm theo</option>
+                                        <option value="ddcCode">DDC</option>
+                                        <option value="name">Tiêu đề</option>
+                                        <option value="author">Tác giả</option>
+                                        <option value="publisher">Nhà xuất bản</option>
+                                        <option value="translator">Người dịch</option>
+                                        <option value="country">Quốc gia</option>
+                                        <option value="genre">Thể loại</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-2 col-sm-6">
+                                <div class="form-group">
+                                    <input class="form-control" type="submit" value="Tìm kiếm">
+                                </div>
+                            </div>
+                        </form>
+                        </div>
+                        <div class="clear"></div>
+                    </section>
                     <form>
-                        <h3>My favorite</h3>
+                        <h3>Danh sách yêu thích của tôi</h3>
                         <br>
                         <br>
                         @if (count($books) == 0)
-                        <p>There is no data</p>
+                        <a href="{{ route('books') }}"><p>Tìm kiếm thêm</p></a>
                         @else
                         <?php
                         $dc = "r";$bn = "r";$au = "r";$ge = "r";$qua = "r";
@@ -40,31 +72,31 @@
                         <table class="table table-hover">
                             <thead>
                                 <tr>
-                                    <th>Order</th>
-                                    <th>DDC code
+                                    <th>Thứ tự</th>
+                                    <th>Mã ddc
                                         <input type="hidden" name="base-url" id="base-url" value="{{url('/')}}">
                                         <a href="{{route('favoriteBooks', compact('dc','desc','page'))}}" id="dc_desc"><i
                                                 class="fas fa-angle-double-down  <?php if(isset($_GET['dc']) && isset($_GET['desc'])) echo "activeDir";?>"></i></a>
                                         <a href="{{route('favoriteBooks', compact('dc','insc','page'))}}" id="dc_insc"><i
                                                 class="fas fa-angle-double-up  <?php if(isset($_GET['dc']) && isset($_GET['insc'])) echo "activeDir";?>"></i></a>
                                     </th>
-                                    <th>Title
+                                    <th>Tên sách
                                         <a href="{{route('favoriteBooks', compact('bn','desc','page'))}}" id="bn_desc"><i
                                                 class="fas fa-angle-double-down <?php if(isset($_GET['bn']) && isset($_GET['desc'])) echo "activeDir";?>"></i></a>
                                         <a href="{{route('favoriteBooks', compact('bn','insc','page'))}}" id="bn_insc"><i
                                                 class="fas fa-angle-double-up <?php if(isset($_GET['bn']) && isset($_GET['insc'])) echo "activeDir";?>"></i></a></th>
-                                    <th>Author
+                                    <th>Tác giả
                                         <a href="{{route('favoriteBooks', compact('au','desc','page'))}}" id="au_desc"><i
                                                 class="fas fa-angle-double-down <?php if(isset($_GET['au']) && isset($_GET['desc'])) echo "activeDir";?>"></i></a>
                                         <a href="{{route('favoriteBooks', compact('au','insc','page'))}}" id="au_insc"><i
                                                 class="fas fa-angle-double-up <?php if(isset($_GET['au']) && isset($_GET['insc'])) echo "activeDir";?>"></i></a></th>
-                                    <th>Genre
+                                    <th>Thể loại
                                         <a href="{{route('favoriteBooks', compact('ge','desc','page'))}}" id="ge_desc"><i
                                                 class="fas fa-angle-double-down <?php if(isset($_GET['ge']) && isset($_GET['desc'])) echo "activeDir";?>"></i></a>
                                         <a href="{{route('favoriteBooks', compact('ge','insc','page'))}}" id="ge_insc"><i
                                                 class="fas fa-angle-double-up <?php if(isset($_GET['ge']) && isset($_GET['insc'])) echo "activeDir";?>"></i></a></th>
-                                   <th>Image</th>
-                                   <th>Action</th>
+                                   <th>Ảnh bìa</th>
+                                   <th>Thao tác</th>
 
                                 </tr>
                             </thead>

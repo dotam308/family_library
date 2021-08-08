@@ -5,8 +5,7 @@
         <div class="banner-header">
             <h2>Giá sách</h2>
             <span class="underline center"></span>
-            <p class="lead">Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                Pellentesque dolor turpis, pulvinar varius dui id, convallis iaculis eros.</p>
+            <p class="lead">Sách là bạn.</p>
         </div>
         <div class="breadcrumb">
             <ul>
@@ -38,20 +37,20 @@ if (isset($_GET['page'])) {
                                 <div class="col-md-4 col-sm-6" style="width:615px">
                                     <div class="form-group">
                                         <input class="form-control" placeholder="Từ khoá" id="keywords"
-                                            name="keywords" type="text">
+                                            name="keywords" type="text" value="{{ request()->get('keywords') ?? "" }}">
                                     </div>
                                 </div>
                                 <div class="col-md-3 col-sm-6">
                                     <div class="form-group">
-                                        <select name="catalog" id="catalog" class="form-control">
+                                        <select name="catalog" id="catalog" class="form-control" value="{{ request()->get('catalog') ?? "" }}">
                                             <option value="" disabled selected hidden>Tìm kiếm theo</option>
-                                            <option value="ddcCode">DDC</option>
-                                            <option value="name">Tiêu đề</option>
-                                            <option value="author">Tác giả</option>
-                                            <option value="publisher">Nhà xuất bản</option>
-                                            <option value="translator">Người dịch</option>
-                                            <option value="country">Quốc gia</option>
-                                            <option value="genre">Thể loại</option>
+                                            <option value="ddcCode" {{ request()->get('catalog') ? ((request()->get('catalog') == 'ddcCode') ? "selected" : "") : "" }}>DDC</option>
+                                            <option value="name" {{ request()->get('catalog') ? ((request()->get('catalog') == 'name') ? "selected" : "") : "" }}>Tiêu đề</option>
+                                            <option value="author" {{ request()->get('catalog') ? ((request()->get('catalog') == 'author') ? "selected" : "") : "" }} >Tác giả</option>
+                                            <option value="publisher" {{ request()->get('catalog') ? ((request()->get('catalog') == 'publisher') ? "selected" : "") : "" }}>Nhà xuất bản</option>
+                                            <option value="translator" {{ request()->get('catalog') ? ((request()->get('catalog') == 'translator') ? "selected" : "") : "" }}>Người dịch</option>
+                                            <option value="country" {{ request()->get('catalog') ? ((request()->get('catalog') == 'country') ? "selected" : "") : "" }}>Quốc gia</option>
+                                            <option value="genre" {{ request()->get('catalog') ? ((request()->get('catalog') == 'genre') ? "selected" : "") : "" }}>Thể loại</option>
                                         </select>
                                     </div>
                                 </div>

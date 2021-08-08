@@ -5,7 +5,7 @@
         <div class="banner-header">
             <h2>Liên hệ với chúng tôi</h2>
             <span class="underline center"></span>
-            <p class="lead">Proin ac eros pellentesque dolor pharetra tempo.</p>
+            <p class="lead">Hân hạnh là người đồng hành với bạn.</p>
         </div>
         <div class="breadcrumb">
             <ul>
@@ -33,9 +33,9 @@
                                     <div class="bottom-info">
                                         <span class="top-arrow"></span>
                                         <ul>
-                                            <li>121 King Street, Melbourne </li>
-                                            <li>Victoria 3000 Australia</li>
-                                            <li>PO Box 16122</li>
+                                            <li>144 Xuân Thuỷ, Cầu Giấy </li>
+                                            <li>Hà Nội</li>
+                                            <li>Việt Nam</li>
                                         </ul>
                                     </div>
                                 </div>
@@ -43,9 +43,9 @@
                                     <div class="bottom-info orange-bg">
                                         <span class="bottom-arrow"></span>
                                         <ul>
-                                            <li>121 King Street, Melbourne </li>
-                                            <li>Victoria 3000 Australia</li>
-                                            <li>PO Box 16122</li>
+                                            <li>144 Xuân Thuỷ, Cầu Giấy </li>
+                                            <li>Hà Nội</li>
+                                            <li>Việt Nam</li>
                                         </ul>
                                     </div>
                                     <div class="top-info dark-bg">
@@ -61,9 +61,9 @@
                                     <div class="bottom-info">
                                         <span class="top-arrow"></span>
                                         <ul>
-                                            <li><a href="tel:+123-456-7890">Local: +123-456-7890</a></li>
-                                            <li><a href="tel:+123-456-7890">Local: +123-456-7890</a></li>
-                                            <li><a href="fax:(001)-254-7359">Fax: (001)-254-7359</a></li>
+                                            <li><a href="tel:0967915305">Local: 0967915305</a></li>
+                                            <li><a href="tel:0343543199">Local: 0343543199</a></li>
+                                            <li><a href="fax:0437872102">Fax: 0437872102</a></li>
                                         </ul>
                                     </div>
                                 </div>
@@ -71,9 +71,9 @@
                                     <div class="bottom-info orange-bg">
                                         <span class="bottom-arrow"></span>
                                         <ul>
-                                            <li><a href="tel:+123-456-7890">Local: +123-456-7890</a></li>
-                                            <li><a href="tel:+123-456-7890">Local: +123-456-7890</a></li>
-                                            <li><a href="fax:(001)-254-7359">Fax: (001)-254-7359</a></li>
+                                            <li><a href="tel:0967915305">Local: 0967915305</a></li>
+                                            <li><a href="tel:0343543199">Local: 0343543199</a></li>
+                                            <li><a href="fax:0437872102">Fax: 0437872102</a></li>
                                         </ul>
                                     </div>
                                     <div class="top-info dark-bg">
@@ -90,8 +90,8 @@
                                         <span class="top-arrow"></span>
                                         <ul>
                                             <li>www.libraria.com</li>
-                                            <li>support@libraria.com</li>
-                                            <li>info@libraria.com</li>
+                                            <li>adminLibVN@gmail.com</li>
+                                            <li>dotam308@gmail.com</li>
                                         </ul>
                                     </div>
                                 </div>
@@ -100,8 +100,8 @@
                                         <span class="bottom-arrow"></span>
                                         <ul>
                                             <li><a href="http://www.libraria.com/">www.libraria.com </a></li>
-                                            <li><a href="mailto:support@libraria.com">support@libraria.com</a></li>
-                                            <li><a href="mailto:info@libraria.com">info@libraria.com</a></li>
+                                            <li><a href="mailto:adminLibVN@gmail.com">adminLibVN@gmail.com</a></li>
+                                            <li><a href="mailto:dotam308@gmail.com">dotam308@gmail.com</a></li>
                                         </ul>
                                     </div>
                                     <div class="top-info dark-bg">
@@ -131,7 +131,7 @@
                                                     <span class="underline left"></span>
                                                     <div class="contact-fields">
                                                         <form id="contact" name="contact"
-                                                            action="http://libraria.demo.presstigers.com/contact.html"
+                                                            action=""
                                                             method="post">
                                                             <div class="row">
                                                                 <div class="col-md-6 col-sm-6">

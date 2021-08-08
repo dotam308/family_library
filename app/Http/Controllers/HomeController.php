@@ -36,10 +36,6 @@ class HomeController extends Controller
         }
         return view('index', compact('active','quantityBook','borrowBook','rentlist','booktype','userquantity'));
     }
-    // public function viewBooks() {
-    //     $active = "books";
-    //     return view('books', compact('active'));
-    // }
     public function viewContact() {
         $active = "contact";
         return view('contact', compact('active'));
@@ -61,7 +57,7 @@ class HomeController extends Controller
         return view('books_detail', compact('active'));
     }
     public function viewBookDetailById(Request $request) {
-        $active = "manage";
+        $active = "books";
         if (!empty(session('userId'))) {
             $book = Book::select("books.*",
             DB::raw("(SELECT userId FROM wish_lists WHERE bookId = books.id AND userId = ".session('userId').") favorite"))
