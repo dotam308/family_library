@@ -5,7 +5,7 @@
         <div class="banner-header">
             <h2>Người dùng</h2>
             <span class="underline center"></span>
-            {{-- <p class="lead">Proin ac eros pellentesque dolor pharetra tempo.</p> --}}
+            <p class="lead">Bảo mật thông tin người dùng.</p>
         </div>
         <div class="breadcrumb">
             <ul>

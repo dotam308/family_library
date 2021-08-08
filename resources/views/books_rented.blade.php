@@ -6,7 +6,7 @@
         <div class="banner-header">
             <h2>Sách mượn</h2>
             <span class="underline center"></span>
-            {{-- <p class="lead">Proin ac eros pellentesque dolor pharetra tempo.</p> --}}
+            <p class="lead">Sách là bạn.</p>
         </div>
         <div class="breadcrumb">
             <ul>

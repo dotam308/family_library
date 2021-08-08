@@ -21,7 +21,7 @@ class WishListController extends Controller
         return response()->json(['success'=> true], 200);
     }
     public function showFavoriteBooks(Request $request) {
-        $active = "check";
+        $active = "books";
         if ($request->insc == 'r') {
             if ($request->dc == 'r') {
                 $books = DB::table('wish_lists')->leftJoin('books', 'wish_lists.bookId', '=', 'books.id')
