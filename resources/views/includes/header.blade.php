@@ -20,17 +20,13 @@
                             <div class="row">
                                 <div class="col-sm-6">
                                     <div class="topbar-info">
-                                        <a href="tel:+61-3-8376-6284"><i class="fa fa-phone"></i>+61-3-8376-6284</a>
-                                        <span>/</span>
-                                        <a href="mailto:support@libraria.com"><i
-                                                class="fa fa-envelope"></i>support@libraria.com</a>
                                     </div>
                                 </div>
                                 <div class="col-sm-6">
                                     <div class="topbar-links">
-                                        <a data-toggle="dropdown" class="dropdown-toggle disabled" href="#">Welcome {{session('username')}}</a>
-                                        <a href="{{ route('signin') }}"><i class="fa fa-lock"></i>{{ empty(session('username')) ? "Login / Register" : "" }}</a>
-                                        <a href="{{ route('logout') }}"><i class="fa fa-logout"></i>{{ empty(session('username')) ? "" : "Logout" }}</a>
+                                        <a data-toggle="dropdown" class="dropdown-toggle disabled" href="#">Chào mừng {{session('username')}}</a><t></t>
+                                        <a href="{{ route('signin') }}"><i class="fa fa-lock"></i>{{ empty(session('username')) ? "Đăng nhập / Đăng ký" : "" }}</a>
+                                        <a href="{{ route('logout') }}"><i class="fa fa-logout"></i>{{ empty(session('username')) ? "" : "Đăng xuất" }}</a>
                                         <span>|</span>
                                         <div class="header-cart dropdown">
                                             <a data-toggle="dropdown" class="dropdown-toggle" href="#favorite">
@@ -48,55 +44,34 @@
                             <ul class="nav navbar-nav">
                                 <li class="dropdown {{ isset($active) && $active == "index" ? "active" : "" }}">
                                     <a data-toggle="dropdown" class="dropdown-toggle disabled"
-                                        href="{{ route('index') }}">Home</a>
-                                    <ul class="dropdown-menu">
-                                        <li><a href="index-2.html">Home V1</a></li>
-                                        <li><a href="home-v2.html">Home V2</a></li>
-                                        <li><a href="home-v3.html">Home V3</a></li>
-                                    </ul>
+                                        href="{{ route('index') }}">Trang chủ</a>
                                 </li>
                                 <li class="dropdown {{ isset($active) && $active == "books" ? "active" : "" }}">
                                     <a data-toggle="dropdown" class="dropdown-toggle disabled"
-                                        href="{{ route('books') }}">Books &amp; Media</a>
-                                    <ul class="dropdown-menu">
-                                        <li><a href="books-media-list-view.html">Books &amp; Media List View</a>
-                                        </li>
-                                        <li><a href="books-media-gird-view-v1.html">Books &amp; Media Grid View
-                                                V1</a></li>
-                                        <li><a href="books-media-gird-view-v2.html">Books &amp; Media Grid View
-                                                V2</a></li>
-                                        <li><a href="books-media-detail-v1.html">Books &amp; Media Detail V1</a>
-                                        </li>
-                                        <li><a href="books-media-detail-v2.html">Books &amp; Media Detail V2</a>
-                                        </li>
-                                    </ul>
+                                        href="{{ route('books') }}">Giá sách</a>
                                 </li>
                                 {{-- <li class="dropdown">
-                                        <a data-toggle="dropdown" class="dropdown-toggle disabled" href="news-events-list-view.html">News &amp; Events</a>
-                                        <ul class="dropdown-menu">
-                                            <li><a href="news-events-list-view.html">News &amp; Events List View</a></li>
-                                            <li><a href="news-events-detail.html">News &amp; Events Detail</a></li>
-                                        </ul>
+                                        <a data-toggle="dropdown" class="dropdown-toggle disabled" href="news-events-list-view.html">Tin tức và sự kiện</a>
                                     </li> --}}
                                      @if (session('role') == 'admin')
                                     <li class="dropdown {{ isset($active) && $active == "manage" ? "active" : "" }}" >
-                                        <a data-toggle="dropdown" class="dropdown-toggle disabled" href="#">Manage</a>
+                                        <a data-toggle="dropdown" class="dropdown-toggle disabled" href="#">Quản lý</a>
                                     <ul class="dropdown-menu">
-                                        <li><a href="{{route('users')}}">Manage User List</a></li>
-                                        <li><a href="{{ route('books_rented') }}">Manage Book Rented List</a></li>
-                                        <li><a href="{{ route('manageBooks') }}">Manage Books</a></li>
+                                        <li><a href="{{ route('manageBooks') }}">Sách</a></li>
+                                        <li><a href="{{ route('books_rented') }}">Sách mượn</a></li>
+                                        <li><a href="{{route('users')}}">Người mượn</a></li>
                                     </ul> 
                                     </li>
                                     @endif
-                                <li class="dropdown {{ (isset($active) && $active == "pages") ? "active" : "" }}">
-                                    <a data-toggle="dropdown" class="dropdown-toggle disabled" href="#">Pages</a>
+                                {{--<li class="dropdown {{ (isset($active) && $active == "pages") ? "active" : "" }}">
+                                    <a data-toggle="dropdown" class="dropdown-toggle disabled" href="#">Trang</a>
                                     <ul class="dropdown-menu">
                                         <li><a href="{{ route('cart') }}">Cart</a></li>
                                         <li><a href="{{ route('checkout') }}">Checkout</a></li>
                                         <li><a href="{{ route('signin') }}">Signin/Register</a></li>
                                         <li><a href="{{ route('404') }}">404/Error</a></li>
                                     </ul>
-                                </li>
+                                </li>--}}
                                 {{-- <li class="dropdown">
                                         <a data-toggle="dropdown" class="dropdown-toggle disabled" href="blog.html">Blog</a>
                                         <ul class="dropdown-menu">
@@ -106,11 +81,11 @@
                                     </li> --}}
                                 {{-- <li><a href="services.html">Services</a></li> --}}
                                 <li class="dropdown  {{ isset($active) && $active == "contact" ? "active" : "" }}">
-                                    <a href="{{ route('contact')}}">Contact</a>
+                                    <a href="{{ route('contact')}}">Liên hệ</a>
                                 </li>
 
-                                @if( (session('role') != null) )
-                                <li class="dropdown {{ isset($active) && $active == "check" ? "active" : "" }}">
+                                {{--<@if( (session('role') != null) )
+                                li class="dropdown {{ isset($active) && $active == "check" ? "active" : "" }}">
                                     <a data-toggle="dropdown" class="dropdown-toggle disabled" >Check</a>
                                     <ul class="dropdown-menu">
                                         <li><a href="{{ route('favoriteBooks') }}">My favorite book list</a></li>
@@ -118,9 +93,9 @@
                                         <li><a href="{{ route('returnedBooks') }}">Returned books list</a></li>
                                     </ul>
                                 </li>
-                                @endif
+                                @endif--}}
                                 
-                                @if(session('role') == 'admin')
+                                {{--@if(session('role') == 'admin')
                                 <li class="dropdown {{ isset($active) && $active == "order" ? "active" : "" }}">
                                     <a data-toggle="dropdown" class="dropdown-toggle disabled" href="#">orders</a>
                                     <ul class="dropdown-menu">
@@ -128,7 +103,7 @@
                                         <li><a href="{{ route('borrowingOrders') }}">Borrowing books list</a></li>
                                     </ul>
                                 </li>
-                                @endif
+                                @endif--}}
                             </ul>
                         </div>
                     </div>
@@ -142,42 +117,29 @@
                                 <a href="#" class="close"></a>
                             </li>
                             <li>
-                                <a href="index-2.html">Home</a>
-                                <ul>
-                                    <li><a href="index-2.html">Home V1</a></li>
-                                    <li><a href="home-v2.html">Home V2</a></li>
-                                    <li><a href="home-v3.html">Home V3</a></li>
-                                </ul>
+                                <a href="{{ route('index') }}">Trang chủ</a>
                             </li>
                             <li>
-                                <a href="books-media-list-view.html">Books &amp; Media</a>
-                                <ul>
-                                    <li><a href="books-media-list-view.html">Books &amp; Media List View</a></li>
-                                    <li><a href="books-media-gird-view-v1.html">Books &amp; Media Grid View V1</a>
-                                    </li>
-                                    <li><a href="books-media-gird-view-v2.html">Books &amp; Media Grid View V2</a>
-                                    </li>
-                                    <li><a href="books-media-detail-v1.html">Books &amp; Media Detail V1</a></li>
-                                    <li><a href="books-media-detail-v2.html">Books &amp; Media Detail V2</a></li>
-                                </ul>
+                                <a href="{{ route('books') }}">Giá sách</a>
                             </li>
-                            <li>
+                            {{--<li>
                                 <a href="news-events-list-view.html">News &amp; Events</a>
                                 <ul>
                                     <li><a href="news-events-list-view.html">News &amp; Events List View</a></li>
                                     <li><a href="news-events-detail.html">News &amp; Events Detail</a></li>
                                 </ul>
-                            </li>
+                            </li>--}}
                             @if (session('role') == 'admin')
                                 <li>
-                                    <a href="#">Manage</a>
+                                    <a href="#">Quản lý</a>
                                 <ul>
-                                    <li><a href="{{route('users')}}">Manage User List</a></li>
-                                    <li><a href="{{ route('books_rented') }}">Manage Book Rented List</a></li>
+                                    <li><a href="{{ route('manageBooks') }}">Giá sách</a></li>
+                                    <li><a href="{{route('users')}}">Người mượn</a></li>
+                                    <li><a href="{{ route('books_rented') }}">Sách mượn</a></li>
                                 </ul> 
                                 </li>
                             @endif
-                            <li>
+                            {{--<li>
                                 <a href="#">Pages</a>
                                 <ul>
                                     <li><a href="{{ route('cart') }}">Cart</a></li>
@@ -185,21 +147,16 @@
                                     <li><a href="{{ route('signin') }}">Signin/Register</a></li>
                                     <li><a href="{{ route('404') }}">404/Error</a></li>
                                 </ul>
-                            </li>
-                            @if(session('role')=='admin')
-                            <li>
-                                <a href="users-list-view.html">Users</a>
-                            </li>
-                            @endif
-                            <li>
+                            </li>--}}
+                            {{--<li>
                                 <a href="blog.html">Blog</a>
                                 <ul>
                                     <li><a href="blog.html">Blog Grid View</a></li>
                                     <li><a href="blog-detail.html">Blog Detail</a></li>
                                 </ul>
                             </li>
-                            <li><a href="services.html">Services</a></li>
-                            <li><a href="{{ route('contact')}}">Contact</a></li>
+                            <li><a href="services.html">Services</a></li>--}}
+                            <li><a href="{{ route('contact')}}">Liên hệ</a></li>
                         </ul>
                     </div>
                 </div>

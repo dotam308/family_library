@@ -4,14 +4,14 @@
 <section class="page-banner services-banner">
     <div class="container">
         <div class="banner-header">
-            <h2>Books & Media Listing</h2>
+            <h2>Giá sách</h2>
             <span class="underline center"></span>
             <p class="lead">Proin ac eros pellentesque dolor pharetra tempo.</p>
         </div>
         <div class="breadcrumb">
             <ul>
-                <li><a href="index-2.html">Home</a></li>
-                <li>Books & Media</li>
+                <li><a href="index-2.html">Trang chủ</a></li>
+                <li>Giá sách</li>
             </ul>
         </div>
     </div>
@@ -40,16 +40,15 @@
                             <div class="col-xs-12 col-sm-7 col-md-6">
                                 <div class="post-center-content">
                                     <h2>{{ $book->name }}</h2>
-                                    <p><strong>Author:</strong> {{ $book->author }}</p>
+                                    <p><strong>Tác giả:</strong> {{ $book->author }}</p>
                                     <p><strong>ISBN:</strong> {{ $book->ddcCode }}</p>
-                                    <p><strong>Rating:</strong> </p>
-                                    <p><strong>Translator:</strong> {{ $book->translator }}</p>
-                                    <p><strong>Publisher:</strong> {{ $book->publisher }}</p>
-                                    <p><strong>Length:</strong> 518 pages.</p>
-                                    <p><strong>Copies:</strong> {{ $book->copies }}</p>
-                                    <p><strong>Country:</strong> {{ $book->country }}</p>
-                                    <p><strong>Genre :</strong> {{ $book->genre }}</p>
-                                    <p><strong>Topics:</strong> Friendship, Bullies, Pranks, School</p>
+                                    <p><strong>Dánh giá:</strong> </p>
+                                    <p><strong>Người dịch:</strong> {{ $book->translator }}</p>
+                                    <p><strong>Nhà xuất bản:</strong> {{ $book->publisher }}</p>
+                                    <p><strong>Độ dài:</strong> 518 pages.</p>
+                                    <p><strong>Ngôn ngữ:</strong> {{ $book->country }}</p>
+                                    <p><strong>Thể loại:</strong> {{ $book->genre }}</p>
+                                    <p><strong>Chủ đề:</strong> Friendship, Bullies, Pranks, School</p>
                                     
                                     <?php $id = $book->id; ?>
                                     {{--  input  --}}
@@ -63,7 +62,7 @@
 
                                     {{-- end input --}}
                                     <a href="{{ route('borrowBook', compact('id')) }}"
-                                        class="btn btn-primary">Borrow</a>
+                                        class="btn btn-primary">Mượn</a>
                                     <div class="actions">
                                         <ul>
                                             <li>

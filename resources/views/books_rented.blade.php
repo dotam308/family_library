@@ -4,14 +4,14 @@
 <section class="page-banner services-banner">
     <div class="container">
         <div class="banner-header">
-            <h2>Manage Listing</h2>
+            <h2>Sách mượn</h2>
             <span class="underline center"></span>
-            <p class="lead">Manage Books Rented Page.</p>
+            <p class="lead">Proin ac eros pellentesque dolor pharetra tempo.</p>
         </div>
         <div class="breadcrumb">
             <ul>
-                <li><a href="index-2.html">Home</a></li>
-                <li>Books Rented</li>
+                <li><a href="index-2.html">Quản lý</a></li>
+                <li>Sách mượn</li>
             </ul>
         </div>
     </div>
@@ -26,9 +26,39 @@
             <div class="books-full-width">
                 <div class="container">
                     <!-- Start: Search Section -->
+                    <section class="search-filters">
+                        <div class="filter-box">
+                            <h3>Bạn cần tìm gì?</h3>
+                            <form action="{{route('bookBorrowSearch')}}" method="get">
+                                <div class="col-md-4 col-sm-6" style="width:615px">
+                                    <div class="form-group">
+                                        <input class="form-control" placeholder="Từ khoá" id="keywords"
+                                            name="keywords" type="text">
+                                    </div>
+                                </div>
+                                <div class="col-md-3 col-sm-6">
+                                    <div class="form-group">
+                                        <select name="catalog" id="catalog" class="form-control">
+                                            <option value="" disabled selected hidden>Tìm kiếm theo</option>
+                                            <option value="name">Tiêu đề</option>
+                                            <option value="username">Tên đăng nhập</option>
+                                            <option value="borrowDate">Ngày mượn</option>
+                                            <option value="returnDate">Ngày hẹn trả</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-2 col-sm-6">
+                                    <div class="form-group">
+                                        <input class="form-control" type="submit" value="Tìm kiếm">
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="clear"></div>
+                    </section>
                     <!-- End: Search Section -->
                     <div class="users-list-view">
-                        <h3>Book Rent List</h3>
+                        <h3>Sách mượn</h3>
 
                         <ul>
                             <?php
@@ -67,17 +97,12 @@
                                                 <a href="{{route('books_rented', compact('borrower', 'insc', 'page'))}}" id = "borrower_insc"><i
                                                         class="fas fa-angle-double-up <?php if(isset($_GET['borrower']) && isset($_GET['insc'])) echo "activeDir";?>"></i></a>
                                             </th>
-                                            <th>Quantity
-                                                <a href="{{route('books_rented', compact('quantityx', 'desc', 'page'))}}" id = "quantityx_desc"><i
-                                                        class="fas fa-angle-double-down <?php if(isset($_GET['quantityx']) && isset($_GET['desc'])) echo "activeDir";?>"></i></a>
-                                                <a href="{{route('books_rented', compact('quantityx', 'insc', 'page'))}}" id = "quantityx_insc"><i
-                                                        class="fas fa-angle-double-up <?php if(isset($_GET['quantityx']) && isset($_GET['insc'])) echo "activeDir";?>"></i></a>
-                                            </th>
-                                            <th>Borrow Date
-                                                <a href="{{route('books_rented', compact('brdate', 'desc', 'page'))}}" id = "brdate_desc"><i
-                                                        class="fas fa-angle-double-down <?php if(isset($_GET['brdate']) && isset($_GET['desc'])) echo "activeDir";?>"></i></a>
-                                                <a href="{{route('books_rented', compact('brdate', 'insc', 'page'))}}" id = "brdate_insc"><i
-                                                        class="fas fa-angle-double-up <?php if(isset($_GET['brdate']) && isset($_GET['insc'])) echo "activeDir";?>"></i></a>
+                                            <th>Ngày mượn
+                                                <a href="{{route('books_rented', compact('brdate', 'desc'))}}" id = "brdate_desc"><i
+                                                        class="fas fa-angle-double-down"></i></a>
+                                                <a href="{{route('books_rented', compact('brdate', 'insc'))}}" id = "brdate_insc"><i
+                                                        class="fas fa-angle-double-up"></i></a>
+
                                             </th>
                                             <th>Return Date
                                                 <a href="{{route('books_rented', compact('redate', 'desc', 'page'))}}" id = "redate_desc"><i
@@ -85,8 +110,8 @@
                                                 <a href="{{route('books_rented', compact('redate', 'insc', 'page'))}}" id = "redate_insc"><i
                                                         class="fas fa-angle-double-up <?php if(isset($_GET['redate']) && isset($_GET['insc'])) echo "activeDir";?>"></i></a>
                                             </th>
-                                            <th>Status</th>
-                                            <th>Action</th>
+                                            <th>Tình trạng</th>
+                                            <th>Thao tác</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -109,7 +134,6 @@
                                             <td>{{abs($i)}}</td>
                                             <td>{{$b->name}}</td>
                                             <td>{{$b->username}}</td>
-                                            <td>{{$b->quantity}}</td>
                                             <td>{{$b->borrowDate }}</td>
                                             <td>{{$b->returnDate }}</td>
                                             <td>{{$b->returned}}</td>
@@ -133,7 +157,7 @@
                             </form>
                             @else
                             <br>
-                            <div>No users registered</div>
+                            <div>Không có ai đang mượn sách!</div>
                             @endif
                         </ul>
                     </div>

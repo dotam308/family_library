@@ -65,6 +65,7 @@ Route::get('/delete_user/user/{id}',[UserController::class,'deleteUser'])->name(
 
 Route::get('/search_books', [SearchController::class, 'bookSearch'])->name('bookSearch');
 Route::get('/search_books_admin', [SearchController::class, 'bookManagementSearch'])->name('bookManagementSearch');
+Route::get('/search_books_borrowed', [SearchController::class, 'bookBorrowSearch'])->name('bookBorrowSearch');
 Route::get('/search_users', [SearchController::class, 'userSearch'])->name('userSearch');
 
 // Route::get('/bookSearch', [SearchController::class, 'bookSearch'])->name('booksearch');

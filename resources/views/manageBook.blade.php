@@ -3,14 +3,14 @@
 <section class="page-banner services-banner">
     <div class="container">
         <div class="banner-header">
-            <h2>Books & Media Listing</h2>
+            <h2>Sách</h2>
             <span class="underline center"></span>
             <p class="lead">Proin ac eros pellentesque dolor pharetra tempo.</p>
         </div>
         <div class="breadcrumb">
             <ul>
-                <li><a href="index-2.html">Home</a></li>
-                <li>Books & Media</li>
+                <li><a href="#">Quản lý</a></li>
+                <li>Sách</li>
             </ul>
         </div>
     </div>
@@ -24,63 +24,39 @@
             <div class="books-full-width">
                 <div class="container">
                     <section class="search-filters">
-                        <div class="filter-box">
-                            <h3>What are you looking for at the library?</h3>
-                            <form action="{{route('bookManagementSearch')}}" method="get">
-                                <div class="col-md-4 col-sm-6">
-                                    <div class="form-group">
-                                        <input class="form-control" placeholder="Search by Keyword" id="keywords"
-                                            name="keywords" type="text">
-                                    </div>
+                        <div class="filter-box"><br/>
+                        <form action="{{route('bookSearch')}}" method="get">
+                            <div class="col-md-4 col-sm-6" style="width:615px">
+                                <div class="form-group">
+                                    <input class="form-control" placeholder="Từ khoá" id="keywords"
+                                        name="keywords" type="text">
                                 </div>
-                                <div class="col-md-3 col-sm-6">
-                                    <div class="form-group">
-                                        <select name="catalog" id="catalog" class="form-control">
-                                            <option value="" disabled selected>Search the Catalog</option>
-                                            <option value="ddcCode">DDC</option>
-                                            <option value="name">Title</option>
-                                            <option value="author">Author</option>
-                                            <option value="publisher">Publisher</option>
-                                            <option value="translator">Translator</option>
-                                            <option value="country">Country</option>
-                                            <option value="genre">Category</option>
-                                        </select>
-                                    </div>
+                            </div>
+                            <div class="col-md-3 col-sm-6">
+                                <div class="form-group">
+                                    <select name="catalog" id="catalog" class="form-control">
+                                        <option value="" disabled selected hidden>Tìm kiếm theo</option>
+                                        <option value="ddcCode">DDC</option>
+                                        <option value="name">Tiêu đề</option>
+                                        <option value="author">Tác giả</option>
+                                        <option value="publisher">Nhà xuất bản</option>
+                                        <option value="translator">Người dịch</option>
+                                        <option value="country">Quốc gia</option>
+                                        <option value="genre">Thể loại</option>
+                                    </select>
                                 </div>
-                                <div class="col-md-3 col-sm-6">
-                                    <div class="form-group">
-                                        <select name="copies" id="copies" class="form-control">
-                                            <option value="" disabled selected>Copies</option>
-                                            <option value="1"><50</option>
-                                            <option value="2">50-100</option>
-                                            <option value="3">100-150</option>
-                                            <option value="4">≥150</option>
-                                        </select>
-                                    </div>
+                            </div>
+                            <div class="col-md-2 col-sm-6">
+                                <div class="form-group">
+                                    <input class="form-control" type="submit" value="Tìm kiếm">
                                 </div>
-                                <div class="col-md-3 col-sm-6">
-                                    <div class="form-group">
-                                        <select name="price" id="price" class="form-control">
-                                            <option value="" disabled selected>Price</option>
-                                            <option value="1"><500</option>
-                                            <option value="2">500-1000</option>
-                                            <option value="3">1000-1500</option>
-                                            <option value="4">≥1500</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-md-2 col-sm-6">
-                                    <div class="form-group">
-                                        <input class="form-control" type="submit" value="Search">
-                                    </div>
-                                </div>
-                            </form>
+                            </div>
+                        </form>
                         </div>
                         <div class="clear"></div>
                     </section>
                     <form>
-                        <h3>Danh sách các loại sách</h3>
-                        
+                        <h3>Danh sách</h3>
                         <div class="row">
                             <div class="col text-right">
                                 <a type="button" class="btn btn-primary" href="{{ route('addBook') }}">Thêm sách</a>
@@ -97,37 +73,32 @@
                                 ?>
 
                                 <tr>
-                                    <th>Số thứ tự/Order</th>
+                                    <th>Số thứ tự</th>
                                     <th>Mã DDC/DDC
                                         <input type="hidden" name="base-url" id="base-url" value="{{url('/')}}">
-                                    <a href="{{route('manageBooks', compact('dc','desc','page'))}}" id="dc_desc"><i class="fas fa-angle-double-down <?php if(isset($_GET['dc']) && isset($_GET['desc'])) echo "activeDir";?>"></i></a>
-                                        <a href="{{route('manageBooks', compact('dc','insc','page'))}}" id="dc_insc"><i class="fas fa-angle-double-up <?php if(isset($_GET['dc']) && isset($_GET['insc'])) echo "activeDir";?>"></i></a></th>
-                                    <th>Tên sách/Title
-                                    <a href="{{route('manageBooks', compact('bn','desc','page'))}}" id="bn_desc"><i class="fas fa-angle-double-down <?php if(isset($_GET['bn']) && isset($_GET['desc'])) echo "activeDir";?>"></i></a>
-                                        <a href="{{route('manageBooks', compact('bn','insc','page'))}}" id="bn_insc"><i class="fas fa-angle-double-up <?php if(isset($_GET['bn']) && isset($_GET['insc'])) echo "activeDir";?>"></i></a></th>
-                                    <th>Tác giả/Author
-                                    <a href="{{route('manageBooks', compact('au','desc','page'))}}" id="au_desc"><i class="fas fa-angle-double-down <?php if(isset($_GET['au']) && isset($_GET['desc'])) echo "activeDir";?>"></i></a>
-                                        <a href="{{route('manageBooks', compact('au','insc','page'))}}" id="au_insc"><i class="fas fa-angle-double-up <?php if(isset($_GET['au']) && isset($_GET['insc'])) echo "activeDir";?>"></i></a></th>
-                                    <th>Thể loại/Genre
-                                    <a href="{{route('manageBooks', compact('ge','desc','page'))}}" id="ge_desc"><i class="fas fa-angle-double-down <?php if(isset($_GET['ge']) && isset($_GET['desc'])) echo "activeDir";?>"></i></a>
-                                        <a href="{{route('manageBooks', compact('ge','insc','page'))}}" id="ge_insc"><i class="fas fa-angle-double-up <?php if(isset($_GET['ge']) && isset($_GET['insc'])) echo "activeDir";?>"></i></a></th>
-                                    <th>Nhà sản xuất/Publisher
-                                    <a href="{{route('manageBooks', compact('pub','desc','page'))}}" id="pub_desc"><i class="fas fa-angle-double-down <?php if(isset($_GET['pub']) && isset($_GET['desc'])) echo "activeDir";?>"></i></a>
-                                        <a href="{{route('manageBooks', compact('pub','insc','page'))}}" id="pub_insc"><i class="fas fa-angle-double-up <?php if(isset($_GET['pub']) && isset($_GET['insc'])) echo "activeDir";?>"></i></a></th>
-                                    <th>Người dịch/Translator
-                                    <a href="{{route('manageBooks', compact('trans','desc','page'))}}" id="trans_desc"><i class="fas fa-angle-double-down <?php if(isset($_GET['trans']) && isset($_GET['desc'])) echo "activeDir";?>"></i></a>
-                                        <a href="{{route('manageBooks', compact('trans','insc','page'))}}" id="trans_insc"><i class="fas fa-angle-double-up <?php if(isset($_GET['trans']) && isset($_GET['insc'])) echo "activeDir";?>"></i></a></th>
-                                    <th>Quốc gia/Country
-                                    <a href="{{route('manageBooks', compact('coun','desc','page'))}}" id="coun_desc"><i class="fas fa-angle-double-down <?php if(isset($_GET['coun']) && isset($_GET['desc'])) echo "activeDir";?>"></i></a>
-                                        <a href="{{route('manageBooks', compact('coun','insc','page'))}}" id="coun_insc"><i class="fas fa-angle-double-up <?php if(isset($_GET['coun']) && isset($_GET['insc'])) echo "activeDir";?>"></i></a></th>
-                                    <th>Số sách trong kho/Copies
-                                    <a href="{{route('manageBooks', compact('qua','desc','page'))}}" id="qua_desc"><i class="fas fa-angle-double-down <?php if(isset($_GET['qua']) && isset($_GET['desc'])) echo "activeDir";?>"></i></a>
-                                        <a href="{{route('manageBooks', compact('qua','insc','page'))}}" id="qua_insc"><i class="fas fa-angle-double-up <?php if(isset($_GET['qua']) && isset($_GET['insc'])) echo "activeDir";?>"></i></a></th>
-                                    <th>Giá/Price.
-                                    <a href="{{route('manageBooks', compact('pri','desc','page'))}}" id="pri_desc"><i class="fas fa-angle-double-down <?php if(isset($_GET['pri']) && isset($_GET['desc'])) echo "activeDir";?>"></i></a>
-                                        <a href="{{route('manageBooks', compact('pri','insc','page'))}}" id="pri_insc"><i class="fas fa-angle-double-up <?php if(isset($_GET['pri']) && isset($_GET['insc'])) echo "activeDir";?>"></i></a></th>
-                                    <th>Ảnh/Image</th>
-                                    <th>Action</th>
+                                    <a href="{{route('manageBooks', compact('dc','desc'))}}" id="dc_desc"><i class="fas fa-angle-double-down"></i></a>
+                                        <a href="{{route('manageBooks', compact('dc','insc'))}}" id="dc_insc"><i class="fas fa-angle-double-up"></i></a></th>
+                                    <th>Tiêu đề
+                                    <a href="{{route('manageBooks', compact('bn','desc'))}}" id="bn_desc"><i class="fas fa-angle-double-down"></i></a>
+                                        <a href="{{route('manageBooks', compact('bn','insc'))}}" id="bn_insc"><i class="fas fa-angle-double-up"></i></a></th>
+                                    <th>Tác giả
+                                    <a href="{{route('manageBooks', compact('au','desc'))}}" id="au_desc"><i class="fas fa-angle-double-down"></i></a>
+                                        <a href="{{route('manageBooks', compact('au','insc'))}}" id="au_insc"><i class="fas fa-angle-double-up"></i></a></th>
+                                    <th>Thể loại
+                                    <a href="{{route('manageBooks', compact('ge','desc'))}}" id="ge_desc"><i class="fas fa-angle-double-down"></i></a>
+                                        <a href="{{route('manageBooks', compact('ge','insc'))}}" id="ge_insc"><i class="fas fa-angle-double-up"></i></a></th>
+                                    <th>Nhà xuất bản
+                                    <a href="{{route('manageBooks', compact('pub','desc'))}}" id="pub_desc"><i class="fas fa-angle-double-down"></i></a>
+                                        <a href="{{route('manageBooks', compact('pub','insc'))}}" id="pub_insc"><i class="fas fa-angle-double-up"></i></a></th>
+                                    <th>Người dịch
+                                    <a href="{{route('manageBooks', compact('trans','desc'))}}" id="trans_desc"><i class="fas fa-angle-double-down"></i></a>
+                                        <a href="{{route('manageBooks', compact('trans','insc'))}}" id="trans_insc"><i class="fas fa-angle-double-up"></i></a></th>
+                                    <th>Quốc gia
+                                    <a href="{{route('manageBooks', compact('coun','desc'))}}" id="coun_desc"><i class="fas fa-angle-double-down"></i></a>
+                                        <a href="{{route('manageBooks', compact('coun','insc'))}}" id="coun_insc"><i class="fas fa-angle-double-up"></i></a></th>
+                                    <th>Ảnh</th>
+                                    <th>Thao tác</th>
+
                                 </tr>
                             </thead>
                             <tbody>
@@ -155,8 +126,6 @@
                                         <td>{{ $book->publisher }}</td>
                                         <td>{{ $book->translator }}</td>
                                         <td>{{ $book->country }}</td>
-                                        <td>{{ $book->copies }}</td>
-                                        <td>{{ $book->price }}</td>
                                         <td>
                                             <img src="/storage/{{ $book->image }}" alt="image"/>
                                         </td>

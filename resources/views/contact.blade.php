@@ -3,14 +3,14 @@
 <section class="page-banner services-banner">
     <div class="container">
         <div class="banner-header">
-            <h2>Contact Us</h2>
+            <h2>Liên hệ với chúng tôi</h2>
             <span class="underline center"></span>
             <p class="lead">Proin ac eros pellentesque dolor pharetra tempo.</p>
         </div>
         <div class="breadcrumb">
             <ul>
-                <li><a href="index-2.html">Home</a></li>
-                <li>Contact</li>
+                <li><a href="index-2.html">Trang chủ</a></li>
+                <li>Liên hệ</li>
             </ul>
         </div>
     </div>
@@ -28,7 +28,7 @@
                             <div class="flipcard">
                                 <div class="front">
                                     <div class="top-info">
-                                        <span><i class="fa fa-map-marker" aria-hidden="true"></i> Office Address</span>
+                                        <span><i class="fa fa-map-marker" aria-hidden="true"></i>Địa chỉ</span>
                                     </div>
                                     <div class="bottom-info">
                                         <span class="top-arrow"></span>
@@ -49,14 +49,14 @@
                                         </ul>
                                     </div>
                                     <div class="top-info dark-bg">
-                                        <span><i class="fa fa-map-marker" aria-hidden="true"></i> Office Address</span>
+                                        <span><i class="fa fa-map-marker" aria-hidden="true"></i> Địa chỉ</span>
                                     </div>
                                 </div>
                             </div>
                             <div class="flipcard">
                                 <div class="front">
                                     <div class="top-info">
-                                        <span><i class="fa fa-fax" aria-hidden="true"></i> Phone and Fax</span>
+                                        <span><i class="fa fa-fax" aria-hidden="true"></i>SĐT và fax</span>
                                     </div>
                                     <div class="bottom-info">
                                         <span class="top-arrow"></span>
@@ -77,14 +77,14 @@
                                         </ul>
                                     </div>
                                     <div class="top-info dark-bg">
-                                        <span><i class="fa fa-fax" aria-hidden="true"></i> Phone and Fax</span>
+                                        <span><i class="fa fa-fax" aria-hidden="true"></i>SĐT và fax</span>
                                     </div>
                                 </div>
                             </div>
                             <div class="flipcard">
                                 <div class="front">
                                     <div class="top-info">
-                                        <span><i class="fa fa-envelope" aria-hidden="true"></i> Email Address</span>
+                                        <span><i class="fa fa-envelope" aria-hidden="true"></i>Địa chỉ Email</span>
                                     </div>
                                     <div class="bottom-info">
                                         <span class="top-arrow"></span>
@@ -105,7 +105,7 @@
                                         </ul>
                                     </div>
                                     <div class="top-info dark-bg">
-                                        <span><i class="fa fa-envelope" aria-hidden="true"></i> Email Address</span>
+                                        <span><i class="fa fa-envelope" aria-hidden="true"></i>Địa chỉ Email</span>
                                     </div>
                                 </div>
                             </div>
@@ -127,7 +127,7 @@
                                         <div class="row">
                                             <div class="col-md-12">
                                                 <div class="contact-form bg-light margin-right">
-                                                    <h2>Send us a message</h2>
+                                                    <h2>Gửi tin nhắn đến chúng tôi</h2>
                                                     <span class="underline left"></span>
                                                     <div class="contact-fields">
                                                         <form id="contact" name="contact"
@@ -137,7 +137,7 @@
                                                                 <div class="col-md-6 col-sm-6">
                                                                     <div class="form-group">
                                                                         <input class="form-control" type="text"
-                                                                            placeholder="First Name" name="first-name"
+                                                                            placeholder="Tên" name="first-name"
                                                                             id="first-name" size="30" value=""
                                                                             aria-required="true" />
                                                                     </div>
@@ -145,7 +145,7 @@
                                                                 <div class="col-md-6 col-sm-6">
                                                                     <div class="form-group">
                                                                         <input class="form-control" type="text"
-                                                                            placeholder="Last Name" name="last-name"
+                                                                            placeholder="Họ đệm" name="last-name"
                                                                             id="last-name" size="30" value=""
                                                                             aria-required="true" />
                                                                     </div>
@@ -161,7 +161,7 @@
                                                                 <div class="col-md-6 col-sm-6">
                                                                     <div class="form-group">
                                                                         <input class="form-control" type="text"
-                                                                            placeholder="Phone Number" name="phone"
+                                                                            placeholder="SĐT" name="phone"
                                                                             id="phone" size="30" value=""
                                                                             aria-required="true" />
                                                                     </div>
@@ -169,7 +169,7 @@
                                                                 <div class="col-sm-12">
                                                                     <div class="form-group">
                                                                         <textarea class="form-control"
-                                                                            placeholder="Your message" id="message"
+                                                                            placeholder="Tin nhắn" id="message"
                                                                             aria-required="true"></textarea>
                                                                         <div class="clearfix"></div>
                                                                     </div>
@@ -178,17 +178,15 @@
                                                                     <div class="form-group form-submit">
                                                                         <input class="btn btn-default"
                                                                             id="submit-contact-form" type="button"
-                                                                            name="submit" value="Send Message" />
+                                                                            name="submit" value="Gửi tin" />
                                                                     </div>
                                                                 </div>
                                                                 <div id="success">
-                                                                    <span>Your message was sent successfully! Our team
-                                                                        will contact you soon.</span>
+                                                                    <span>Đã gửi thành công! Hãy chờ phản hổi của chúng tôi!</span>
                                                                 </div>
 
                                                                 <div id="error">
-                                                                    <span>Something went wrong, try refreshing and
-                                                                        submitting the form again.</span>
+                                                                    <span>Gửi tin thất bại.</span>
                                                                 </div>
                                                             </div>
                                                         </form>
