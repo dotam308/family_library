@@ -7,14 +7,14 @@
     <div class="carousel-inner">
         <div class="item active">
             <figure>
-                <img alt="Home Slide" src="/assets/images/header-slider/home-v1/header-slide.jpg" />
+                <img alt="Home Slide" src="/assets/images/header-slider/home-v2/header-slider1.png" />
             </figure>
             <div class="container">
                 <div class="carousel-caption">
                     <h2>Sách là bạn</h2>
                     <p> Một cuốn sách hay trên giá sách là một người bạn dù quay lưng lại nhưng vẫn là bạn tốt. </p>
                     <div class="slide-buttons hidden-sm hidden-xs">
-                        <a href="#" class="btn btn-primary">Đọc thêm</a>
+                        {{-- <a href="#" class="btn btn-primary">Đọc thêm</a> --}}
                     </div>
                 </div>
             </div>

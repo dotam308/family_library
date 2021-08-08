@@ -62,7 +62,7 @@ class RegisteredUserController extends Controller
                 }
                 return redirect()->route('index');
             } else {
-                toast('Incorrect username or password','info');
+                toast('Sai tên đăng nhập hoặc mật khẩu','info');
                 return redirect(route('signin'));
             }
         }
@@ -76,7 +76,7 @@ class RegisteredUserController extends Controller
         //check username already exists
         $acc = User::where('username', $request->username)->first();
         if (isset($acc)) {
-            toast('Username already exists','info');
+            toast('Tài khoản đã tồn tại','info');
             return redirect(route('signin'));
         }
 
@@ -85,7 +85,7 @@ class RegisteredUserController extends Controller
             'password' => Hash::make($request->password),
             'role' => 'guest'
         ]);
-        session(['role' => 'guess']);
+        session(['role' => 'guest']);
         $last = DB::table('users')->latest()->first();
         $userId = $last->id;
         session(['userId' => $userId]);
@@ -94,7 +94,7 @@ class RegisteredUserController extends Controller
             'userId' => $userId,
             'name'=>$request->name
         ]);
-        session(['nameUser'=> $request->username]);
+        session(['username'=> $request->username]);
                         
         //case borrow book but dont signin, then sign up
         if (asset($request->bookId)) {
@@ -103,7 +103,7 @@ class RegisteredUserController extends Controller
                 return  view('book_detail_byId', compact('book')) ;
             }
         }
-        toast('Register successfully','success');
+        toast('Đăng ký thành công','success');
         return redirect(route('index'));
     }
 }

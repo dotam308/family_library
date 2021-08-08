@@ -28,6 +28,7 @@ Route::get('/logout', [AuthenticatedSessionController::class, "destroy"])->name(
 
 Route::get('/books',[BookController::class, 'index'])->name('books');
 Route::get('/addBook', [BookController::class, 'addBookForm'])->name('addBook');
+Route::post('/addBook2', [BookController::class, 'addBooklevel2'])->name('addBooklevel2');
 Route::post('/addBook', [BookController::class, 'addBookPost']);
 Route::get('/editBook', [BookController::class, 'editBookForm'])->name('editBook');
 Route::post('/editBook', [BookController::class, 'editBookPost']);

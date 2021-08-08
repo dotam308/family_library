@@ -6,7 +6,7 @@
         <div class="banner-header">
             <h2>Sách mượn</h2>
             <span class="underline center"></span>
-            <p class="lead">Proin ac eros pellentesque dolor pharetra tempo.</p>
+            {{-- <p class="lead">Proin ac eros pellentesque dolor pharetra tempo.</p> --}}
         </div>
         <div class="breadcrumb">
             <ul>
@@ -47,20 +47,23 @@
                                 <p><strong>Ngày mượn:</strong> {{ date("d-m-Y") }}</p>
                             </tr>
                             <tr>
-                                <p><strong>Quantity in stock:</strong> {{ $book->copies }}</p>
+                                {{-- <p><strong>Quantity in stock:</strong> {{ $book->copies }}</p> --}}
                             </tr>
                             @if($book->copies == 0)
-                                <div style="font-size: 20px; color: #f00;">*This book is out of stock</div>
+                                <div style="font-size: 20px; color: #f00;">*Sách đã có người mượn</div>
                             @endif
                             <br><br>
                             
-                            <tr>
+                            {{-- <tr>
                                 <th>Quantity borrow</th>
                                 @if(isset($_POST['quantity']))
                                 <td><input type="text" name="quantity" class="form-control" value="{{ $_POST['quantity']; }}"></td>
                                 @else
                                     <td><input type="text" name="quantity" class="form-control"></td>
                                 @endif
+                            </tr> --}}
+                            <tr>
+                                <input type="hidden" name="quantity" value="1">
                             </tr>
                             <tr>
                                 <th>Hạn trả: </th>
@@ -71,7 +74,9 @@
                                 @endif
                             </tr>
                         </table>
-                        <button type="submit" class="btn btn-primary">Mượn</button>
+                        @if($book->copies > 0)
+                            <button type="submit" class="btn btn-primary">Mượn</button>
+                        @endif
                         <?php $id = Request::get('id'); ?>
                         <a type="button" class="btn btn-primary" href="{{ route('book_detail_byId', compact('id')) }}" style="margin: 100px; color: #fff;">Cancel</a>
                     </form>

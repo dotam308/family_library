@@ -1,0 +1,99 @@
+000 Tổng Quát
+010 Thư mục học
+020 Thư viện và Thông tin học
+030 Bách khoa toàn thư
+050 Ấn phẩm định kỳ tổng quát
+060 Các tổ chức và bảo tàng học
+070 Truyền thông, thông tin, báo chí học và xuất bản
+080 Sưu tập tổng quát  (các trích dẫn)
+090 Các bản thảo và sách hiếm
+100 Triết học
+110 Siêu hình học
+120 Nhận thức luận, thuyết nhân quả, nhân loại học
+130 Hiện tượng huyền bí [hay Hiện tượng siêu nhiên]
+140 Các trường phái tư tưởng triết học
+150 Tâm lý học
+160 Luận lý học (hay Lôgic học)
+170 Đạo đức học (Triết học về luân lý)
+180 Triết học Cổ đại, Trung cổ, Triết học Đông phương
+190 Triết học Tây phương hiện đại
+200 Tôn giáo
+210 Triết lý và học thuyết về tôn giáo
+220 Thánh kinh
+230 Kitô giáo, Thần học Kitô giáo
+240 Hành đạo và nghi lễ Kitô giáo
+250 Các dòng tu Kitô giáo và giáo hội địa phương
+260 Thần học liên quan đến xã hội và giáo hội
+270 Lịch sử Kitô giáo và giáo hội Kitô giáo
+280 Các giáo phái Kitô giáo
+290 Các tôn giáo khác
+300 Khoa học xã hội, xã hội học và nhân loại
+310 Khoa học thống kê
+320 Khoa học chính trị
+330 Kinh tế học
+340 Luật học (luật pháp)
+350 Hành chính công quyền học và quân sự học
+360 Những vấn đề xã hội và dịch vụ xã hội
+370 Giáo dục
+380 Thương mại , truyền thông (liên lạc), vận tải
+390 Phong tục, nghi lễ, văn hóa dân gian
+400 Ngôn ngữ
+410 Ngôn ngữ học
+420 Anh ngữ và Anh ngữ cổ
+430 Những ngôn ngữ gốc Đức Đức ngữ
+440 Ngôn ngữ gốc La Tinh Pháp ngữ
+450 Ngôn ngữ Ý, La Mã ngữ, Ngôn ngữ Rhaetia
+460 Ngôn ngữ Tây Ban Nha và Bồ Đào Nha
+470 Những ngôn ngữ gốc Ý Ngôn ngữ La-tinh
+480 Những ngôn ngữ gốc Hy Lạp Ngôn ngữ Hy Lạp cổ
+490 Những ngôn ngữ khác
+500 Khoa học tự nhiên và Toán học
+510 Toán học
+520 Thiên văn học và những khoa học liên kết
+530 Vật lý học
+540 Hóa học và những khoa liên hệ
+550 Khoa học về địa cầu
+560 Cổ sinh vật học Cổ động vật học
+570 Các khoa sinh học Sinh vật học
+580 Thực vật học
+590 Động vật học
+600 Công nghệ [hay Kỹ thuật] (Khoa học ứng dụng)
+610 Các khoa về y học Y khoa
+620 Kỹ thuật
+630 Canh nông và những công nghệ liên quan
+640 Kinh tế gia đình và đời sống gia đình
+650 Quản trị học và những dịch vụ công cọng
+660 Khoa công trình về hóa học
+670 Công nghiệp chế tạo
+680 Sản xuất chuyên dụng
+690 Nhà và xây dựng
+700 Nghệ thuật
+710 Quy hoạch vùng, quy hoạch và tạo phong cảnh
+720 Khoa kiến trúc
+730 Nghệ thuật tạo hình và nghệ thuật điêu khắc
+740 Thuật họa hình và nghệ thuật trang trí
+750 Hội họa và tranh
+760 Nghệ thuật đồ họa Làm bản in và các bản in tranh ảnh
+770 Nhiếp ảnh và nghệ thuật máy tính
+780 Âm nhạc
+790 Thể thao, trò chơi và biểu diễn
+800 Văn học, Tu từ học và phê bình văn học
+810 Văn học Mỹ bằng tiếng Anh
+820 Văn học Anh và văn học Anh cổ điển
+830 Văn học thuộc những ngôn ngữ gốc Đức
+840 Văn học thuộc những ngôn ngữ gốc La-tinh
+850 Văn học thuộc những ngôn ngữ gốc Ý, La Mã và Rhaetia
+860 Văn học thuộc các ngôn ngữ Tây Ban Nha, Bồ Đào Nha
+870 Văn học thuộc Ý ngữ Văn học La-tinh
+880 Văn học thuộc Hy Lạp ngữ Văn học cổ Hy Lạp
+890 Văn học của những ngôn ngữ khác
+900 Lịch sử
+910 Địa lý và du lịch
+920 Tiểu sử, phổ hệ, phù hiệu
+930 Lịch sử thế giới thời cổ đến khoảng năm 499
+940 Lịch sử tổng quát của Âu châu
+950 Lịch sử tổng quát của Á châu
+960 Lịch sử tổng quát của Phi châu
+970 Lịch sử tổng quát của Bắc Mỹ
+980 Lịch sử tổng quát của Nam Mỹ
+990 Lịch sử các khu vực khác

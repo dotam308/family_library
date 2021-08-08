@@ -67,7 +67,7 @@
                                     <a href="{{ route('contact')}}">Liên hệ</a>
                                 </li>
 
-                                @if( (session('role') != null) )
+                                @if( (session('role') != 'admin') && (session('role') != null) )
                                 <li class="dropdown {{ isset($active) && $active == "check" ? "active" : "" }}">
                                     <a data-toggle="dropdown" class="dropdown-toggle disabled" >Cá nhân</a>
                                     <ul class="dropdown-menu">
