@@ -49,6 +49,10 @@
                                 <li class="dropdown {{ isset($active) && $active == "books" ? "active" : "" }}">
                                     <a data-toggle="dropdown" class="dropdown-toggle disabled"
                                         href="{{ route('books') }}">Giá sách</a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="{{ route('books') }}">Giá sách</a></li>
+                                        <li><a href="{{ route('favoriteBooks') }}">Sách yêu thích</a></li>
+                                    </ul> 
                                 </li>
                                 {{-- <li class="dropdown">
                                         <a data-toggle="dropdown" class="dropdown-toggle disabled" href="news-events-list-view.html">Tin tức và sự kiện</a>
@@ -120,7 +124,11 @@
                                 <a href="{{ route('index') }}">Trang chủ</a>
                             </li>
                             <li>
-                                <a href="{{ route('books') }}">Giá sách</a>
+                                <a href="#">Giá sách</a>
+                                <ul>
+                                    <li><a href="{{ route('books') }}">Giá sách</a></li>
+                                    <li><a href="{{route('favoriteBooks')}}">Danh sách yêu thích</a></li>
+                                </ul>
                             </li>
                             {{--<li>
                                 <a href="news-events-list-view.html">News &amp; Events</a>
@@ -131,7 +139,7 @@
                             </li>--}}
                             @if (session('role') == 'admin')
                                 <li>
-                                    <a href="#">Quản lý</a>
+                                    <a href="{{ route('manageBooks') }}">Quản lý</a>
                                 <ul>
                                     <li><a href="{{ route('manageBooks') }}">Giá sách</a></li>
                                     <li><a href="{{route('users')}}">Người mượn</a></li>

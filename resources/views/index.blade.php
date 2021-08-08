@@ -11,10 +11,8 @@
             </figure>
             <div class="container">
                 <div class="carousel-caption">
-                    <h3>Online Learning Anytime, Anywhere!</h3>
-                    <h2>Discover Your Roots</h2>
-                    <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered
-                        alteration in some form, by injected humor, or randomized words.</p>
+                    <h2>Sách là bạn</h2>
+                    <p> Một cuốn sách hay trên giá sách là một người bạn dù quay lưng lại nhưng vẫn là bạn tốt. </p>
                     <div class="slide-buttons hidden-sm hidden-xs">
                         <a href="#" class="btn btn-primary">Đọc thêm</a>
                     </div>
@@ -72,17 +70,13 @@
             <div class="col-md-6">
                 <div class="welcome-wrap">
                     <div class="welcome-text">
-                        <h2 class="section-title">Chào mừng đến LIBRARIA</h2>
+                        <h2 class="section-title">Chào mừng đến thư viện</h2>
                         <span class="underline left"></span><br/>
-                        <p>There are many variations of passages of Lorem Ipsum available, but the majority have
-                            suffered alteration in some form, by injected humor, or randomized words which don't look
-                            even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be
-                            sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum
-                            generators on the Internet tend to repeat predefined chunks as necessary, making this the
-                            first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined
-                            with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable.
-                            The generated Lorem Ipsum is therefore always free from repetition, injected humor, or
-                            non-characteristic words etc.</p>
+                        <p><strong>Một cuốn sách hay cho ta một điều tốt, một người bạn tốt cho ta một điều hay.</strong>
+
+                            Từ lâu thư viện đã được coi là “kho vàng” của nền văn hóa dân tộc, là một bộ phận không thể thiếu trong văn hóa học đường.
+                             Thư viện bổ sung và cập nhật những kiến thức mới, những phương pháp giảng dạy tiên tiến làm cho việc học tập và giảng dạy thêm sinh động và hấp dẫn. </p>
+                            
                         <a class="btn btn-primary" href="#">Đọc thêm</a>
                     </div>
                 </div>
@@ -570,82 +564,6 @@
         <div class="clearfix"></div>
     </div>
 </section>
-<!-- Start: Category Filter -->
-<!-- Start: Features -->
-<section class="features">
-    <div class="container">
-        <ul>
-            <li class="bg-yellow">
-                <div class="feature-box">
-                    <i class="yellow"></i>
-                    <h3>Sách</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque dolor turpis, pulvinar
-                        varius dui id, convallis iaculis eros.</p>
-                    <a class="yellow" href="#">
-                        View Selection <i class="fa fa-long-arrow-right"></i>
-                    </a>
-                </div>
-            </li>
-            <li class="bg-light-green">
-                <div class="feature-box">
-                    <i class="light-green"></i>
-                    <h3>Sách điện tử</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque dolor turpis, pulvinar
-                        varius dui id, convallis iaculis eros.</p>
-                    <a class="light-green" href="#">
-                        View Selection <i class="fa fa-long-arrow-right"></i>
-                    </a>
-                </div>
-            </li>
-            <li class="bg-blue">
-                <div class="feature-box">
-                    <i class="blue"></i>
-                    <h3>DVD</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque dolor turpis, pulvinar
-                        varius dui id, convallis iaculis eros.</p>
-                    <a class="blue" href="#">
-                        View Selection <i class="fa fa-long-arrow-right"></i>
-                    </a>
-                </div>
-            </li>
-            <li class="bg-red">
-                <div class="feature-box">
-                    <i class="red"></i>
-                    <h3>Tạp chí</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque dolor turpis, pulvinar
-                        varius dui id, convallis iaculis eros.</p>
-                    <a class="red" href="#">
-                        View Selection <i class="fa fa-long-arrow-right"></i>
-                    </a>
-                </div>
-            </li>
-            <li class="bg-violet">
-                <div class="feature-box">
-                    <i class="violet"></i>
-                    <h3>Audio</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque dolor turpis, pulvinar
-                        varius dui id, convallis iaculis eros.</p>
-                    <a class="violet" href="#">
-                        View Selection <i class="fa fa-long-arrow-right"></i>
-                    </a>
-                </div>
-            </li>
-            <li class="bg-green">
-                <div class="feature-box">
-                    <i class="green"></i>
-                    <h3>eAudio</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque dolor turpis, pulvinar
-                        varius dui id, convallis iaculis eros.</p>
-                    <a class="green" href="#">
-                        View Selection <i class="fa fa-long-arrow-right"></i>
-                    </a>
-                </div>
-            </li>
-        </ul>
-    </div>
-</section>
-<!-- End: Features -->
-<!-- Start: Newsletter -->
 <section class="newsletter section-padding">
     <div class="container">
         <div class="row">
@@ -663,5 +581,4 @@
         </div>
     </div>
 </section>
-<!-- End: Newsletter -->
 @endsection

@@ -6,7 +6,7 @@
         <div class="banner-header">
             <h2>Sách mượn</h2>
             <span class="underline center"></span>
-            <p class="lead">Proin ac eros pellentesque dolor pharetra tempo.</p>
+            <p class="lead">Sách là bạn.</p>
         </div>
         <div class="breadcrumb">
             <ul>
@@ -85,13 +85,13 @@
                                     <thead>
                                         <tr>
                                             <th>STT</th>
-                                            <th>Book Name
+                                            <th>Tên sách
                                                 <input type="hidden" name="base-url" id="base-url" value="{{url('/')}}">
                                                 <a href="{{route('books_rented', compact('bookname', 'desc', 'page'))}}" id = "bookname_desc"><i
                                                         class="fas fa-angle-double-down <?php if(isset($_GET['bookname']) && isset($_GET['desc'])) echo "activeDir";?>"></i></a>
                                                 <a href="{{route('books_rented', compact('bookname', 'insc', 'page'))}}" id = "bookname_insc"><i
                                                         class="fas fa-angle-double-up <?php if(isset($_GET['bookname']) && isset($_GET['insc'])) echo "activeDir";?>"></i></a></th>
-                                            <th>Borrower
+                                            <th>Người mượn
                                                 <a href="{{route('books_rented', compact('borrower', 'desc', 'page'))}}" id = "borrower_desc"><i
                                                         class="fas fa-angle-double-down <?php if(isset($_GET['borrower']) && isset($_GET['desc'])) echo "activeDir";?>"></i></a>
                                                 <a href="{{route('books_rented', compact('borrower', 'insc', 'page'))}}" id = "borrower_insc"><i
@@ -104,7 +104,7 @@
                                                         class="fas fa-angle-double-up"></i></a>
 
                                             </th>
-                                            <th>Return Date
+                                            <th>Ngày trả
                                                 <a href="{{route('books_rented', compact('redate', 'desc', 'page'))}}" id = "redate_desc"><i
                                                         class="fas fa-angle-double-down <?php if(isset($_GET['redate']) && isset($_GET['desc'])) echo "activeDir";?>"></i></a>
                                                 <a href="{{route('books_rented', compact('redate', 'insc', 'page'))}}" id = "redate_insc"><i

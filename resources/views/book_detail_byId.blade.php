@@ -6,11 +6,11 @@
         <div class="banner-header">
             <h2>Giá sách</h2>
             <span class="underline center"></span>
-            <p class="lead">Proin ac eros pellentesque dolor pharetra tempo.</p>
+            <p class="lead">Sách là bạn tốt.</p>
         </div>
         <div class="breadcrumb">
             <ul>
-                <li><a href="index-2.html">Trang chủ</a></li>
+                <li><a href="{{ route('index') }}">Trang chủ</a></li>
                 <li>Giá sách</li>
             </ul>
         </div>
@@ -41,14 +41,11 @@
                                 <div class="post-center-content">
                                     <h2>{{ $book->name }}</h2>
                                     <p><strong>Tác giả:</strong> {{ $book->author }}</p>
-                                    <p><strong>ISBN:</strong> {{ $book->ddcCode }}</p>
-                                    <p><strong>Dánh giá:</strong> </p>
+                                    <p><strong>Max DDC:</strong> {{ $book->ddcCode }}</p>
                                     <p><strong>Người dịch:</strong> {{ $book->translator }}</p>
                                     <p><strong>Nhà xuất bản:</strong> {{ $book->publisher }}</p>
-                                    <p><strong>Độ dài:</strong> 518 pages.</p>
                                     <p><strong>Ngôn ngữ:</strong> {{ $book->country }}</p>
                                     <p><strong>Thể loại:</strong> {{ $book->genre }}</p>
-                                    <p><strong>Chủ đề:</strong> Friendship, Bullies, Pranks, School</p>
                                     
                                     <?php $id = $book->id; ?>
                                     {{--  input  --}}
@@ -61,8 +58,10 @@
 
 
                                     {{-- end input --}}
-                                    <a href="{{ route('borrowBook', compact('id')) }}"
-                                        class="btn btn-primary">Mượn</a>
+                                    @if (session('role') != 'admin')
+                                        <a href="{{ route('borrowBook', compact('id')) }}"
+                                            class="btn btn-primary">Mượn</a>
+                                    @endif
                                     <div class="actions">
                                         <ul>
                                             <li>
@@ -108,157 +107,24 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-xs-12 col-sm-12 col-md-3 ">
-                                <div class="post-right-content">
-                                    <h4>Available now</h4>
-                                    <p><strong>Total Copies:</strong> 01</p>
-                                    <p><strong>Available:</strong> 019780062419385</p>
-                                    <p><strong>Holds:</strong> 01</p>
-                                    <p><strong>On the shelves now at:</strong> Lawrence Public Library</p>
-                                    <p><strong>Call #:</strong> 747 STRUTT C</p>
-                                    <a href="#." class="available-location">Availability by Location <i
-                                            class="fa fa-long-arrow-right" aria-hidden="true"></i></a>
-                                    <a href="#." class="btn btn-dark-gray">Place a Hold</a>
-                                    <a href="#." class="btn btn-dark-gray">View sample</a>
-                                    <a href="#." class="btn btn-dark-gray">Find Similar Titles</a>
-                                </div>
-                            </div>
                             <div class="clearfix"></div>
                         </div>
                         <div class="clearfix"></div>
-                        <p><strong>Summary:</strong> There are many variations of passages of Lorem Ipsum available, but
-                            the majority have suffered alteration in some form, by injected humour, or randomised words
-                            which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum,
-                            you need to be sure there isn't anything embarrassing hidden in the middle of text. All the
-                            Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making
-                            this the first true generator on the Internet. </p>
+                        <p><strong>Summary:</strong> {{ $book->review ?? 'Chưa có tho' }} </p>
 
                         <div class="table-tabs" id="responsiveTabs">
                             <ul class="nav nav-tabs">
-                                <li class="active"><b class="arrow-up"></b><a data-toggle="tab" href="#sectionA">Copies:
-                                        05</a></li>
-                                <li><b class="arrow-up"></b><a data-toggle="tab" href="#sectionB">Reviews</a></li>
-                                <li><b class="arrow-up"></b><a data-toggle="tab" href="#sectionC">Table of Contents</a>
-                                </li>
-                                <li><b class="arrow-up"></b><a data-toggle="tab" href="#sectionD">Novelist
-                                        Recommendations</a></li>
+                                <li><b class="arrow-up"></b><a data-toggle="tab" href="#sectionB">Bình luận</a></li>
+                                
                             </ul>
                             <div class="tab-content">
-                                <div id="sectionA" class="tab-pane fade in active">
-                                    <table class="table table-bordered">
-                                        <thead>
-                                            <tr>
-                                                <th>Library Name</th>
-                                                <th>Shelf Number</th>
-                                                <th>Material Type</th>
-                                                <th>Status </th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td>Oak Park Public Library Main Branch</td>
-                                                <td>B PURMORT</td>
-                                                <td>Book</td>
-                                                <td>In Processing</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Bedford Park Public Library District</td>
-                                                <td>616.99 PUR</td>
-                                                <td>Book</td>
-                                                <td>Due 8/24/16</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Blue Island Public Library</td>
-                                                <td>BIO PUR</td>
-                                                <td>eBook</td>
-                                                <td>Due 8/24/16</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Bridgeview Public Library</td>
-                                                <td>B PUR</td>
-                                                <td>DVD</td>
-                                                <td>In Processing</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Eisenhower Public Library District</td>
-                                                <td>616.994 PUR</td>
-                                                <td>Magazine</td>
-                                                <td>Checked In</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Forest Park Public Library</td>
-                                                <td>BIO PURMORT</td>
-                                                <td>Magazine</td>
-                                                <td>Checked In</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Hinsdale Public Library</td>
-                                                <td>B PUR</td>
-                                                <td>Audio</td>
-                                                <td>Checked In</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Oak Park Public Library Maze Branch</td>
-                                                <td>616.99 PUR</td>
-                                                <td>Audio</td>
-                                                <td>Due 9/10/16</td>
-                                            </tr>
-                                            <tr>
-                                                <td>River Grove Public Library District</td>
-                                                <td>616.994 PURMORT</td>
-                                                <td>Book</td>
-                                                <td>Due 9/10/16</td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
                                 <div id="sectionB" class="tab-pane fade in">
-                                    <h5>Lorem Ipsum Dolor</h5>
+                                    <p>Bạn nghĩ gì về cuốn sách này :v</p>
 
                                     <div class="fb-comments"
-                                        data-href="http://127.0.0.1:8000/book_detail_byId?id=1#sectionB" data-width=""
+                                        data-href="http://127.0.0.1:8000/book_detail_byId?id={{ $id }}#sectionB" data-width=""
                                         data-numposts=""></div>
 
-                                </div>
-                                <div id="sectionC" class="tab-pane fade in">
-                                    <h5>Lorem Ipsum Dolor</h5>
-                                    <p>There are many variations of passages of Lorem Ipsum available, but the majority
-                                        have suffered alteration in some form, by injected humour, or randomised words
-                                        which don't look even slightly believable. If you are going to use a passage of
-                                        Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the
-                                        middle of text. All the Lorem Ipsum generators on the Internet tend to repeat
-                                        predefined chunks as necessary, making this the first true generator on the
-                                        Internet.</p>
-                                </div>
-                                <div id="sectionD" class="tab-pane fade in">
-                                    <h5>Lorem Ipsum Dolor</h5>
-                                    <p>There are many variations of passages of Lorem Ipsum available, but the majority
-                                        have suffered alteration in some form, by injected humour, or randomised words
-                                        which don't look even slightly believable. If you are going to use a passage of
-                                        Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the
-                                        middle of text. All the Lorem Ipsum generators on the Internet tend to repeat
-                                        predefined chunks as necessary, making this the first true generator on the
-                                        Internet.</p>
-                                </div>
-                                <div id="sectionE" class="tab-pane fade in">
-                                    <h5>Lorem Ipsum Dolor</h5>
-                                    <p>There are many variations of passages of Lorem Ipsum available, but the majority
-                                        have suffered alteration in some form, by injected humour, or randomised words
-                                        which don't look even slightly believable. If you are going to use a passage of
-                                        Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the
-                                        middle of text. All the Lorem Ipsum generators on the Internet tend to repeat
-                                        predefined chunks as necessary, making this the first true generator on the
-                                        Internet.</p>
-                                </div>
-                                <div id="sectionF" class="tab-pane fade in">
-                                    <h5>Lorem Ipsum Dolor</h5>
-                                    <p>There are many variations of passages of Lorem Ipsum available, but the majority
-                                        have suffered alteration in some form, by injected humour, or randomised words
-                                        which don't look even slightly believable. If you are going to use a passage of
-                                        Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the
-                                        middle of text. All the Lorem Ipsum generators on the Internet tend to repeat
-                                        predefined chunks as necessary, making this the first true generator on the
-                                        Internet.</p>
                                 </div>
                             </div>
                         </div>
@@ -271,10 +137,10 @@
 <!-- End: Products Section -->
 <div class="booksmedia-fullwidth">
     <div class="container">
-        <h2 class="section-title text-center">Popular Items</h2>
+        <h2 class="section-title text-center">Top sách phổ biến</h2>
         <span class="underline center"></span>
-        <p class="lead text-center">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-        <ul class="popular-items-detail-v2">
+        <p class="lead text-center">Sách là bạn</p>
+        {{-- <ul class="popular-items-detail-v2">
             <li>
                 <div class="book-list-icon blue-icon"></div>
                 <figure>
@@ -599,7 +465,7 @@
                     </figcaption>
                 </figure>
             </li>
-        </ul>
+        </ul> --}}
     </div>
 </div>
 @endsection

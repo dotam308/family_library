@@ -115,4 +115,5 @@ class SearchController extends Controller{
         })->paginate(10);
         return view('users',compact('users'));
     }
+
 }
