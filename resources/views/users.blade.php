@@ -3,14 +3,14 @@
 <section class="page-banner services-banner">
     <div class="container">
         <div class="banner-header">
-            <h2>Users Listing</h2>
+            <h2>Người dùng</h2>
             <span class="underline center"></span>
             <p class="lead">Proin ac eros pellentesque dolor pharetra tempo.</p>
         </div>
         <div class="breadcrumb">
             <ul>
-                <li><a href="{{route('index')}}">Home</a></li>
-                <li>Users</li>
+                <li><a href="{{route('index')}}">Quản lý</a></li>
+                <li>Người dùng</li>
             </ul>
         </div>
     </div>
@@ -29,13 +29,13 @@
                             <form action="{{route('userSearch')}}" method="get">
                                 <div class="col-md-4 col-sm-6">
                                     <div class="form-group">
-                                        <input class="form-control" placeholder="Search by Keyword" id="keywords"
+                                        <input class="form-control" placeholder="Từ khoá" id="keywords"
                                             name="keywords" type="text" style="width:895px">
                                     </div>
                                 </div>
                                 <div class="col-md-2 col-sm-6" style="left:555px">
                                     <div class="form-group">
-                                        <input class="form-control" type="submit" value="Search">
+                                        <input class="form-control" type="submit" value="Tìm kiếm">
                                     </div>
                                 </div>
                             </form>
@@ -45,12 +45,12 @@
                     <!-- End: Search Section -->
                     <div class="users-list-view">
 
-                        <h3>Danh sách user</h3>
-                        <div class="row">
+                        <h3>Danh sách người dùng</h3>
+                        {{--<div class="row">
                             <div class="col text-right">
-                                <a type="button" class="btn btn-primary" href="{{route('createUser')}}">ADD ACCOUNT</a>
+                                <a type="button" class="btn btn-primary" href="{{route('createUser')}}">Thêm tài khoản</a>
                             </div>
-                        </div>
+                        </div>--}}
                         <ul>
                             <?php
                             $usern = "r";
@@ -63,14 +63,15 @@
                             <table class="table table-hover">
                                 <thead>
                                     <tr>
-                                        <th>Order</th>
-                                        <th>Username
+                                        <th>STT</th>
+                                        <th>Tên đăng nhập
                                             <input type="hidden" name="base-url" id="base-url" value="{{url('/')}}">
                                             <a href="{{route('users', compact('usern','desc'))}}" id = "usern_desc"><i
                                                     class="fas fa-angle-double-down <?php if(isset($_GET['usern']) && isset($_GET['desc'])) echo "activeDir";?>"></i></a>
                                             <a href="{{route('users', compact('usern','insc'))}}" id = "usern_insc"><i
                                                     class="fas fa-angle-double-up <?php if(isset($_GET['usern']) && isset($_GET['insc'])) echo "activeDir";?>"></i></a></th>
-                                        <th>Role
+
+                                        <th>Chức năng
                                             <a href="{{route('users', compact('rol','desc'))}}" id = "rol_desc"><i
                                                     class="fas fa-angle-double-down <?php if(isset($_GET['rol']) && isset($_GET['desc'])) echo "activeDir";?>"></i></a>
                                             <a href="{{route('users', compact('rol','insc'))}}" id = "rol_insc"><i
@@ -80,7 +81,8 @@
                                                     class="fas fa-angle-double-down <?php if(isset($_GET['mail']) && isset($_GET['desc'])) echo "activeDir";?>"></i></a>
                                             <a href="{{route('users', compact('mail','insc'))}}" id = "mail_insc"><i
                                                     class="fas fa-angle-double-up <?php if(isset($_GET['mail']) && isset($_GET['insc'])) echo "activeDir";?>"></i></a></th>
-                                        <th>Action</th>
+
+                                        <th>Thao tác</th>
                                     </tr>
                                 </thead>
                                 @php
@@ -104,7 +106,7 @@
                                                 @endif
                                             <td>{{$user->role}}</td>
                                             <td>{{$user->email}}</td>
-                                            <td>
+                                            {{--<td>
                                                 <?php $id=$user->id;?>
                                                 <a href="{{route('editUser', compact('id'))}}">
                                                     <i class="fa fa-pen" aria-hidden="true" style="color:blue"></i>
@@ -112,13 +114,13 @@
                                                 <a rel="{{$id}}" rel1="user" href="javascript:" id="deleteButton" class="deleteButton">
                                                     <i class="fa fa-trash" aria-hidden="true" style="color:red"></i>
                                                 </a>
-                                            </td>
+                                            </td>--}}
                                         </tr>
                                 @endforeach
                             </table>
                             @else
                             <br>
-                            <div>No users registered</div>
+                            <div>Không có người dùng nào!</div>
                             @endif
                         </ul>
                     </div>
@@ -140,16 +142,16 @@
            var id = $(this).attr('rel');
            var deleteFunction = $(this).attr('rel1');
            swal({
-            title: "Are you sure?",
-            text: "You will not be able to recover this account!",
+            title: "Bạn chắc chứ?",
+            text: "Bạn sẽ không thể khôi phục tài khoản này!",
             type: "warning",
             showCancelButton: true,
             confirmButtonClass: "btn-danger",
-            confirmButtonText: "Yes, delete it!",
+            confirmButtonText: "Đồng ý xoá",
             closeOnConfirm: false
             },
             function(){
-                swal("Deleted!", "The account has been deleted.", "success");
+                swal("Deleted!", "Đã xoá thành công.", "success");
                 window.location.href = "/delete_user/"+ deleteFunction + "/" + id;
             });
         })

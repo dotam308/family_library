@@ -4,14 +4,14 @@
 <section class="page-banner services-banner">
     <div class="container">
         <div class="banner-header">
-            <h2>Books & Media Listing</h2>
+            <h2>Giá sách</h2>
             <span class="underline center"></span>
             <p class="lead">Proin ac eros pellentesque dolor pharetra tempo.</p>
         </div>
         <div class="breadcrumb">
             <ul>
-                <li><a href="index-2.html">Home</a></li>
-                <li>Books & Media</li>
+                <li><a href="index-2.html">Trang chủ</a></li>
+                <li>Giá sách</li>
             </ul>
         </div>
     </div>
@@ -30,45 +30,34 @@
                         <section class="search-filters">
                             <div class="container">
                                 <div class="filter-box">
-                                    <h3>What are you looking for at the library?</h3>
-                                    <form action="http://libraria.demo.presstigers.com/index.html" method="get">
-                                        <div class="col-md-4 col-sm-6">
-                                            <div class="form-group">
-                                                <label class="sr-only" for="keywords">Search by Keyword</label>
-                                                <input class="form-control" placeholder="Search by Keyword"
-                                                    id="keywords" name="keywords" type="text">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-3 col-sm-6">
-                                            <div class="form-group">
-                                                <select name="catalog" id="catalog" class="form-control">
-                                                    <option>Search the Catalog</option>
-                                                    <option>Catalog 01</option>
-                                                    <option>Catalog 02</option>
-                                                    <option>Catalog 03</option>
-                                                    <option>Catalog 04</option>
-                                                    <option>Catalog 05</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-3 col-sm-6">
-                                            <div class="form-group">
-                                                <select name="category" id="category" class="form-control">
-                                                    <option>All Categories</option>
-                                                    <option>Category 01</option>
-                                                    <option>Category 02</option>
-                                                    <option>Category 03</option>
-                                                    <option>Category 04</option>
-                                                    <option>Category 05</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-2 col-sm-6">
-                                            <div class="form-group">
-                                                <input class="form-control" type="submit" value="Search">
-                                            </div>
-                                        </div>
-                                    </form>
+                                    <h3>Bạn cần tìm gì?</h3>
+                                    <form action="{{route('bookSearch')}}" method="get">
+                                <div class="col-md-4 col-sm-6" style="width:615px">
+                                    <div class="form-group">
+                                        <input class="form-control" placeholder="Từ khoá" id="keywords"
+                                            name="keywords" type="text">
+                                    </div>
+                                </div>
+                                <div class="col-md-3 col-sm-6">
+                                    <div class="form-group">
+                                        <select name="catalog" id="catalog" class="form-control">
+                                            <option value="" disabled selected hidden>Tìm kiếm theo</option>
+                                            <option value="ddcCode">DDC</option>
+                                            <option value="name">Tiêu đề</option>
+                                            <option value="author">Tác giả</option>
+                                            <option value="publisher">Nhà xuất bản</option>
+                                            <option value="translator">Người dịch</option>
+                                            <option value="country">Quốc gia</option>
+                                            <option value="genre">Thể loại</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-2 col-sm-6">
+                                    <div class="form-group">
+                                        <input class="form-control" type="submit" value="Tìm kiếm">
+                                    </div>
+                                </div>
+                            </form>
                                 </div>
                             </div>
                         </section>

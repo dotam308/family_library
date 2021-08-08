@@ -1,5 +1,5 @@
 <footer class="site-footer">
-    <div class="container">
+    {{--<div class="container">
         <div id="footer-widgets">
             <div class="row">
                 <div class="col-md-4 col-sm-6 widget-container">
@@ -100,5 +100,5 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div>--}}
 </footer>

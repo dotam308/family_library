@@ -1,9 +1,9 @@
 <section class="social-network section-padding">
     <div class="container">
         <div class="center-content">
-            <h2 class="section-title">Follow Us</h2>
+            <h2 class="section-title">THEO DÕI TẠI</h2>
             <span class="underline center"></span>
-            <p class="lead">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+            <br/>
         </div>
         <ul>
             <li>
