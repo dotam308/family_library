@@ -3,14 +3,14 @@
 <section class="page-banner services-banner">
     <div class="container">
         <div class="banner-header">
-            <h2>Orders list</h2>
+            <h2>{{ empty($status) ? 'Đơn hàng đang mượn' : 'Đơn hàng đang đợi' }}</h2>
             <span class="underline center"></span>
-            <p class="lead">Proin ac eros pellentesque dolor pharetra tempo.</p>
+            {{-- <p class="lead">Proin ac eros pellentesque dolor pharetra tempo.</p> --}}
         </div>
         <div class="breadcrumb">
             <ul>
-                <li><a href="index-2.html">Home</a></li>
-                <li>Order</li>
+                <li><a href="index-2.html">Đơn hàng</a></li>
+                <li>{{ empty($status) ? 'Đơn hàng đang mượn' : 'Đơn hàng đang chờ xử lý' }}</li>
             </ul>
         </div>
     </div>
@@ -24,11 +24,10 @@
             <div class="books-full-width">
                 <div class="container">
                     <form>
-                        <h3>{{ empty($status) ? 'Borrowing' : 'Waiting' }} orders</h3>
                         <br>
                         <br>
                         @if (count($orders) == 0)
-                            <p>There is no data</p>
+                            <p>Không có đơn hàng</p>
                         @else
                         <?php
                         $dc = "r";$bn = "r";$au = "r";$un = "r";$qua = "r";$page="r";
@@ -45,31 +44,31 @@
                         <table class="table table-hover">
                             <thead>
                                 <tr>
-                                    <th>Order</th>
-                                    <th>DDC code
+                                    <th>STT</th>
+                                    <th>Mã DDC
                                         <input type="hidden" name="base-url" id="base-url" value="{{url('/')}}">
                                     <a href="{{route($routeName, compact('dc','desc','page'))}}" id="dc_desc"><i class="fas fa-angle-double-down <?php if(isset($_GET['dc']) && isset($_GET['desc'])) echo "activeDir";?>"></i></a>
                                             <a href="{{route($routeName, compact('dc','insc','page'))}}" id="dc_insc"><i class="fas fa-angle-double-up <?php if(isset($_GET['dc']) && isset($_GET['insc'])) echo "activeDir";?>"></i></a></th>
-                                    <th>Title
+                                    <th>Tiêu đề
                                     <a href="{{route($routeName, compact('bn','desc','page'))}}" id="bn_desc"><i class="fas fa-angle-double-down <?php if(isset($_GET['bn']) && isset($_GET['desc'])) echo "activeDir";?>"></i></a>
                                             <a href="{{route($routeName, compact('bn','insc','page'))}}" id="bn_insc"><i class="fas fa-angle-double-up <?php if(isset($_GET['bn']) && isset($_GET['insc'])) echo "activeDir";?>"></i></a></th>
-                                    <th>Author
+                                    <th>Tác giả
                                     <a href="{{route($routeName, compact('au','desc','page'))}}" id="au_desc"><i class="fas fa-angle-double-down <?php if(isset($_GET['au']) && isset($_GET['desc'])) echo "activeDir";?>"></i></a>
                                             <a href="{{route($routeName, compact('au','insc','page'))}}" id="au_insc"><i class="fas fa-angle-double-up <?php if(isset($_GET['au']) && isset($_GET['insc'])) echo "activeDir";?>"></i></a></th>
                                     <th>Username
                                     <a href="{{route($routeName, compact('un','desc','page'))}}" id="un_desc"><i class="fas fa-angle-double-down <?php if(isset($_GET['un']) && isset($_GET['desc'])) echo "activeDir";?>"></i></a>
                                             <a href="{{route($routeName, compact('un','insc','page'))}}" id="un_insc"><i class="fas fa-angle-double-up <?php if(isset($_GET['un']) && isset($_GET['insc'])) echo "activeDir";?>"></i></a></th>
-                                    <th>borrowed quantity
+                                    <th>Số lượng mượn
                                     <a href="{{route($routeName, compact('qua','desc','page'))}}" id="qua_desc"><i class="fas fa-angle-double-down <?php if(isset($_GET['qua']) && isset($_GET['desc'])) echo "activeDir";?>"></i></a>
                                             <a href="{{route($routeName, compact('qua','insc','page'))}}" id="qua_insc"><i class="fas fa-angle-double-up <?php if(isset($_GET['qua']) && isset($_GET['insc'])) echo "activeDir";?>"></i></a></th>
-                                    <th>borrowed date
+                                    <th>Ngày mượn
                                     <a href="{{route($routeName, compact('bd','desc','page'))}}" id="bd_desc"><i class="fas fa-angle-double-down <?php if(isset($_GET['bd']) && isset($_GET['desc'])) echo "activeDir";?>"></i></a>
                                             <a href="{{route($routeName, compact('bd','insc','page'))}}" id="bd_insc"><i class="fas fa-angle-double-up <?php if(isset($_GET['bd']) && isset($_GET['insc'])) echo "activeDir";?>"></i></a></th>
-                                    <th>return date
+                                    <th>Ngày dự định trả
                                     <a href="{{route($routeName, compact('rd','desc','page'))}}" id="rd_desc"><i class="fas fa-angle-double-down <?php if(isset($_GET['rd']) && isset($_GET['desc'])) echo "activeDir";?>"></i></a>
                                             <a href="{{route($routeName, compact('rd','insc','page'))}}" id="rd_insc"><i class="fas fa-angle-double-up <?php if(isset($_GET['rd']) && isset($_GET['insc'])) echo "activeDir";?>"></i></a></th>
-                                    <th>Status</th>
-                                    <th>Action</th>
+                                    <th>Trạng thái</th>
+                                    <th>Thao tác</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -99,12 +98,18 @@
                                         <td>{{ $order->quantity }}</td>
                                         <td>{{ $order->borrowDate }}</td>
                                         <td>{{ $order->returnDate }}</td>
-                                        <td>{{ $order->returned }}</td>
+                                        @if($order->returned == 'waiting')
+                                            <td>Đang chờ xử lý</td>
+                                        @elseif($order->returned == 'borrowing')
+                                            <td>Đang mượn</td>
+                                        @else
+                                            <td>Đã trả</td>
+                                        @endif
                                         <td>
                                             @if ($order->returned == 'waiting')
-                                                <a type="button" class="btn btn-primary" href="{{ route('tookBook', compact('borrowId', 'bookId')) }}">da lay sach</a>
+                                                <a type="button" class="btn btn-primary" href="{{ route('tookBook', compact('borrowId', 'bookId')) }}">Đã lấy sách</a>
                                             @else
-                                                <a type="button" class="btn btn-primary" href="{{ route('returnBook', compact('borrowId', 'bookId')) }}">da tra sach</a>
+                                                <a type="button" class="btn btn-primary" href="{{ route('returnBook', compact('borrowId', 'bookId')) }}">Đã trả sách</a>
                                             @endif
                                         </td>
                                     </tr>

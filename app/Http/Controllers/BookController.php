@@ -308,6 +308,7 @@ class BookController extends Controller
                             ->where('borrowings.userId', $id)
 
                             ->where('borrowings.returned', '!=',"returned")
+                            ->orderBy('borrowings.id', 'desc')
                             ->paginate($limit, ['books.ddcCode', 'books.name', 'books.author', 'books.genre', 'borrowings.quantity', 'borrowings.borrowDate', 'borrowings.returnDate', 'borrowings.returned', 'books.image', 'books.id', 'borrowings.id as borrowId']);
         }
         return view('borrowedBookList', compact('books', 'active'));

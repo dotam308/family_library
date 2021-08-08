@@ -3,14 +3,14 @@
 <section class="page-banner services-banner">
     <div class="container">
         <div class="banner-header">
-            <h2>Books</h2>
+            <h2>{{ empty($returned) ? 'Các sách đang mượn' : 'Các sách đã trả' }}</h2>
             <span class="underline center"></span>
-            <p class="lead">Proin ac eros pellentesque dolor pharetra tempo.</p>
+            {{-- <p class="lead">Proin ac eros pellentesque dolor pharetra tempo.</p> --}}
         </div>
         <div class="breadcrumb">
             <ul>
-                <li><a href="index-2.html">Home</a></li>
-                <li>Check</li>
+                <li><a href="index-2.html">Cá nhân</a></li>
+                <li>{{ empty($returned) ? 'Sách đang mượn' : 'Sách đã trả' }}</li>
             </ul>
         </div>
     </div>
@@ -24,11 +24,11 @@
             <div class="books-full-width">
                 <div class="container">
                     <form>
-                        <h3>{{ empty($returned) ? 'Borrowing' : 'Returned' }} books list</h3>
+                        {{-- <h3>{{ empty($returned) ? 'Borrowing' : 'Returned' }} books list</h3> --}}
                         <br>
                         <br>
                         @if (count($books) == 0)
-                            <p>There is no data</p>
+                            <p>Không có sách</p>
                         @else
                         <?php
                         $dc = "r";$bn = "r";$au = "r";$ge = "r";$qua = "r";$page="r";
@@ -45,39 +45,39 @@
                         <table class="table table-hover">
                             <thead>
                                 <tr>
-                                        <th>Order</th>
-                                        <th>DDC code
+                                        <th>STT</th>
+                                        <th>Mã DDC
                                             <input type="hidden" name="base-url" id="base-url" value="{{url('/')}}">
                                             <a href="{{route($routeName, compact('dc','desc', 'page'))}}" id="dc_desc"><i class="fas fa-angle-double-down <?php if(isset($_GET['dc']) && isset($_GET['desc'])) echo "activeDir";?>"></i></a>
                                             <a href="{{route($routeName, compact('dc','insc', 'page'))}}" id="dc_insc"><i class="fas fa-angle-double-up <?php if(isset($_GET['dc']) && isset($_GET['insc'])) echo "activeDir";?>"></i></a>
                                         </th>
-                                        <th>Title
+                                        <th>Tiêu đề
                                         <a href="{{route($routeName, compact('bn','desc', 'page'))}}" id="bn_desc"><i class="fas fa-angle-double-down <?php if(isset($_GET['bn']) && isset($_GET['desc'])) echo "activeDir";?>"></i></a>
                                             <a href="{{route($routeName, compact('bn','insc', 'page'))}}" id="bn_insc"><i class="fas fa-angle-double-up <?php if(isset($_GET['bn']) && isset($_GET['insc'])) echo "activeDir";?>"></i></a></th>
-                                        <th>Author
+                                        <th>Tác giả
                                         <a href="{{route($routeName, compact('au','desc','page'))}}" id="au_desc"><i class="fas fa-angle-double-down <?php if(isset($_GET['au']) && isset($_GET['desc'])) echo "activeDir";?>"></i></a>
                                             <a href="{{route($routeName, compact('au','insc','page'))}}" id="au_insc"><i class="fas fa-angle-double-up <?php if(isset($_GET['au']) && isset($_GET['insc'])) echo "activeDir";?>"></i></a></th>
-                                        <th>Genre
+                                        <th>Thể loại
                                         <a href="{{route($routeName, compact('ge','desc','page'))}}" id="ge_desc"><i class="fas fa-angle-double-down <?php if(isset($_GET['ge']) && isset($_GET['desc'])) echo "activeDir";?>"></i></a>
                                             <a href="{{route($routeName, compact('ge','insc','page'))}}" id="ge_insc"><i class="fas fa-angle-double-up <?php if(isset($_GET['ge']) && isset($_GET['insc'])) echo "activeDir";?>"></i></a></th>
-                                        <th>borrowed quantity
+                                        <th>Số lượng mượn
                                         <a href="{{route($routeName, compact('qua','desc','page'))}}" id="qua_desc"><i class="fas fa-angle-double-down <?php if(isset($_GET['qua']) && isset($_GET['desc'])) echo "activeDir";?>"></i></a>
                                             <a href="{{route($routeName, compact('qua','insc','page'))}}" id="qua_insc"><i class="fas fa-angle-double-up <?php if(isset($_GET['qua']) && isset($_GET['insc'])) echo "activeDir";?>"></i></a></th>
-                                        <th>borrowed date
+                                        <th>Ngày mượn
                                         <a href="{{route($routeName, compact('bd','desc','page'))}}" id="bd_desc"><i class="fas fa-angle-double-down <?php if(isset($_GET['bd']) && isset($_GET['desc'])) echo "activeDir";?>"></i></a>
                                             <a href="{{route($routeName, compact('bd','insc','page'))}}" id="bd_insc"><i class="fas fa-angle-double-up <?php if(isset($_GET['bd']) && isset($_GET['insc'])) echo "activeDir";?>"></i></a></th>
-                                        <th>return date
+                                        <th>Ngày dự định trả
                                         <a href="{{route($routeName, compact('rd','desc','page'))}}" id="rd_desc"><i class="fas fa-angle-double-down <?php if(isset($_GET['rd']) && isset($_GET['desc'])) echo "activeDir";?>"></i></a>
                                             <a href="{{route($routeName, compact('rd','insc','page'))}}" id="rd_insc"><i class="fas fa-angle-double-up <?php if(isset($_GET['rd']) && isset($_GET['insc'])) echo "activeDir";?>"></i></a></th>
-                                        <th>Status</th>
+                                        <th>Trạng thái</th>
                                     @if (isset($returned))
-                                        <th>Book returned at
+                                        <th>Sách đã trả ngày
                                         <a href="{{route($routeName, compact('bra','desc','page'))}}" id="bra_desc"><i class="fas fa-angle-double-down <?php if(isset($_GET['bra']) && isset($_GET['desc'])) echo "activeDir";?>"></i></a>
                                             <a href="{{route($routeName, compact('bra','insc','page'))}}" id="bra_insc"><i class="fas fa-angle-double-up <?php if(isset($_GET['bra']) && isset($_GET['insc'])) echo "activeDir";?>"></i></a></th>
                                     @endif
-                                    <th>Image</th>
+                                    <th>Ảnh</th>
                                     @if (!isset($returned))
-                                        <th>Action</th>
+                                        <th>Thao tác</th>
                                     @endif
 
                                 </tr>
@@ -107,7 +107,13 @@
                                         <td>{{ $book->quantity }}</td>
                                         <td>{{ $book->borrowDate }}</td>
                                         <td>{{ $book->returnDate }}</td>
-                                        <td>{{ $book->returned }}</td>
+                                        @if($book->returned == 'waiting')
+                                            <td>Đợi lấy sách</td>
+                                        @elseif($book->returned == 'borrowing')
+                                            <td>Đang mượn</td>
+                                        @else
+                                            <td>Đã trả</td>
+                                        @endif
                                         @if (isset($returned))
                                             @php
                                                 $date=date_create($book->bookReturnedAt);
@@ -125,7 +131,7 @@
                                             $id = $book->borrowId;
                                         @endphp
                                         <td>
-                                            <button><a rel="{{ $id }}" href="javascript:" id="deleteButton" style="color: #fff;">Cancel</a></button>
+                                            <button><a rel="{{ $id }}" href="javascript:" id="deleteButton" style="color: #fff;">Hủy mượn</a></button>
                                         </td>
                                         @endif
                                     </tr>
@@ -154,17 +160,17 @@
            var id = $(this).attr('rel');
            
            swal({
-            title: "Are you sure?",
-            text: "This order will be canceled",
+            title: "Bạn có chắc?",
+            text: "Đơn hàng sẽ bị hủy",
             type: "warning",
             showCancelButton: true,
             confirmButtonClass: "btn-danger",
-            confirmButtonText: "Yes!",
+            confirmButtonText: "Có!",
             closeOnConfirm: false
             },
             function(){
                 window.location.href = "/cancelBorrow/" + id;
-            swal("Deleted!", "Your order has been canceled.", "success");
+            swal("Đã hủy", "Đơn hàng đã được hủy thành công.", "success");
             });
         })
     })

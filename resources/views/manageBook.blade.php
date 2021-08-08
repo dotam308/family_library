@@ -5,7 +5,7 @@
         <div class="banner-header">
             <h2>Sách</h2>
             <span class="underline center"></span>
-            <p class="lead">Proin ac eros pellentesque dolor pharetra tempo.</p>
+            {{-- <p class="lead">Proin ac eros pellentesque dolor pharetra tempo.</p> --}}
         </div>
         <div class="breadcrumb">
             <ul>
@@ -73,7 +73,7 @@
                                 ?>
 
                                 <tr>
-                                    <th>Số thứ tự</th>
+                                    <th>STT</th>
                                     <th>Mã DDC/DDC
                                         <input type="hidden" name="base-url" id="base-url" value="{{url('/')}}">
                                     <a href="{{route('manageBooks', compact('dc','desc'))}}" id="dc_desc"><i class="fas fa-angle-double-down"></i></a>
@@ -163,16 +163,16 @@
            var id = $(this).attr('rel');
            var deleteFunction = $(this).attr('rel1');
            swal({
-            title: "Are you sure?",
-            text: "Your will not be able to recover this imaginary file!",
+            title: "Bạn có chắc?",
+            text: "Bạn sẽ không thể phục hồi dữ liệu sách!",
             type: "warning",
             showCancelButton: true,
             confirmButtonClass: "btn-danger",
-            confirmButtonText: "Yes, delete it!",
+            confirmButtonText: "Có, xóa nó!",
             closeOnConfirm: false
             },
             function(){
-                swal("Deleted!", "Your imaginary file has been deleted.", "success");
+                swal("Đã xóa!", "Sách đã được xóa.", "success");
                 window.location.href = "/deleteBook/"+ deleteFunction + "/" + id;
             });
         })

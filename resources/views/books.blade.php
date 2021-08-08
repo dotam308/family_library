@@ -5,8 +5,8 @@
         <div class="banner-header">
             <h2>Giá sách</h2>
             <span class="underline center"></span>
-            <p class="lead">Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                Pellentesque dolor turpis, pulvinar varius dui id, convallis iaculis eros.</p>
+            {{-- <p class="lead">Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                Pellentesque dolor turpis, pulvinar varius dui id, convallis iaculis eros.</p> --}}
         </div>
         <div class="breadcrumb">
             <ul>
