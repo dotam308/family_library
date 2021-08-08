@@ -64,11 +64,13 @@
                                 <thead>
                                     <tr>
                                         <th>Order</th>
-                                        <th>Username
+                                        <th class="row">Username
                                             <input type="hidden" name="base-url" id="base-url" value="{{url('/')}}">
-                                            <a href="{{route('users', compact('usern','desc'))}}" id = "usern_desc"><i
-                                                    class="fas fa-angle-double-down <?php if(isset($_GET['usern']) && isset($_GET['desc'])) echo "activeDir";?>"></i></a>
-                                            <a href="{{route('users', compact('usern','insc'))}}" id = "usern_insc"><i
+                                            <a class="col text-left" 
+                                                href="{{route('users', compact('usern','desc'))}}" class="<?php if(isset($_GET['usern']) && isset($_GET['desc'])) echo "isDisabled"?>" id = "usern_desc">
+                                                <i class="fas fa-angle-double-down <?php if(isset($_GET['usern']) && isset($_GET['desc'])) echo "activeDir";?>"></i>
+                                            </a>
+                                            <a class="col text-right" href="{{route('users', compact('usern','insc'))}}" id = "usern_insc"><i
                                                     class="fas fa-angle-double-up <?php if(isset($_GET['usern']) && isset($_GET['insc'])) echo "activeDir";?>"></i></a></th>
                                         <th>Role
                                             <a href="{{route('users', compact('rol','desc'))}}" id = "rol_desc"><i
