@@ -3,14 +3,14 @@
 <section class="page-banner services-banner">
     <div class="container">
         <div class="banner-header">
-            <h2>Users Listing</h2>
+            <h2>Quản lý</h2>
             <span class="underline center"></span>
             <p class="lead">Proin ac eros pellentesque dolor pharetra tempo.</p>
         </div>
         <div class="breadcrumb">
             <ul>
-                <li><a href="{{route('index')}}">Home</a></li>
-                <li>Users</li>
+                <li><a href="#">Quản lý</a></li>
+                <li>Người mượn</li>
             </ul>
         </div>
     </div>
@@ -27,15 +27,15 @@
                     <section class="search-filters">
                         <div class="filter-box">
                             <form action="{{route('userSearch')}}" method="get">
-                                <div class="col-md-4 col-sm-6">
+                                <div class="col-md-4 col-sm-6" style="width:895px">
                                     <div class="form-group">
-                                        <input class="form-control" placeholder="Search by Keyword" id="keywords"
-                                            name="keywords" type="text" style="width:895px">
+                                        <input class="form-control" placeholder="Từ khoá" id="keywords"
+                                            name="keywords" type="text">
                                     </div>
                                 </div>
-                                <div class="col-md-2 col-sm-6" style="left:555px">
+                                <div class="col-md-2 col-sm-6">
                                     <div class="form-group">
-                                        <input class="form-control" type="submit" value="Search">
+                                        <input class="form-control" type="submit" value="Tìm kiếm">
                                     </div>
                                 </div>
                             </form>
@@ -45,12 +45,12 @@
                     <!-- End: Search Section -->
                     <div class="users-list-view">
 
-                        <h3>Danh sách user</h3>
-                        <div class="row">
+                        <h3>Danh sách người mượn</h3>
+                        {{--<div class="row">
                             <div class="col text-right">
                                 <a type="button" class="btn btn-primary" href="{{route('createUser')}}">ADD ACCOUNT</a>
                             </div>
-                        </div>
+                        </div>--}}
                         <ul>
                             <?php
                             $usern = "r";
@@ -63,7 +63,7 @@
                             <table class="table table-hover">
                                 <thead>
                                     <tr>
-                                        <th>Order</th>
+                                        <th>STT</th>
                                         <th>Username
                                             <input type="hidden" name="base-url" id="base-url" value="{{url('/')}}">
                                             <a href="{{route('users', compact('usern','desc'))}}" id = "usern_desc"><i
@@ -80,7 +80,7 @@
                                                     class="fas fa-angle-double-down"></i></a>
                                             <a href="{{route('users', compact('mail','insc'))}}" id = "mail_insc"><i
                                                     class="fas fa-angle-double-up"></i></a></th>
-                                        <th>Action</th>
+                                        {{--<th>Action</th>--}}
                                     </tr>
                                 </thead>
                                 @php
@@ -104,7 +104,7 @@
                                                 @endif
                                             <td>{{$user->role}}</td>
                                             <td>{{$user->email}}</td>
-                                            <td>
+                                            {{--<td>
                                                 <?php $id=$user->id;?>
                                                 <a href="{{route('editUser', compact('id'))}}">
                                                     <i class="fa fa-pen" aria-hidden="true" style="color:blue"></i>
@@ -112,7 +112,7 @@
                                                 <a rel="{{$id}}" rel1="user" href="javascript:" id="deleteButton" class="deleteButton">
                                                     <i class="fa fa-trash" aria-hidden="true" style="color:red"></i>
                                                 </a>
-                                            </td>
+                                            </td>--}}
                                         </tr>
                                 @endforeach
                             </table>

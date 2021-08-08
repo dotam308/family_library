@@ -11118,6 +11118,7 @@ a:focus {
 .latest-blog .tabs-container .tabs-list .tab-content:not(.active) {
   display: none;
 }
+
 .social-network ul {
   list-style: none;
   margin: 0;

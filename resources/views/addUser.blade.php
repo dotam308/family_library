@@ -39,6 +39,18 @@
                                 <td><input type="text" name="username" class="form-control"></td>
                             </tr>
                             <tr>
+                                <th>Full Name</th>
+                                <td><input type="text" name="name" class="form-control" ></td>
+                            </tr>
+                            <tr>
+                                <th>Address</th>
+                                <td><input type="text" name="address" class="form-control" ></td>
+                            </tr>
+                            <tr>
+                                <th>Contact Number</th>
+                                <td><input type="text" name="contactNumber" class="form-control" ></td>
+                            </tr>
+                            <tr>
                                 <th>Email</th>
                                 <td><input type="text" name="email" class="form-control" ></td>
                             </tr>
@@ -49,8 +61,8 @@
                             <tr>
                                 <th>Role</th>
                                 <td><select name="role" class="form-control">
-                                        <option value="admin" >Admin</option>
-                                        <option value="user" >User</option>
+                                        <option value="admin">Admin</option>
+                                        <option value="user">User</option>
                                 </td>
                             </tr>
                         </table>

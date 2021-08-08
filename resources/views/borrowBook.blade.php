@@ -4,14 +4,14 @@
 <section class="page-banner services-banner">
     <div class="container">
         <div class="banner-header">
-            <h2>Books & Media Listing</h2>
+            <h2>Sách mượn</h2>
             <span class="underline center"></span>
             <p class="lead">Proin ac eros pellentesque dolor pharetra tempo.</p>
         </div>
         <div class="breadcrumb">
             <ul>
-                <li><a href="index-2.html">Home</a></li>
-                <li>Books & Media</li>
+                <li><a href="#">Quản lý</a></li>
+                <li>Sách mượn</li>
             </ul>
         </div>
     </div>
@@ -25,7 +25,7 @@
             <div class="booksmedia-detail-main">
                 <div class="container">
                     <br>
-                    <h3>Borrow book</h3>
+                    <h3>Danh sách</h3>
                     <br>
                     <form method="POST"  enctype="multipart/form-data">
                         @csrf
@@ -38,13 +38,13 @@
                             </div>
 
                             <tr>
-                                <p><strong>Book name:</strong> {{ $book->name }}</p>
+                                <p><strong>Tiêu đề:</strong> {{ $book->name }}</p>
                             </tr>
                             <tr>
-                                <p><strong>Author:</strong> {{ $book->author }}</p>
+                                <p><strong>Tác giả:</strong> {{ $book->author }}</p>
                             </tr>
                             <tr>
-                                <p><strong>Borrow date:</strong> {{ date("d-m-Y") }}</p>
+                                <p><strong>Ngày mượn:</strong> {{ date("d-m-Y") }}</p>
                             </tr>
                             <tr>
                                 <p><strong>Quantity in stock:</strong> {{ $book->copies }}</p>
@@ -63,7 +63,7 @@
                                 @endif
                             </tr>
                             <tr>
-                                <th>Return date: </th>
+                                <th>Hạn trả: </th>
                                 @if (isset($_POST['returnDate']))
                                     <td><input type="date" name="returnDate" class="form-control" value="{{ $_POST['returnDate'] }}"></td>
                                 @else
@@ -71,7 +71,7 @@
                                 @endif
                             </tr>
                         </table>
-                        <button type="submit" class="btn btn-primary">Borrow</button>
+                        <button type="submit" class="btn btn-primary">Mượn</button>
                         <?php $id = Request::get('id'); ?>
                         <a type="button" class="btn btn-primary" href="{{ route('book_detail_byId', compact('id')) }}" style="margin: 100px; color: #fff;">Cancel</a>
                     </form>
