@@ -66,8 +66,12 @@
                             <thead>
                                 <?php
                                 $dc = "r";$bn = "r";$au = "r";$ge = "r";$pub = "r";$trans = "r";$coun = "r";$qua = "r";
-                                $pri = "r";$insc = "r";$desc = "r";
+                                $pri = "r";$insc = "r";$desc = "r";$page="r";
+                                if (isset($_GET['page'])) {
+                                    $page = $_GET['page'];
+                                }
                                 ?>
+
                                 <tr>
                                     <th>Số thứ tự</th>
                                     <th>Mã DDC/DDC
@@ -94,6 +98,7 @@
                                         <a href="{{route('manageBooks', compact('coun','insc'))}}" id="coun_insc"><i class="fas fa-angle-double-up"></i></a></th>
                                     <th>Ảnh</th>
                                     <th>Thao tác</th>
+
                                 </tr>
                             </thead>
                             <tbody>
@@ -154,62 +159,6 @@
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.19/dist/sweetalert2.all.min.js"></script>
 <script>
     $(document).ready(function() {
-        $url = window.location.href;
-        $a=document.getElementById("base-url").value;
-        if ($url === $a + "/manageBooks?dc=r&desc=r") {
-            document.getElementById("dc_desc").style.display = 'none';
-        }
-        if ($url === $a + "/manageBooks?dc=r&insc=r") {
-            document.getElementById("dc_insc").style.display = 'none';
-        }
-        if ($url === $a + "/manageBooks?bn=r&desc=r") {
-            document.getElementById("bn_desc").style.display = 'none';
-        }
-        if ($url === $a + "/manageBooks?bn=r&insc=r") {
-            document.getElementById("bn_insc").style.display = 'none';
-        }
-        if ($url === $a + "/manageBooks?au=r&desc=r") {
-            document.getElementById("au_desc").style.display = 'none';
-        }
-        if ($url === $a + "/manageBooks?au=r&insc=r") {
-            document.getElementById("au_insc").style.display = 'none';
-        }
-        if ($url === $a + "/manageBooks?ge=r&desc=r") {
-            document.getElementById("ge_desc").style.display = 'none';
-        }
-        if ($url === $a + "/manageBooks?ge=r&insc=r") {
-            document.getElementById("ge_insc").style.display = 'none';
-        }
-        if ($url === $a + "/manageBooks?pub=r&desc=r") {
-            document.getElementById("pub_desc").style.display = 'none';
-        }
-        if ($url === $a + "/manageBooks?pub=r&insc=r") {
-            document.getElementById("pub_insc").style.display = 'none';
-        }
-        if ($url === $a + "/manageBooks?trans=r&desc=r") {
-            document.getElementById("trans_desc").style.display = 'none';
-        }
-        if ($url === $a + "/manageBooks?trans=r&insc=r") {
-            document.getElementById("trans_insc").style.display = 'none';
-        }
-        if ($url === $a + "/manageBooks?coun=r&desc=r") {
-            document.getElementById("coun_desc").style.display = 'none';
-        }
-        if ($url === $a + "/manageBooks?coun=r&insc=r") {
-            document.getElementById("coun_insc").style.display = 'none';
-        }
-        if ($url === $a + "/manageBooks?qua=r&desc=r") {
-            document.getElementById("qua_desc").style.display = 'none';
-        }
-        if ($url === $a + "/manageBooks?qua=r&insc=r") {
-            document.getElementById("qua_insc").style.display = 'none';
-        }
-        if ($url === $a + "/manageBooks?pri=r&desc=r") {
-            document.getElementById("pri_desc").style.display = 'none';
-        }
-        if ($url === $a + "/manageBooks?pri=r&insc=r") {
-            document.getElementById("pri_insc").style.display = 'none';
-        }
        $('a[id=deleteButton]').click(function() {
            var id = $(this).attr('rel');
            var deleteFunction = $(this).attr('rel1');

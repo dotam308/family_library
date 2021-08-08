@@ -77,33 +77,38 @@
                                 $brdate = "brdate";
                                 $redate = "redate";  
                                 $desc = "d"; 
-                                $insc = "i";?>
+                                $insc = "i";
+                                $page = "r";
+                                if (isset($_GET['page'])) {
+                                    $page = $_GET['page'];
+                                }?>
                                     <thead>
                                         <tr>
                                             <th>STT</th>
-                                            <th>Tên sách
+                                            <th>Book Name
                                                 <input type="hidden" name="base-url" id="base-url" value="{{url('/')}}">
-                                                <a href="{{route('books_rented', compact('bookname', 'desc'))}}" id = "bookname_desc"><i
-                                                        class="fas fa-angle-double-down"></i></a>
-                                                <a href="{{route('books_rented', compact('bookname', 'insc'))}}" id = "bookname_insc"><i
-                                                        class="fas fa-angle-double-up"></i></a></th>
-                                            <th>Người mượn
-                                                <a href="{{route('books_rented', compact('borrower', 'desc'))}}" id = "borrower_desc"><i
-                                                        class="fas fa-angle-double-down"></i></a>
-                                                <a href="{{route('books_rented', compact('borrower', 'insc'))}}" id = "borrower_insc"><i
-                                                        class="fas fa-angle-double-up"></i></a>
+                                                <a href="{{route('books_rented', compact('bookname', 'desc', 'page'))}}" id = "bookname_desc"><i
+                                                        class="fas fa-angle-double-down <?php if(isset($_GET['bookname']) && isset($_GET['desc'])) echo "activeDir";?>"></i></a>
+                                                <a href="{{route('books_rented', compact('bookname', 'insc', 'page'))}}" id = "bookname_insc"><i
+                                                        class="fas fa-angle-double-up <?php if(isset($_GET['bookname']) && isset($_GET['insc'])) echo "activeDir";?>"></i></a></th>
+                                            <th>Borrower
+                                                <a href="{{route('books_rented', compact('borrower', 'desc', 'page'))}}" id = "borrower_desc"><i
+                                                        class="fas fa-angle-double-down <?php if(isset($_GET['borrower']) && isset($_GET['desc'])) echo "activeDir";?>"></i></a>
+                                                <a href="{{route('books_rented', compact('borrower', 'insc', 'page'))}}" id = "borrower_insc"><i
+                                                        class="fas fa-angle-double-up <?php if(isset($_GET['borrower']) && isset($_GET['insc'])) echo "activeDir";?>"></i></a>
                                             </th>
                                             <th>Ngày mượn
                                                 <a href="{{route('books_rented', compact('brdate', 'desc'))}}" id = "brdate_desc"><i
                                                         class="fas fa-angle-double-down"></i></a>
                                                 <a href="{{route('books_rented', compact('brdate', 'insc'))}}" id = "brdate_insc"><i
                                                         class="fas fa-angle-double-up"></i></a>
+
                                             </th>
-                                            <th>Ngày hẹn trả
-                                                <a href="{{route('books_rented', compact('redate', 'desc'))}}" id = "redate_desc"><i
-                                                        class="fas fa-angle-double-down"></i></a>
-                                                <a href="{{route('books_rented', compact('redate', 'insc'))}}" id = "redate_insc"><i
-                                                        class="fas fa-angle-double-up"></i></a>
+                                            <th>Return Date
+                                                <a href="{{route('books_rented', compact('redate', 'desc', 'page'))}}" id = "redate_desc"><i
+                                                        class="fas fa-angle-double-down <?php if(isset($_GET['redate']) && isset($_GET['desc'])) echo "activeDir";?>"></i></a>
+                                                <a href="{{route('books_rented', compact('redate', 'insc', 'page'))}}" id = "redate_insc"><i
+                                                        class="fas fa-angle-double-up <?php if(isset($_GET['redate']) && isset($_GET['insc'])) echo "activeDir";?>"></i></a>
                                             </th>
                                             <th>Tình trạng</th>
                                             <th>Thao tác</th>
@@ -172,42 +177,9 @@
 </script>
 <script>
     $(document).ready(function() {
-       $url = window.location.href;
-       $a=document.getElementById("base-url").value;
-       if ($url === $a + "/books_rented?bookname=bookname&desc=d") {
-        document.getElementById("bookname_desc").style.display = 'none';
-       }
-       if ($url === $a + "/books_rented?bookname=bookname&insc=i") {
-        document.getElementById("bookname_insc").style.display = 'none';
-       }
-       if ($url === $a + "/books_rented?borrower=borrower&desc=d") {
-        document.getElementById("borrower_desc").style.display = 'none';
-       }
-       if ($url === $a + "/books_rented?borrower=borrower&insc=i") {
-        document.getElementById("borrower_insc").style.display = 'none';
-       }
-       if ($url === $a + "/books_rented?quantityx=quantity&desc=d") {
-        document.getElementById("quantityx_desc").style.display = 'none';
-       }
-       if ($url === $a + "/books_rented?quantityx=quantity&insc=i") {
-        document.getElementById("quantityx_insc").style.display = 'none';
-       }
-       if ($url === $a + "/books_rented?brdate=brdate&desc=d") {
-        document.getElementById("brdate_desc").style.display = 'none';
-       }
-       if ($url === $a + "/books_rented?brdate=brdate&insc=i") {
-        document.getElementById("brdate_insc").style.display = 'none';
-       }
-       if ($url === $a + "/books_rented?redate=redate&desc=d") {
-        document.getElementById("redate_desc").style.display = 'none';
-       }
-       if ($url === $a + "/books_rented?redate=redate&insc=i") {
-        document.getElementById("redate_insc").style.display = 'none';
-       }
-       $('a[id=deleteButton]').click(function() {
-           var id = $(this).attr('rel');
-           
-           swal({
+       $('a[id=deleteButton]').click(function() {         
+        var id = $(this).attr('rel');
+        swal({
             title: "Are you sure?",
             text: "Your will not be able to recover this imaginary file!",
             type: "warning",

@@ -70,6 +70,7 @@
                                                     class="fas fa-angle-double-down <?php if(isset($_GET['usern']) && isset($_GET['desc'])) echo "activeDir";?>"></i></a>
                                             <a href="{{route('users', compact('usern','insc'))}}" id = "usern_insc"><i
                                                     class="fas fa-angle-double-up <?php if(isset($_GET['usern']) && isset($_GET['insc'])) echo "activeDir";?>"></i></a></th>
+
                                         <th>Chức năng
                                             <a href="{{route('users', compact('rol','desc'))}}" id = "rol_desc"><i
                                                     class="fas fa-angle-double-down <?php if(isset($_GET['rol']) && isset($_GET['desc'])) echo "activeDir";?>"></i></a>
@@ -80,7 +81,8 @@
                                                     class="fas fa-angle-double-down <?php if(isset($_GET['mail']) && isset($_GET['desc'])) echo "activeDir";?>"></i></a>
                                             <a href="{{route('users', compact('mail','insc'))}}" id = "mail_insc"><i
                                                     class="fas fa-angle-double-up <?php if(isset($_GET['mail']) && isset($_GET['insc'])) echo "activeDir";?>"></i></a></th>
-                                        {{--<th>Thao tác</th>--}}
+
+                                        <th>Thao tác</th>
                                     </tr>
                                 </thead>
                                 @php

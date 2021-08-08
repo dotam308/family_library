@@ -18,8 +18,12 @@
 </section>
 @endsection
 @section('content')
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" />
 <?php
-$bn="r";$au="r";$pri="r";$gen="r";$coun="r";
+$bn="r";$au="r";$pri="r";$gen="r";$coun="r";$page = "r";$desc="r";$insc="r";
+if (isset($_GET['page'])) {
+    $page = $_GET['page']; 
+}
 ?>
 <div id="content" class="site-content">
     <div id="primary" class="content-area">

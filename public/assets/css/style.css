@@ -58,6 +58,12 @@ Version: 1.0.0
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  */
 /*! normalize.css v3.0.3 | MIT License | github.com/necolas/normalize.css */
+.activeDir {
+  color: orange;
+}
+.activeDir:hover {
+  display: none;
+}
 .liked {
   color: #ff7236;
 }
