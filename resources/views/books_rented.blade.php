@@ -104,13 +104,13 @@
                                                         class="fas fa-angle-double-up"></i></a>
 
                                             </th>
-                                            <th>Ngày trả
+                                            <th>Ngày dự định trả
                                                 <a href="{{route('books_rented', compact('redate', 'desc', 'page'))}}" id = "redate_desc"><i
                                                         class="fas fa-angle-double-down <?php if(isset($_GET['redate']) && isset($_GET['desc'])) echo "activeDir";?>"></i></a>
                                                 <a href="{{route('books_rented', compact('redate', 'insc', 'page'))}}" id = "redate_insc"><i
                                                         class="fas fa-angle-double-up <?php if(isset($_GET['redate']) && isset($_GET['insc'])) echo "activeDir";?>"></i></a>
                                             </th>
-                                            <th>Tình trạng</th>
+                                            <th>Trạng thái</th>
                                             <th>Thao tác</th>
                                         </tr>
                                     </thead>
@@ -136,7 +136,13 @@
                                             <td>{{$b->username}}</td>
                                             <td>{{$b->borrowDate }}</td>
                                             <td>{{$b->returnDate }}</td>
-                                            <td>{{$b->returned}}</td>
+                                            @if($b->returned == 'waiting')
+                                            <td>Đang chờ xử lý</td>
+                                            @elseif($b->returned == 'borrowing')
+                                                <td>Đang mượn</td>
+                                            @else
+                                                <td>Đã trả</td>
+                                            @endif
 
                                             <td>
                                                 <a href="{{ route('rents_byId', compact('id')) }}">
@@ -180,17 +186,17 @@
        $('a[id=deleteButton]').click(function() {         
         var id = $(this).attr('rel');
         swal({
-            title: "Are you sure?",
-            text: "Your will not be able to recover this imaginary file!",
+            title: "Bạn có chắc?",
+            text: "Bạn sẽ không thể khôi phục dữ liệu sau khi xóa!",
             type: "warning",
             showCancelButton: true,
             confirmButtonClass: "btn-danger",
-            confirmButtonText: "Yes, delete it!",
+            confirmButtonText: "Có, hãy xóa nó!",
             closeOnConfirm: false
             },
             function(){
                 window.location.href = "/delete_rented/" + id;
-            swal("Deleted!", "Your imaginary file has been deleted.", "success");
+            swal("Xóa thành công!", "Đơn hàng đã được xóa.", "success");
             });
         })
     })

@@ -73,7 +73,7 @@
                                             <a class="col text-right" href="{{route('users', compact('usern','insc'))}}" id = "usern_insc"><i
                                                     class="fas fa-angle-double-up <?php if(isset($_GET['usern']) && isset($_GET['insc'])) echo "activeDir";?>"></i></a></th>
 
-                                        <th>Chức năng
+                                        <th>Vai trò
                                             <a href="{{route('users', compact('rol','desc'))}}" id = "rol_desc"><i
                                                     class="fas fa-angle-double-down <?php if(isset($_GET['rol']) && isset($_GET['desc'])) echo "activeDir";?>"></i></a>
                                             <a href="{{route('users', compact('rol','insc'))}}" id = "rol_insc"><i
@@ -100,12 +100,12 @@
                                 <?php $order++;?>
                                         <tr>
                                             <td>{{abs($order)}}</td>
-                                            <td>{{$user->id}}</td>
-                                                @if(session('username')==$user->username)
-                                                    <td>{{$user->username}} (Your Account)</td>
-                                                @else
-                                                    <td>{{$user->username}}</td>
-                                                @endif
+                                            {{-- <td>{{$user->id}}</td> --}}
+                                            @if(session('username')==$user->username)
+                                                <td>{{$user->username}} (Your Account)</td>
+                                            @else
+                                                <td>{{$user->username}}</td>
+                                            @endif
                                             <td>{{$user->role}}</td>
                                             <td>{{$user->email}}</td>
                                             {{--<td>

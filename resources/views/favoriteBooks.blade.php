@@ -3,14 +3,14 @@
 <section class="page-banner services-banner">
     <div class="container">
         <div class="banner-header">
-            <h2>Books</h2>
+            <h2>Danh sách yêu thích</h2>
             <span class="underline center"></span>
-            <p class="lead">Proin ac eros pellentesque dolor pharetra tempo.</p>
+            {{-- <p class="lead">Proin ac eros pellentesque dolor pharetra tempo.</p> --}}
         </div>
         <div class="breadcrumb">
             <ul>
-                <li><a href="index-2.html">Home</a></li>
-                <li>Check</li>
+                <li><a href="index-2.html">Cá nhân</a></li>
+                <li>Sách yêu thích</li>
             </ul>
         </div>
     </div>
@@ -72,8 +72,8 @@
                         <table class="table table-hover">
                             <thead>
                                 <tr>
-                                    <th>Thứ tự</th>
-                                    <th>Mã ddc
+                                    <th>STT</th>
+                                    <th>Mã DDC
                                         <input type="hidden" name="base-url" id="base-url" value="{{url('/')}}">
                                         <a href="{{route('favoriteBooks', compact('dc','desc','page'))}}" id="dc_desc"><i
                                                 class="fas fa-angle-double-down  <?php if(isset($_GET['dc']) && isset($_GET['desc'])) echo "activeDir";?>"></i></a>
@@ -95,6 +95,7 @@
                                                 class="fas fa-angle-double-down <?php if(isset($_GET['ge']) && isset($_GET['desc'])) echo "activeDir";?>"></i></a>
                                         <a href="{{route('favoriteBooks', compact('ge','insc','page'))}}" id="ge_insc"><i
                                                 class="fas fa-angle-double-up <?php if(isset($_GET['ge']) && isset($_GET['insc'])) echo "activeDir";?>"></i></a></th>
+
                                    <th>Ảnh bìa</th>
                                    <th>Thao tác</th>
 
@@ -160,17 +161,17 @@
            var id = $(this).attr('rel');
            
            swal({
-            title: "Are you sure?",
-            text: "This book will be canceled",
+            title: "Bạn có chắc?",
+            text: "Xóa sách này khỏi danh sách yêu thích",
             type: "warning",
             showCancelButton: true,
             confirmButtonClass: "btn-danger",
-            confirmButtonText: "Yes!",
+            confirmButtonText: "Có!",
             closeOnConfirm: false
             },
             function(){
                 window.location.href = "/deleteFavoriteBookList/" + id;
-              swal("Deleted!", "Your book has been deleted.", "success");
+              swal("Đã xóa!", "Sách đã được xóa khỏi danh sách yêu thích.", "success");
             });
         })
     })

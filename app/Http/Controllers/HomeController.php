@@ -195,6 +195,7 @@ class HomeController extends Controller
                   ->join('books','borrowings.bookId','=','books.id')
                   ->join('users','borrowings.userId','=','users.id')
                   ->select('borrowings.*', 'users.username', 'books.name')
+                  ->orderBy('borrowings.id', 'desc')
                   ->paginate($limit);
               }
         
@@ -326,6 +327,7 @@ class HomeController extends Controller
         $orders = DB::table('borrowings')->join('books', 'books.id', 'borrowings.bookId')
                             ->join('users', 'borrowings.userId', 'users.id')
                             ->where('borrowings.returned', "waiting")
+                            ->orderBy('borrowings.id', 'desc')
                             ->paginate($limit, ['books.ddcCode', 'books.name', 'books.author', 'books.genre', 'borrowings.quantity', 'borrowings.borrowDate', 'borrowings.returnDate', 'borrowings.returned', 'books.image', 'books.id as bookId', 'borrowings.id as borrowingId', 'users.username as userName']);
                         }
         $status = 'waiting';
@@ -423,6 +425,7 @@ class HomeController extends Controller
         $orders = DB::table('borrowings')->join('books', 'books.id', 'borrowings.bookId')
                             ->join('users', 'borrowings.userId', 'users.id')
                             ->where('borrowings.returned', "borrowing")
+                            ->orderBy('borrowings.id', 'desc')
                             ->paginate($limit, ['books.ddcCode', 'books.name', 'books.author', 'books.genre', 'borrowings.quantity', 'borrowings.borrowDate', 'borrowings.returnDate', 'borrowings.returned', 'books.image', 'books.id as bookId', 'borrowings.id as borrowingId', 'users.username as userName']);
                         }
         return view('manageOrder', compact('orders', 'active'));

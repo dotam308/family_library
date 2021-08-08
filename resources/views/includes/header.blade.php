@@ -88,26 +88,26 @@
                                     <a href="{{ route('contact')}}">Liên hệ</a>
                                 </li>
 
-                                {{--<@if( (session('role') != null) )
-                                li class="dropdown {{ isset($active) && $active == "check" ? "active" : "" }}">
-                                    <a data-toggle="dropdown" class="dropdown-toggle disabled" >Check</a>
+                                @if( (session('role') != null) )
+                                <li class="dropdown {{ isset($active) && $active == "check" ? "active" : "" }}">
+                                    <a data-toggle="dropdown" class="dropdown-toggle disabled" >Cá nhân</a>
                                     <ul class="dropdown-menu">
-                                        <li><a href="{{ route('favoriteBooks') }}">My favorite book list</a></li>
-                                        <li><a href="{{ route('borrowedBooks') }}">Borrowed books list</a></li>
-                                        <li><a href="{{ route('returnedBooks') }}">Returned books list</a></li>
+                                        <li><a href="{{ route('favoriteBooks') }}">Sách yêu thích</a></li>
+                                        <li><a href="{{ route('borrowedBooks') }}">Sách đang mượn</a></li>
+                                        <li><a href="{{ route('returnedBooks') }}">Sách đã trả</a></li>
                                     </ul>
                                 </li>
-                                @endif--}}
+                                @endif
                                 
-                                {{--@if(session('role') == 'admin')
+                                @if(session('role') == 'admin')
                                 <li class="dropdown {{ isset($active) && $active == "order" ? "active" : "" }}">
-                                    <a data-toggle="dropdown" class="dropdown-toggle disabled" href="#">orders</a>
+                                    <a data-toggle="dropdown" class="dropdown-toggle disabled" href="#">Đơn hàng</a>
                                     <ul class="dropdown-menu">
-                                        <li><a href="{{ route('waitingOrders') }}">Waiting orders</a></li>
-                                        <li><a href="{{ route('borrowingOrders') }}">Borrowing books list</a></li>
+                                        <li><a href="{{ route('waitingOrders') }}">Đơn hàng đang chờ xử lý</a></li>
+                                        <li><a href="{{ route('borrowingOrders') }}">Đơn hàng đang mượn</a></li>
                                     </ul>
                                 </li>
-                                @endif--}}
+                                @endif
                             </ul>
                         </div>
                     </div>
