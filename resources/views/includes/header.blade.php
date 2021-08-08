@@ -49,10 +49,6 @@
                                 <li class="dropdown {{ isset($active) && $active == "books" ? "active" : "" }}">
                                     <a data-toggle="dropdown" class="dropdown-toggle disabled"
                                         href="{{ route('books') }}">Giá sách</a>
-                                    <ul class="dropdown-menu">
-                                        <li><a href="{{ route('books') }}">Giá sách</a></li>
-                                        <li><a href="{{ route('favoriteBooks') }}">Sách yêu thích</a></li>
-                                    </ul> 
                                 </li>
                                 {{-- <li class="dropdown">
                                         <a data-toggle="dropdown" class="dropdown-toggle disabled" href="news-events-list-view.html">Tin tức và sự kiện</a>
@@ -67,23 +63,6 @@
                                     </ul> 
                                     </li>
                                     @endif
-                                {{--<li class="dropdown {{ (isset($active) && $active == "pages") ? "active" : "" }}">
-                                    <a data-toggle="dropdown" class="dropdown-toggle disabled" href="#">Trang</a>
-                                    <ul class="dropdown-menu">
-                                        <li><a href="{{ route('cart') }}">Cart</a></li>
-                                        <li><a href="{{ route('checkout') }}">Checkout</a></li>
-                                        <li><a href="{{ route('signin') }}">Signin/Register</a></li>
-                                        <li><a href="{{ route('404') }}">404/Error</a></li>
-                                    </ul>
-                                </li>--}}
-                                {{-- <li class="dropdown">
-                                        <a data-toggle="dropdown" class="dropdown-toggle disabled" href="blog.html">Blog</a>
-                                        <ul class="dropdown-menu">
-                                            <li><a href="blog.html">Blog Grid View</a></li>
-                                            <li><a href="blog-detail.html">Blog Detail</a></li>
-                                        </ul>
-                                    </li> --}}
-                                {{-- <li><a href="services.html">Services</a></li> --}}
                                 <li class="dropdown  {{ isset($active) && $active == "contact" ? "active" : "" }}">
                                     <a href="{{ route('contact')}}">Liên hệ</a>
                                 </li>
@@ -124,11 +103,7 @@
                                 <a href="{{ route('index') }}">Trang chủ</a>
                             </li>
                             <li>
-                                <a href="#">Giá sách</a>
-                                <ul>
-                                    <li><a href="{{ route('books') }}">Giá sách</a></li>
-                                    <li><a href="{{route('favoriteBooks')}}">Danh sách yêu thích</a></li>
-                                </ul>
+                                <a href="{{ route('books') }}">Giá sách</a>
                             </li>
                             {{--<li>
                                 <a href="news-events-list-view.html">News &amp; Events</a>
