@@ -69,6 +69,7 @@ Route::get('/search_books', [SearchController::class, 'bookSearch'])->name('book
 Route::get('/search_books_admin', [SearchController::class, 'bookManagementSearch'])->name('bookManagementSearch');
 Route::get('/search_books_borrowed', [SearchController::class, 'bookBorrowSearch'])->name('bookBorrowSearch');
 Route::get('/search_users', [SearchController::class, 'userSearch'])->name('userSearch');
+Route::get('/search_fav', [SearchController::class, 'bookFavSearch'])->name('bookFavSearch');
 
 // Route::get('/bookSearch', [SearchController::class, 'bookSearch'])->name('booksearch');
 // Route::get('/bookManageSearch', [SearchController::class, 'bookManageSearch'])->name('bookmanagesearch');
@@ -83,6 +84,7 @@ Route::get('/cancelBorrow/{id}', [HomeController::class,'cancelBorrow']);
 
 Route::get('/waitingOrders', [HomeController::class, 'waitingOrders'])->name('waitingOrders');
 Route::get('/borrowingOrders', [HomeController::class, 'borrowingOrders'])->name('borrowingOrders');
+Route::get('/returnedOrders', [HomeController::class, 'returnedOrders'])->name('returnedOrders');
 
 Route::get('/tookBook', [HomeController::class, 'tookBook'])->name('tookBook');
 Route::get('/returnBook', [HomeController::class, 'returnBook'])->name('returnBook');
