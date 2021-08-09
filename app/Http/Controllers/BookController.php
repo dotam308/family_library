@@ -560,4 +560,21 @@ class BookController extends Controller
         // dd($borrower);
         return view('addBorrowing', compact('active', 'borrower'));
     }
+
+    public function addBorrowingPost(Request $request) {
+        $book = Book::where('name', $request->bookName)->first();
+
+        Borrowing::create([
+            'userId' => $request->userId,
+            'bookId'=> $book->id,
+            'quantity' => 1,
+            'borrowDate' => date('Y-m-d'),
+            'returnDate' => $request->returnDate,
+            'returned' => 'borrowing'
+        ]);
+        $book->copies = 0;
+        $book->save();
+        toast('Thêm đơn thành công','success');
+        return redirect(route('checkBorrower'));
+    }
 }
