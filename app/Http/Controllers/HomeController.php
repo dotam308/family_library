@@ -89,14 +89,14 @@ class HomeController extends Controller
 
         //if not signIn
         if (session('userId') == null) {
-            alert()->warning('WarningAlert','You must signIn before')->width('500px');
+            alert()->warning('Cảnh báo','Bạn cần đăng nhập trước')->width('500px');
             $bookId = $book->id;
             return redirect(route('signin', compact('bookId')));
         }
     
         //if quantity borrow > copies or returnDate <= current date
         if (($request->quantity == null) || ($request->quantity > $book->copies) || (($request->quantity <= 0) || ($request->returnDate <= date('Y-m-d')))) {
-            alert()->info('InfoAlert','Your input is not satisfied.')->width('500px');
+            alert()->info('Thông báo','Dữ liệu bạn nhập không hợp lệ.')->width('500px');
             return view('borrowBook', compact('book'));
         }
     
@@ -113,7 +113,7 @@ class HomeController extends Controller
         $book->copies = $book->copies - $request->quantity;
         $book->save();
 
-        toast('Successfully','success');
+        toast('Mượn thành công','success');
         return redirect(route('books'));
     }
   
@@ -223,7 +223,7 @@ class HomeController extends Controller
         $borrow->save();
         $book->copies = $book->copies + $old - $borrow->quantity;
         $book->save();
-        toast('Successfully','success');
+        toast('Thành công','success');
         return redirect(route('books_rented'));
     }
     public function deleteBookRented(Request $request, $id)
