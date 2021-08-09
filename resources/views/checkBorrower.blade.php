@@ -58,16 +58,16 @@
                                                 <form class="login" method="post"  action="#">
                                                     @csrf
                                                     <p class="form-row form-row-first input-required">
-                                                        <input type="text" id="name" name="name" class="input-text"
+                                                        <input type="text" id="name" name="name" class="input-text form-control"
                                                         placeholder="Tên đầy đủ *">
                                                     </p>
                                                     <p class="form-row input-required">
                                                         <input type="text" id="username1" name="username"
-                                                            class="input-text" placeholder="Tên đăng nhập *">
+                                                            class="input-text form-control" placeholder="Tên đăng nhập *">
                                                     </p>
                                                     <p class="form-row input-required">
                                                         <input type="password" id="password1" name="password"
-                                                            class="input-text" placeholder="Mật khẩu *">
+                                                            class="input-text form-control" placeholder="Mật khẩu *">
                                                     </p>
                                                     <div class="clear"></div>
                                                     <input type="submit" value="Đăng ký" name="signup"

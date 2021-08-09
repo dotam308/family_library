@@ -87,19 +87,16 @@ class SearchController extends Controller{
         $search=$request->input('keywords');
         $searchValues = preg_split('/\s+/',$search, -1, PREG_SPLIT_NO_EMPTY);
         $catalog=$request->input('catalog');
-        $books=Book::where(function ($query) use ($searchValues,$catalog){
+        $borrow=Book::where(function ($query) use ($searchValues,$catalog){
             foreach($searchValues as $value) {
                 if($catalog){
                     $query->where($catalog, 'like', "%{$value}%");
                 }else{
-                $query->where('name', 'like', "%{$value}%")
-                      ->orWhere('username', 'like', "%{$value}%")
-                      ->orWhere('borrowDate', 'like', "%{$value}%")
-                      ->orWhere('returnDate', 'like', "%{$value}%");
+                $query->where('name', 'like', "%{$value}%");
                 }
             }
         })->paginate(10);
-        return view('books_rented',compact('b'));
+        return view('books_rented',compact('borrow'));
     }
 
     public function userSearch(Request $request){

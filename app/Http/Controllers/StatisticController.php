@@ -12,7 +12,7 @@ class StatisticController extends Controller
 {
 	public function viewBook(Request $request)
 	{
-		$active = "index";
+		$active = "statistic";
         $book = DB::table('books')->get();
         $borrow = DB::table('borrowings')->get();
         $a = DB::table('borrowings')->where('borrowings.returned','!=','returned')->get(['borrowings.quantity as quantity']);
@@ -40,7 +40,7 @@ class StatisticController extends Controller
 	}
 	public function viewUser(Request $request)
 	{
-		$active = "index";
+		$active = "statistic";
         $user = DB::table('users')->get();
         $usuallyUser = DB::table('users')->join('borrowings','borrowings.userId','users.id')->select(DB::raw('sum(borrowings.quantity) as totalforEach, users.username'))->groupBy('username')->orderBy('totalforEach','desc')
                      ->get(); 
@@ -57,7 +57,7 @@ class StatisticController extends Controller
 	}
 	public function viewRent(Request $request)
 	{	
-		$active = "index";
+		$active = "statistic";
         $borrowing = DB::table('borrowings')->get();
         $rentTime = 0;
         foreach ($borrowing as $key) {
