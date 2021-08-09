@@ -3,14 +3,14 @@
 <section class="page-banner services-banner">
     <div class="container">
         <div class="banner-header">
-            <h2>Giá sách</h2>
+            <h2>Quản lý</h2>
             <span class="underline center"></span>
             <p class="lead">Sách là bạn.</p>
         </div>
         <div class="breadcrumb">
             <ul>
-                <li><a href="index-2.html">Trang chủ</a></li>
-                <li>Giá sách</li>
+                <li><a href="index-2.html">Quản lý</a></li>
+                <li>Thêm đơn mượn</li>
             </ul>
         </div>
     </div>
@@ -39,7 +39,7 @@
                     {{-- <div  style="color: blue">
                         <a href="{{ route('signin') }}">Chưa có tài khoản? Đăng ký</a>
                     </div> --}}
-                    <button class="btn btn-primary" data-toggle="modal" data-target="#masuk">Sign up</button>
+                    <button class="btn btn-primary" data-toggle="modal" data-target="#masuk">Đăng ký</button>
                     <div class="row">
                         <div class="col-md-12">
                             <div class="company-detail new-account bg-light margin-right">

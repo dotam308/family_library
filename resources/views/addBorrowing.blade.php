@@ -3,14 +3,14 @@
 <section class="page-banner services-banner">
     <div class="container">
         <div class="banner-header">
-            <h2>Giá sách</h2>
+            <h2>Quản lý</h2>
             <span class="underline center"></span>
             <p class="lead">Sách là bạn.</p>
         </div>
         <div class="breadcrumb">
             <ul>
-                <li><a href="index-2.html">Trang chủ</a></li>
-                <li>Giá sách</li>
+                <li><a href="index-2.html">Quản lý</a></li>
+                <li>Thêm đơn mượn</li>
             </ul>
         </div>
     </div>
@@ -35,7 +35,9 @@
                         <table table table-hover>
                             <tr>
                                 <th>Mã người mượn</th>
-                                <td><input type="text" name="userId" class="form-control" value="{{ $borrower->userId }}" disabled /></td>
+                                <td>
+                                    <input type="hidden" name="userId" value="{{ $borrower->userId }}">
+                                    <input type="text" name="userid" class="form-control" value="{{ $borrower->userId }}" disabled /></td>
                             </tr>
                             <tr>
                                 <th>Tên người mượn</th>
@@ -46,18 +48,24 @@
                                 <td><input type="email" name="email" class="form-control" value="{{ $borrower->email ?? "chưa cập nhật" }}" disabled/></td>
                             </tr>
                             <tr>
-                                <th>Tìm sách</th>
+                                <th>Ngày dự định trả</th>
+                                <td><input type="date" name="returnDate" class="form-control"/></td>
+                            </tr>
+                            <tr>
+                                <th>Chọn sách</th>
                                 <td >
                                     <form method="post" action="">
                                         @csrf
-                                        <input type="text" name="keywords"class="form-control">
-                                        <button class="btn btn-xs-primary">Tìm</button>
+                                        <input type="text" name="bookName" class="form-control" id="bookName" placeholder="Nhập tên sách">
+                                        <div id="bookList"></div>
+                                        {{-- <button class="btn btn-xs-primary">Tìm</button> --}}
                                     </form>
+                                    {{ csrf_field() }}
                                 </td>
                             </tr>
                         </table>
 
-                        <button type="submit">Kiểm tra</button>
+                        <button type="submit">Thêm đơn</button>
                     </form>
 
                 </div>
@@ -71,3 +79,33 @@
 </div>
 </div>
 @endsection
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script>
+$(document).ready(function() {
+    $('#bookName').keyup(function() {
+        var query = $(this).val();
+        if(query != "") {
+            var _token = $('input[name="_token"]').val();
+            $.ajax({
+                url:"{{ route('searchWhenAddBorrowing') }}",
+                method: "POST",
+                data:{query: query, _token:_token},
+                success:function(data) {
+                    $('#bookList').fadeIn();
+                    $('#bookList').html(data);
+                }
+            })
+        } else {
+            $('#bookList').html("");
+        }
+    });
+
+    $(document).on('click', 'li', function() {
+        $('#bookName').val($(this).text());
+        $('#bookList').fadeOut();
+    });
+});
+</script>

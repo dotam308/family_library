@@ -96,7 +96,8 @@ Route::get('/deleteFavoriteBookList/{id}',[WishListController::class, 'deleteFav
 Route::get('/add_borrowing/borrower', [BookController::class, 'checkBorrower'])->name("checkBorrower");
 Route::post('/add_borrowing/borrower', [BookController::class, 'checkBorrowerPost'])->name("checkBorrowerUsername");
 Route::get('add_borrowing', [BookController::class, 'addBorrowing'])->name('addBorrowing');
-Route::post('add_borrowing', [BookController::class, 'searchBook'])->name('searchBook');
+Route::post('add_borrowing', [BookController::class, 'addBorrowingPost'])->name('addBorrowingPost');
+Route::post('/add_borrowings', [SearchController::class, 'searchBookWhenAddBorrowing'])->name('searchWhenAddBorrowing');
 
 Route::get('/statisticBook', [StatisticController::class, 'viewBook'])->name('statisticBook');
 Route::get('/statisticUser', [StatisticController::class, 'viewUser'])->name('statisticUser');

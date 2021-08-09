@@ -116,4 +116,18 @@ class SearchController extends Controller{
         return view('users',compact('users'));
     }
 
+    public function searchBookWhenAddBorrowing(Request $request) {
+        if($request->get('query')) {
+            $query = $request->get('query');
+            $data = Book::where('name', 'LIKE', "%{$query}%")
+                    ->where('copies', '>', 0)->get();
+            $output = '<ul class="dropdown-menu" style="display: block; position: relative">';
+            foreach($data as $row) {
+                $output .= '<li><a href="#">' . $row->name . '</a></li>';
+            }
+            $output .= '</ul>';
+            echo $output;
+        }
+    }
+
 }
