@@ -7,7 +7,13 @@ use App\Models\Book;
 use App\Models\Borrowing;
 use Illuminate\Support\Facades\DB;
 use App\Models\User;
-
+use App\Models\UserInfo;
+use App\Providers\RouteServiceProvider;
+use Illuminate\Auth\Events\Registered;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\Rules;
+use Cookie;
 
 class BookController extends Controller
 {
@@ -514,6 +520,9 @@ class BookController extends Controller
         return view('checkBorrower', compact('active', 'message'));
     }
     public function checkBorrowerPost(Request $request) {
+        if (isset($_POST['check'])) {
+            // code...
+        
         $username = $request->username;
         $exist = User::where('username', $username)->first();
         if (!empty($exist)) {
@@ -521,6 +530,26 @@ class BookController extends Controller
         } else {
             $notExist = true;
             return redirect()->route('checkBorrower', compact('notExist'));
+        }
+    }
+        if (isset($_POST['signup'])) {
+            $user = User::create([
+            'username' => $request->username,
+            'password' => Hash::make($request->password),
+            'role' => 'guest'
+        ]);
+        
+        $last = DB::table('users')->latest()->first();
+        $userId = $last->id;
+        
+        // dd($userId);
+        UserInfo::create([
+            'userId' => $userId,
+            'name'=>$request->name
+        ]);
+        ;
+        toast('Đăng ký thành công','success');
+        return redirect(route('checkBorrower'));
         }
 
     }

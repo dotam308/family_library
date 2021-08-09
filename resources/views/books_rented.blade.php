@@ -123,15 +123,16 @@
                                             } else {
                                                 $i = 10*($c-1);
                                             }
+                                            $o = 0;
                                         @endphp
                                         @forelse ($borrow as $b)
                                         <?php
                                         $id = $b->id;
-                                        
+                                        $o++;
                                         $i++;
                                         ?>
                                         <tr>
-                                            <td>{{abs($i)}}</td>
+                                            <td>{{abs($o + ($c-1)*10)}}</td>
                                             <td>{{$b->name}}</td>
                                             <td>{{$b->username}}</td>
                                             <td>{{$b->borrowDate }}</td>
