@@ -131,7 +131,7 @@ class BookController extends Controller
                 $image = $request->img;
                 $filename = $image->store('photo');
                 $filename = substr($filename, 6);
-                $book->image = $filename;
+                $book->image = "photo/".$filename;
                 $book->save();
                 return redirect(route('manageBooks'));
 			} 
