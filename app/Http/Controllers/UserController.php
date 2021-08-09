@@ -70,18 +70,17 @@ class UserController extends Controller{
     }
 
     public function editUser(Request $request){
-        $this->validate($request, [
-            'username'=>'required',
-            'password'=>'required',
-            'role'=>'required'
-        ]);
-        $user = User::where('id',$request->id)->first();
+
+        $editedUserId = $request->id;
+
+        $editedUser = User::where('id',$editedUserId)->first();
         $username=User::where('username',$request['username'])->get();
         $checkDuplicate = false;
 
         if (!empty($request->email))
             $email=User::where('email',$request->email)->get();
-        if (count($username) >= 1) {
+
+        if (count($username) >= 1 && $editedUser->username != $request->username ) {
             $request->session()->flash('uerror','Username is already existed!');
             $checkDuplicate = true;
         }
@@ -91,19 +90,19 @@ class UserController extends Controller{
         }
         // if ($user->username == $username->username)
         if($checkDuplicate){
-            return view('editUser',compact('user'));
+            $id = $editedUserId;
+            return redirect()->route('editUser', compact('id'));
         }
-        $user->username=$request->username;
-        $user->email=$request->email;
+        $editedUser->username=$request->username;
+        $editedUser->email=$request->email;
 
 //         if ($request->password == $user->password) {
 //             //van dang luu ma Hash, khong thay doi mat khau -> khong cap nhat moi
 //         } else {
 //             $user->password=Hash::make($request->password);
 //         }
-        $user->password=Hash::needsRehash($request->password)?Hash::make($request->password):$request->password;
-        $user->role=$request->role;
-        $user->save();
+        $editedUser->role=$request->role;
+        $editedUser->save();
         return redirect(route('users'));
     }
 

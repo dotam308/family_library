@@ -43,11 +43,7 @@
                             </tr>
                             <tr>
                                 <th>E-mail</th>
-                                <td><input type="text" name="email" class="form-control" value="{{$user->email}}"></td>
-                            </tr>
-                            <tr> 
-                                <th>Password</th>
-                                <td><input type="password" name="password" class="form-control" value="{{$user->password}}"></td>
+                                <td><input type="text" name="email" class="form-control" value="{{$user->email}}" ></td>
                             </tr>
                             <tr>
                                 <th>Role</th>
