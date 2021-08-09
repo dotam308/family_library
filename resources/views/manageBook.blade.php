@@ -74,14 +74,19 @@
 
                                 <tr>
                                     <th>STT</th>
-                                    <th>Mã DDC/DDC
+                                    <th>
+                                        
+                                       <div class="row"> Mã DDC</tr>
                                         <input type="hidden" name="base-url" id="base-url" value="{{url('/')}}">
-                                    <a href="{{route('manageBooks', compact('dc','desc'))}}" id="dc_desc"><i class="fas fa-angle-double-down"></i></a>
-                                        <a href="{{route('manageBooks', compact('dc','insc'))}}" id="dc_insc"><i class="fas fa-angle-double-up"></i></a></th>
-                                    <th>Tiêu đề
-                                    <a href="{{route('manageBooks', compact('bn','desc'))}}" id="bn_desc"><i class="fas fa-angle-double-down"></i></a>
+                                        <tr class="row">
+                                            <a href="{{route('manageBooks', compact('dc','desc'))}}" id="dc_desc"><i class="fas fa-angle-double-down"></i></a>
+                                            <a href="{{route('manageBooks', compact('dc','insc'))}}" id="dc_insc"><i class="fas fa-angle-double-up"></i></a></th>
+                                        </tr>
+                                    <th><tr>Tiêu đề</tr>
+                                    <tr><a href="{{route('manageBooks', compact('bn','desc'))}}" id="bn_desc"><i class="fas fa-angle-double-down"></i></a>
                                         <a href="{{route('manageBooks', compact('bn','insc'))}}" id="bn_insc"><i class="fas fa-angle-double-up"></i></a></th>
-                                    <th>Tác giả
+                                    </tr>
+                                        <th>Tác giả
                                     <a href="{{route('manageBooks', compact('au','desc'))}}" id="au_desc"><i class="fas fa-angle-double-down"></i></a>
                                         <a href="{{route('manageBooks', compact('au','insc'))}}" id="au_insc"><i class="fas fa-angle-double-up"></i></a></th>
                                     <th>Thể loại
