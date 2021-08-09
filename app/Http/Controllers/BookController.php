@@ -129,7 +129,7 @@ class BookController extends Controller
 			if($exe_flg) {
                 // lưu product
                 $image = $request->img;
-                $filename = $image->store('public');
+                $filename = $image->store('photo');
                 $filename = substr($filename, 6);
                 $book->image = $filename;
                 $book->save();
