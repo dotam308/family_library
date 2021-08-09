@@ -533,23 +533,33 @@ class BookController extends Controller
             }
      }
         if (isset($_POST['signup'])) {
+            //check username already exists
+            $acc = User::where('username', $request->username)->first();
+            if (isset($acc)) {
+                toast('Tài khoản đã tồn tại','info');
+                return redirect(route('checkBorrower'));
+            }
+            if ($request->name == "") {
+                toast('Dữ liệu bạn nhập không đúng','info');
+                return redirect(route('checkBorrower'));
+            }
+
             $user = User::create([
             'username' => $request->username,
             'password' => Hash::make($request->password),
-            'role' => 'guest'
-        ]);
+            'role' => 'guest']);
         
-        $last = DB::table('users')->latest()->first();
-        $userId = $last->id;
-        
-        // dd($userId);
-        UserInfo::create([
-            'userId' => $userId,
-            'name'=>$request->name
-        ]);
-        ;
-        toast('Đăng ký thành công','success');
-        return redirect(route('checkBorrower'));
+            $last = DB::table('users')->latest()->first();
+            $userId = $last->id;
+            
+            // dd($userId);
+            UserInfo::create([
+                'userId' => $userId,
+                'name'=>$request->name
+            ]);
+            
+            toast('Đăng ký thành công','success');
+            return redirect(route('checkBorrower'));
         }
 
     }
@@ -563,7 +573,18 @@ class BookController extends Controller
 
     public function addBorrowingPost(Request $request) {
         $book = Book::where('name', $request->bookName)->first();
-
+        if(!isset($book)) {
+            $active = 'manage';
+            $borrower = User::where('userId', $request->userId)->leftJoin('userinfo', 'userinfo.userId', 'users.id')->first();
+            toast('Không tìm thấy sách đã nhập', 'info');
+            return view('addBorrowing', compact('active', 'borrower'));
+        }
+        if (date('Y-m-d') >= $request->returnDate) {
+            $active = 'manage';
+            $borrower = User::where('userId', $request->userId)->leftJoin('userinfo', 'userinfo.userId', 'users.id')->first();
+            toast('Ngày dự định trả không hợp lệ', 'info');
+            return view('addBorrowing', compact('active', 'borrower'));
+        }
         Borrowing::create([
             'userId' => $request->userId,
             'bookId'=> $book->id,

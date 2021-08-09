@@ -85,6 +85,7 @@
                                     <ul class="dropdown-menu">
                                         <li><a href="{{ route('waitingOrders') }}">Đơn hàng đang chờ xử lý</a></li>
                                         <li><a href="{{ route('borrowingOrders') }}">Đơn hàng đang mượn</a></li>
+                                        <li><a href="{{ route('returnedOrders') }}">Đơn hàng thành công</a></li>
                                     </ul>
                                 </li>
                                 @endif

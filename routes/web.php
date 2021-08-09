@@ -84,6 +84,7 @@ Route::get('/cancelBorrow/{id}', [HomeController::class,'cancelBorrow']);
 
 Route::get('/waitingOrders', [HomeController::class, 'waitingOrders'])->name('waitingOrders');
 Route::get('/borrowingOrders', [HomeController::class, 'borrowingOrders'])->name('borrowingOrders');
+Route::get('/returnedOrders', [HomeController::class, 'returnedOrders'])->name('returnedOrders');
 
 Route::get('/tookBook', [HomeController::class, 'tookBook'])->name('tookBook');
 Route::get('/returnBook', [HomeController::class, 'returnBook'])->name('returnBook');
