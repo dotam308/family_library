@@ -58,6 +58,10 @@
                             $mail = "r";
                             $insc = "r";
                             $desc = "r"; 
+                            $page="r";
+                                if (isset($_GET['page'])) {
+                                    $page = $_GET['page'];
+                                }
                             ?>
                             @if(count($users)>0)
                             <table class="table table-hover">
@@ -67,21 +71,21 @@
                                         <th>Tên đăng nhập
                                             <input type="hidden" name="base-url" id="base-url" value="{{url('/')}}">
                                             <a class="col text-left" 
-                                                href="{{route('users', compact('usern','desc'))}}" class="<?php if(isset($_GET['usern']) && isset($_GET['desc'])) echo "isDisabled"?>" id = "usern_desc">
+                                                href="{{route('users', compact('usern','desc','page'))}}" class="<?php if(isset($_GET['usern']) && isset($_GET['desc'])) echo "isDisabled"?>" id = "usern_desc">
                                                 <i class="fas fa-angle-double-down <?php if(isset($_GET['usern']) && isset($_GET['desc'])) echo "activeDir";?>"></i>
                                             </a>
-                                            <a class="col text-right" href="{{route('users', compact('usern','insc'))}}" id = "usern_insc"><i
+                                            <a class="col text-right" href="{{route('users', compact('usern','insc','page'))}}" id = "usern_insc"><i
                                                     class="fas fa-angle-double-up <?php if(isset($_GET['usern']) && isset($_GET['insc'])) echo "activeDir";?>"></i></a></th>
 
                                         <th>Vai trò
-                                            <a href="{{route('users', compact('rol','desc'))}}" id = "rol_desc"><i
+                                            <a href="{{route('users', compact('rol','desc','page'))}}" id = "rol_desc"><i
                                                     class="fas fa-angle-double-down <?php if(isset($_GET['rol']) && isset($_GET['desc'])) echo "activeDir";?>"></i></a>
-                                            <a href="{{route('users', compact('rol','insc'))}}" id = "rol_insc"><i
+                                            <a href="{{route('users', compact('rol','insc','page'))}}" id = "rol_insc"><i
                                                     class="fas fa-angle-double-up <?php if(isset($_GET['rol']) && isset($_GET['insc'])) echo "activeDir";?>"></i></a></th>
                                         <th>E-mail
-                                            <a href="{{route('users', compact('mail','desc'))}}" id = "mail_desc"><i
+                                            <a href="{{route('users', compact('mail','desc','page'))}}" id = "mail_desc"><i
                                                     class="fas fa-angle-double-down <?php if(isset($_GET['mail']) && isset($_GET['desc'])) echo "activeDir";?>"></i></a>
-                                            <a href="{{route('users', compact('mail','insc'))}}" id = "mail_insc"><i
+                                            <a href="{{route('users', compact('mail','insc','page'))}}" id = "mail_insc"><i
                                                     class="fas fa-angle-double-up <?php if(isset($_GET['mail']) && isset($_GET['insc'])) echo "activeDir";?>"></i></a></th>
 
                                         <th>Thao tác</th>
