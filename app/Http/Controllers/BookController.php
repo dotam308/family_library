@@ -523,15 +523,15 @@ class BookController extends Controller
         if (isset($_POST['check'])) {
             // code...
         
-        $username = $request->username;
-        $exist = User::where('username', $username)->first();
-        if (!empty($exist)) {
-            return redirect()->route('addBorrowing', compact('username'));
-        } else {
-            $notExist = true;
-            return redirect()->route('checkBorrower', compact('notExist'));
-        }
-    }
+            $username = $request->username;
+            $exist = User::where('username', $username)->first();
+            if (!empty($exist)) {
+                return redirect()->route('addBorrowing', compact('username'));
+            } else {
+                $notExist = true;
+                return redirect()->route('checkBorrower', compact('notExist'));
+            }
+     }
         if (isset($_POST['signup'])) {
             $user = User::create([
             'username' => $request->username,
