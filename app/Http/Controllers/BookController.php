@@ -13,6 +13,7 @@ use Illuminate\Auth\Events\Registered;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
+use App\Http\Controllers\WishListController;
 use Cookie;
 
 class BookController extends Controller
@@ -34,9 +35,11 @@ class BookController extends Controller
         }
         
         
-        if (!empty(session('userId'))){
+        if (!empty(session('userId')) ){
             $books = $books->paginate(10, ["*", 
-            DB::raw("(SELECT userId FROM wish_lists WHERE bookId = books.id AND userId = ".session('userId').") favorite")]);
+            DB::raw("(SELECT wish_lists.userId 
+                            FROM wish_lists
+                            WHERE bookId = books.id AND userId = ".session('userId').") favorite")]);
         } else {
             $books = $books->paginate(10);
         }

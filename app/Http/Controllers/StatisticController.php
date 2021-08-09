@@ -50,8 +50,14 @@ class StatisticController extends Controller
     {
         $active = "statistic";
         $user = DB::table('users')->get();
-        $usuallyUser = DB::table('users')->join('borrowings', 'borrowings.userId', 'users.id')->select(DB::raw('sum(borrowings.quantity) as totalforEach, users.username'))->groupBy('username')->orderBy('totalforEach', 'desc')
-            ->get();
+        if (Borrowing::count() > 0)
+            $usuallyUser = DB::table('users')
+                ->join('borrowings', 'borrowings.userId', 'users.id')
+                ->select(DB::raw('sum(borrowings.quantity) as totalforEach, users.username'))
+                ->groupBy('username')
+                ->orderBy('totalforEach', 'desc')
+                ->get();
+        else $usuallyUser = null;
         $activeUser = DB::table('borrowings')->join('users', 'borrowings.userId', 'users.id')->get();
         $quantityActive = 0;
         foreach ($activeUser as $key) {
@@ -71,10 +77,22 @@ class StatisticController extends Controller
         foreach ($borrowing as $key) {
             $rentTime++;
         }
-        $mostBookRentDay = DB::table('borrowings')->select(DB::raw('count(borrowings.borrowDate) as totalforEach1, borrowDate'))->groupBy('borrowDate')->orderBy('totalforEach1', 'desc')
-            ->get();
-        $mostRentDay = DB::table('borrowings')->select(DB::raw('count(borrowings.borrowDate) as totalforEach1, borrowDate'))->groupBy('borrowDate')->orderBy('totalforEach1', 'asc')
-            ->get();
+        if (Borrowing::count() > 0) {
+
+            $mostBookRentDay = DB::table('borrowings')
+                ->select(DB::raw('count(borrowings.borrowDate) as totalforEach1, borrowDate'))
+                ->groupBy('borrowDate')
+                ->orderBy('totalforEach1', 'desc')
+                ->get();
+            $mostRentDay = DB::table('borrowings')
+                ->select(DB::raw('count(borrowings.borrowDate) as totalforEach1, borrowDate'))
+                ->groupBy('borrowDate')
+                ->orderBy('totalforEach1', 'asc')
+                ->get();
+        } else {
+            $mostBookRentDay = null;
+            $mostRentDay = null;
+        }
         return view('statisticRent', compact('active', 'rentTime', 'mostRentDay', 'mostBookRentDay'));
     }
 }
