@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Book;
 use App\Models\Borrowing;
 use Illuminate\Support\Facades\DB;
+use App\Models\User;
 
 
 class BookController extends Controller
@@ -504,5 +505,30 @@ class BookController extends Controller
         return view('borrowedBookList', compact('books', 'returned', 'active'));
     }
 
-    
+    public function checkBorrower(Request $request) {
+        $active = "manage";
+        $message = "";
+        if ($request->notExist) {
+            $message = "Tài khoản không tồn tại";
+        }
+        return view('checkBorrower', compact('active', 'message'));
+    }
+    public function checkBorrowerPost(Request $request) {
+        $username = $request->username;
+        $exist = User::where('username', $username)->first();
+        if (!empty($exist)) {
+            return redirect()->route('addBorrowing', compact('username'));
+        } else {
+            $notExist = true;
+            return redirect()->route('checkBorrower', compact('notExist'));
+        }
+
+    }
+    public function addBorrowing(Request $request) {
+        $active = 'manage';
+        $username = $request->username;
+        $borrower = User::where('username', $username)->leftJoin('userinfo', 'userinfo.userId', 'users.id')->first();
+        // dd($borrower);
+        return view('addBorrowing', compact('active', 'borrower'));
+    }
 }
