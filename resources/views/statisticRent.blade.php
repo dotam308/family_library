@@ -29,6 +29,7 @@
                     
                 </div>
             </li>
+            @if (!empty($mostBookRentDay))
             <li class="bg-light-green">
                 <div class="feature-box">
                     <i class="light-green"></i>
@@ -41,6 +42,7 @@
                     <p3>Ngày có số lượt mượn ít nhất là:    <strong><big>{{$mostRentDay[0]->borrowDate}}</big></strong> với <strong><big>{{$mostRentDay[0]->totalforEach1}}</big></strong> lượt mượn </p3>
              </div>
             </li>
+            @endif
         </ul>
     </div>
 </section>

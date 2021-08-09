@@ -35,7 +35,7 @@
                     <i class="light-green"></i>
                     <p3><strong><big>3</big></strong> người đang mượn nhiều nhất là: </p3><br>
         <?php $i=0;?>
-        @foreach ($usuallyUser as $u)
+        @forelse ($usuallyUser as $u)
         <?php if ($i<3) {
             echo $u->username."\n với " .$u->totalforEach . " quyển sách.";
             $i++;
@@ -43,6 +43,7 @@
         <br>
             <?php
         }?>
+        @empty
         @endforeach
         
         <br>
