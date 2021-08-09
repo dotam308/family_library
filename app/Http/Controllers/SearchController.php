@@ -83,6 +83,28 @@ class SearchController extends Controller{
         return view('manageBook',compact('books'));
     }
 
+    public function bookFavSearch(Request $request){
+        $search=$request->input('keywords');
+        $searchValues = preg_split('/\s+/',$search, -1, PREG_SPLIT_NO_EMPTY);
+        $catalog=$request->input('catalog');
+        $books=Book::where(function ($query) use ($searchValues,$catalog){
+            foreach($searchValues as $value) {
+                if($catalog){
+                    $query->where($catalog, 'like', "%{$value}%");
+                }else{
+                $query->where('ddcCode', 'like', "%{$value}%")
+                      ->orWhere('name', 'like', "%{$value}%")
+                      ->orWhere('author', 'like', "%{$value}%")
+                      ->orWhere('genre', 'like', "%{$value}%")
+                      ->orWhere('publisher', 'like', "%{$value}%")
+                      ->orWhere('translator', 'like', "%{$value}%")
+                      ->orWhere('country', 'like', "%{$value}%");
+                }
+            }
+        })->paginate(10);
+        return view('favoriteBooks',compact('books'));
+    }
+
     public function bookBorrowSearch(Request $request){
         $search=$request->input('keywords');
         $searchValues = preg_split('/\s+/',$search, -1, PREG_SPLIT_NO_EMPTY);
