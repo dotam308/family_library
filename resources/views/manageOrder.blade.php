@@ -58,9 +58,9 @@
                                     <th>Username
                                     <a href="{{route($routeName, compact('un','desc','page'))}}" id="un_desc"><i class="fas fa-angle-double-down <?php if(isset($_GET['un']) && isset($_GET['desc'])) echo "activeDir";?>"></i></a>
                                             <a href="{{route($routeName, compact('un','insc','page'))}}" id="un_insc"><i class="fas fa-angle-double-up <?php if(isset($_GET['un']) && isset($_GET['insc'])) echo "activeDir";?>"></i></a></th>
-                                    <th>Số lượng mượn
+                                    {{-- <th>Số lượng mượn
                                     <a href="{{route($routeName, compact('qua','desc','page'))}}" id="qua_desc"><i class="fas fa-angle-double-down <?php if(isset($_GET['qua']) && isset($_GET['desc'])) echo "activeDir";?>"></i></a>
-                                            <a href="{{route($routeName, compact('qua','insc','page'))}}" id="qua_insc"><i class="fas fa-angle-double-up <?php if(isset($_GET['qua']) && isset($_GET['insc'])) echo "activeDir";?>"></i></a></th>
+                                            <a href="{{route($routeName, compact('qua','insc','page'))}}" id="qua_insc"><i class="fas fa-angle-double-up <?php if(isset($_GET['qua']) && isset($_GET['insc'])) echo "activeDir";?>"></i></a></th> --}}
                                     <th>Ngày mượn
                                     <a href="{{route($routeName, compact('bd','desc','page'))}}" id="bd_desc"><i class="fas fa-angle-double-down <?php if(isset($_GET['bd']) && isset($_GET['desc'])) echo "activeDir";?>"></i></a>
                                             <a href="{{route($routeName, compact('bd','insc','page'))}}" id="bd_insc"><i class="fas fa-angle-double-up <?php if(isset($_GET['bd']) && isset($_GET['insc'])) echo "activeDir";?>"></i></a></th>
@@ -95,7 +95,7 @@
                                         <td><a href="{{ route('book_detail_byId', compact('id')) }}">{{ $order->name }}</a></td>
                                         <td>{{ $order->author }}</td>
                                         <td>{{ $order->userName }}</td>
-                                        <td>{{ $order->quantity }}</td>
+                                        {{-- <td>{{ $order->quantity }}</td> --}}
                                         <td>{{ $order->borrowDate }}</td>
                                         <td>{{ $order->returnDate }}</td>
                                         @if($order->returned == 'waiting')

@@ -33,7 +33,7 @@
                         <div class="detailed-box">
                             <div class="col-xs-12 col-sm-5 col-md-3">
                                 <div class="post-thumbnail">
-                                    <div class="book-list-icon blue-icon"></div>
+                                    {{-- <div class="book-list-icon blue-icon"></div> --}}
                                     <img src="/storage/{{ $book->image }}" alt="Book Image">
                                 </div>
                             </div>
@@ -41,7 +41,7 @@
                                 <div class="post-center-content">
                                     <h2>{{ $book->name }}</h2>
                                     <p><strong>Tác giả:</strong> {{ $book->author }}</p>
-                                    <p><strong>Max DDC:</strong> {{ $book->ddcCode }}</p>
+                                    <p><strong>Mã DDC:</strong> {{ $book->ddcCode }}</p>
                                     <p><strong>Người dịch:</strong> {{ $book->translator }}</p>
                                     <p><strong>Nhà xuất bản:</strong> {{ $book->publisher }}</p>
                                     <p><strong>Ngôn ngữ:</strong> {{ $book->country }}</p>

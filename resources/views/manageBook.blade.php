@@ -25,7 +25,7 @@
                 <div class="container">
                     <section class="search-filters">
                         <div class="filter-box"><br/>
-                        <form action="{{route('bookSearch')}}" method="get">
+                        <form action="{{route('bookManagementSearch')}}" method="get">
                             <div class="col-md-4 col-sm-6" style="width:615px">
                                 <div class="form-group">
                                     <input class="form-control" placeholder="Từ khoá" id="keywords"

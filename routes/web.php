@@ -8,6 +8,7 @@ use App\Http\Controllers\BookController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\WishListController;
+use App\Http\Controllers\StatisticController;
 use Illuminate\Http\Request;
 /*
 |--------------------------------------------------------------------------
@@ -28,6 +29,7 @@ Route::get('/logout', [AuthenticatedSessionController::class, "destroy"])->name(
 
 Route::get('/books',[BookController::class, 'index'])->name('books');
 Route::get('/addBook', [BookController::class, 'addBookForm'])->name('addBook');
+Route::post('/addBook2', [BookController::class, 'addBooklevel2'])->name('addBooklevel2');
 Route::post('/addBook', [BookController::class, 'addBookPost']);
 Route::get('/editBook', [BookController::class, 'editBookForm'])->name('editBook');
 Route::post('/editBook', [BookController::class, 'editBookPost']);
@@ -95,3 +97,7 @@ Route::get('/add_borrowing/borrower', [BookController::class, 'checkBorrower'])-
 Route::post('/add_borrowing/borrower', [BookController::class, 'checkBorrowerPost'])->name("checkBorrowerUsername");
 Route::get('add_borrowing', [BookController::class, 'addBorrowing'])->name('addBorrowing');
 Route::post('add_borrowing', [BookController::class, 'searchBook'])->name('searchBook');
+Route::get('/statisticBook', [StatisticController::class, 'viewBook'])->name('statisticBook');
+Route::get('/statisticUser', [StatisticController::class, 'viewUser'])->name('statisticUser');
+Route::get('/statisticRent', [StatisticController::class, 'viewRent'])->name('statisticRent');
+
