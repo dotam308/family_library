@@ -58,6 +58,10 @@
                             $mail = "r";
                             $insc = "r";
                             $desc = "r"; 
+                            $page="r";
+                                if (isset($_GET['page'])) {
+                                    $page = $_GET['page'];
+                                }
                             ?>
                             @if(count($users)>0)
                             <table class="table table-hover">
@@ -67,21 +71,21 @@
                                         <th>Tên đăng nhập
                                             <input type="hidden" name="base-url" id="base-url" value="{{url('/')}}">
                                             <a class="col text-left" 
-                                                href="{{route('users', compact('usern','desc'))}}" class="<?php if(isset($_GET['usern']) && isset($_GET['desc'])) echo "isDisabled"?>" id = "usern_desc">
+                                                href="{{route('users', compact('usern','desc','page'))}}" class="<?php if(isset($_GET['usern']) && isset($_GET['desc'])) echo "isDisabled"?>" id = "usern_desc">
                                                 <i class="fas fa-angle-double-down <?php if(isset($_GET['usern']) && isset($_GET['desc'])) echo "activeDir";?>"></i>
                                             </a>
-                                            <a class="col text-right" href="{{route('users', compact('usern','insc'))}}" id = "usern_insc"><i
+                                            <a class="col text-right" href="{{route('users', compact('usern','insc','page'))}}" id = "usern_insc"><i
                                                     class="fas fa-angle-double-up <?php if(isset($_GET['usern']) && isset($_GET['insc'])) echo "activeDir";?>"></i></a></th>
 
                                         <th>Vai trò
-                                            <a href="{{route('users', compact('rol','desc'))}}" id = "rol_desc"><i
+                                            <a href="{{route('users', compact('rol','desc','page'))}}" id = "rol_desc"><i
                                                     class="fas fa-angle-double-down <?php if(isset($_GET['rol']) && isset($_GET['desc'])) echo "activeDir";?>"></i></a>
-                                            <a href="{{route('users', compact('rol','insc'))}}" id = "rol_insc"><i
+                                            <a href="{{route('users', compact('rol','insc','page'))}}" id = "rol_insc"><i
                                                     class="fas fa-angle-double-up <?php if(isset($_GET['rol']) && isset($_GET['insc'])) echo "activeDir";?>"></i></a></th>
                                         <th>E-mail
-                                            <a href="{{route('users', compact('mail','desc'))}}" id = "mail_desc"><i
+                                            <a href="{{route('users', compact('mail','desc','page'))}}" id = "mail_desc"><i
                                                     class="fas fa-angle-double-down <?php if(isset($_GET['mail']) && isset($_GET['desc'])) echo "activeDir";?>"></i></a>
-                                            <a href="{{route('users', compact('mail','insc'))}}" id = "mail_insc"><i
+                                            <a href="{{route('users', compact('mail','insc','page'))}}" id = "mail_insc"><i
                                                     class="fas fa-angle-double-up <?php if(isset($_GET['mail']) && isset($_GET['insc'])) echo "activeDir";?>"></i></a></th>
 
                                         <th>Thao tác</th>
@@ -95,11 +99,12 @@
                                     } else {
                                         $order = 10*($c-1);
                                     }
+                                    $i=0;
                                 @endphp
                                 @foreach($users as $user)
-                                <?php $order++;?>
+                                <?php $order++;$i++;?>
                                         <tr>
-                                            <td>{{abs($order)}}</td>
+                                            <td>{{abs($i+($c-1)*10)}}</td>
                                             {{-- <td>{{$user->id}}</td> --}}
                                             @if(session('username')==$user->username)
                                                 <td>{{$user->username}} (Your Account)</td>
@@ -108,7 +113,7 @@
                                             @endif
                                             <td>{{$user->role}}</td>
                                             <td>{{$user->email}}</td>
-                                            {{--<td>
+                                            <td>
                                                 <?php $id=$user->id;?>
                                                 <a href="{{route('editUser', compact('id'))}}">
                                                     <i class="fa fa-pen" aria-hidden="true" style="color:blue"></i>
@@ -116,7 +121,7 @@
                                                 <a rel="{{$id}}" rel1="user" href="javascript:" id="deleteButton" class="deleteButton">
                                                     <i class="fa fa-trash" aria-hidden="true" style="color:red"></i>
                                                 </a>
-                                            </td>--}}
+                                            </td>
                                         </tr>
                                 @endforeach
                             </table>

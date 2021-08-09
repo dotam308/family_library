@@ -80,17 +80,19 @@
                                     } else {
                                         $i = 10*($c-1);
                                     }
+                                    $o=0;
                                 @endphp
                                 @foreach ($orders as $order)
                                 
                                         @php
                                             $i++;
+                                            $o++;
                                             $bookId = $order->bookId;
                                             $id = $bookId;
                                             $borrowId = $order->borrowingId;
                                         @endphp
                                     <tr>
-                                        <td>{{ abs($i) }}</td>
+                                        <td>{{ abs($o + ($c-1)*10) }}</td>
                                         <td>{{ $order->ddcCode }}</td>
                                         <td><a href="{{ route('book_detail_byId', compact('id')) }}">{{ $order->name }}</a></td>
                                         <td>{{ $order->author }}</td>
