@@ -8,6 +8,7 @@ use App\Http\Controllers\BookController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\WishListController;
+use App\Http\Controllers\StatisticController;
 use Illuminate\Http\Request;
 /*
 |--------------------------------------------------------------------------
@@ -91,3 +92,8 @@ Route::post('/saveFavorite', [WishListController::class, 'saveFavorite'])->name(
 Route::get('/favoriteBooks', [WishListController::class, 'showFavoriteBooks'])->name('favoriteBooks');
 Route::get('/deleteFavoriteBook/{id}',[WishListController::class, 'deleteFavoriteBook'])->name('deleteFavoriteBook');
 Route::get('/deleteFavoriteBookList/{id}',[WishListController::class, 'deleteFavoriteBookList'])->name('deleteFavoriteBookList');
+
+Route::get('/statisticBook', [StatisticController::class, 'viewBook'])->name('statisticBook');
+Route::get('/statisticUser', [StatisticController::class, 'viewUser'])->name('statisticUser');
+Route::get('/statisticRent', [StatisticController::class, 'viewRent'])->name('statisticRent');
+
