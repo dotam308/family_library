@@ -35,7 +35,7 @@ class BookController extends Controller
         }
         
         
-        if (!empty(session('userId')) && count($books) > 0 ){
+        if (!empty(session('userId'))){
             $books = $books->paginate(10, ["*", 
             DB::raw("(SELECT 'userId'
                             FROM wish_lists
