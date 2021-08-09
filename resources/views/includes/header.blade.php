@@ -60,6 +60,7 @@
                                         <li><a href="{{ route('manageBooks') }}">Sách</a></li>
                                         <li><a href="{{ route('books_rented') }}">Sách mượn</a></li>
                                         <li><a href="{{route('users')}}">Người mượn</a></li>
+                                        <li><a href="{{route('checkBorrower')}}">Thêm đơn mượn</a></li>
                                     </ul> 
                                     </li>
                                     @endif
@@ -67,7 +68,7 @@
                                     <a href="{{ route('contact')}}">Liên hệ</a>
                                 </li>
 
-                                @if( (session('role') != null) )
+                                @if( (session('role') != 'admin') && (session('role') != null) )
                                 <li class="dropdown {{ isset($active) && $active == "check" ? "active" : "" }}">
                                     <a data-toggle="dropdown" class="dropdown-toggle disabled" >Cá nhân</a>
                                     <ul class="dropdown-menu">
@@ -87,6 +88,16 @@
                                     </ul>
                                 </li>
                                 @endif
+                                @if (session('role') == 'admin')
+                                    <li class="dropdown {{ isset($active) && $active == "manage" ? "active" : "" }}" >
+                                        <a data-toggle="dropdown" class="dropdown-toggle disabled" href="#">Thống kê</a>
+                                        <ul class="dropdown-menu">
+                                        <li><a href="{{ route('statisticBook') }}">Sách</a></li>
+                                        <li><a href="{{ route('statisticUser') }}">Người mượn</a></li>
+                                        <li><a href="{{ route('statisticRent') }}">Lượt mượn</a></li>
+                                    </ul> 
+                                    </li>
+                                    @endif
                             </ul>
                         </div>
                     </div>

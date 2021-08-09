@@ -71,10 +71,10 @@ if (isset($_GET['page'])) {
     Sắp xếp theo
   </button>
   <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-    <li><a class="dropdown-item" href="{{ route('books',compact('bn')) }}">Tiêu đề</a></li>
-    <li><a class="dropdown-item" href="{{ route('books',compact('au')) }}">Tác giả</a></li>
-    <li><a class="dropdown-item" href="{{ route('books',compact('gen')) }}">Thể loại</a></li>
-    <li><a class="dropdown-item" href="{{ route('books',compact('coun')) }}">Quốc gia</a></li>
+    <li><a class="dropdown-item" href="{{ route('books',compact('bn','page')) }}">Tiêu đề</a></li>
+    <li><a class="dropdown-item" href="{{ route('books',compact('au','page')) }}">Tác giả</a></li>
+    <li><a class="dropdown-item" href="{{ route('books',compact('gen','page')) }}">Thể loại</a></li>
+    <li><a class="dropdown-item" href="{{ route('books',compact('coun','page')) }}">Quốc gia</a></li>
   </ul>
 </div>
                             

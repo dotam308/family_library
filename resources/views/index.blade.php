@@ -7,14 +7,14 @@
     <div class="carousel-inner">
         <div class="item active">
             <figure>
-                <img alt="Home Slide" src="/assets/images/header-slider/home-v1/header-slide.jpg" />
+                <img alt="Home Slide" src="/assets/images/header-slider/home-v2/header-slider1.png" />
             </figure>
             <div class="container">
                 <div class="carousel-caption">
-                    <h2>Sách là bạn</h2>
+                    <h2>Thư viện gia đình</h2>
                     <p> Một cuốn sách hay trên giá sách là một người bạn dù quay lưng lại nhưng vẫn là bạn tốt. </p>
                     <div class="slide-buttons hidden-sm hidden-xs">
-                        <a href="#" class="btn btn-primary">Đọc thêm</a>
+                        {{-- <a href="#" class="btn btn-primary">Đọc thêm</a> --}}
                     </div>
                 </div>
             </div>
@@ -89,23 +89,7 @@
                                 <div class="fact-icon">
                                     <i class="ebook"></i>
                                 </div>
-                                <span>Số tài liệu<strong class="fact-counter">{{$quantityBook}}</strong></span>
-                            </div>
-                        </li>
-                        <li class="bg-light-green">
-                            <div class="fact-item">
-                                <div class="fact-icon">
-                                    <i class="ebook"></i>
-                                </div>
-                                <span>Được mượn<strong class="fact-counter">{{$borrowBook}}</strong></span>
-                            </div>
-                        </li>
-                        <li class="bg-light-green">
-                            <div class="fact-item">
-                                <div class="fact-icon">
-                                    <i class="ebook"></i>
-                                </div>
-                                <span>Đã thuê<strong class="fact-counter">{{$rentlist}}</strong></span>
+                                <span>Có<strong class="fact-counter">{{$quantityBook}}</strong> quyển sách</span>
                             </div>
                         </li>
                         <li class="bg-green">
@@ -124,14 +108,7 @@
                                 <span>Thành viên<strong class="fact-counter">{{$userquantity}}</strong></span>
                             </div>
                         </li>
-                        <li class="bg-blue">
-                            <div class="fact-item">
-                                <div class="fact-icon">
-                                    <i class="videos"></i>
-                                </div>
-                                <span>Video<strong class="fact-counter">32450</strong></span>
-                            </div>
-                        </li>
+                       
                     </ul>
                 </div>
             </div>
