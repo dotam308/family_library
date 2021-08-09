@@ -32,6 +32,8 @@
                     <form method="POST" action="{{ route('checkBorrowerUsername') }}">
                         @csrf
                         <h3>Nhập thông tin người mượn</h3>
+                        <br>
+                        <br>
                         Nhập username <input type="text" name="username">
 
                         <button type="submit" name="check">Kiểm tra</button>
@@ -39,6 +41,9 @@
                     {{-- <div  style="color: blue">
                         <a href="{{ route('signin') }}">Chưa có tài khoản? Đăng ký</a>
                     </div> --}}
+                    <br>
+                    <br>
+                    <br>
                     <button class="btn btn-primary" data-toggle="modal" data-target="#masuk">Đăng ký</button>
                     <div class="row">
                         <div class="col-md-12">
@@ -58,15 +63,15 @@
                                                 <form class="login" method="post"  action="#">
                                                     @csrf
                                                     <p class="form-row form-row-first input-required">
-                                                        <input type="text" id="name" name="name" class="input-text"
+                                                        <input type="text" id="name" name="name" class="input-text" style="width: 80%"
                                                         placeholder="Tên đầy đủ *">
                                                     </p>
                                                     <p class="form-row input-required">
-                                                        <input type="text" id="username1" name="username"
+                                                        <input type="text" id="username1" name="username" style="width: 80%"
                                                             class="input-text" placeholder="Tên đăng nhập *">
                                                     </p>
                                                     <p class="form-row input-required">
-                                                        <input type="password" id="password1" name="password"
+                                                        <input type="password" id="password1" name="password" style="width: 80%"
                                                             class="input-text" placeholder="Mật khẩu *">
                                                     </p>
                                                     <div class="clear"></div>
