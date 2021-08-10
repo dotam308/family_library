@@ -36,12 +36,12 @@
                             <tr>
                                 <th>Mã người mượn</th>
                                 <td>
-                                    <input type="hidden" name="userId" value="{{ $borrower->userId }}">
-                                    <input type="text" name="userid" class="form-control" value="{{ $borrower->userId }}" disabled /></td>
+                                    <input type="hidden" name="userId" value="{{ $borrowerInfo->userId }}">
+                                    <input type="text" name="userid" class="form-control" value="{{ $borrowerInfo->userId }}" disabled /></td>
                             </tr>
                             <tr>
                                 <th>Tên người mượn</th>
-                                <td><input type="text" name="name" class="form-control" value="{{ $borrower->name }}" disabled /></td>
+                                <td><input type="text" name="name" class="form-control" value="{{ $borrowerInfo->name }}" disabled /></td>
                             </tr>
                             <tr>
                                 <th>Email</th>
