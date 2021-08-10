@@ -164,12 +164,12 @@ class BookController extends Controller
         return view('editBook', compact('book', 'active', 'level1'));
     }
     public function editBookPost(Request $request) {
-        $this->validate($request, [
-			'name' => 'required',
-			'price'=>'required|numeric',
-            'copies'=>'numeric',
-            ]
-		);
+        // $this->validate($request, [
+		// 	'name' => 'required',
+		// 	'price'=>'required|numeric',
+        //     'copies'=>'numeric',
+        //     ]
+		// );
         $book = Book::where('id', $request->id)->first();
         $book->name = $request->name;
         $book->author = $request->author;
@@ -202,9 +202,9 @@ class BookController extends Controller
 			if($exe_flg) {
                 // lưu product
                 $image = $request->img;
-                $filename = $image->store('public');
+                $filename = $image->store('photo');
                 $filename = substr($filename, 6);
-                $book->image = $filename;
+                $book->image = 'photo/'.$filename;
                 $book->save();
                 return redirect(route('manageBooks'));
 			} 
@@ -569,7 +569,7 @@ class BookController extends Controller
     public function addBorrowing(Request $request) {
         $active = 'manage';
         $username = $request->username;
-        $borrower = User::where('username', $username)->leftJoin('userinfo', 'userinfo.userId', 'users.id')->first();
+        $borrower = User::where('username', $username)->leftJoin('userInfo', 'userInfo.userId', 'users.id')->first();
         // dd($borrower);
         return view('addBorrowing', compact('active', 'borrower'));
     }
@@ -578,13 +578,13 @@ class BookController extends Controller
         $book = Book::where('name', $request->bookName)->first();
         if(!isset($book)) {
             $active = 'manage';
-            $borrower = User::where('userId', $request->userId)->leftJoin('userinfo', 'userinfo.userId', 'users.id')->first();
+            $borrower = User::where('userId', $request->userId)->leftJoin('userInfo', 'userInfo.userId', 'users.id')->first();
             toast('Không tìm thấy sách đã nhập', 'info');
             return view('addBorrowing', compact('active', 'borrower'));
         }
         if (date('Y-m-d') >= $request->returnDate) {
             $active = 'manage';
-            $borrower = User::where('userId', $request->userId)->leftJoin('userinfo', 'userinfo.userId', 'users.id')->first();
+            $borrower = User::where('userId', $request->userId)->leftJoin('userInfo', 'userInfo.userId', 'users.id')->first();
             toast('Ngày dự định trả không hợp lệ', 'info');
             return view('addBorrowing', compact('active', 'borrower'));
         }
