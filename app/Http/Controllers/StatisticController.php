@@ -20,7 +20,7 @@ class StatisticController extends Controller
             $mostBook = DB::table('books')
                 ->join('borrowings', 'borrowings.bookId', 'books.id')
                 ->where('borrowings.returned', '!=', 'returned')
-                ->select(DB::raw('sum(borrowings.quantity) as totalforEach, books.name'))
+                ->select(DB::raw(`sum(borrowings.quantity) as totalforEach, books.name`))
                 ->groupBy('books.name')
                 ->orderBy('totalforEach', 'desc')
                 ->get();
@@ -53,7 +53,7 @@ class StatisticController extends Controller
         if (Borrowing::count() > 0)
             $usuallyUser = DB::table('users')
                 ->join('borrowings', 'borrowings.userId', 'users.id')
-                ->select(DB::raw('sum(borrowings.quantity) as totalforEach, users.username'))
+                ->select(DB::raw(`sum(borrowings.quantity) as totalforEach, users.username`))
                 ->groupBy('username')
                 ->orderBy('totalforEach', 'desc')
                 ->get();
@@ -80,12 +80,12 @@ class StatisticController extends Controller
         if (Borrowing::count() > 0) {
 
             $mostBookRentDay = DB::table('borrowings')
-                ->select(DB::raw('count(borrowings.borrowDate) as totalforEach1, borrowDate'))
+                ->select(DB::raw(`count(borrowings.borrowDate) as totalforEach1, borrowDate`))
                 ->groupBy('borrowDate')
                 ->orderBy('totalforEach1', 'desc')
                 ->get();
             $mostRentDay = DB::table('borrowings')
-                ->select(DB::raw('count(borrowings.borrowDate) as totalforEach1, borrowDate'))
+                ->select(DB::raw(`count(borrowings.borrowDate) as totalforEach1, borrowDate`))
                 ->groupBy('borrowDate')
                 ->orderBy('totalforEach1', 'asc')
                 ->get();

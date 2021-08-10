@@ -60,7 +60,7 @@ class HomeController extends Controller
         $active = "books";
         if (!empty(session('userId'))) {
             $book = Book::select("books.*",
-            DB::raw("(SELECT userId FROM wish_lists WHERE bookId = books.id AND userId = ".session('userId').") favorite"))
+            DB::raw(`(SELECT userId FROM wish_lists WHERE bookId = books.id AND userId = `.session('userId').`) favorite`))
             ->where('id', $request->id)->first();
         } else {
             $book = Book::select("books.*")->where('id', $request->id)->first();
