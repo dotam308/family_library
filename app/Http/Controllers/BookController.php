@@ -569,7 +569,9 @@ class BookController extends Controller
     public function addBorrowing(Request $request) {
         $active = 'manage';
         $username = $request->username;
-        $borrower = User::where('username', $username)->leftJoin('userInfo', 'userInfo.userId', 'users.id')->first();
+        $borrower = User::where('username', $username)
+            ->leftJoin('"userInfo"', 'userInfo.userId', 'users.id')
+            ->first();
         // dd($borrower);
         return view('addBorrowing', compact('active', 'borrower'));
     }
