@@ -570,7 +570,7 @@ class BookController extends Controller
         $active = 'manage';
         $username = $request->username;
         $borrower = User::where('username', $username)
-            ->leftJoin("userInfo", 'userInfo.userId', 'users.id')
+            ->leftJoin("userInfo", `userInfo.userId`, `users.id`)
             ->first();
             dd($borrower);
         // dd($borrower);
