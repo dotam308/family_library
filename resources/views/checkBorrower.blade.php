@@ -75,17 +75,12 @@
                                                         <input type="password" id="password1" name="password"
                                                             class="input-text form-control" placeholder="Mật khẩu *">
 ======= --}}
-                                                        <input type="text" id="name" name="name" class="input-text" style="width: 80%"
+                                                        <input type="text" id="name" name="name" class="input-text form-control" style="width: 80%"
                                                         placeholder="Tên đầy đủ *">
                                                     </p>
                                                     <p class="form-row input-required">
                                                         <input type="text" id="username1" name="username" style="width: 80%"
-                                                            class="input-text" placeholder="Tên đăng nhập *">
-                                                    </p>
-                                                    <p class="form-row input-required">
-                                                        <input type="password" id="password1" name="password" style="width: 80%"
-                                                            class="input-text" placeholder="Mật khẩu *">
-
+                                                            class="input-text form-control" placeholder="Tên đăng nhập *">
                                                     </p>
                                                     <div class="clear"></div>
                                                     <input type="submit" value="Đăng ký" name="signup"

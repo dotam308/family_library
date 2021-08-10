@@ -517,7 +517,7 @@ class BookController extends Controller
 
             $user = User::create([
                 'username' => $request->username,
-                'password' => Hash::make($request->password),
+                'password' => Hash::make($request->username),
                 'role' => 'guest'
             ]);
 
