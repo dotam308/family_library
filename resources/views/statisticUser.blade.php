@@ -44,7 +44,7 @@
             <?php
         }?>
         @empty
-        @endforeach
+        @endforelse
         
         <br>
                 </div>
