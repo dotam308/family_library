@@ -569,7 +569,7 @@ class BookController extends Controller
     public function addBorrowing(Request $request) {
         $active = 'manage';
         $username = $request->username;
-        $borrower = User::where('username', $username);
+        $borrower = User::where('username', $username)->first();
             $borrowerInfo = UserInfo::where('userId',$borrower->id);
             dd($borrowerInfo->first());
         // dd($borrower);
