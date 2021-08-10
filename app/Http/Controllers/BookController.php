@@ -553,6 +553,7 @@ class BookController extends Controller
             'role' => 'guest']);
         
             $userId = $user->id;
+
             
             // dd($userId);
             UserInfo::create([
@@ -568,9 +569,7 @@ class BookController extends Controller
     public function addBorrowing(Request $request) {
         $active = 'manage';
         $username = $request->username;
-        $borrower = User::where('username', $username)
-            ->leftJoin("userInfo", 'userInfo.userId', '=', 'users.id')
-            ->first();
+        $borrower = User::where('username', $username);
             $borrowerInfo = UserInfo::where('userId',$borrower->id);
             dd($borrowerInfo->first());
         // dd($borrower);
