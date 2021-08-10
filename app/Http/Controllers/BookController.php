@@ -552,8 +552,7 @@ class BookController extends Controller
             'password' => Hash::make($request->password),
             'role' => 'guest']);
         
-            $last = DB::table('users')->latest()->first();
-            $userId = $last->id;
+            $userId = $user->id;
             
             // dd($userId);
             UserInfo::create([
