@@ -86,8 +86,7 @@ class RegisteredUserController extends Controller
             'role' => 'guest'
         ]);
         session(['role' => 'guest']);
-        $last = DB::table('users')->latest()->first();
-        $userId = $last->id;
+        $userId = $user->id;
         session(['userId' => $userId]);
         // dd($userId);
         UserInfo::create([
