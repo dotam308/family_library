@@ -153,12 +153,36 @@ class BookController extends Controller
           $ddc[$num] = $classify;
         }
         fclose($myfile);
+
         $level1 = array();
+        $level2 = array();
+        $selected1 = "";
+        $selected2 = "";
+
         $id = array("000", "100", "200", "300", "400", "500", "600", "700", "800", "900");
         foreach($id as $i) {
             $level1[$i] = $ddc[$i];
         }
-        return view('editBook', compact('book', 'active', 'level1'));
+        if ($book->ddcCode != "chưa chọn") {
+            $pre = $book->ddcCode[0];
+            $selected1 = $pre.'00';
+            
+            if ($selected1 != $book->ddcCode) {
+                $selected2 = $book->ddcCode;
+            } else {
+                $selected2 = "";
+            }
+            
+            if ($pre != '0') {
+                $id2 = array($pre."10", $pre."20", $pre."30", $pre."40", $pre."50", $pre."60", $pre."70", $pre."80", $pre."90");
+            } else { //ddc value 040 undefined
+                $id2 = array($pre."10", $pre."20", $pre."30", $pre."50", $pre."60", $pre."70", $pre."80", $pre."90");
+            }   
+            foreach($id2 as $i) {
+                $level2[$i] = $ddc[$i];
+            }
+        }
+        return view('editBook', compact('book', 'active', 'level1', 'level2', 'selected1', 'selected2'));
     }
     public function editBookPost(Request $request) {
         $this->validate($request, [
