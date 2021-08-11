@@ -10,23 +10,16 @@ use Illuminate\Support\Facades\DB;
 
 class StatisticController extends Controller
 {
-    public function viewBook(Request $request)
-    {
-        $active = "statistic";
-        $book = DB::table('books')->get();
-        $borrow = DB::table('borrowings')->get();
-        $a = DB::table('borrowings')->where('borrowings.returned', '!=', 'returned')->get(['borrowings.quantity as quantity']);
-        // if (Borrowing::count() > 0)
-        //     $mostBook = DB::table('books')
-        //         ->join('borrowings', 'borrowings.bookId', 'books.id')
-        //         ->where('borrowings.returned', '!=', 'returned')
-        //         ->select(DB::raw(`sum(borrowings.quantity) as totalforEach, books.name`))
-        //         ->groupBy('books.name')
-        //         ->orderBy('totalforEach', 'desc')
-        //         ->get();
-        // else 
-        $mostBook = null;
-        $author = 0;
+	public function viewBook(Request $request)
+	{
+		$active = "index";
+        $book = Book::get();
+        $bookTypes = Book::groupBy('books.genre')->get('books.genre');
+        $bookAuthors = Book::groupBy('books.author')->get('books.author');
+        $borrow = Borrowing::get();
+        $a = Borrowing::where('borrowings.returned','borrowing')->get('borrowings.quantity');
+        $mostBook = Book::join('borrowings','borrowings.bookId','books.id')->where('borrowings.returned','!=','returned')->select(DB::raw('sum(borrowings.quantity) as totalforEach, books.name'))->groupBy('books.name')->orderBy('totalforEach','desc')->get();
+        $author = 0;          
         $quantityBook = 0;
         $borrowBook = 0;
         $booktype = 0;
@@ -45,22 +38,15 @@ class StatisticController extends Controller
         foreach ($a as $key) {
             $borrowBook += $key->quantity;
         }
-        return view('statisticBook', compact('active', 'quantityBook', 'borrowBook', 'booktype', 'mostBook', 'totalPrice', 'book', 'country', 'author'));
-    }
-    public function viewUser(Request $request)
-    {
-        $active = "statistic";
-        $user = DB::table('users')->get();
-        // if (Borrowing::count() > 0)
-        //     $usuallyUser = DB::table('users')
-        //         ->join('borrowings', 'borrowings.userId', 'users.id')
-        //         ->select(DB::raw(`sum(borrowings.quantity) as totalforEach, users.username`))
-        //         ->groupBy('username')
-        //         ->orderBy('totalforEach', 'desc')
-        //         ->get();
-        // else 
-        $usuallyUser = null;
-        $activeUser = DB::table('borrowings')->join('users', 'borrowings.userId', 'users.id')->get();
+        return view('statisticBook', compact('active','quantityBook','borrowBook','booktype','mostBook','totalPrice','book','country','author'));
+	}
+	public function viewUser(Request $request)
+	{
+		$active = "index";
+        $user = User::get();
+        $usuallyUser = User::join('borrowings','borrowings.userId','users.id')->select(DB::raw('sum(borrowings.quantity) as totalforEach, users.username'))->groupBy('username')->orderBy('totalforEach','desc')
+                     ->get(); 
+        $activeUser = Borrowing::join('users','borrowings.userId','users.id')->get();
         $quantityActive = 0;
         foreach ($activeUser as $key) {
             $quantityActive++;
@@ -69,32 +55,20 @@ class StatisticController extends Controller
         foreach ($user as $key) {
             $userquantity++;
         }
-        return view('statisticUser', compact('active', 'userquantity', 'usuallyUser', 'quantityActive'));
-    }
-    public function viewRent(Request $request)
-    {
-        $active = "statistic";
-        $borrowing = DB::table('borrowings')->get();
+		return view('statisticUser', compact('active','userquantity','usuallyUser','quantityActive'));
+	}
+	public function viewRent(Request $request)
+	{	
+		$active = "index";
+        $borrowing = Borrowing::get();
         $rentTime = 0;
         foreach ($borrowing as $key) {
             $rentTime++;
         }
-        // if (Borrowing::count() > 0) {
-
-        //     $mostBookRentDay = DB::table('borrowings')
-        //         ->select(DB::raw(`count(borrowings.borrowDate) as totalforEach1, borrowDate`))
-        //         ->groupBy('borrowDate')
-        //         ->orderBy('totalforEach1', 'desc')
-        //         ->get();
-        //     $mostRentDay = DB::table('borrowings')
-        //         ->select(DB::raw(`count(borrowings.borrowDate) as totalforEach1, borrowDate`))
-        //         ->groupBy('borrowDate')
-        //         ->orderBy('totalforEach1', 'asc')
-        //         ->get();
-        // } else {
-            $mostBookRentDay = null;
-            $mostRentDay = null;
-        // }
-        return view('statisticRent', compact('active', 'rentTime', 'mostRentDay', 'mostBookRentDay'));
-    }
+        $mostBookRentDay = Borrowing::select(DB::raw('count(borrowings.borrowDate) as totalforEach1, borrowDate'))->groupBy('borrowDate')->orderBy('totalforEach1','desc')
+                     ->get();
+        $mostRentDay = Borrowing::select(DB::raw('count(borrowings.borrowDate) as totalforEach1, borrowDate'))->groupBy('borrowDate')->orderBy('totalforEach1','asc')
+                     ->get();             
+		return view('statisticRent', compact('active', 'rentTime', 'mostRentDay','mostBookRentDay'));
+	}
 }

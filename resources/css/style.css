@@ -7653,7 +7653,7 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: "Lato", Georgia, Times, serif;
+  font-family: Arial, Helvetica, sans-serif;
   text-transform: uppercase;
 }
 h3,
@@ -8562,7 +8562,7 @@ a:focus {
 .cart-dropdown ul li .item-info .name a {
   border-color: transparent;
   color: #282828;
-  font-family: "Lato", Georgia, Times, serif;
+  font-family: Arial, Helvetica, sans-serif;
   font-weight: 700;
   margin: 0;
   padding: 0;
@@ -11497,7 +11497,7 @@ a:focus {
 .fullwidth-social-icons ul li a span small {
   border-bottom: 2px solid #fff;
   color: #fff;
-  font-family: "Lato", Georgia, Times, serif;
+  font-family: Arial, Helvetica, sans-serif;
   font-size: 20px;
   text-transform: uppercase;
   -moz-transition: all 0.3s ease-in-out;
@@ -11752,7 +11752,7 @@ a:focus {
 }
 .site-footer .sub-footer ul li {
   float: left;
-  font-family: "Lato", Georgia, Times, serif;
+  font-family: Arial, Helvetica, sans-serif;
 }
 @media (max-width: 991px) {
   .site-footer .sub-footer ul li {
@@ -13838,7 +13838,7 @@ a:focus {
   color: #ff7236;
   display: block;
   font-size: 16px;
-  font-family: "Lato", Georgia, Times, serif;
+  font-family: Arial, Helvetica, sans-serif;
   margin-bottom: 20px;
   text-transform: uppercase;
   -moz-transition: all 0.3s ease-in-out;
@@ -17771,7 +17771,7 @@ a:focus {
   display: inline-block;
   font-size: 16px;
   border-left: 0;
-  font-family: "Lato", Georgia, Times, serif;
+  font-family: Arial, Helvetica, sans-serif;
   margin: 40px 0 40px;
   padding: 0;
   position: relative;
@@ -18580,7 +18580,7 @@ a:focus {
 .sidebar .widget_recent_entries ul li a {
   color: #282828;
   display: block;
-  font-family: "Lato", Georgia, Times, serif;
+  font-family: Arial, Helvetica, sans-serif;
   font-weight: 700;
   letter-spacing: -1px;
   margin: 8px 0 5px;
@@ -19048,7 +19048,7 @@ a:focus {
   }
 }
 .layout-v3 #home-v1-header-carousel .carousel-caption p {
-  font-family: "Lato", Georgia, Times, serif;
+  font-family: Arial, Helvetica, sans-serif;
   font-size: 30px;
   margin-bottom: 50px;
 }

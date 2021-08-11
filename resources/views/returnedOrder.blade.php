@@ -3,14 +3,14 @@
 <section class="page-banner services-banner">
     <div class="container">
         <div class="banner-header">
-            <h2>Đơn hàng thành công</h2>
+            <h2>Sách mượn thành công</h2>
             <span class="underline center"></span>
             {{-- <p class="lead">Proin ac eros pellentesque dolor pharetra tempo.</p> --}}
         </div>
         <div class="breadcrumb">
             <ul>
-                <li><a href="index-2.html">Đơn hàng</a></li>
-                <li>Đơn hàng thành công</li>
+                <li><a href="index-2.html">Sách mượn</a></li>
+                <li>Sách mượn thành công</li>
             </ul>
         </div>
     </div>

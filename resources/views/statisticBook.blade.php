@@ -35,7 +35,7 @@
                     <i class="light-green"></i>
                     <p3>Có tất cả <strong><big>{{$booktype}}</big></strong> thể loại sách khác nhau</p3>
                     <p>Bao gồm: <?php $i = 0; foreach($book as $b) {
-                            while($i<3){ $i++;
+                            if($i<3){ $i++;
                         echo $b->genre . ",  ";}
                        
                     }
@@ -47,7 +47,7 @@
                     <i class="violet"></i>
                     <p3>Có tất cả <strong><big>{{$author}}</big></strong> tác giả</p3>
                     <p>Bao gồm: <?php $i = 0; foreach($book as $b) {
-                            while($i<3){ $i++;
+                            if($i<3){ $i++;
                         echo $b->author . ",  ";}
                        
                     }
@@ -59,7 +59,7 @@
                     <i class="red"></i>
                     <p3>Sách đến từ <strong><big>{{$country}}</big></strong> đất nước</p3>
                     <p>Bao gồm: <?php $i = 0; foreach($book as $b) {
-                            while($i<3){ $i++;
+                            if($i<3){ $i++;
                         echo $b->country . ",  ";}
                        
                     }

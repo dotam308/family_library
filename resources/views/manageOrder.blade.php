@@ -3,14 +3,14 @@
 <section class="page-banner services-banner">
     <div class="container">
         <div class="banner-header">
-            <h2>{{ empty($status) ? 'Đơn hàng đang mượn' : 'Đơn hàng đang đợi' }}</h2>
+            <h2>{{ empty($status) ? 'Sách đang mượn' : 'Sách mượn đang đợi' }}</h2>
             <span class="underline center"></span>
             {{-- <p class="lead">Proin ac eros pellentesque dolor pharetra tempo.</p> --}}
         </div>
         <div class="breadcrumb">
             <ul>
-                <li><a href="index-2.html">Đơn hàng</a></li>
-                <li>{{ empty($status) ? 'Đơn hàng đang mượn' : 'Đơn hàng đang chờ xử lý' }}</li>
+                <li><a href="index-2.html">Sách mượn</a></li>
+                <li>{{ empty($status) ? 'Sách đang mượn' : 'Sách mượn đang chờ xử lý' }}</li>
             </ul>
         </div>
     </div>
