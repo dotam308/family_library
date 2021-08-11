@@ -125,9 +125,10 @@ class BookController extends Controller
 
         if ($request->hasFile('img')) {
             $allowedfileExtension = ['jpg', 'png'];
-            $file = $request->file('img');
+            $file = $request->file('img')->storeOnCloudinary();
             $exe_flg = true;
-            $extension = $file->getClientOriginalExtension();
+            $fileN = $request->file('img');
+            $extension = $fileN->getClientOriginalExtension();
             $check = in_array($extension, $allowedfileExtension);
 
             if (!$check) {
@@ -140,7 +141,7 @@ class BookController extends Controller
                 $image = $request->img;
                 $filename = $image->store('photo');
                 $filename = substr($filename, 6);
-                $book->image = "photo/" . $filename;
+                $book->image = $file->getPath();
                 $book->save();
                 return redirect(route('manageBooks'));
             }
