@@ -24,50 +24,50 @@ class WishListController extends Controller
         $active = "books";
         if ($request->insc == 'r') {
             if ($request->dc == 'r') {
-                $books = DB::table('wish_lists')->leftJoin('books', 'wish_lists.bookId', '=', 'books.id')
+                $books = WistList::leftJoin('books', 'wish_lists.bookId', '=', 'books.id')
                 ->where('userId', session('userId'))
                 ->orderBy('books.ddcCode', 'asc')
                 ->paginate(10, ['books.ddcCode', 'books.name', 'books.author', 'books.genre',  'books.image', 'books.id']);
             } else if ($request->bn == 'r') {
-                $books = DB::table('wish_lists')->leftJoin('books', 'wish_lists.bookId', '=', 'books.id')
+                $books = WistList::leftJoin('books', 'wish_lists.bookId', '=', 'books.id')
                 ->where('userId', session('userId'))
                 ->orderBy('books.name', 'asc')
                 ->paginate(10, ['books.ddcCode', 'books.name', 'books.author', 'books.genre',  'books.image', 'books.id']);
             } else if ($request->au == 'r') {
-                $books = DB::table('wish_lists')->leftJoin('books', 'wish_lists.bookId', '=', 'books.id')
+                $books = WistList::leftJoin('books', 'wish_lists.bookId', '=', 'books.id')
                 ->where('userId', session('userId'))
                 ->orderBy('books.author', 'asc')
                 ->paginate(10, ['books.ddcCode', 'books.name', 'books.author', 'books.genre',  'books.image', 'books.id']);
             } else if ($request->ge == 'r') {
-                $books = DB::table('wish_lists')->leftJoin('books', 'wish_lists.bookId', '=', 'books.id')
+                $books = WistList::leftJoin('books', 'wish_lists.bookId', '=', 'books.id')
                 ->where('userId', session('userId'))
                 ->orderBy('books.genre', 'asc')
                 ->paginate(10, ['books.ddcCode', 'books.name', 'books.author', 'books.genre',  'books.image', 'books.id']);
             }
         } else if ($request->desc == 'r') {
             if ($request->dc == 'r') {
-                $books = DB::table('wish_lists')->leftJoin('books', 'wish_lists.bookId', '=', 'books.id')
+                $books = WistList::leftJoin('books', 'wish_lists.bookId', '=', 'books.id')
                 ->where('userId', session('userId'))
                 ->orderBy('books.ddcCode', 'desc')
                 ->paginate(10, ['books.ddcCode', 'books.name', 'books.author', 'books.genre',  'books.image', 'books.id']);
             } else if ($request->bn == 'r') {
-                $books = DB::table('wish_lists')->leftJoin('books', 'wish_lists.bookId', '=', 'books.id')
+                $books = WistList::leftJoin('books', 'wish_lists.bookId', '=', 'books.id')
                 ->where('userId', session('userId'))
                 ->orderBy('books.name', 'desc')
                 ->paginate(10, ['books.ddcCode', 'books.name', 'books.author', 'books.genre',  'books.image', 'books.id']);
             } else if ($request->au == 'r') {
-                $books = DB::table('wish_lists')->leftJoin('books', 'wish_lists.bookId', '=', 'books.id')
+                $books = WistList::leftJoin('books', 'wish_lists.bookId', '=', 'books.id')
                 ->where('userId', session('userId'))
                 ->orderBy('books.author', 'desc')
                 ->paginate(10, ['books.ddcCode', 'books.name', 'books.author', 'books.genre',  'books.image', 'books.id']);
             } else if ($request->ge == 'r') {
-                $books = DB::table('wish_lists')->leftJoin('books', 'wish_lists.bookId', '=', 'books.id')
+                $books = WistList::leftJoin('books', 'wish_lists.bookId', '=', 'books.id')
                 ->where('userId', session('userId'))
                 ->orderBy('books.genre', 'desc')
                 ->paginate(10, ['books.ddcCode', 'books.name', 'books.author', 'books.genre',  'books.image', 'books.id']);
             }
         } else {
-            $books = DB::table('wish_lists')->leftJoin('books', 'wish_lists.bookId', '=', 'books.id')
+            $books = WistList::leftJoin('books', 'wish_lists.bookId', '=', 'books.id')
             ->where('userId', session('userId'))->paginate(10, ['books.ddcCode', 'books.name',
              'books.author', 'books.genre',  'books.image', 'books.id']);
         }
