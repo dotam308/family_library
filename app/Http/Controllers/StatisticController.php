@@ -23,6 +23,7 @@ class StatisticController extends Controller
         // ->groupBy('books.name')
         // ->orderBy('totalforEach','desc')
         // ->get();
+        $mostBook = null;
         $author = 0;
         $quantityBook = 0;
         $borrowBook = 0;
