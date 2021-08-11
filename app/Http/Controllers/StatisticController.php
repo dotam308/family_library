@@ -18,7 +18,11 @@ class StatisticController extends Controller
         $bookAuthors = Book::groupBy('books.author')->get('books.author');
         $borrow = Borrowing::get();
         $a = Borrowing::where('borrowings.returned','borrowing')->get('borrowings.quantity');
-        $mostBook = Book::join('borrowings','borrowings.bookId','books.id')->where('borrowings.returned','!=','returned')->select(DB::raw('sum(borrowings.quantity) as totalforEach, books.name'))->groupBy('books.name')->orderBy('totalforEach','desc')->get();
+        $mostBook = Book::join('borrowings','borrowings.bookId','books.id')->where('borrowings.returned','!=','returned')
+        ->select(DB::raw(`sum(borrowings.quantity) as totalforEach, books.name`))
+        ->groupBy('books.name')
+        ->orderBy('totalforEach','desc')
+        ->get();
         $author = 0;          
         $quantityBook = 0;
         $borrowBook = 0;

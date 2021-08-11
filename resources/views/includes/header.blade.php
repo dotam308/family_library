@@ -60,6 +60,7 @@
                                         <li><a href="{{ route('manageBooks') }}">Sách</a></li>
                                         <li><a href="{{ route('books_rented') }}">Sách mượn</a></li>
                                         <li><a href="{{route('users')}}">Người mượn</a></li>
+                                        <li><a href="{{route('favoriteBooks')}}">Sách yêu thích</a></li>
                                         <li><a href="{{route('checkBorrower')}}">Thêm đơn mượn</a></li>
                                     </ul> 
                                     </li>
