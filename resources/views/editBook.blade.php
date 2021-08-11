@@ -103,7 +103,7 @@
                             <tr>
                                 <th>Ảnh</th>
                                 <td>
-                                    <img class="small-image" src="/storage/{{ $book->image }}">
+                                    <img class="small-image" src="{{ $book->image }}">
                                     <input type="file" name="img" class="form-control">
                                 </td>
                             </tr>

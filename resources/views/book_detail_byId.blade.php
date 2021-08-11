@@ -34,7 +34,7 @@
                             <div class="col-xs-12 col-sm-5 col-md-3">
                                 <div class="post-thumbnail">
                                     {{-- <div class="book-list-icon blue-icon"></div> --}}
-                                    <img src="/storage/{{ $book->image }}" alt="Book Image">
+                                    <img src="{{ $book->image }}" alt="Book Image">
                                 </div>
                             </div>
                             <div class="col-xs-12 col-sm-7 col-md-6">

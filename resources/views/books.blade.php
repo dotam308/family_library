@@ -105,7 +105,7 @@ if (isset($_GET['page'])) {
 
                                     {{-- end input --}}
                                     <a href="{{ route('book_detail_byId', compact('id')) }}"><img
-                                            src="/storage/{{ $book->image }}" 
+                                            src="{{ $book->image }}" 
                                             alt="Book"></a>
                                     <figcaption>
                                         <header>

@@ -123,7 +123,7 @@
                                         @endif
 
                                         <td>
-                                            <img src="/storage/{{ $book->image }}" alt="image"/>
+                                            <img src="{{ $book->image }}" alt="image"/>
                                         </td>
 
                                         @if ($book->returned == 'waiting')

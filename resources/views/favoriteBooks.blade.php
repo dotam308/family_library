@@ -126,7 +126,7 @@
                                     <td>{{ $book->genre }}</td>
 
                                     <td>
-                                        <img src="/storage/{{ $book->image }}" alt="image" />
+                                        <img src="{{ $book->image }}" alt="image" />
                                     </td>
 
                                     <td>

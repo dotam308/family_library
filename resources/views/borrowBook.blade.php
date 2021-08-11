@@ -32,7 +32,7 @@
                         <table class="table table-hover">
                             
                             <div class="post-thumbnail">
-                                <img src="/storage/{{ $book->image }}"
+                                <img src="{{ $book->image }}"
                                     alt="Book Image">
                                 <br><br>
                             </div>

@@ -156,7 +156,7 @@
                                     <td class="col-2">{{ $book->translator }}</td>
                                     <td class="col-2">{{ $book->country }}</td>
                                     <td class="col-1">
-                                        <img src="/storage/{{ $book->image }}" alt="image" class="small-img" />
+                                        <img src="{{ $book->image }}" alt="image" class="small-img" />
                                     </td>
                                     <td class="col-1">
                                         <?php $id = $book->id; ?>
