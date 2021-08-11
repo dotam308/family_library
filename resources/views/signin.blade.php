@@ -66,7 +66,7 @@
                                                             <label class="inline" for="rememberme">Ghi nhớ</label>
                                                         </p>
                                                         <p class="lost_password">
-                                                            <a href="#">Quên mật khẩU?</a>
+                                                            <a href="#">Quên mật khẩu ?</a>
                                                         </p>
                                                     </div>
                                                     <input type="submit" value="Đăng nhập" name="login"
