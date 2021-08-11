@@ -48,14 +48,29 @@
                                 <td>
                                     <div class="form-control">
                                         <select name="level1" id="level1" data-dependent="level2" class="dynamic">
-                                            <option value="">Chọn lớp</option>
+                                            @if ($selected1 == "")
+                                                <option value="" selected>Chọn lớp</option>
+                                            @endif
                                             @foreach ($level1 as $key => $value)
-                                                <option value="{{ $key }}">{{$value}}</option>
+                                                @if ($key == $selected1)
+                                                    <option value="{{ $key }}" selected>{{$value}}</option>
+                                                @else
+                                                    <option value="{{ $key }}">{{$value}}</option>
+                                                @endif
                                             @endforeach
                                         </select>
     
                                         <select name="level2" id="level2">
-                                            <option value="">Chọn phân lớp</option>
+                                            @if ($selected2 == "")
+                                                <option value="" selected>Chọn phân lớp</option>
+                                            @endif
+                                            @foreach ($level2 as $key => $value)
+                                                @if ($key == $selected2)
+                                                    <option value="{{ $key }}" selected>{{$value}}</option>
+                                                @else
+                                                    <option value="{{ $key }}">{{$value}}</option>
+                                                @endif
+                                            @endforeach
                                         </select>
                                     </div>
                                     {{ csrf_field() }}
