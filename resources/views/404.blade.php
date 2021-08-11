@@ -4,14 +4,14 @@
 <section class="page-banner services-banner">
     <div class="container">
         <div class="banner-header">
-            <h2>Error 404</h2>
+            <h2>Lỗi 404</h2>
             <span class="underline center"></span>
-            <p class="lead">Proin ac eros pellentesque dolor pharetra tempo.</p>
+            <p class="lead">Không tìm được trang.</p>
         </div>
         <div class="breadcrumb">
             <ul>
-                <li><a href="index-2.html">Home</a></li>
-                <li>Error 404</li>
+                <li><a href="index-2.html">Trang chủ</a></li>
+                <li>Lỗi 404</li>
             </ul>
         </div>
     </div>
@@ -40,13 +40,10 @@
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="error-info bg-light margin-right">
-                                            <h2>OOPS <small>Page Not Found!</small></h2>
+                                            <h2>OOPS <small>Không tìm thấy trang</small></h2>
                                             <form class="search-404" method="post">
-                                                <input class="input-text" placeholder="First Name" name="search"
-                                                    type="text" />
-                                                <span>Can't find what you need? Take a moment and do a search below or
-                                                    start from our homepage.</span>
-                                                <input class="search-submit" type="submit" value="Search" />
+                                                Quay lại trang chủ
+                                                <a href="{{ route('index') }}"><i class="fa fa-home"></i></a>
                                             </form>
                                         </div>
                                     </div>
