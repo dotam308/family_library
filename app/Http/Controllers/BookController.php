@@ -38,7 +38,7 @@ class BookController extends Controller
             $userId = session('userId');
             $books = $books
                 ->select("books.*",
-                        DB::raw("(SELECT userId
+                        DB::raw("(SELECT wish_lists.userId
                         FROM wish_lists
                        WHERE bookId = books.id AND userId = $userId) as favorite")
                 )
