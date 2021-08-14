@@ -12,7 +12,7 @@ class StatisticController extends Controller
 {
     public function viewBook(Request $request)
     {
-        $active = "index";
+        $active = "statistic";
         $book = Book::get();
         $bookTypes = Book::groupBy('books.genre')->get('books.genre');
         $bookAuthors = Book::groupBy('books.author')->get('books.author');
@@ -47,7 +47,7 @@ class StatisticController extends Controller
     }
     public function viewUser(Request $request)
     {
-        $active = "index";
+        $active = "statistic";
         $user = User::get();
         // $usuallyUser = User::join('borrowings','borrowings.userId','users.id')->select(DB::raw('sum(borrowings.quantity) as totalforEach, users.username'))->groupBy('username')->orderBy('totalforEach','desc')
         //              ->get(); 
@@ -65,7 +65,7 @@ class StatisticController extends Controller
     }
     public function viewRent(Request $request)
     {
-        $active = "index";
+        $active = "statistic";
         $borrowing = Borrowing::get();
         $rentTime = 0;
         foreach ($borrowing as $key) {

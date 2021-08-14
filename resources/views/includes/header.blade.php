@@ -54,7 +54,7 @@
                                         <a data-toggle="dropdown" class="dropdown-toggle disabled" href="news-events-list-view.html">Tin tức và sự kiện</a>
                                     </li> --}}
                                      @if (session('role') == 'admin')
-                                    <li class="dropdown {{ isset($active) && $active == "manage" ? "active" : "" }}" >
+                                    <li class="dropdown {{ isset($active) && ($active == "manage" || $active == "personal") ? "active" : "" }}" >
                                         <a data-toggle="dropdown" class="dropdown-toggle disabled" href="#">Quản lý</a>
                                     <ul class="dropdown-menu">
                                         <li><a href="{{ route('manageBooks') }}">Sách</a></li>
@@ -70,7 +70,7 @@
                                 </li>
 
                                 @if( (session('role') != 'admin') && (session('role') != null) )
-                                <li class="dropdown {{ isset($active) && $active == "check" ? "active" : "" }}">
+                                <li class="dropdown {{ isset($active) && $active == "personal" ? "active" : "" }}">
                                     <a data-toggle="dropdown" class="dropdown-toggle disabled" >Cá nhân</a>
                                     <ul class="dropdown-menu">
                                         <li><a href="{{ route('favoriteBooks') }}">Sách yêu thích</a></li>
@@ -118,13 +118,6 @@
                             <li>
                                 <a href="{{ route('books') }}">Giá sách</a>
                             </li>
-                            {{--<li>
-                                <a href="news-events-list-view.html">News &amp; Events</a>
-                                <ul>
-                                    <li><a href="news-events-list-view.html">News &amp; Events List View</a></li>
-                                    <li><a href="news-events-detail.html">News &amp; Events Detail</a></li>
-                                </ul>
-                            </li>--}}
                             @if (session('role') == 'admin')
                                 <li>
                                     <a href="{{ route('manageBooks') }}">Quản lý</a>
@@ -135,23 +128,6 @@
                                 </ul> 
                                 </li>
                             @endif
-                            {{--<li>
-                                <a href="#">Pages</a>
-                                <ul>
-                                    <li><a href="{{ route('cart') }}">Cart</a></li>
-                                    <li><a href="{{route('checkout')}}">Checkout</a></li>
-                                    <li><a href="{{ route('signin') }}">Signin/Register</a></li>
-                                    <li><a href="{{ route('404') }}">404/Error</a></li>
-                                </ul>
-                            </li>--}}
-                            {{--<li>
-                                <a href="blog.html">Blog</a>
-                                <ul>
-                                    <li><a href="blog.html">Blog Grid View</a></li>
-                                    <li><a href="blog-detail.html">Blog Detail</a></li>
-                                </ul>
-                            </li>
-                            <li><a href="services.html">Services</a></li>--}}
                             <li><a href="{{ route('contact')}}">Liên hệ</a></li>
                         </ul>
                     </div>
