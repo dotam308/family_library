@@ -37,10 +37,10 @@ class BookController extends Controller
         if (!empty(session('userId'))) {
             $userId = session('userId');
             $books = $books
-                ->select(`books.*`,
-                        DB::raw(`(SELECT wish_lists.userId
+                ->select("'books'.*",
+                        DB::raw("(SELECT 'wish_lists'.userId
                         FROM wish_lists
-                       WHERE bookId = books.id AND userId = $userId) as favorite`)
+                       WHERE bookId = books.id AND userId = $userId) as favorite")
                 )
                 ->paginate(10);
         } else {
